@@ -330,7 +330,7 @@ const FinancialProductsSection = () => {
 
   return (
     <motion.section
-      className="py-16 bg-white"
+      className="py-16 bg-white px-4 sm:px-6 lg:px-8"
       ref={sectionRef}
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
@@ -338,7 +338,7 @@ const FinancialProductsSection = () => {
       viewport={{ once: true, margin: "-100px" }}
     >
       <motion.div
-        className="max-w-[1248px] mx-auto px-4 sm:px-6 lg:px-8"
+        className="max-w-[1248px] mx-auto"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -358,7 +358,7 @@ const FinancialProductsSection = () => {
             Find the Right
           </motion.h2>
           <motion.h2
-            className="text-4xl lg:text-[64px] leading-[100%] font-bold bg-gradient-to-r from-[#5528A9] to-[#34CA8D] bg-clip-text text-transparent"
+            className="text-4xl lg:text-[64px] leading-[100%] font-bold bg-brand-gradient bg-clip-text text-transparent"
             whileHover={{ scale: 1.02 }}
             transition={{ type: "spring", stiffness: 300 }}
           >

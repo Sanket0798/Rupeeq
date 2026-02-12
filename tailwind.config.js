@@ -25,6 +25,11 @@ export default {
     'border-opacity-12',
     'w-[393px]',
     'h-[334px]',
+    'from-brand-gradient-start',
+    'to-brand-gradient-end',
+    'bg-gradient-to-r',
+    'bg-clip-text',
+    'text-transparent',
   ],
   theme: {
     container: {
@@ -78,6 +83,11 @@ export default {
           DEFAULT: '#124AD6',
           light: '#3B6FE8',
           dark: '#0D3AA3',
+        },
+        // Brand gradient colors
+        'brand-gradient': {
+          start: '#5528A9',
+          end: '#34CA8D',
         },
         // Custom purple color
         'custom-purple': {
@@ -185,6 +195,10 @@ export default {
       },
       spacing: {
         '12': '12px',  // Custom 12px spacing for navbar
+      },
+      backgroundImage: {
+        'brand-gradient': 'linear-gradient(to right, #5528A9, #34CA8D)',
+        'brand-gradient-vertical': 'linear-gradient(to bottom, #5528A9, #34CA8D)',
       },
     },
   },
