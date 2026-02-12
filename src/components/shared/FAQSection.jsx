@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { PlusIcon, MinusIcon } from '../common/SvgIcons';
 
 const FAQSection = () => {
   const [openFAQ, setOpenFAQ] = useState(0); // First FAQ open by default
@@ -42,39 +43,43 @@ const FAQSection = () => {
 
   return (
     <section className="py-16 bg-white">
-      <div className="max-w-[1386px] mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+      <div className="max-w-[1386px] mx-auto bg-white/50 rounded-24 ">
+        <div className="grid lg:grid-cols-2 gap-12 items-start px-4 sm:px-6 lg:px-8">
           {/* Left side - FAQ Content */}
-          <div className="space-y-6 max-w-[630px] w-full">
+          <div className="max-w-[630px] w-full">
             {/* Header */}
             <div className="mb-8">
-              <h2 className="text-4xl lg:text-5xl font-bold text-purple-600 mb-2">
+              <h2 className="text-4xl lg:text-[50px] font-bold text-custom-purple leading-50 tracking--3">
                 Questions?
+                <br />
+                <span className="text-2xl lg:text-[40px] font-light text-[#132644]">
+                  We've Got Answers
+                </span>
               </h2>
-              <p className="text-2xl lg:text-3xl font-bold text-gray-900">
-                We've Got Answers
-              </p>
             </div>
 
+            {/* Divider Line */}
+            <div className="w-full h-px bg-[#100701]"></div>
+
             {/* FAQ Items */}
-            <div className="space-y-4">
+            <div className="space-y-4 mt-4">
               {faqs.map((faq, index) => (
                 <div
                   key={faq.id}
-                  className="border-b border-gray-200 pb-4"
+                  className="border-b border-[#CCCCCC] space-y-[20px]"
                 >
                   <button
                     onClick={() => toggleFAQ(index)}
-                    className="w-full flex justify-between items-center text-left py-4 hover:text-purple-600 transition-colors duration-300"
+                    className="w-full flex justify-between items-center text-left hover:text-purple-600 transition-colors duration-300"
                   >
-                    <span className="text-lg font-semibold text-gray-900 pr-4">
+                    <span className="text-lg font-semibold text-custom-dark pr-4 leading-30 tracing-0">
                       {faq.question}
                     </span>
                     <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center">
                       {openFAQ === index ? (
-                        <span className="text-2xl text-purple-600 font-bold">−</span>
+                        <MinusIcon className="w-6 h-6 text-purple-600" />
                       ) : (
-                        <span className="text-2xl text-purple-600 font-bold">+</span>
+                        <PlusIcon className="w-6 h-6 text-purple-600" />
                       )}
                     </span>
                   </button>
@@ -84,11 +89,9 @@ const FAQSection = () => {
                     className={`overflow-hidden transition-all duration-300 ease-in-out ${openFAQ === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                       }`}
                   >
-                    <div className="pb-4 pr-8">
-                      <p className="text-gray-700 leading-relaxed">
-                        {faq.answer}
-                      </p>
-                    </div>
+                    <p className="text-custom-grey text-base leading-7 tracing--0.36  pb-[30px]">
+                      {faq.answer}
+                    </p>
                   </div>
                 </div>
               ))}

@@ -10,6 +10,18 @@ export default {
     'bg-brand',
     'hover:bg-brand',
     'hover:text-white',
+    'text-custom-purple',
+    'bg-custom-purple',
+    'border-custom-purple',
+    'text-custom-purple-light',
+    'text-custom-purple-dark',
+    'bg-custom-purple-light',
+    'bg-custom-purple-dark',
+    'text-custom-dark',
+    'bg-custom-dark',
+    'border-custom-dark',
+    'text-custom-dark-light',
+    'text-custom-dark-dark',
   ],
   theme: {
     container: {
@@ -64,6 +76,21 @@ export default {
           light: '#3B6FE8',
           dark: '#0D3AA3',
         },
+        // Custom purple color
+        'custom-purple': {
+          DEFAULT: '#5528A9',
+          light: '#7B4FD1',
+          dark: '#3D1A7A',
+        },
+        // Custom dark color
+        'custom-dark': {
+          DEFAULT: '#100701',
+          light: '#2A1F1A',
+          dark: '#0A0500',
+        },
+        'custom-grey': {
+          DEFAULT: '#666A73',
+        },
       },
       fontFamily: {
         sans: ['Delight', 'system-ui', 'sans-serif'],
@@ -103,9 +130,11 @@ export default {
         '24': '24px',
         '26': '26px',
         '28': '28px',
+        '30': '30px',
         '32': '32px',
         '38': '38px',
         '44': '44px',
+        '50': '50px',
         '56': '56px',
         '68': '68px',
       },
@@ -116,6 +145,8 @@ export default {
         'wide': '0.025em',
         'wider': '0.05em',
         'widest': '0.1em',
+        '-3': '-0.03em',
+        '-36': '-0.36px',
         '0': '0px',
         '0.5': '0.5px',
         '1': '1px',
@@ -125,6 +156,19 @@ export default {
       boxShadow: {
         'card': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
         'card-hover': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+        'custom': '5px 5px 5px 0px rgba(0, 0, 0, 0.25)',
+      },
+      borderRadius: {
+        'none': '0',
+        'sm': '0.125rem',
+        'DEFAULT': '0.25rem',
+        'md': '0.375rem',
+        'lg': '0.5rem',
+        'xl': '0.75rem',
+        '2xl': '1rem',
+        '3xl': '1.5rem',
+        'full': '9999px',
+        '24': '24px',
       },
       spacing: {
         '12': '12px',  // Custom 12px spacing for navbar

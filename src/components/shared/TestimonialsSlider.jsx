@@ -75,97 +75,98 @@ const TestimonialsSlider = () => {
   };
 
   return (
-    <section className="py-16 bg-gradient-to-br from-blue-50 to-purple-50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-            What Our Customers Say About <span className="text-purple-600">RupeeQ</span>
-          </h2>
-          <p className="text-gray-600 text-lg max-w-3xl mx-auto leading-relaxed">
-            Hear directly from customers who have used RupeeQ to make informed financial decisions.
-            Their experiences reflect our commitment to transparency, simplicity, and reliable support.
-          </p>
-        </div>
+    // <section className="py-16 bg-gradient-to-br from-blue-50 to-purple-50">
+    //   <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    //     {/* Header */}
+    //     <div className="text-center mb-12">
+    //       <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+    //         What Our Customers Say About <span className="text-purple-600">RupeeQ</span>
+    //       </h2>
+    //       <p className="text-gray-600 text-lg max-w-3xl mx-auto leading-relaxed">
+    //         Hear directly from customers who have used RupeeQ to make informed financial decisions.
+    //         Their experiences reflect our commitment to transparency, simplicity, and reliable support.
+    //       </p>
+    //     </div>
 
-        {/* Slider Container */}
-        <div className="relative bg-white rounded-3xl shadow-xl overflow-hidden">
-          <div className="relative h-96 flex items-center">
-            {/* Navigation Arrows */}
-            <button
-              onClick={goToPrevious}
-              className="absolute left-4 z-10 w-12 h-12 bg-gray-800 text-white rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors duration-300 shadow-lg"
-              aria-label="Previous testimonial"
-            >
-              ←
-            </button>
+    //     {/* Slider Container */}
+    //     <div className="relative bg-white rounded-3xl shadow-xl overflow-hidden">
+    //       <div className="relative h-96 flex items-center">
+    //         {/* Navigation Arrows */}
+    //         <button
+    //           onClick={goToPrevious}
+    //           className="absolute left-4 z-10 w-12 h-12 bg-gray-800 text-white rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors duration-300 shadow-lg"
+    //           aria-label="Previous testimonial"
+    //         >
+    //           ←
+    //         </button>
             
-            <button
-              onClick={goToNext}
-              className="absolute right-4 z-10 w-12 h-12 bg-gray-800 text-white rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors duration-300 shadow-lg"
-              aria-label="Next testimonial"
-            >
-              →
-            </button>
+    //         <button
+    //           onClick={goToNext}
+    //           className="absolute right-4 z-10 w-12 h-12 bg-gray-800 text-white rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors duration-300 shadow-lg"
+    //           aria-label="Next testimonial"
+    //         >
+    //           →
+    //         </button>
 
-            {/* Testimonial Content */}
-            <div className="w-full px-20 py-12">
-              <div className="text-center max-w-4xl mx-auto">
-                {/* Stars */}
-                <div className="flex justify-center mb-8">
-                  {renderStars(testimonials[currentSlide].rating)}
-                </div>
+    //         {/* Testimonial Content */}
+    //         <div className="w-full px-20 py-12">
+    //           <div className="text-center max-w-4xl mx-auto">
+    //             {/* Stars */}
+    //             <div className="flex justify-center mb-8">
+    //               {renderStars(testimonials[currentSlide].rating)}
+    //             </div>
 
-                {/* Testimonial Text */}
-                <blockquote className="text-lg lg:text-xl text-gray-700 leading-relaxed mb-8 italic">
-                  "{testimonials[currentSlide].text}"
-                </blockquote>
+    //             {/* Testimonial Text */}
+    //             <blockquote className="text-lg lg:text-xl text-gray-700 leading-relaxed mb-8 italic">
+    //               "{testimonials[currentSlide].text}"
+    //             </blockquote>
 
-                {/* Author */}
-                <div className="text-xl font-semibold text-gray-900">
-                  {testimonials[currentSlide].author}
-                </div>
-              </div>
-            </div>
-          </div>
+    //             {/* Author */}
+    //             <div className="text-xl font-semibold text-gray-900">
+    //               {testimonials[currentSlide].author}
+    //             </div>
+    //           </div>
+    //         </div>
+    //       </div>
 
-          {/* Slide Indicators */}
-          <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToSlide(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentSlide
-                    ? 'bg-purple-600 scale-125'
-                    : 'bg-gray-300 hover:bg-gray-400'
-                }`}
-                aria-label={`Go to testimonial ${index + 1}`}
-              />
-            ))}
-          </div>
+    //       {/* Slide Indicators */}
+    //       <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2">
+    //         {testimonials.map((_, index) => (
+    //           <button
+    //             key={index}
+    //             onClick={() => goToSlide(index)}
+    //             className={`w-3 h-3 rounded-full transition-all duration-300 ${
+    //               index === currentSlide
+    //                 ? 'bg-purple-600 scale-125'
+    //                 : 'bg-gray-300 hover:bg-gray-400'
+    //             }`}
+    //             aria-label={`Go to testimonial ${index + 1}`}
+    //           />
+    //         ))}
+    //       </div>
 
-          {/* Autoplay indicator */}
-          {isAutoPlaying && (
-            <div className="absolute top-4 right-4">
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-            </div>
-          )}
-        </div>
+    //       {/* Autoplay indicator */}
+    //       {isAutoPlaying && (
+    //         <div className="absolute top-4 right-4">
+    //           <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+    //         </div>
+    //       )}
+    //     </div>
 
-        {/* Progress bar for autoplay */}
-        <div className="mt-6 max-w-md mx-auto">
-          <div className="w-full bg-gray-200 rounded-full h-1">
-            <div 
-              className="bg-purple-600 h-1 rounded-full transition-all duration-100 ease-linear"
-              style={{
-                width: isAutoPlaying ? `${((currentSlide + 1) / testimonials.length) * 100}%` : '0%'
-              }}
-            ></div>
-          </div>
-        </div>
-      </div>
-    </section>
+    //     {/* Progress bar for autoplay */}
+    //     <div className="mt-6 max-w-md mx-auto">
+    //       <div className="w-full bg-gray-200 rounded-full h-1">
+    //         <div 
+    //           className="bg-purple-600 h-1 rounded-full transition-all duration-100 ease-linear"
+    //           style={{
+    //             width: isAutoPlaying ? `${((currentSlide + 1) / testimonials.length) * 100}%` : '0%'
+    //           }}
+    //         ></div>
+    //       </div>
+    //     </div>
+    //   </div>
+    // </section>
+    <p>Hello world</p>
   );
 };
 
