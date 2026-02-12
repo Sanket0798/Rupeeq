@@ -1,61 +1,72 @@
-import { FileText, CheckCircle, Search, Zap } from 'lucide-react';
-
 const HowItWorks = () => {
   const steps = [
     {
       number: '01',
-      icon: <FileText className="w-12 h-12 text-primary" />,
       title: 'Simple Application',
-      description: 'Fill out a quick online form with your basic details',
+      description: 'Choose your product and submit a short form with basic details.',
     },
     {
       number: '02',
-      icon: <CheckCircle className="w-12 h-12 text-secondary" />,
       title: 'Quick Verification',
-      description: 'Our team verifies your information within 24 hours',
+      description: 'Your eligibility is checked securely using partner criteria.',
     },
     {
       number: '03',
-      icon: <Search className="w-12 h-12 text-accent-purple" />,
       title: 'Transparent Selection',
-      description: 'Choose from multiple lender options with clear terms',
+      description: 'Compare relevant offers clearly and choose what fits you best.',
     },
     {
       number: '04',
-      icon: <Zap className="w-12 h-12 text-accent-orange" />,
       title: 'Easy Accessibility',
-      description: 'Get funds disbursed directly to your account',
+      description: 'Complete the journey smoothly and get access without hassle.',
     },
   ];
 
   return (
     <section className="py-16 bg-gradient-to-br from-neutral-50 to-white">
-      <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
-            How It Works
+            How <span className="text-purple-600">RupeeQ</span> Helps You Choose Better
           </h2>
-          <p className="text-neutral-600">Simple steps to get your loan approved</p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {steps.map((step, index) => (
-            <div key={index} className="relative">
-              <div className="card text-center hover:scale-105">
-                <div className="text-6xl font-bold text-neutral-100 mb-4">
-                  {step.number}
+        <div className="relative">
+          {/* Grid container */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+            {steps.map((step, index) => (
+              <div key={index} className="relative">
+                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                  <div className="flex items-start gap-4">
+                    <div className="w-16 h-0.5 bg-neutral-300 mt-6"></div>
+                    <div className="flex-1">
+                      <div className="text-4xl font-bold text-neutral-800 mb-2">
+                        {step.number}
+                      </div>
+                      <h3 className="text-xl font-semibold text-purple-600 mb-3">
+                        {step.title}
+                      </h3>
+                      <p className="text-neutral-600 leading-relaxed">
+                        {step.description}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div className="flex justify-center mb-4">{step.icon}</div>
-                <h3 className="text-xl font-semibold text-neutral-900 mb-2">
-                  {step.title}
-                </h3>
-                <p className="text-neutral-600">{step.description}</p>
               </div>
-              {index < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-neutral-200" />
-              )}
-            </div>
-          ))}
+            ))}
+          </div>
+
+          {/* Connecting lines */}
+          <div className="hidden md:block absolute inset-0 pointer-events-none">
+            {/* Horizontal line between 01 and 02 */}
+            <div className="absolute top-1/4 left-1/2 w-8 h-0.5 bg-purple-300 transform -translate-x-1/2"></div>
+            
+            {/* Vertical line on the right side */}
+            <div className="absolute top-1/4 right-1/4 w-0.5 h-1/2 bg-purple-300"></div>
+            
+            {/* Horizontal line between 03 and 04 */}
+            <div className="absolute bottom-1/4 left-1/2 w-8 h-0.5 bg-purple-300 transform -translate-x-1/2"></div>
+          </div>
         </div>
       </div>
     </section>

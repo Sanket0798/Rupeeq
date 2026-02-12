@@ -1,6 +1,4 @@
-// Import layout components (used on every page)
 import { Navbar, Footer } from './components/layout';
-// Import common components
 import { ScrollToTop } from './components/common';
 // Import page
 import { LandingPage } from './pages';
