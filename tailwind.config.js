@@ -22,6 +22,9 @@ export default {
     'border-custom-dark',
     'text-custom-dark-light',
     'text-custom-dark-dark',
+    'border-opacity-12',
+    'w-[393px]',
+    'h-[334px]',
   ],
   theme: {
     container: {
@@ -96,6 +99,9 @@ export default {
         },
         'custom-grey': {
           DEFAULT: '#666A73',
+        },
+        'button-color': {
+          DEFAULT: '#5432AF',
         },
       },
       fontFamily: {
