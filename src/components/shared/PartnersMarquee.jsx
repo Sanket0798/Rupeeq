@@ -2,7 +2,7 @@ const PartnersMarquee = () => {
   // Partner logos data - using actual logo paths from public/assets/images/partners
   const partners = [
     { name: 'Partner 1', logo: '/assets/images/partners/1.png', alt: 'Partner 1 Logo' },
-    { name: 'Partner 2', logo: '/assets/images/partners/2.png', alt: 'Partner 2 Logo' },
+    { name: 'Partner 2', logo: '/assets/images/partners/2.jpg', alt: 'Partner 2 Logo' },
     { name: 'Partner 3', logo: '/assets/images/partners/3.png', alt: 'Partner 3 Logo' },
     { name: 'Partner 4', logo: '/assets/images/partners/4.png', alt: 'Partner 4 Logo' },
     { name: 'Partner 5', logo: '/assets/images/partners/5.png', alt: 'Partner 5 Logo' },
@@ -38,7 +38,7 @@ const PartnersMarquee = () => {
               key={index}
               className="flex-shrink-0 mx-8 flex items-center justify-center h-20 w-40"
             >
-              <div className="flex items-center justify-center w-full h-full hover:shadow-md transition-shadow duration-300">
+              <div className="flex items-center justify-center w-full h-full transition-shadow duration-300">
                 <img
                   src={partner.logo}
                   alt={partner.alt}
