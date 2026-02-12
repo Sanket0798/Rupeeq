@@ -88,6 +88,12 @@ export default {
           light: '#2A1F1A',
           dark: '#0A0500',
         },
+        'custom-dark-text': {
+          DEFAULT: '#132644',
+        },
+        'custom-dark-blue': {
+          DEFAULT: '#5528A9',
+        },
         'custom-grey': {
           DEFAULT: '#666A73',
         },
@@ -137,6 +143,7 @@ export default {
         '50': '50px',
         '56': '56px',
         '68': '68px',
+        '120': '1.2', // or '120%'. Unitless is generally recommended.
       },
       letterSpacing: {
         'tighter': '-0.05em',
