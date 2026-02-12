@@ -215,23 +215,31 @@ export const SatisfactionIcon = () => (
 
 export const SmileIcon = () => (
     <svg width="84" height="84" viewBox="0 0 84 84" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="42" cy="42" r="40" fill="#FFE5B4" stroke="#FFA500" strokeWidth="4"/>
-        <circle cx="30" cy="35" r="5" fill="#333"/>
-        <circle cx="54" cy="35" r="5" fill="#333"/>
-        <path d="M25 50C25 50 30 60 42 60C54 60 59 50 59 50" stroke="#333" strokeWidth="4" strokeLinecap="round"/>
+        <circle cx="42" cy="42" r="40" fill="#FFE5B4" stroke="#FFA500" strokeWidth="4" />
+        <circle cx="30" cy="35" r="5" fill="#333" />
+        <circle cx="54" cy="35" r="5" fill="#333" />
+        <path d="M25 50C25 50 30 60 42 60C54 60 59 50 59 50" stroke="#333" strokeWidth="4" strokeLinecap="round" />
     </svg>
 );
 
 export const LocationIcon = () => (
     <svg width="84" height="84" viewBox="0 0 84 84" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M42 10C30.4 10 21 19.4 21 31C21 47 42 74 42 74C42 74 63 47 63 31C63 19.4 53.6 10 42 10Z" fill="#FF6B6B" stroke="#CC0000" strokeWidth="3"/>
-        <circle cx="42" cy="31" r="8" fill="white"/>
+        <path d="M42 10C30.4 10 21 19.4 21 31C21 47 42 74 42 74C42 74 63 47 63 31C63 19.4 53.6 10 42 10Z" fill="#FF6B6B" stroke="#CC0000" strokeWidth="3" />
+        <circle cx="42" cy="31" r="8" fill="white" />
     </svg>
 );
 
 
 export const HowWorkBgIcon = () => (
     <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="100" height="100" fill="transparent"/>
+        <rect width="100" height="100" fill="transparent" />
     </svg>
 );
+
+export const BlueChevronUpIcon = () => (
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="9" cy="9" r="9" fill="#5528A9" />
+        <path d="M12.5 6C12.5 5.72386 12.2761 5.5 12 5.5L7.5 5.5C7.22386 5.5 7 5.72386 7 6C7 6.27614 7.22386 6.5 7.5 6.5L11.5 6.5L11.5 10.5C11.5 10.7761 11.7239 11 12 11C12.2761 11 12.5 10.7761 12.5 10.5L12.5 6ZM6 12L6.35355 12.3536L12.3536 6.35355L12 6L11.6464 5.64645L5.64645 11.6464L6 12Z" fill="white" />
+    </svg>
+
+)
