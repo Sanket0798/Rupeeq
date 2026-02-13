@@ -8,8 +8,8 @@ const CreditScoreSection = () => {
 
   return (
     <section className="py-16 bg-gradient-to-br from-blue-50 to-green-50">
-      <div className="mx-auto" style={{ width: '72%', maxWidth: '1400px' }}>
-        <div className="bg-white rounded-3xl p-8 lg:p-12 shadow-xl overflow-hidden relative">
+      <div className="max-w-[1286px] mx-auto">
+        <div className="bg-white h-[475px] rounded-[80px] overflow-hidden relative">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
             <div className="space-y-6">
@@ -28,7 +28,7 @@ const CreditScoreSection = () => {
                   that tells you where you stand and what to do next.
                 </p>
                 <p className="text-gray-700 leading-relaxed">
-                  Most platforms stop at <span className="font-semibold text-purple-600">RupeeQ goes deeper</span> - analysing 
+                  Most platforms stop at <span className="font-semibold text-purple-600">RupeeQ goes deeper</span> - analysing
                   your credit behaviour, risk signals, and loan readiness in one smart view.
                 </p>
               </div>
@@ -65,7 +65,7 @@ const CreditScoreSection = () => {
               <div className="relative w-80 h-80">
                 {/* Credit Score Gauge Background */}
                 <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-100 to-green-100 opacity-50"></div>
-                
+
                 {/* Credit Score Segments */}
                 <div className="absolute inset-4">
                   <svg className="w-full h-full transform -rotate-90" viewBox="0 0 200 200">
@@ -110,7 +110,7 @@ const CreditScoreSection = () => {
                       strokeLinecap="round"
                     />
                   </svg>
-                  
+
                   {/* Score Labels */}
                   <div className="absolute top-2 right-8 text-xs font-semibold text-red-600 transform rotate-45">
                     VERY POOR
