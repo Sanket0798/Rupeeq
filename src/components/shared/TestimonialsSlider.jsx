@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { LeftBlackArrowIcon, RightBlackArrowIcon, TestimonialsBgIcon } from '../common/SvgIcons';
 
 const TestimonialsSlider = () => {
   const testimonials = [
@@ -65,9 +66,8 @@ const TestimonialsSlider = () => {
     return Array.from({ length: 5 }, (_, index) => (
       <span
         key={index}
-        className={`text-2xl ${
-          index < rating ? 'text-yellow-400' : 'text-gray-300'
-        }`}
+        className={`text-2xl ${index < rating ? 'text-yellow-400' : 'text-gray-300'
+          }`}
       >
         ★
       </span>
@@ -75,98 +75,98 @@ const TestimonialsSlider = () => {
   };
 
   return (
-    // <section className="py-16 bg-gradient-to-br from-blue-50 to-purple-50">
-    //   <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    //     {/* Header */}
-    //     <div className="text-center mb-12">
-    //       <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-    //         What Our Customers Say About <span className="text-purple-600">RupeeQ</span>
-    //       </h2>
-    //       <p className="text-gray-600 text-lg max-w-3xl mx-auto leading-relaxed">
-    //         Hear directly from customers who have used RupeeQ to make informed financial decisions.
-    //         Their experiences reflect our commitment to transparency, simplicity, and reliable support.
-    //       </p>
-    //     </div>
+    <section
+      className="py-16 px-4 sm:px-6 lg:px-8 relative"
+    // style={{
+    //   backgroundImage: 'url(/assets/images/bg/TestimonialsBg.png)',
+    //   backgroundSize: 'cover',
+    //   backgroundPosition: 'center',
+    //   backgroundRepeat: 'no-repeat'
+    // }}
+    >
+      <div className="max-w-[1286px] mx-auto">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h2 className="text-[40px] font-bold leading-[47px] mb-4">
+            <span className="text-custom-dark-text">What Our Customers Say About </span>
+            <span className="bg-brand-gradient bg-clip-text text-transparent">RupeeQ</span>
+          </h2>
+          <p className="text-[#747986] text-base leading-[150%] font-medium max-w-3xl mx-auto">
+            Hear directly from customers who have used RupeeQ to make informed financial decisions.
+            Their experiences reflect our commitment to transparency, simplicity, and reliable support.
+          </p>
+        </div>
 
-    //     {/* Slider Container */}
-    //     <div className="relative bg-white rounded-3xl shadow-xl overflow-hidden">
-    //       <div className="relative h-96 flex items-center">
-    //         {/* Navigation Arrows */}
-    //         <button
-    //           onClick={goToPrevious}
-    //           className="absolute left-4 z-10 w-12 h-12 bg-gray-800 text-white rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors duration-300 shadow-lg"
-    //           aria-label="Previous testimonial"
-    //         >
-    //           ←
-    //         </button>
-            
-    //         <button
-    //           onClick={goToNext}
-    //           className="absolute right-4 z-10 w-12 h-12 bg-gray-800 text-white rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors duration-300 shadow-lg"
-    //           aria-label="Next testimonial"
-    //         >
-    //           →
-    //         </button>
+        {/* Slider Container */}
+        <div className="relative">
+          <div className="relative min-h-[400px] flex items-center">
+            {/* Background Icon Overlay */}
+            <div className="absolute inset-0 z-0 pointer-events-none flex items-center justify-center opacity-30"
+              style={{
+                backgroundImage: 'url(/assets/images/bg/TestimonialsBg.png)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat'
+              }}
+            >
+              <TestimonialsBgIcon />
+            </div>
 
-    //         {/* Testimonial Content */}
-    //         <div className="w-full px-20 py-12">
-    //           <div className="text-center max-w-4xl mx-auto">
-    //             {/* Stars */}
-    //             <div className="flex justify-center mb-8">
-    //               {renderStars(testimonials[currentSlide].rating)}
-    //             </div>
+            {/* Navigation Arrows */}
+            <button
+              onClick={goToPrevious}
+              className="absolute left-8"
+              aria-label="Previous testimonial"
+            >
+              <LeftBlackArrowIcon />
+            </button>
 
-    //             {/* Testimonial Text */}
-    //             <blockquote className="text-lg lg:text-xl text-gray-700 leading-relaxed mb-8 italic">
-    //               "{testimonials[currentSlide].text}"
-    //             </blockquote>
+            <button
+              onClick={goToNext}
+              className="absolute right-8"
+              aria-label="Next testimonial"
+            >
+              <RightBlackArrowIcon />
+            </button>
 
-    //             {/* Author */}
-    //             <div className="text-xl font-semibold text-gray-900">
-    //               {testimonials[currentSlide].author}
-    //             </div>
-    //           </div>
-    //         </div>
-    //       </div>
+            {/* Testimonial Content */}
+            <div className="w-full px-24 py-12 relative z-10">
+              <div className="text-center max-w-4xl mx-auto">
+                {/* Stars */}
+                <div className="flex justify-center mb-8 gap-1">
+                  {renderStars(testimonials[currentSlide].rating)}
+                </div>
 
-    //       {/* Slide Indicators */}
-    //       <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2">
-    //         {testimonials.map((_, index) => (
-    //           <button
-    //             key={index}
-    //             onClick={() => goToSlide(index)}
-    //             className={`w-3 h-3 rounded-full transition-all duration-300 ${
-    //               index === currentSlide
-    //                 ? 'bg-purple-600 scale-125'
-    //                 : 'bg-gray-300 hover:bg-gray-400'
-    //             }`}
-    //             aria-label={`Go to testimonial ${index + 1}`}
-    //           />
-    //         ))}
-    //       </div>
+                {/* Testimonial Text */}
+                <blockquote className="text-lg lg:text-xl text-custom-dark-text leading-relaxed mb-8 font-medium">
+                  {testimonials[currentSlide].text}
+                </blockquote>
 
-    //       {/* Autoplay indicator */}
-    //       {isAutoPlaying && (
-    //         <div className="absolute top-4 right-4">
-    //           <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-    //         </div>
-    //       )}
-    //     </div>
+                {/* Author */}
+                <div className="text-2xl font-semibold text-custom-dark-text">
+                  {testimonials[currentSlide].author}
+                </div>
+              </div>
+            </div>
+          </div>
 
-    //     {/* Progress bar for autoplay */}
-    //     <div className="mt-6 max-w-md mx-auto">
-    //       <div className="w-full bg-gray-200 rounded-full h-1">
-    //         <div 
-    //           className="bg-purple-600 h-1 rounded-full transition-all duration-100 ease-linear"
-    //           style={{
-    //             width: isAutoPlaying ? `${((currentSlide + 1) / testimonials.length) * 100}%` : '0%'
-    //           }}
-    //         ></div>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </section>
-    <p>Hello world</p>
+          {/* Slide Indicators */}
+          <div className="flex justify-center mt-8 space-x-2">
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentSlide
+                  ? 'bg-button-color scale-125'
+                  : 'bg-gray-300 hover:bg-gray-400'
+                  }`}
+                aria-label={`Go to testimonial ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 

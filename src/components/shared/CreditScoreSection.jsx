@@ -1,3 +1,5 @@
+import { ChevronUpIcon } from "../common/SvgIcons";
+
 const CreditScoreSection = () => {
   const features = [
     'Free credit score with no impact',
@@ -7,148 +9,75 @@ const CreditScoreSection = () => {
   ];
 
   return (
-    <section className="py-16 bg-gradient-to-br from-blue-50 to-green-50">
+    <section className="py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-[1286px] mx-auto">
-        <div className="bg-white h-[475px] rounded-[80px] overflow-hidden relative">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left Content */}
-            <div className="space-y-6">
-              <div>
-                <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-                  <span className="text-purple-600">Know Your Credit Score.</span>
-                  <br />
-                  <span className="text-teal-500">Understand What It Means.</span>
-                </h2>
-              </div>
+        <div
+          className="h-[475px] rounded-[80px] relative shadow-[5px_5px_4px_0px_rgba(0,0,0,0.25)] pt-[35px] px-[72px] pb-[40px]"
+          style={{
+            background: 'linear-gradient(to right, rgba(0, 114, 242, 0.1) 0%, rgba(0, 214, 160, 0.1) 100%)'
+          }}
+        >
+          {/* Left Content */}
+          <div className="max-w-[614px] w-full flex-shrink-0">
 
-              <div className="space-y-4">
-                <p className="text-gray-700 leading-relaxed">
-                  Check your <span className="font-semibold">free credit score</span> and get{' '}
-                  <span className="font-semibold text-purple-600">RupeeQ ACE - Advanced Credit Evaluation</span>{' '}
-                  that tells you where you stand and what to do next.
-                </p>
-                <p className="text-gray-700 leading-relaxed">
-                  Most platforms stop at <span className="font-semibold text-purple-600">RupeeQ goes deeper</span> - analysing
-                  your credit behaviour, risk signals, and loan readiness in one smart view.
-                </p>
-              </div>
+            <h2 className="text-[40px] font-bold leading-[47px] tracing-[0px] bg-brand-gradient bg-clip-text text-transparent mb-4">
+              <span className="">Know Your Credit Score.</span>
+              <br />
+              <span className="">Understand What It Means.</span>
+            </h2>
 
-              {/* Features List */}
-              <div className="space-y-3">
-                {features.map((feature, index) => (
-                  <div key={index} className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-purple-600 rounded-full mt-2 flex-shrink-0"></div>
-                    <p className="text-gray-700">{feature}</p>
-                  </div>
-                ))}
-              </div>
+            <p className="text-[#747986] text-base leading-[150%] tracing-0 font-medium max-w-[520px] w-full">
+              Check your <span className="font-bold text-custom-dark-text">free credit score</span> and get{' '}
+              <span className="font-bold text-custom-dark-text">RupeeQ ACE - Advanced Credit Evaluation</span>{' '}
+              that tells you where you stand and what to do next.
+              <br />
+              <span>
+                Most platforms stop at numbers.{' '}
+              </span>
+              <span className="font-bold text-custom-dark-text">RupeeQ goes deeper</span> - analysing
+              your credit behaviour, risk signals, and loan readiness in one smart view.
+            </p>
 
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 pt-6">
-                <button className="bg-purple-600 text-white font-semibold px-8 py-3 rounded-full hover:bg-purple-700 transition-colors duration-300 flex items-center justify-center gap-2 shadow-lg">
-                  Check Free Credit Score
-                  <span className="w-6 h-6 bg-white text-purple-600 rounded-full flex items-center justify-center text-sm">
-                    📊
-                  </span>
-                </button>
-                <button className="bg-purple-100 text-purple-600 font-semibold px-8 py-3 rounded-full hover:bg-purple-200 transition-colors duration-300 flex items-center justify-center gap-2">
-                  See Your ACE Insights
-                  <span className="w-6 h-6 bg-purple-600 text-white rounded-full flex items-center justify-center text-sm">
-                    🎯
-                  </span>
-                </button>
-              </div>
+            {/* Features List */}
+            <div className="mt-6">
+              {features.map((feature, index) => (
+                <div key={index} className="flex items-start gap-3">
+                  <div className="w-1 h-1 bg-[#747986] rounded-full mt-2 flex-shrink-0"></div>
+                  <p className="text-[#747986] text-base font-medium">{feature}</p>
+                </div>
+              ))}
             </div>
 
-            {/* Right Content - Credit Score Visualization */}
-            <div className="relative flex justify-center items-center">
-              <div className="relative w-80 h-80">
-                {/* Credit Score Gauge Background */}
-                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-100 to-green-100 opacity-50"></div>
-
-                {/* Credit Score Segments */}
-                <div className="absolute inset-4">
-                  <svg className="w-full h-full transform -rotate-90" viewBox="0 0 200 200">
-                    {/* Very Poor - Red */}
-                    <path
-                      d="M 100 20 A 80 80 0 0 1 150 35"
-                      stroke="#ef4444"
-                      strokeWidth="12"
-                      fill="none"
-                      strokeLinecap="round"
-                    />
-                    {/* Poor - Orange */}
-                    <path
-                      d="M 150 35 A 80 80 0 0 1 180 100"
-                      stroke="#f97316"
-                      strokeWidth="12"
-                      fill="none"
-                      strokeLinecap="round"
-                    />
-                    {/* Fair - Yellow */}
-                    <path
-                      d="M 180 100 A 80 80 0 0 1 150 165"
-                      stroke="#eab308"
-                      strokeWidth="12"
-                      fill="none"
-                      strokeLinecap="round"
-                    />
-                    {/* Good - Light Green */}
-                    <path
-                      d="M 150 165 A 80 80 0 0 1 100 180"
-                      stroke="#84cc16"
-                      strokeWidth="12"
-                      fill="none"
-                      strokeLinecap="round"
-                    />
-                    {/* Excellent - Green */}
-                    <path
-                      d="M 100 180 A 80 80 0 0 1 50 165"
-                      stroke="#22c55e"
-                      strokeWidth="12"
-                      fill="none"
-                      strokeLinecap="round"
-                    />
-                  </svg>
-
-                  {/* Score Labels */}
-                  <div className="absolute top-2 right-8 text-xs font-semibold text-red-600 transform rotate-45">
-                    VERY POOR
-                  </div>
-                  <div className="absolute top-8 right-2 text-xs font-semibold text-orange-600 transform rotate-90">
-                    POOR
-                  </div>
-                  <div className="absolute bottom-8 right-2 text-xs font-semibold text-yellow-600 transform rotate-135">
-                    FAIR
-                  </div>
-                  <div className="absolute bottom-2 right-8 text-xs font-semibold text-lime-600 transform rotate-180">
-                    GOOD
-                  </div>
-                  <div className="absolute bottom-8 left-2 text-xs font-semibold text-green-600 transform rotate-225">
-                    EXCELLENT
-                  </div>
-                </div>
-
-                {/* Center Circle with Score */}
-                <div className="absolute inset-16 bg-white rounded-full shadow-lg flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-gray-800">750</div>
-                    <div className="text-sm text-gray-600">Credit Score</div>
-                  </div>
-                </div>
-
-                {/* Needle/Pointer */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-1 h-20 bg-gray-800 transform rotate-45 origin-bottom rounded-full"></div>
-                </div>
-              </div>
-
-              {/* Character Illustration */}
-              <div className="absolute bottom-0 right-0 w-16 h-20 bg-purple-600 rounded-t-full flex items-end justify-center">
-                <div className="w-8 h-8 bg-purple-400 rounded-full mb-2"></div>
-              </div>
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 pt-7">
+              <button className="bg-button-color text-white font-semibold rounded-full hover:bg-[#4a2470] transition-colors duration-300 flex items-center justify-center text-base leading-[130%] gap-3 py-[13px] pl-[34px] pr-[41px]">
+                Check Free Credit Score
+                <ChevronUpIcon />
+              </button>
+              <button className="bg-button-color text-white font-semibold rounded-full hover:bg-[#4a2470] transition-colors duration-300 flex items-center justify-center text-base leading-[130%] gap-3 py-[13px] pl-[34px] pr-[41px]">
+                See Your ACE Insights
+                <ChevronUpIcon />
+              </button>
             </div>
           </div>
+
+          {/* Right Image */}
+          <div className="flex-1 relative"
+         
+          >
+            <img 
+              src="/assets/images/creditScore/CreditCounter.png" 
+              alt="Credit Score Gauge" 
+              className="absolute object-contain"
+              style={{ 
+                width: '592.46px', 
+                height: '535.81px',
+                right: '20px',
+                bottom: '-75px'
+              }}
+            />
+          </div>
+
         </div>
       </div>
     </section>

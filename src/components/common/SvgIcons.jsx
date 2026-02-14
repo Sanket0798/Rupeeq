@@ -238,3 +238,92 @@ export const BlueChevronUpIcon = () => (
     </svg>
 
 )
+
+export const ConnectingLineIcon = () => (
+    <svg width="93" height="6" viewBox="0 0 93 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M92.8867 2.88671L90 -4.05314e-05L87.1133 2.88671L90 5.77346L92.8867 2.88671ZM0 2.88672L4.37114e-08 3.38672L90 3.38671L90 2.88671L90 2.38671L-4.37114e-08 2.38672L0 2.88672Z" fill="#5085FF" />
+    </svg>
+)
+
+export const ConnectingLine2Icon = () => (
+    <svg width="115" height="6" viewBox="0 0 115 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M-3.26633e-05 2.88672L2.88672 5.77347L5.77347 2.88672L2.88672 -3.26633e-05L-3.26633e-05 2.88672ZM114.773 2.88671L111.887 -4.21924e-05L109 2.88671L111.887 5.77346L114.773 2.88671ZM2.88672 2.88672L2.88672 3.38672L111.887 3.38671L111.887 2.88671L111.887 2.38671L2.88672 2.38672L2.88672 2.88672Z" fill="#5085FF" />
+    </svg>
+
+)
+
+export const TestimonialsBgIcon = () => (
+    <svg width="1386" height="814" viewBox="0 0 1386 814" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g opacity="0.6">
+            <g clip-path="url(#clip0_11_443)">
+                <g filter="url(#filter0_f_11_443)">
+                    <circle cx="159" cy="159" r="159" transform="matrix(1 8.74228e-08 8.74228e-08 -1 1602 709)" fill="#132644" />
+                </g>
+                <g filter="url(#filter1_f_11_443)">
+                    <circle cx="159" cy="159" r="159" transform="matrix(1 8.74228e-08 8.74228e-08 -1 -56 168)" fill="#5085FF" />
+                </g>
+            </g>
+        </g>
+        <g opacity="0.6">
+            <g clip-path="url(#clip1_11_443)">
+                <g filter="url(#filter2_f_11_443)">
+                    <circle cx="-375" cy="550" r="159" transform="rotate(180 -375 550)" fill="#132644" />
+                </g>
+                <g filter="url(#filter3_f_11_443)">
+                    <circle cx="1283" cy="9.00001" r="159" transform="rotate(180 1283 9.00001)" fill="#5085FF" />
+                </g>
+            </g>
+        </g>
+        <defs>
+            <filter id="filter0_f_11_443" x="1102" y="-109" width="1318" height="1318" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                <feGaussianBlur stdDeviation="250" result="effect1_foregroundBlur_11_443" />
+            </filter>
+            <filter id="filter1_f_11_443" x="-556" y="-650" width="1318" height="1318" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                <feGaussianBlur stdDeviation="250" result="effect1_foregroundBlur_11_443" />
+            </filter>
+            <filter id="filter2_f_11_443" x="-1034" y="-109" width="1318" height="1318" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                <feGaussianBlur stdDeviation="250" result="effect1_foregroundBlur_11_443" />
+            </filter>
+            <filter id="filter3_f_11_443" x="624" y="-650" width="1318" height="1318" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                <feGaussianBlur stdDeviation="250" result="effect1_foregroundBlur_11_443" />
+            </filter>
+            <clipPath id="clip0_11_443">
+                <rect width="1386" height="814" rx="24" transform="matrix(1 8.74228e-08 8.74228e-08 -1 0 814)" fill="white" />
+            </clipPath>
+            <clipPath id="clip1_11_443">
+                <rect x="1386" y="814" width="1386" height="814" rx="24" transform="rotate(180 1386 814)" fill="white" />
+            </clipPath>
+        </defs>
+    </svg>
+
+)
+
+export const LeftBlackArrowIcon = () => (
+    <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="60" height="60" rx="30" fill="#132644" />
+        <path d="M28.8284 30.0007L33.7782 34.9504L32.364 36.3646L26 30.0007L32.364 23.6367L33.7782 25.0509L28.8284 30.0007Z" fill="white" />
+    </svg>
+)
+
+export const RightBlackArrowIcon = () => (
+    <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="60" height="60" rx="30" transform="matrix(-1 0 0 1 60 0)" fill="#132644" />
+        <path d="M31.1716 30.0007L26.2218 34.9504L27.636 36.3646L34 30.0007L27.636 23.6367L26.2218 25.0509L31.1716 30.0007Z" fill="white" />
+    </svg>
+)
+
+export const RightUpArrowIcon = () => (
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="9" cy="9" r="8.5" fill="white" stroke="#132644" />
+        <path d="M12.5 6C12.5 5.72386 12.2761 5.5 12 5.5L7.5 5.5C7.22386 5.5 7 5.72386 7 6C7 6.27614 7.22386 6.5 7.5 6.5L11.5 6.5L11.5 10.5C11.5 10.7761 11.7239 11 12 11C12.2761 11 12.5 10.7761 12.5 10.5L12.5 6ZM6 12L6.35355 12.3536L12.3536 6.35355L12 6L11.6464 5.64645L5.64645 11.6464L6 12Z" fill="#132644" />
+    </svg>
+
+)

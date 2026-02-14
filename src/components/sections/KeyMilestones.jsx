@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import { RatioIcon, SmileIcon, LocationIcon, StarIcon } from '../common/SvgIcons';
+import { RatioIcon, SatisfactionIcon, StarIcon } from '../common/SvgIcons';
 import { AnimatedTooltip } from '../ui/animated-tooltip';
+
 
 const KeyMilestones = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -153,14 +154,14 @@ const KeyMilestones = () => {
       value: count96,
       suffix: '%',
       label: 'Customer Satisfaction',
-      icon: <RatioIcon />,
+      icon: <SatisfactionIcon />,
       color: 'bg-[#EDF2FF]'
     },
     {
       value: count980,
       suffix: '+',
       label: 'Location Served',
-      icon: <RatioIcon />,
+      icon: <img src="/assets/icons/LocationIcon.png" alt="Location Served" className="w-20 h-20" />,
       color: 'bg-[#F2EFF9]'
     }
   ];
@@ -170,12 +171,11 @@ const KeyMilestones = () => {
       <div className="max-w-[1293px] mx-auto">
         <div className="flex flex-col lg:flex-row gap-[25px] items-start">
           {/* Left side - Main highlight */}
-          <div 
-            className={`bg-white rounded-3xl p-8 shadow-[5px_5px_4px_0px_rgba(0,0,0,0.25)] transition-all duration-700 ${
-              isVisible 
-                ? 'opacity-100 translate-x-0' 
-                : 'opacity-0 -translate-x-12'
-            }`}
+          <div
+            className={`bg-white rounded-3xl p-8 shadow-[5px_5px_4px_0px_rgba(0,0,0,0.25)] transition-all duration-700 ${isVisible
+              ? 'opacity-100 translate-x-0'
+              : 'opacity-0 -translate-x-12'
+              }`}
           >
             <div className="mb-9">
               <h2 className="text-2xl lg:text-[50px] font-medium leading-[130%] text-[#132644]">
@@ -222,13 +222,12 @@ const KeyMilestones = () => {
             {milestones.map((milestone, index) => (
               <div
                 key={index}
-                className={`rounded-3xl py-4 px-8 ${milestone.color} shadow-[5px_5px_5px_0px_rgba(0,0,0,0.25)] w-[413px] transition-all duration-700 ${
-                  isVisible 
-                    ? 'opacity-100 translate-x-0' 
-                    : 'opacity-0 translate-x-12'
-                }`}
-                style={{ 
-                  transitionDelay: isVisible ? `${index * 150}ms` : '0ms' 
+                className={`rounded-3xl py-4 px-8 ${milestone.color} shadow-[5px_5px_5px_0px_rgba(0,0,0,0.25)] w-[413px] transition-all duration-700 ${isVisible
+                  ? 'opacity-100 translate-x-0'
+                  : 'opacity-0 translate-x-12'
+                  }`}
+                style={{
+                  transitionDelay: isVisible ? `${index * 150}ms` : '0ms'
                 }}
               >
                 <div className="flex items-center justify-between">

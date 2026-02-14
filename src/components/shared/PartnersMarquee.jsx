@@ -192,24 +192,12 @@ const PartnersMarquee = () => {
           Trusted across{' '}
           <motion.span 
             className="text-custom-dark-blue font-bold"
-            animate={{ 
-              textShadow: [
-                "0 0 0px rgba(85, 40, 169, 0.5)",
-                "0 0 10px rgba(85, 40, 169, 0.8)",
-                "0 0 0px rgba(85, 40, 169, 0.5)"
-              ]
-            }}
-            transition={{ duration: 2, repeat: Infinity }}
           >
             980+
           </motion.span>{' '}
           locations{' '}
           <motion.span 
-            className="text-custom-dark-blue font-bold"
-            animate={{ 
-              color: ["#5528A9", "#7B4FD1", "#5528A9"]
-            }}
-            transition={{ duration: 3, repeat: Infinity }}
+            className="text-custom-purple font-bold"
           >
             nationwide
           </motion.span>

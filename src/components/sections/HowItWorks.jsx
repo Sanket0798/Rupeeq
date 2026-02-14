@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { ConnectingLine2Icon, ConnectingLineIcon } from '../common/SvgIcons';
 
 const HowItWorks = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -107,13 +108,19 @@ const HowItWorks = () => {
               }`}
           >
             {/* Horizontal line between 01 and 02 */}
-            <div className="absolute top-1/4 left-1/2 w-8 h-0.5 bg-purple-300 transform -translate-x-1/2 animate-pulse"></div>
+            <div className="absolute top-1/4 left-[660px]">
+              <ConnectingLineIcon />
+            </div>
 
             {/* Vertical line on the right side */}
-            <div className="absolute top-1/4 right-1/4 w-0.5 h-1/2 bg-purple-300 animate-pulse"></div>
+            <div className="absolute top-[250px] right-[280px] rotate-90">
+              <ConnectingLine2Icon />
+            </div>
 
             {/* Horizontal line between 03 and 04 */}
-            <div className="absolute bottom-1/4 left-1/2 w-8 h-0.5 bg-purple-300 transform -translate-x-1/2 animate-pulse"></div>
+            <div className="absolute bottom-[180px] left-[595px] flex">
+              <ConnectingLine2Icon />
+            </div>
           </div>
         </div>
       </div>
