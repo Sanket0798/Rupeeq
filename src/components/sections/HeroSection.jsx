@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ChevronUpIcon, RightUpArrowIcon } from '../common/SvgIcons';
 
 const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const navigate = useNavigate();
 
   // Hero slider data
   const heroSlides = [
@@ -118,7 +120,10 @@ const HeroSection = () => {
                   </span>
                 </h1>
 
-                <button className="bg-button-color text-lg leading-[26px] text-white font-bold px-9 py-4 rounded-full hover:bg-[#6B4FA8] transition-all duration-300 hover:scale-105 mb-5">
+                <button 
+                  onClick={() => navigate('/personal-loan')}
+                  className="bg-button-color text-lg leading-[26px] text-white font-bold px-9 py-4 rounded-full hover:bg-[#6B4FA8] transition-all duration-300 hover:scale-105 mb-5"
+                >
                   Get Started Free
                 </button>
 
@@ -137,7 +142,10 @@ const HeroSection = () => {
                         <h3 className="text-[50px] leading-[60px] tracing-[0%] font-semibold mb-2">
                           {heroSlides[currentSlide].title}
                         </h3>
-                        <button className="bg-white text-button-color px-[11px] py-[9px] rounded-full text-lg leading-[130%] tracing-[0%] font-bold hover:bg-opacity-90 transition-all duration-300 flex items-center gap-2">
+                        <button 
+                          onClick={() => navigate('/personal-loan')}
+                          className="bg-white text-button-color px-[11px] py-[9px] rounded-full text-lg leading-[130%] tracing-[0%] font-bold hover:bg-opacity-90 transition-all duration-300 flex items-center gap-2"
+                        >
                           {heroSlides[currentSlide].buttonText}
                           <RightUpArrowIcon />
                         </button>
@@ -235,7 +243,10 @@ const HeroSection = () => {
                     {card.description}
                   </p>
 
-                  <button className="bg-button-color text-white font-semibold px-6 py-3 rounded-full text-sm hover:bg-[#6B4FA8] transition-all duration-300 flex items-center gap-2 group">
+                  <button 
+                    onClick={() => navigate('/personal-loan')}
+                    className="bg-button-color text-white font-semibold px-6 py-3 rounded-full text-sm hover:bg-[#6B4FA8] transition-all duration-300 flex items-center gap-2 group"
+                  >
                     {card.buttonText}
                     <ChevronUpIcon />
                   </button>

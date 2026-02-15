@@ -4,3 +4,6 @@ export { default as CreditScoreSection } from './CreditScoreSection';
 export { default as PartnersMarquee } from './PartnersMarquee';
 export { default as TestimonialsSlider } from './TestimonialsSlider';
 export { default as FAQSection } from './FAQSection';
+export { default as LoanEligibilitySection } from './LoanEligibilitySection';
+export { default as ApplicationStepsSection } from './ApplicationStepsSection';
+export { default as ConsolidationBenefitsSection } from './ConsolidationBenefitsSection';

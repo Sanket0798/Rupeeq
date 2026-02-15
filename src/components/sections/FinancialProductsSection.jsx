@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -8,6 +9,7 @@ import { ChevronUpIcon } from '../common/SvgIcons';
 gsap.registerPlugin(ScrollTrigger);
 
 const FinancialProductsSection = () => {
+  const navigate = useNavigate();
   const sectionRef = useRef(null);
   const headingRef = useRef(null);
   const topRowRef = useRef(null);
@@ -412,6 +414,13 @@ const FinancialProductsSection = () => {
               </motion.p>
               <div className='items-center justify-center flex'>
                 <motion.button
+                  onClick={() => {
+                    if (product.buttonText === 'Compare Options') {
+                      navigate('/debt-consolidation');
+                    } else if (product.buttonText === 'Check Rates & Offers') {
+                      navigate('/personal-loan');
+                    }
+                  }}
                   className="bg-button-color text-white font-bold px-6 py-3 rounded-full hover:bg-purple-700 transition-colors duration-300 flex items-center gap-2 text-lg leading-[130%]"
                   variants={buttonVariants}
                   whileHover="hover"
