@@ -115,32 +115,32 @@ export const RatioIcon = () => (
         <path d="M34.3617 63.8089C34.332 63.8089 34.3021 63.8004 34.2758 63.7827C34.2054 63.7351 34.1868 63.6396 34.2344 63.5692L34.6914 62.8916C34.7389 62.8211 34.8347 62.8027 34.9049 62.8502C34.9752 62.8977 34.9939 62.9932 34.9463 63.0636L34.4892 63.7412C34.4596 63.7852 34.411 63.8089 34.3617 63.8089Z" fill="#91B3FA" />
         <defs>
             <linearGradient id="paint0_linear_1_21394" x1="63.8729" y1="-6.47275" x2="42.5515" y2="63.437" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#FF928E" />
-                <stop offset="1" stop-color="#FE7062" />
+                <stop stopColor="#FF928E" />
+                <stop offset="1" stopColor="#FE7062" />
             </linearGradient>
             <linearGradient id="paint1_linear_1_21394" x1="22.4932" y1="41.6042" x2="39.6836" y2="41.6042" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#FEBBBA" />
-                <stop offset="1" stop-color="#FF928E" />
+                <stop stopColor="#FEBBBA" />
+                <stop offset="1" stopColor="#FF928E" />
             </linearGradient>
             <linearGradient id="paint2_linear_1_21394" x1="52.8645" y1="41.4512" x2="55.5297" y2="17.6696" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#FEBBBA" />
-                <stop offset="1" stop-color="#FF928E" />
+                <stop stopColor="#FEBBBA" />
+                <stop offset="1" stopColor="#FF928E" />
             </linearGradient>
             <linearGradient id="paint3_linear_1_21394" x1="82.6427" y1="23.9617" x2="53.9408" y2="84.4408" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#4F52FF" />
-                <stop offset="1" stop-color="#4042E2" />
+                <stop stopColor="#4F52FF" />
+                <stop offset="1" stopColor="#4042E2" />
             </linearGradient>
             <linearGradient id="paint4_linear_1_21394" x1="58.7469" y1="82.792" x2="42.1408" y2="51.4249" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#4F52FF" />
-                <stop offset="1" stop-color="#4042E2" />
+                <stop stopColor="#4F52FF" />
+                <stop offset="1" stopColor="#4042E2" />
             </linearGradient>
             <linearGradient id="paint5_linear_1_21394" x1="48.3446" y1="42.4958" x2="18.0025" y2="80.0134" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#4F52FF" />
-                <stop offset="1" stop-color="#4042E2" />
+                <stop stopColor="#4F52FF" />
+                <stop offset="1" stopColor="#4042E2" />
             </linearGradient>
             <linearGradient id="paint6_linear_1_21394" x1="21.265" y1="76.3045" x2="-6.90902" y2="47.2289" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#4F52FF" />
-                <stop offset="1" stop-color="#4042E2" />
+                <stop stopColor="#4F52FF" />
+                <stop offset="1" stopColor="#4042E2" />
             </linearGradient>
         </defs>
     </svg>
@@ -178,28 +178,28 @@ export const SatisfactionIcon = () => (
         <path d="M25.634 69.5539H44.7614C46.7749 69.5539 48.5575 68.2526 49.1711 66.3349L50.2004 63.118C50.9539 60.7626 49.7287 58.2124 47.4061 57.3631C39.6219 54.517 31.5728 54.8822 23.3274 57.6258C21.0175 58.3944 19.7357 60.8652 20.3731 63.2147L21.1656 66.1363C21.7128 68.1535 23.5438 69.5539 25.634 69.5539Z" fill="#178FE5" />
         <defs>
             <linearGradient id="paint0_linear_1_21452" x1="28.9965" y1="1.8534" x2="52.1443" y2="29.1417" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#FF928E" />
-                <stop offset="1" stop-color="#FE7062" />
+                <stop stopColor="#FF928E" />
+                <stop offset="1" stopColor="#FE7062" />
             </linearGradient>
             <linearGradient id="paint1_linear_1_21452" x1="12.0086" y1="10.082" x2="39.3796" y2="25.5331" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#FF928E" />
-                <stop offset="1" stop-color="#FE7062" />
+                <stop stopColor="#FF928E" />
+                <stop offset="1" stopColor="#FE7062" />
             </linearGradient>
             <linearGradient id="paint2_linear_1_21452" x1="-0.45379" y1="21.5819" x2="28.5819" y2="29.4565" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#FF928E" />
-                <stop offset="1" stop-color="#FE7062" />
+                <stop stopColor="#FF928E" />
+                <stop offset="1" stopColor="#FE7062" />
             </linearGradient>
             <linearGradient id="paint3_linear_1_21452" x1="49.0259" y1="5.86739" x2="54.4449" y2="35.4598" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#FF928E" />
-                <stop offset="1" stop-color="#FE7062" />
+                <stop stopColor="#FF928E" />
+                <stop offset="1" stopColor="#FE7062" />
             </linearGradient>
             <linearGradient id="paint4_linear_1_21452" x1="63.1616" y1="15.0909" x2="59.4265" y2="44.9428" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#FF928E" />
-                <stop offset="1" stop-color="#FE7062" />
+                <stop stopColor="#FF928E" />
+                <stop offset="1" stopColor="#FE7062" />
             </linearGradient>
             <linearGradient id="paint5_linear_1_21452" x1="4.51465" y1="52.8932" x2="64.9049" y2="52.8932" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#0072F2" />
-                <stop offset="1" stop-color="#00D6A0" stop-opacity="0.5" />
+                <stop stopColor="#0072F2" />
+                <stop offset="1" stopColor="#00D6A0" stopOpacity="0.5" />
             </linearGradient>
         </defs>
     </svg>
@@ -255,7 +255,7 @@ export const ConnectingLine2Icon = () => (
 export const TestimonialsBgIcon = () => (
     <svg width="1386" height="814" viewBox="0 0 1386 814" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g opacity="0.6">
-            <g clip-path="url(#clip0_11_443)">
+            <g clipPath="url(#clip0_11_443)">
                 <g filter="url(#filter0_f_11_443)">
                     <circle cx="159" cy="159" r="159" transform="matrix(1 8.74228e-08 8.74228e-08 -1 1602 709)" fill="#132644" />
                 </g>
@@ -265,7 +265,7 @@ export const TestimonialsBgIcon = () => (
             </g>
         </g>
         <g opacity="0.6">
-            <g clip-path="url(#clip1_11_443)">
+            <g clipPath="url(#clip1_11_443)">
                 <g filter="url(#filter2_f_11_443)">
                     <circle cx="-375" cy="550" r="159" transform="rotate(180 -375 550)" fill="#132644" />
                 </g>
@@ -275,23 +275,23 @@ export const TestimonialsBgIcon = () => (
             </g>
         </g>
         <defs>
-            <filter id="filter0_f_11_443" x="1102" y="-109" width="1318" height="1318" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <filter id="filter0_f_11_443" x="1102" y="-109" width="1318" height="1318" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                <feFlood floodOpacity="0" result="BackgroundImageFix" />
                 <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
                 <feGaussianBlur stdDeviation="250" result="effect1_foregroundBlur_11_443" />
             </filter>
-            <filter id="filter1_f_11_443" x="-556" y="-650" width="1318" height="1318" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <filter id="filter1_f_11_443" x="-556" y="-650" width="1318" height="1318" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                <feFlood floodOpacity="0" result="BackgroundImageFix" />
                 <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
                 <feGaussianBlur stdDeviation="250" result="effect1_foregroundBlur_11_443" />
             </filter>
-            <filter id="filter2_f_11_443" x="-1034" y="-109" width="1318" height="1318" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <filter id="filter2_f_11_443" x="-1034" y="-109" width="1318" height="1318" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                <feFlood floodOpacity="0" result="BackgroundImageFix" />
                 <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
                 <feGaussianBlur stdDeviation="250" result="effect1_foregroundBlur_11_443" />
             </filter>
-            <filter id="filter3_f_11_443" x="624" y="-650" width="1318" height="1318" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <filter id="filter3_f_11_443" x="624" y="-650" width="1318" height="1318" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                <feFlood floodOpacity="0" result="BackgroundImageFix" />
                 <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
                 <feGaussianBlur stdDeviation="250" result="effect1_foregroundBlur_11_443" />
             </filter>

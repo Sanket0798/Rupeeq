@@ -168,11 +168,11 @@ const KeyMilestones = () => {
 
   return (
     <section ref={sectionRef} className="py-16 bg-gradient-to-br from-gray-50 to-white px-4 sm:px-6 lg:px-8">
-      <div className="max-w-[1293px] mx-auto">
+      <div className="lg:max-w-[1293px] mx-auto">
         <div className="flex flex-col lg:flex-row gap-[25px] items-start">
           {/* Left side - Main highlight */}
           <div
-            className={`bg-white rounded-3xl p-8 shadow-[5px_5px_5px_0px_rgba(0,0,0,0.25)] transition-all duration-700 ${isVisible
+            className={`bg-white rounded-3xl p-6 md:p-8 shadow-[5px_5px_5px_0px_rgba(0,0,0,0.25)] transition-all duration-700 w-full lg:w-auto ${isVisible
               ? 'opacity-100 translate-x-0'
               : 'opacity-0 -translate-x-12'
               }`}
@@ -186,7 +186,7 @@ const KeyMilestones = () => {
               </h2>
             </div>
 
-            <div className='flex flex-row items-center justify-between w-[790px]'>
+            <div className='flex flex-col md:flex-row md:items-center md:justify-between md:w-[790px]'>
               <div className="flex flex-col justify-end">
                 <div className="text-[100px] font-medium tracing-[1%] text-custom-purple leading-none">
                   {count2150}Cr
@@ -218,11 +218,11 @@ const KeyMilestones = () => {
           </div>
 
           {/* Right side - Statistics cards */}
-          <div className="flex flex-col justify-start gap-[11px]">
+          <div className="flex flex-col justify-start gap-[11px] w-full">
             {milestones.map((milestone, index) => (
               <div
                 key={index}
-                className={`rounded-3xl py-4 px-8 ${milestone.color} shadow-[5px_5px_5px_0px_rgba(0,0,0,0.25)] w-[413px] transition-all duration-700 ${isVisible
+                className={`rounded-3xl py-4 px-8 ${milestone.color} shadow-[5px_5px_5px_0px_rgba(0,0,0,0.25)] md:w-[413px] transition-all duration-700 ${isVisible
                   ? 'opacity-100 translate-x-0'
                   : 'opacity-0 translate-x-12'
                   }`}
