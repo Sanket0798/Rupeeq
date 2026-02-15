@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { RightUpArrowIcon } from '../common/SvgIcons';
+import { ChevronUpIcon, RightUpArrowIcon } from '../common/SvgIcons';
 
 const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -13,7 +13,7 @@ const HeroSection = () => {
       description: 'Find loan offers matched to your credit profile.',
       buttonText: 'Check Offers',
       bgGradient: 'from-[#7B5FB8] via-[#6B9FB8] to-[#5FD4A8]',
-      illustration: '👥'
+      illustration: '/assets/images/hero/2.png'
     },
     {
       id: 2,
@@ -22,7 +22,7 @@ const HeroSection = () => {
       description: 'Fuel your business growth with competitive rates.',
       buttonText: 'Explore Options',
       bgGradient: 'from-[#5B8FD8] via-[#5FB8B8] to-[#5FD4A8]',
-      illustration: '🏢'
+      illustration: '/assets/images/hero/2.png'
     },
     {
       id: 3,
@@ -31,7 +31,7 @@ const HeroSection = () => {
       description: 'Make your dream home a reality with best rates.',
       buttonText: 'Get Started',
       bgGradient: 'from-[#FF8A5B] via-[#FF6B9D] to-[#C96DD8]',
-      illustration: '🏠'
+      illustration: '/assets/images/hero/2.png'
     }
   ];
 
@@ -43,7 +43,7 @@ const HeroSection = () => {
       subtitle: 'One EMI',
       description: 'Merge multiple EMIs into one smarter payment.',
       buttonText: 'Explore Now',
-      icon: '💳',
+      icon: '/assets/images/hero/3.png',
       borderGradient: 'linear-gradient(90deg, #5528A9 11%, #34CA8D 100%)',
       conicGradient: 'conic-gradient(from 0deg, #5528A9, #34CA8D, #5528A9)',
       bgGradient: 'from-[#E8F5F7] to-[#F0E8F7]'
@@ -54,7 +54,7 @@ const HeroSection = () => {
       subtitle: 'Multi-Purpose',
       description: 'Find loan offers matched to your credit profile.',
       buttonText: 'Check Offers',
-      icon: '👥',
+      icon: '/assets/images/hero/4.png',
       borderGradient: 'linear-gradient(90deg, #5528A9 11%, #34CA8D 100%)',
       conicGradient: 'conic-gradient(from 0deg, #5528A9, #34CA8D, #5528A9)',
       bgGradient: 'from-[#E8F5F7] to-[#F0E8F7]'
@@ -65,7 +65,7 @@ const HeroSection = () => {
       subtitle: 'Pay For Only What You Use',
       description: 'Use funds anytime. Pay interest only on usage.',
       buttonText: 'Apply Now',
-      icon: '💰',
+      icon: '/assets/images/hero/5.png',
       borderGradient: 'linear-gradient(90deg, #5528A9 11%, #34CA8D 100%)',
       conicGradient: 'conic-gradient(from 0deg, #5528A9, #34CA8D, #5528A9)',
       bgGradient: 'from-[#E8F5F7] to-[#E8F7F0]'
@@ -76,7 +76,7 @@ const HeroSection = () => {
       subtitle: '100% Free',
       description: 'Know your credit score and borrowing strength instantly.',
       buttonText: 'Check Score',
-      icon: '📊',
+      icon: '/assets/images/hero/6.png',
       borderGradient: 'linear-gradient(90deg, #5528A9 11%, #34CA8D 100%)',
       conicGradient: 'conic-gradient(from 0deg, #5528A9, #34CA8D, #5528A9)',
       bgGradient: 'from-[#E8F5F7] to-[#E8F7F0]'
@@ -129,48 +129,60 @@ const HeroSection = () => {
 
               {/* Right Content - Hero Slider */}
               <div className="relative">
-                <div className="relative rounded-3xl shadow-[5px_8px_9px_5px_rgba(0,0,0,0.25)] overflow-hidden">
+                <div className="relative rounded-3xl shadow-[5px_8px_9px_5px_rgba(0,0,0,0.25)] overflow-visible">
                   {/* Hero Card */}
-                  <div className={`bg-brand-gradient p-8 text-white relative w-[656px] min-h-[315px] flex flex-col justify-between`}>
-                    <div className="flex justify-between items-start">
-                      <div className="flex-1">
-                        <h3 className="text-3xl lg:text-4xl font-bold mb-4">
+                  <div className={`bg-brand-gradient px-8 py-[45px] text-white relative w-[656px] min-h-[315px] flex flex-row justify-between overflow-hidden rounded-3xl`}>
+                    <div className="flex flex-col items-start justify-between">
+                      <div>
+                        <h3 className="text-[50px] leading-[60px] tracing-[0%] font-semibold mb-2">
                           {heroSlides[currentSlide].title}
                         </h3>
-                        <button className="bg-white text-[#7B5FB8] px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-opacity-90 transition-all duration-300 flex items-center gap-2">
+                        <button className="bg-white text-button-color px-[11px] py-[9px] rounded-full text-lg leading-[130%] tracing-[0%] font-bold hover:bg-opacity-90 transition-all duration-300 flex items-center gap-2">
                           {heroSlides[currentSlide].buttonText}
                           <RightUpArrowIcon />
                         </button>
                       </div>
-                      <div className="text-6xl opacity-90 ml-4">
-                        {heroSlides[currentSlide].illustration}
+                      <div>
+                        <h4 className="text-[40px] leading-[130%] tracing-[1%] font-normal">
+                          {heroSlides[currentSlide].subtitle}
+                        </h4>
+                        <p className="text-base leading-[32px] tracing-[1%] font-normal">
+                          {heroSlides[currentSlide].description}
+                        </p>
                       </div>
                     </div>
-
-                    <div className="mt-8">
-                      <h4 className="text-2xl font-bold mb-2">
-                        {heroSlides[currentSlide].subtitle}
-                      </h4>
-                      <p className="text-white/95 text-base">
-                        {heroSlides[currentSlide].description}
-                      </p>
+                    <div className="flex items-center">
+                      <img
+                        src={heroSlides[currentSlide].illustration}
+                        alt={heroSlides[currentSlide].title}
+                        className="object-contain"
+                      />
                     </div>
                   </div>
 
+                  {/* Shield Image - positioned at bottom right */}
+                  <img
+                    src="/assets/images/hero/1.png"
+                    alt="Security Shield"
+                    className="absolute -bottom-[90px] -right-[15px] w-40 h-40 object-contain z-10"
+                  />
+
                   {/* Slide indicators */}
-                  <div className="flex justify-center py-5 space-x-2 bg-white">
-                    {heroSlides.map((_, index) => (
-                      <button
-                        key={index}
-                        onClick={() => setCurrentSlide(index)}
-                        className={`h-2 rounded-full transition-all duration-300 ${index === currentSlide
-                          ? 'bg-[#1E293B] w-8'
-                          : 'bg-gray-300 w-2'
-                          }`}
-                        aria-label={`Go to slide ${index + 1}`}
-                      />
-                    ))}
-                  </div>
+
+                </div>
+
+                <div className="flex justify-center py-5 space-x-2">
+                  {heroSlides.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentSlide(index)}
+                      className={`h-2 rounded-full transition-all duration-300 ${index === currentSlide
+                        ? 'bg-[#1E293B] w-8'
+                        : 'bg-gray-300 w-2'
+                        }`}
+                      aria-label={`Go to slide ${index + 1}`}
+                    />
+                  ))}
                 </div>
               </div>
             </div>
@@ -201,36 +213,40 @@ const HeroSection = () => {
                 }}
               />
 
-              <div className={`relative bg-gradient-to-br ${card.bgGradient} rounded-[22px] p-6 h-full z-10`}>
-                <div className="text-5xl mb-6">{card.icon}</div>
+              <div className={`relative bg-gradient-to-br ${card.bgGradient} rounded-[22px] h-full z-10 flex items-center flex-col justify-between`}>
+                <div className="h-[174px] flex items-center">
+                  <img
+                    src={card.icon}
+                    alt={card.title}
+                    className="object-contain"
+                  />
+                </div>
 
-                <h3 className="text-xl font-bold text-[#1E293B] mb-1">
-                  {card.title}
-                </h3>
+                <div className='w-full bg-gradient-to-r from-[#0072F2]/10 to-[#00D6A0]/20 py-5 px-6 rounded-b-[22px]'>
+                  <h3 className="text-[22px] leading-[130%] tracing-[0%] font-semibold text-[#16110D]">
+                    {card.title}
+                  </h3>
 
-                <p className="bg-gradient-to-r from-[#7B5FB8] to-[#5FD4A8] bg-clip-text text-transparent font-bold text-sm mb-3">
-                  {card.subtitle}
-                </p>
+                  <p className="text-custom-purple font-bold text-lg">
+                    {card.subtitle}
+                  </p>
 
-                <p className="text-[#475569] text-sm leading-relaxed mb-6">
-                  {card.description}
-                </p>
+                  <p className="text-custom-dark-text text-sm my-3 leading-[14px] font-normal">
+                    {card.description}
+                  </p>
 
-                <button className="bg-[#7B5FB8] text-white font-semibold px-5 py-2.5 rounded-full text-sm hover:bg-[#6B4FA8] transition-all duration-300 flex items-center gap-2 group">
-                  {card.buttonText}
-                  <span className="w-5 h-5 bg-white text-[#7B5FB8] rounded-full flex items-center justify-center text-xs group-hover:translate-x-1 transition-transform duration-300">
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M4 6H8M8 6L6 4M8 6L6 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </span>
-                </button>
+                  <button className="bg-button-color text-white font-semibold px-6 py-3 rounded-full text-sm hover:bg-[#6B4FA8] transition-all duration-300 flex items-center gap-2 group">
+                    {card.buttonText}
+                    <ChevronUpIcon />
+                  </button>
+                </div>
               </div>
             </div>
           ))}
         </div>
 
         {/* Bottom indicators for product cards */}
-        <div className="flex justify-center mt-8 space-x-2">
+        <div className="flex justify-center mt-5 space-x-2">
           <div className="w-2 h-2 bg-[#1E293B] rounded-full"></div>
           <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
         </div>

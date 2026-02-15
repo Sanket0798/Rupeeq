@@ -204,7 +204,7 @@ const FAQSection = () => {
   return (
     <section className="py-16 bg-white px-4 sm:px-6 lg:px-8" ref={sectionRef}>
       <motion.div
-        className="max-w-[1386px] mx-auto bg-white rounded-24 shadow-[5px_5px_5px_0px_rgba(0,0,0,0.25)]"
+        className="max-w-[1386px] mx-auto bg-white rounded-24 shadow-[5px_5px_5px_0px_rgba(0,0,0,0.25)] pt-[120px] pr-[84px] pb-[85px] pl-[96px]"
         initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}

@@ -172,7 +172,7 @@ const KeyMilestones = () => {
         <div className="flex flex-col lg:flex-row gap-[25px] items-start">
           {/* Left side - Main highlight */}
           <div
-            className={`bg-white rounded-3xl p-8 shadow-[5px_5px_4px_0px_rgba(0,0,0,0.25)] transition-all duration-700 ${isVisible
+            className={`bg-white rounded-3xl p-8 shadow-[5px_5px_5px_0px_rgba(0,0,0,0.25)] transition-all duration-700 ${isVisible
               ? 'opacity-100 translate-x-0'
               : 'opacity-0 -translate-x-12'
               }`}

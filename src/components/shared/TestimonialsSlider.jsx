@@ -84,7 +84,7 @@ const TestimonialsSlider = () => {
     //   backgroundRepeat: 'no-repeat'
     // }}
     >
-      <div className="max-w-[1286px] mx-auto">
+      <div className="max-w-[1386px] mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className="text-[40px] font-bold leading-[47px] mb-4">
@@ -101,7 +101,7 @@ const TestimonialsSlider = () => {
         <div className="relative">
           <div className="relative min-h-[400px] flex items-center">
             {/* Background Icon Overlay */}
-            <div className="absolute inset-0 z-0 pointer-events-none flex items-center justify-center opacity-30"
+            <div className="absolute inset-0 z-0 pointer-events-none flex items-center justify-center "
               style={{
                 backgroundImage: 'url(/assets/images/bg/TestimonialsBg.png)',
                 backgroundSize: 'cover',
