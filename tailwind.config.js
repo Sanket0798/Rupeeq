@@ -113,6 +113,12 @@ export default {
         'button-color': {
           DEFAULT: '#5432AF',
         },
+        'loan-card': {
+          green: '#E1F7EE',
+          yellow: '#F4F7E1',
+          blue: '#E5EDFF',
+          red: '#FFE5E5',
+        },
       },
       fontFamily: {
         sans: ['Delight', 'system-ui', 'sans-serif'],

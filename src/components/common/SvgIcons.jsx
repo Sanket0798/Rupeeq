@@ -252,8 +252,8 @@ export const ConnectingLine2Icon = () => (
 
 )
 
-export const TestimonialsBgIcon = () => (
-    <svg width="1386" height="814" viewBox="0 0 1386 814" fill="none" xmlns="http://www.w3.org/2000/svg">
+export const TestimonialsBgIcon = ({ width = 1386 }) => (
+    <svg width={width} height="814" viewBox="0 0 1386 814" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g opacity="0.6">
             <g clipPath="url(#clip0_11_443)">
                 <g filter="url(#filter0_f_11_443)">
@@ -421,6 +421,51 @@ export const Step2Icon = () => (
                 <feColorMatrix type="matrix" values="0 0 0 0 0.278846 0 0 0 0 0.278846 0 0 0 0 0.278846 0 0 0 0.15 0" />
                 <feBlend mode="normal" in2="shape" result="effect1_innerShadow_60_473" />
             </filter>
+        </defs>
+    </svg>
+)
+
+export const LoanCasesBgIcon = () => (
+    <svg width="1404" height="885" viewBox="0 0 1404 885" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g opacity="0.6">
+            <g clip-path="url(#clip0_76_4631)">
+                <g filter="url(#filter0_f_76_4631)">
+                    <circle cx="1300.65" cy="80" r="159" transform="rotate(180 1300.65 80)" fill="#5085FF" />
+                </g>
+            </g>
+        </g>
+        <g opacity="0.6">
+            <g clip-path="url(#clip1_76_4631)">
+                <g filter="url(#filter1_f_76_4631)">
+                    <circle cx="159" cy="159" r="159" transform="matrix(1 9.49924e-08 8.04564e-08 -1 1602 779.688)" fill="#132644" />
+                </g>
+                <g filter="url(#filter2_f_76_4631)">
+                    <circle cx="159" cy="159" r="159" transform="matrix(1 9.49924e-08 8.04564e-08 -1 -56 238.688)" fill="#5085FF" />
+                </g>
+            </g>
+        </g>
+        <defs>
+            <filter id="filter0_f_76_4631" x="641.649" y="-579" width="1318" height="1318" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                <feGaussianBlur stdDeviation="250" result="effect1_foregroundBlur_76_4631" />
+            </filter>
+            <filter id="filter1_f_76_4631" x="1102" y="-38.3125" width="1318" height="1318" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                <feGaussianBlur stdDeviation="250" result="effect1_foregroundBlur_76_4631" />
+            </filter>
+            <filter id="filter2_f_76_4631" x="-556" y="-579.312" width="1318" height="1318" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                <feGaussianBlur stdDeviation="250" result="effect1_foregroundBlur_76_4631" />
+            </filter>
+            <clipPath id="clip0_76_4631">
+                <rect x="1403.65" y="885" width="1033" height="885" rx="24" transform="rotate(180 1403.65 885)" fill="white" />
+            </clipPath>
+            <clipPath id="clip1_76_4631">
+                <rect width="1404" height="884" rx="24" transform="matrix(1 9.49924e-08 8.04564e-08 -1 0 884.688)" fill="white" />
+            </clipPath>
         </defs>
     </svg>
 
