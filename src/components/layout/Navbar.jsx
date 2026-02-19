@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { Button } from '../ui';
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -48,28 +51,42 @@ const Navbar = () => {
     }
   };
 
+  // Handle login button click - route to appropriate login page based on current page
+  const handleLoginClick = () => {
+    const currentPath = location.pathname;
+    
+    // Map each page to its corresponding login page
+    const loginRoutes = {
+      '/': '/login/home',
+      '/personal-loan': '/login/personal-loan',
+      '/debt-consolidation': '/login/debt-consolidation',
+    };
+    
+    // Navigate to the appropriate login page, default to home login
+    const loginPath = loginRoutes[currentPath] || '/login/home';
+    navigate(loginPath);
+  };
+
   return (
     <nav className={`bg-white sticky top-0 z-50 rounded-3xl transition-shadow duration-300 max-w-full mx-3 mt-3 ${scrolled ? 'shadow-md' : 'shadow-sm'}`}>
       <div className="flex justify-between items-center h-[72px] px-3 lg:pl-[88px] lg:pr-[62px]">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <a
-              href="#hero"
-              onClick={(e) => handleNavClick(e, 'hero')}
-              className="flex items-center hover:opacity-80 transition-opacity"
+            <button
+              onClick={() => navigate('/')}
+              className="flex items-center hover:opacity-80 transition-opacity cursor-pointer"
             >
               <img
                 src="/assets/logos/main-logo.svg"
-                alt="Financia Logo"
-                // className="h-8 w-auto"
+                alt="RupeeQ Logo"
                 onError={(e) => {
                   // Fallback to text if image not found
                   e.target.style.display = 'none';
                   e.target.nextSibling.style.display = 'block';
                 }}
               />
-              <span className="text-2xl font-bold text-primary hidden">Financia</span>
-            </a>
+              <span className="text-2xl font-bold text-primary hidden">RupeeQ</span>
+            </button>
           </div>
 
           <div className='flex flex-row space-x-[84px]'>
@@ -89,7 +106,7 @@ const Navbar = () => {
 
             {/* Login Button */}
             <div className="hidden md:block">
-              <Button variant="header">Login</Button>
+              <Button variant="header" onClick={handleLoginClick}>Login</Button>
             </div>
           </div>
 
@@ -120,7 +137,7 @@ const Navbar = () => {
                 {link.name}
               </a>
             ))}
-            <Button variant="header" className="w-full mt-2">Login</Button>
+            <Button variant="header" className="w-full mt-2" onClick={handleLoginClick}>Login</Button>
           </div>
         </div>
       )}
