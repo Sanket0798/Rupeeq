@@ -1,4 +1,11 @@
 export { default as LandingPage } from './LandingPage';
 export { default as PersonalLoanPage } from './PersonalLoanPage';
 export { default as DebtConsolidationPage } from './DebtConsolidationPage';
+export { default as CreditCardsPage } from './CreditCardsPage';
+export { default as ToolsPage } from './ToolsPage';
 export { default as HomeLoginPage } from './HomeLoginPage';
+export { default as EmploymentTypePage } from './EmploymentTypePage';
+export { default as PersonalInformationPage } from './PersonalInformationPage';
+export { default as PersonalLoanLoginPage } from './PersonalLoanLoginPage';
+export { default as PersonalLoanInfoPage1 } from './PersonalLoanInfoPage1';
+export { default as PersonalLoanInfoPage2 } from './PersonalLoanInfoPage2';

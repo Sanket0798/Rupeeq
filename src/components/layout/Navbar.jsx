@@ -13,6 +13,8 @@ const Navbar = () => {
     { name: 'Loans', id: 'hero' },
     { name: 'How It Works', id: 'how-it-works' },
     { name: 'Products', id: 'products' },
+    { name: 'Credit Cards', path: '/credit-cards' },
+    { name: 'Tools', path: '/tools' },
     { name: 'Credit Score', id: 'credit-score' },
     { name: 'FAQ', id: 'faq' },
   ];
@@ -36,10 +38,18 @@ const Navbar = () => {
     return () => document.removeEventListener('keydown', handleEscape);
   }, [isOpen]);
 
-  const handleNavClick = (e, id) => {
+  const handleNavClick = (e, link) => {
     e.preventDefault();
     setIsOpen(false);
-    const element = document.getElementById(id);
+    
+    // If it's a path-based link, navigate to that path
+    if (link.path) {
+      navigate(link.path);
+      return;
+    }
+    
+    // Otherwise, scroll to the section
+    const element = document.getElementById(link.id);
     if (element) {
       const offset = 80;
       const elementPosition = element.getBoundingClientRect().top;
@@ -94,9 +104,9 @@ const Navbar = () => {
             <div className="hidden md:flex items-center space-x-8">
               {navLinks.map((link) => (
                 <a
-                  key={link.id}
-                  href={`#${link.id}`}
-                  onClick={(e) => handleNavClick(e, link.id)}
+                  key={link.id || link.path}
+                  href={link.path || `#${link.id}`}
+                  onClick={(e) => handleNavClick(e, link)}
                   className="text-neutral-700 hover:text-primary transition-colors duration-200 font-medium"
                 >
                   {link.name}
@@ -129,9 +139,9 @@ const Navbar = () => {
           <div className="px-2 pt-2 pb-3 space-y-1">
             {navLinks.map((link) => (
               <a
-                key={link.id}
-                href={`#${link.id}`}
-                onClick={(e) => handleNavClick(e, link.id)}
+                key={link.id || link.path}
+                href={link.path || `#${link.id}`}
+                onClick={(e) => handleNavClick(e, link)}
                 className="block px-3 py-2 text-neutral-700 hover:text-primary hover:bg-neutral-50 rounded-md transition-colors font-medium"
               >
                 {link.name}

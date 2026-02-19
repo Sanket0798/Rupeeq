@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Input } from '../components/ui';
 
-const HomeLoginPage = () => {
+const PersonalLoanLoginPage = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     mobileNumber: '',
@@ -19,9 +19,9 @@ const HomeLoginPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Login:', formData);
-    // Navigate to employment type page
-    navigate('/employment-type');
+    console.log('Personal Loan Login:', formData);
+    // Navigate to personal loan info page 1
+    navigate('/personal-loan-info-1');
   };
 
   return (
@@ -175,4 +175,4 @@ const HomeLoginPage = () => {
   );
 };
 
-export default HomeLoginPage;
+export default PersonalLoanLoginPage;
