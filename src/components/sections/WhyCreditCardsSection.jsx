@@ -28,14 +28,14 @@ const WhyCreditCardsSection = () => {
 
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-      <div className="max-w-[1286px] mx-auto">
+      <div className="max-w-[1280px] mx-auto">
         {/* Header */}
-        <div className="text-center mb-16">
-          <p className="text-[#747986] text-lg mb-2">What Makes Us Different</p>
-          <h2 className="text-3xl lg:text-[48px] font-bold mb-4">
+        <div className="text-center mb-16 space-y-[14px]">
+          <p className="text-black font-normal text-xl leading-[26px] tracing-[0%]">What Makes Us Different</p>
+          <h2 className="text-[40px] leading-[48px] font-bold tracing-[0px] text-black">
             Why Credit Cards Are Required?
           </h2>
-          <p className="text-[#747986] text-lg max-w-3xl mx-auto">
+          <p className="text-custom-dark-text text-xl font-normal leading-[26px] tracing-[0%] max-w-[789px] mx-auto">
             Combining Timeless Strategy And Creative Execution To Deliver Consistent, High-Impact Results For Every Client Campaign.
           </p>
         </div>
@@ -67,9 +67,9 @@ const WhyCreditCardsSection = () => {
           {/* Center Column - Image */}
           <div className="flex items-center justify-center">
             <div className="relative w-full max-w-md">
-              <img 
-                src="/assets/images/creditCards/credit-cards-illustration.png" 
-                alt="Credit Cards" 
+              <img
+                src="/assets/images/creditCards/credit-cards-illustration.png"
+                alt="Credit Cards"
                 className="w-full h-auto"
                 onError={(e) => {
                   // Fallback illustration using CSS

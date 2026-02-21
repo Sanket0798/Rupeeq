@@ -470,3 +470,11 @@ export const LoanCasesBgIcon = () => (
     </svg>
 
 )
+
+export const CreditScoreUpIcon = () => (
+    <svg width="62" height="62" viewBox="0 0 62 62" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M26.4327 22.7797H39.2196M39.2196 22.7797V35.5665M39.2196 22.7797L22.7794 39.2199" stroke="#0072F2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="31" cy="31" r="30.5" stroke="#0072F2" />
+    </svg>
+
+)
