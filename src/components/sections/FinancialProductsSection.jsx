@@ -539,6 +539,13 @@ const FinancialProductsSection = () => {
               </motion.p>
               <div className='items-center justify-center flex'>
                 <motion.button
+                  onClick={() => {
+                    if (service.buttonText === 'Explore facility') {
+                      navigate('/overdraft-facility');
+                    } else if (service.buttonText === 'Check Score') {
+                      navigate('/credit-score');
+                    }
+                  }}
                   className="bg-button-color text-white font-bold px-6 py-3 rounded-full hover:bg-purple-700 transition-colors duration-300 flex items-center gap-2 text-lg leading-[130%]"
                   variants={buttonVariants}
                   whileHover="hover"

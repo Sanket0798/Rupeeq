@@ -8,6 +8,9 @@ import {
   DebtConsolidationPage,
   CreditCardsPage,
   ToolsPage,
+  CreditScorePage,
+  OverdraftFacilityPage,
+  ShortTermLoanPage,
   HomeLoginPage,
   EmploymentTypePage,
   PersonalInformationPage,
@@ -29,6 +32,9 @@ function App() {
             <Route path="/debt-consolidation" element={<DebtConsolidationPage />} />
             <Route path="/credit-cards" element={<CreditCardsPage />} />
             <Route path="/tools" element={<ToolsPage />} />
+            <Route path="/credit-score" element={<CreditScorePage />} />
+            <Route path="/overdraft-facility" element={<OverdraftFacilityPage />} />
+            <Route path="/short-term-loan" element={<ShortTermLoanPage />} />
             
             {/* Home Login - With Footer */}
             <Route path="/login/home" element={<HomeLoginPage />} />
@@ -74,7 +80,7 @@ const ConditionalNavbar = () => {
 // Component to conditionally render footer based on route
 const ConditionalFooter = () => {
   const location = useLocation();
-  const showFooterRoutes = ['/', '/personal-loan', '/debt-consolidation', '/credit-cards', '/tools', '/login/home'];
+  const showFooterRoutes = ['/', '/personal-loan', '/debt-consolidation', '/credit-cards', '/tools', '/credit-score', '/overdraft-facility', '/short-term-loan', '/login/home'];
   
   if (showFooterRoutes.includes(location.pathname)) {
     return <Footer />;

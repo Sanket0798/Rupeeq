@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import { Button } from '../ui';
 
 const Navbar = () => {
@@ -8,14 +8,31 @@ const Navbar = () => {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(null);
+  const dropdownRef = useRef(null);
 
   const navLinks = [
-    { name: 'Loans', id: 'hero' },
+    { 
+      name: 'Loans', 
+      hasDropdown: true,
+      dropdownItems: [
+        { name: 'Personal Loan', path: '/personal-loan' },
+        { name: 'Overdraft Personal Loan', path: '/overdraft-facility' },
+        { name: 'Short Term Personal Loan', path: '/short-term-loan' }
+      ]
+    },
     { name: 'How It Works', id: 'how-it-works' },
     { name: 'Products', id: 'products' },
     { name: 'Credit Cards', path: '/credit-cards' },
-    { name: 'Tools', path: '/tools' },
-    { name: 'Credit Score', id: 'credit-score' },
+    { 
+      name: 'Tools', 
+      hasDropdown: true,
+      dropdownItems: [
+        { name: 'EMI Calculator', path: '/tools' },
+        { name: 'IFSC & MICR', path: '#' }
+      ]
+    },
+    { name: 'Credit Score', path: '/credit-score' },
     { name: 'FAQ', id: 'faq' },
   ];
 
@@ -37,6 +54,21 @@ const Navbar = () => {
     document.addEventListener('keydown', handleEscape);
     return () => document.removeEventListener('keydown', handleEscape);
   }, [isOpen]);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setOpenDropdown(null);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const toggleDropdown = (linkName) => {
+    setOpenDropdown(openDropdown === linkName ? null : linkName);
+  };
 
   const handleNavClick = (e, link) => {
     e.preventDefault();
@@ -101,16 +133,50 @@ const Navbar = () => {
 
           <div className='flex flex-row space-x-[84px]'>
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
+            <div className="hidden md:flex items-center space-x-8" ref={dropdownRef}>
               {navLinks.map((link) => (
-                <a
-                  key={link.id || link.path}
-                  href={link.path || `#${link.id}`}
-                  onClick={(e) => handleNavClick(e, link)}
-                  className="text-neutral-700 hover:text-primary transition-colors duration-200 font-medium"
-                >
-                  {link.name}
-                </a>
+                <div key={link.name} className="relative">
+                  {link.hasDropdown ? (
+                    <div>
+                      <button
+                        onClick={() => toggleDropdown(link.name)}
+                        className="text-neutral-700 hover:text-primary transition-colors duration-200 font-medium flex items-center gap-1"
+                      >
+                        {link.name}
+                        <ChevronDown 
+                          size={16} 
+                          className={`transition-transform duration-200 ${openDropdown === link.name ? 'rotate-180' : ''}`}
+                        />
+                      </button>
+                      
+                      {/* Dropdown Menu */}
+                      {openDropdown === link.name && (
+                        <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-2xl shadow-lg border border-gray-100 py-2 z-50 animate-slide-up">
+                          {link.dropdownItems.map((item) => (
+                            <button
+                              key={item.path}
+                              onClick={() => {
+                                navigate(item.path);
+                                setOpenDropdown(null);
+                              }}
+                              className="w-full text-left px-4 py-3 text-neutral-700 hover:bg-purple-50 hover:text-primary transition-colors duration-200 font-medium"
+                            >
+                              {item.name}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <a
+                      href={link.path || `#${link.id}`}
+                      onClick={(e) => handleNavClick(e, link)}
+                      className="text-neutral-700 hover:text-primary transition-colors duration-200 font-medium"
+                    >
+                      {link.name}
+                    </a>
+                  )}
+                </div>
               ))}
             </div>
 
@@ -138,14 +204,47 @@ const Navbar = () => {
         <div className="md:hidden bg-white border-t animate-slide-up">
           <div className="px-2 pt-2 pb-3 space-y-1">
             {navLinks.map((link) => (
-              <a
-                key={link.id || link.path}
-                href={link.path || `#${link.id}`}
-                onClick={(e) => handleNavClick(e, link)}
-                className="block px-3 py-2 text-neutral-700 hover:text-primary hover:bg-neutral-50 rounded-md transition-colors font-medium"
-              >
-                {link.name}
-              </a>
+              <div key={link.name}>
+                {link.hasDropdown ? (
+                  <div>
+                    <button
+                      onClick={() => toggleDropdown(link.name)}
+                      className="w-full flex items-center justify-between px-3 py-2 text-neutral-700 hover:text-primary hover:bg-neutral-50 rounded-md transition-colors font-medium"
+                    >
+                      {link.name}
+                      <ChevronDown 
+                        size={16} 
+                        className={`transition-transform duration-200 ${openDropdown === link.name ? 'rotate-180' : ''}`}
+                      />
+                    </button>
+                    {openDropdown === link.name && (
+                      <div className="pl-4 mt-1 space-y-1">
+                        {link.dropdownItems.map((item) => (
+                          <button
+                            key={item.path}
+                            onClick={() => {
+                              navigate(item.path);
+                              setIsOpen(false);
+                              setOpenDropdown(null);
+                            }}
+                            className="w-full text-left px-3 py-2 text-sm text-neutral-600 hover:text-primary hover:bg-neutral-50 rounded-md transition-colors"
+                          >
+                            {item.name}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <a
+                    href={link.path || `#${link.id}`}
+                    onClick={(e) => handleNavClick(e, link)}
+                    className="block px-3 py-2 text-neutral-700 hover:text-primary hover:bg-neutral-50 rounded-md transition-colors font-medium"
+                  >
+                    {link.name}
+                  </a>
+                )}
+              </div>
             ))}
             <Button variant="header" className="w-full mt-2" onClick={handleLoginClick}>Login</Button>
           </div>
