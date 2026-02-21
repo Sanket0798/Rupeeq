@@ -12,6 +12,53 @@ import {
 } from '../components/shared';
 
 const DebtConsolidationPage = () => {
+  const eligibilityCriteria = [
+    {
+      icon: '/assets/logos/LoanEligibility/User.png',
+      label: 'Age Limit:',
+      value: 'Between 21 To 60 Years'
+    },
+    {
+      icon: '/assets/logos/LoanEligibility/Bag.png',
+      label: 'Employment:',
+      value: 'Salaried Or 2+ Years Of Self-Employment'
+    },
+    {
+      icon: '/assets/logos/LoanEligibility/Money.png',
+      label: 'Minimum Income:',
+      value: '₹45,000 + Per Month/ Self Employed With Stable Revenue'
+    },
+    {
+      icon: '/assets/logos/LoanEligibility/Counter.png',
+      label: 'Credit Score:',
+      value: 'Preferably 650+ (750+ unlocks best rates)'
+    },
+    {
+      icon: '/assets/logos/LoanEligibility/Files.png',
+      label: 'Documents Required:',
+      value: 'Pan, Aadhar, Salary Slips/ Bank Statements, Existing Loan Statements'
+    }
+  ];
+
+  const whoShouldConsider = [
+    {
+      label: 'Multiple High-Interest Credit Cards.',
+      value: ''
+    },
+    {
+      label: 'Several Personal Or Consumer Loans',
+      value: ''
+    },
+    {
+      label: 'Missing EMI Payments Due To Overlapping Due Dates.',
+      value: ''
+    },
+    {
+      label: 'Save On Interest & Simplify Budgeting',
+      value: ''
+    }
+  ];
+
   return (
     <>
       {/* Debt Consolidation Hero - To be created */}
@@ -51,7 +98,20 @@ const DebtConsolidationPage = () => {
 
       {/* Loan Eligibility Section - Reusable */}
       <section id="loan-eligibility">
-        <LoanEligibilitySection />
+        <LoanEligibilitySection
+          mainTitle=""
+          subtitle=""
+          leftColumnTitle="Eligibility Criteria"
+          rightColumnTitle="Who Should Consider This Loan?"
+          eligibilityCriteria={eligibilityCriteria}
+          rightColumnItems={whoShouldConsider}
+          leftColumnNote=""
+          rightColumnNote="Debt Consolidation Through RupeeQ Is An Ideal Solution."
+          leftColumnImage="/assets/images/loanEligibility/2.jpg"
+          rightColumnImage="/assets/images/loanEligibility/1.png"
+          useIconsForLeft={true}
+          useDotsForRight={true}
+        />
       </section>
 
       {/* Application Steps Section - Reusable */}
