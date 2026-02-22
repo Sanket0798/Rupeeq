@@ -55,7 +55,7 @@ const FeaturesToIncreaseCreditScoreSection = () => {
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`px-4 py-2 rounded-full font-normal transition-all duration-300 ${activeTab === tab
+              className={`px-4 py-2 rounded-full font-helvetica-neue font-bold text-[#0072F2] ${activeTab === tab
                 ? 'bg-[#0072F2] text-white'
                 : 'bg-transparent text-base leading-[110%] tracing-[0px] border border-[#0072F2] hover:bg-[#0072F2] hover:text-white'
                 }`}

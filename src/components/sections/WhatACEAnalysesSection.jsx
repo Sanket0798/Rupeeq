@@ -3,51 +3,51 @@ const WhatACEAnalysesSection = () => {
     {
       title: 'Credit Exposure',
       description: 'Number and type of active loans and accounts',
-      bgColor: 'bg-[#FFF0F5]'
+      bgColor: 'bg-gradient-to-b from-[#F9AAA6]/20 to-white'
     },
     {
       title: 'Recent Credit Activity',
       description: 'Enquiries and borrowing patterns',
-      bgColor: 'bg-[#E0F7FA]'
+      bgColor: 'bg-gradient-to-b from-[#9FF1FA]/20 to-white'
     },
     {
       title: 'Credit Utilisation',
       description: 'How much of your available credit you are using',
-      bgColor: 'bg-[#E8F5E9]'
+      bgColor: 'bg-gradient-to-b from-[#34CA8D]/20 to-white'
     },
     {
       title: 'Repayment Behaviour',
       description: 'Timeliness and consistency of past EMIs',
-      bgColor: 'bg-[#E8EAF6]'
+      bgColor: 'bg-gradient-to-b from-[#5084FF]/20 to-white'
     }
   ];
 
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
-      <div className="max-w-[1286px] mx-auto">
+    <div className="w-full py-16 md:py-20 px-4 md:px-6 lg:px-8">
+      <div className="max-w-[1387px] text-center mx-auto rounded-24 z-10 bg-gradient-to-b from-[#34CA8D]/5 to-white pt-[51px] px-[57px]">
         {/* Title */}
-        <h2 className="text-3xl lg:text-[40px] font-bold text-center mb-12 text-gray-900">
+        <h2 className="font-bold text-[30px] leading-[35px] text-[#212121] mb-11">
           What RupeeQ ACE Analyses
         </h2>
 
         {/* Cards Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-4 gap-6">
           {analyses.map((item, index) => (
             <div
               key={index}
-              className={`${item.bgColor} rounded-3xl p-8 shadow-sm hover:shadow-md transition-all duration-300`}
+              className={`${item.bgColor} rounded-t-3xl p-6 border border-black/10 border-b-white transition-all duration-300 hover:scale-105 hover:shadow-lg flex flex-col items-center justify-center min-h-[239px]`}
             >
-              <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">
+              <h3 className="text-[30px] font-bold tracing-[6%] leading-[130%] text-custom-dark-text mb-6">
                 {item.title}
               </h3>
-              <p className="text-[#747986] text-center leading-relaxed">
+              <p className="text-custom-dark-text text-center text-2xl leading-[130%] font-light">
                 {item.description}
               </p>
             </div>
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

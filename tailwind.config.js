@@ -123,6 +123,7 @@ export default {
       fontFamily: {
         sans: ['Delight', 'system-ui', 'sans-serif'],
         'inter-tight': ['"Inter Tight"', 'sans-serif'],
+        'helvetica-neue': ['"Helvetica Neue"', 'sans-serif'],
       },
       fontSize: {
         'xs': ['12px', { lineHeight: '16px' }],
