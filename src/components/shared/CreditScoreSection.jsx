@@ -1,4 +1,5 @@
 import { ChevronUpIcon } from "../common/SvgIcons";
+import { Button } from '../ui';
 
 const CreditScoreSection = () => {
   const features = [
@@ -50,14 +51,14 @@ const CreditScoreSection = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 pt-7">
-              <button className="bg-button-color text-white font-semibold rounded-full hover:bg-[#4a2470] transition-colors duration-300 flex items-center justify-center text-base leading-[130%] gap-3 py-[13px] pl-[34px] pr-[41px]">
+              <Button variant="primary" size="md" className="py-[13px] pl-[34px] pr-[41px] gap-3">
                 Check Free Credit Score
                 <ChevronUpIcon />
-              </button>
-              <button className="bg-button-color text-white font-semibold rounded-full hover:bg-[#4a2470] transition-colors duration-300 flex items-center justify-center text-base leading-[130%] gap-3 py-[13px] pl-[34px] pr-[41px]">
+              </Button>
+              <Button variant="primary" size="md" className="py-[13px] pl-[34px] pr-[41px] gap-3">
                 See Your ACE Insights
                 <ChevronUpIcon />
-              </button>
+              </Button>
             </div>
           </div>
 

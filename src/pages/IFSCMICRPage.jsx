@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { FAQSection } from '../components/shared';
+import { Button } from '../components/ui';
 
 const IFSCMICRPage = () => {
   const [selectedBank, setSelectedBank] = useState('');
@@ -59,9 +60,9 @@ const IFSCMICRPage = () => {
                   </label>
                 </div>
 
-                <button className="w-full bg-white text-button-color font-semibold text-lg py-3 rounded-full hover:bg-gray-100 transition-all duration-300">
+                <Button variant="primary-white" size="lg" className="w-full">
                   Submit
-                </button>
+                </Button>
 
                 {/* Illustration */}
                 <div className="absolute bottom-0 right-8 w-32 h-32">

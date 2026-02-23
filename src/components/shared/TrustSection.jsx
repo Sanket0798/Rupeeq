@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { BlueChevronUpIcon } from '../common/SvgIcons';
+import { Button } from '../ui';
 
 const TrustSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -90,14 +91,14 @@ const TrustSection = () => {
             : 'opacity-0 translate-y-8'
             }`}
         >
-          <button className="bg-white text-button-color text-lg font-bold px-8 py-3 rounded-full hover:bg-gray-50 hover:scale-105 transition-all duration-300 flex items-center gap-[10px]">
+          <Button variant="primary-white-scale" size="lg" className="gap-[10px]">
             Schedule a Call
             <BlueChevronUpIcon />
-          </button>
-          <button className="bg-white text-button-color text-lg font-bold px-8 py-3 rounded-full hover:bg-gray-50 hover:scale-105 transition-all duration-300 flex items-center gap-[10px]">
+          </Button>
+          <Button variant="primary-white-scale" size="lg" className="gap-[10px]">
             Chat with Us
             <BlueChevronUpIcon />
-          </button>
+          </Button>
         </div>
       </div>
     </section>

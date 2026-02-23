@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Input, FormFieldError, LoadingSpinner } from '../ui';
+import { Input, FormFieldError, LoadingSpinner, Button } from '../ui';
 import { BlueUpArrowIcon, ChevronUpIcon } from '../common/SvgIcons';
 import { mobileNumberSchema, validateForm } from '../../utils/validationSchemas';
 
@@ -209,10 +209,12 @@ const GenericHero = ({
                         </div>
                       )}
 
-                      <button
+                      <Button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-[168px] bg-white text-custom-purple font-semibold text-lg py-3 px-4 rounded-full hover:bg-opacity-90 transition-all duration-300 leading-[110%] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                        variant="primary-white"
+                        size="lg"
+                        className="w-[168px] py-3 px-4 gap-2"
                       >
                         {isSubmitting ? (
                           <>
@@ -222,7 +224,7 @@ const GenericHero = ({
                         ) : (
                           formButtonText
                         )}
-                      </button>
+                      </Button>
                     </form>
 
                     {/* Illustration at bottom right - positioned outside card */}
@@ -244,14 +246,16 @@ const GenericHero = ({
         {actionButtons.length > 0 && (
           <div className="flex flex-row gap-4">
             {actionButtons.map((button, index) => (
-              <button
+              <Button
                 key={index}
                 onClick={() => navigate(button.route)}
-                className="bg-button-color text-white font-bold px-6 py-3 rounded-full hover:bg-purple-700 transition-colors duration-300 flex items-center gap-2 text-lg leading-[130%]"
+                variant="primary"
+                size="md"
+                className="px-6 py-3 gap-2"
               >
                 {button.text}
                 <ChevronUpIcon />
-              </button>
+              </Button>
             ))}
           </div>
         )}

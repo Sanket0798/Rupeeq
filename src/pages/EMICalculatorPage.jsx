@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { FAQSection } from '../components/shared';
+import { Button } from '../components/ui';
 
 const ToolsPage = () => {
   const [loanAmount, setLoanAmount] = useState(2000000);
@@ -155,9 +156,9 @@ const ToolsPage = () => {
                 </div>
 
                 {/* Calculate Button */}
-                <button className="w-full bg-button-color text-white font-semibold text-lg py-4 rounded-full hover:bg-[#4a2470] transition-all duration-300 shadow-lg hover:shadow-xl">
+                <Button variant="primary" size="lg" className="w-full py-4">
                   Calculate
-                </button>
+                </Button>
               </div>
 
               {/* Right Side - Results */}
@@ -244,9 +245,9 @@ const ToolsPage = () => {
                 It considers the loan amount, interest rate, and tenure to give you an accurate EMI amount, 
                 helping you plan your finances better.
               </p>
-              <button className="bg-button-color text-white font-semibold px-8 py-3 rounded-full hover:bg-[#4a2470] transition-all duration-300 shadow-lg hover:shadow-xl">
+              <Button variant="primary" size="md" className="px-8 py-3">
                 Learn More
-              </button>
+              </Button>
             </div>
 
             {/* Right Illustration */}
@@ -386,9 +387,9 @@ const ToolsPage = () => {
           <p className="text-white text-lg mb-8 max-w-2xl mx-auto">
             Use our EMI calculator to plan your loan better and make informed decisions
           </p>
-          <button className="bg-white text-button-color font-semibold text-lg px-12 py-4 rounded-full hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl">
+          <Button variant="primary-white" size="xl">
             Apply for Loan Now
-          </button>
+          </Button>
         </div>
       </section>
     </>

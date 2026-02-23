@@ -1,4 +1,5 @@
 import { MArqueeUpArrowIcon, RightArrowIcon } from "../common/SvgIcons";
+import { Button } from '../ui';
 
 const CreditCardFeaturesSection = () => {
   const leftFeatures = [
@@ -80,10 +81,10 @@ const CreditCardFeaturesSection = () => {
                   Of Credit Cards
                 </span>
               </h2>
-              <button className="flex items-center gap-2 text-black text-base leading-[24px] font-medium hover:text-button-color transition-colors border border-[#EBEBEB] py-3 px-6 rounded-full">
+              <Button variant="outline-icon" size="icon-md" className="gap-2">
                 Schedule Consultation
                 <RightArrowIcon />
-              </button>
+              </Button>
             </div>
 
             <img
