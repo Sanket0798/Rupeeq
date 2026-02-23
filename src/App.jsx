@@ -17,7 +17,16 @@ import {
   PersonalInformationPage,
   PersonalLoanLoginPage,
   PersonalLoanInfoPage1,
-  PersonalLoanInfoPage2
+  PersonalLoanInfoPage2,
+  DebtConsolidationLoginPage,
+  DebtConsolidationInfoPage1,
+  DebtConsolidationInfoPage2,
+  OverdraftFacilityLoginPage,
+  OverdraftFacilityInfoPage1,
+  OverdraftFacilityInfoPage2,
+  ShortTermLoanLoginPage,
+  ShortTermLoanInfoPage1,
+  ShortTermLoanInfoPage2
 } from './pages';
 
 function App() {
@@ -44,6 +53,15 @@ function App() {
             {/* Personal Loan Login Flow - With Navbar only */}
             <Route path="/login/personal-loan" element={<PersonalLoanLoginPage />} />
             
+            {/* Debt Consolidation Login Flow - With Navbar only */}
+            <Route path="/login/debt-consolidation" element={<DebtConsolidationLoginPage />} />
+            
+            {/* Overdraft Facility Login Flow - With Navbar only */}
+            <Route path="/login/overdraft-facility" element={<OverdraftFacilityLoginPage />} />
+            
+            {/* Short Term Loan Login Flow - With Navbar only */}
+            <Route path="/login/short-term-loan" element={<ShortTermLoanLoginPage />} />
+            
             {/* Employment Type Selection - No Navbar/Footer */}
             <Route path="/employment-type" element={<EmploymentTypePage />} />
             
@@ -53,6 +71,18 @@ function App() {
             {/* Personal Loan Info Pages - No Navbar/Footer */}
             <Route path="/personal-loan-info-1" element={<PersonalLoanInfoPage1 />} />
             <Route path="/personal-loan-info-2" element={<PersonalLoanInfoPage2 />} />
+            
+            {/* Debt Consolidation Info Pages - No Navbar/Footer */}
+            <Route path="/debt-consolidation-info-1" element={<DebtConsolidationInfoPage1 />} />
+            <Route path="/debt-consolidation-info-2" element={<DebtConsolidationInfoPage2 />} />
+            
+            {/* Overdraft Facility Info Pages - No Navbar/Footer */}
+            <Route path="/overdraft-facility-info-1" element={<OverdraftFacilityInfoPage1 />} />
+            <Route path="/overdraft-facility-info-2" element={<OverdraftFacilityInfoPage2 />} />
+            
+            {/* Short Term Loan Info Pages - No Navbar/Footer */}
+            <Route path="/short-term-loan-info-1" element={<ShortTermLoanInfoPage1 />} />
+            <Route path="/short-term-loan-info-2" element={<ShortTermLoanInfoPage2 />} />
             
             {/* Other Login Pages - Without Footer (will be added later) */}
             {/* <Route path="/login/personal-loan" element={<PersonalLoanLoginPage />} /> */}
@@ -71,7 +101,7 @@ function App() {
 // Component to conditionally render navbar based on route
 const ConditionalNavbar = () => {
   const location = useLocation();
-  const hideNavbarRoutes = ['/employment-type', '/personal-information', '/personal-loan-info-1', '/personal-loan-info-2'];
+  const hideNavbarRoutes = ['/employment-type', '/personal-information', '/personal-loan-info-1', '/personal-loan-info-2', '/debt-consolidation-info-1', '/debt-consolidation-info-2', '/overdraft-facility-info-1', '/overdraft-facility-info-2', '/short-term-loan-info-1', '/short-term-loan-info-2'];
   
   if (hideNavbarRoutes.includes(location.pathname)) {
     return null;
@@ -93,7 +123,7 @@ const ConditionalFooter = () => {
 // Component to conditionally render scroll to top based on route
 const ConditionalScrollToTop = () => {
   const location = useLocation();
-  const hideScrollToTopRoutes = ['/employment-type', '/personal-information', '/personal-loan-info-1', '/personal-loan-info-2'];
+  const hideScrollToTopRoutes = ['/employment-type', '/personal-information', '/personal-loan-info-1', '/personal-loan-info-2', '/debt-consolidation-info-1', '/debt-consolidation-info-2', '/overdraft-facility-info-1', '/overdraft-facility-info-2', '/short-term-loan-info-1', '/short-term-loan-info-2'];
   
   if (hideScrollToTopRoutes.includes(location.pathname)) {
     return null;

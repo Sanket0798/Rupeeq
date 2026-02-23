@@ -102,6 +102,8 @@ const Navbar = () => {
       '/': '/login/home',
       '/personal-loan': '/login/personal-loan',
       '/debt-consolidation': '/login/debt-consolidation',
+      '/overdraft-facility': '/login/overdraft-facility',
+      '/short-term-loan': '/login/short-term-loan',
     };
     
     // Navigate to the appropriate login page, default to home login
