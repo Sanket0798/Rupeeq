@@ -1,3 +1,5 @@
+import { Button } from '../ui';
+
 const CreditScoreCTA = () => {
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-blue-50">
@@ -8,9 +10,9 @@ const CreditScoreCTA = () => {
         <p className="text-[#747986] text-lg mb-8 max-w-2xl mx-auto">
           Get your free credit score and personalized insights in minutes
         </p>
-        <button className="bg-button-color text-white font-semibold text-lg px-12 py-5 rounded-full hover:bg-[#4a2470] transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
+        <Button variant="primary" size="lg">
           Check Your Score Now
-        </button>
+        </Button>
       </div>
     </section>
   );

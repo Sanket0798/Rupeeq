@@ -1,3 +1,5 @@
+import { Button } from '../ui';
+
 const CreditCardsHero = () => {
   const cardCategories = [
     {
@@ -37,12 +39,12 @@ const CreditCardsHero = () => {
 
         {/* CTA Button */}
         <div className="flex justify-center mb-20">
-          <button className="bg-button-color text-white font-semibold text-lg px-12 py-5 rounded-full hover:bg-[#4a2470] transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 flex items-center gap-3">
+          <Button variant="primary" size="lg" className="gap-3">
             Explore Credit Cards
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-          </button>
+          </Button>
         </div>
 
         {/* Credit Card Categories */}
@@ -70,9 +72,9 @@ const CreditCardsHero = () => {
                     </li>
                   ))}
                 </ul>
-                <button className="mt-6 w-full bg-button-color text-white font-semibold py-3 rounded-full hover:bg-[#4a2470] transition-all duration-300">
+                <Button variant="primary" size="md" className="mt-6 w-full">
                   View Cards
-                </button>
+                </Button>
               </div>
             </div>
           ))}

@@ -10,7 +10,6 @@ const IFSCMICRPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission
-    console.log({ selectedBank, selectedState, selectedCity, selectedBranch });
   };
 
   return (

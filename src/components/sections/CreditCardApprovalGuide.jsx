@@ -18,7 +18,7 @@ const CreditCardApprovalGuide = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    // TODO: Handle form submission
   };
 
   return (

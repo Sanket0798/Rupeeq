@@ -53,7 +53,7 @@ const LoanUseCasesSection = () => {
     },
     {
       title: 'Unexpected Financial Gaps',
-      description: 'xxxxx',
+      description: 'Cover sudden expenses like medical emergencies, urgent repairs, or unforeseen bills without stress.',
       bgColor: 'bg-gradient-to-b from-[#BAA200]/15 to-white',
       borderColor: 'border-black/12',
       height: 'h-[240px]'

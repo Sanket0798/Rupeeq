@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
-import { Input } from '../components/ui';
+import { Input, Button } from '../components/ui';
 
 const PersonalInformationPage = () => {
   const navigate = useNavigate();
@@ -27,7 +27,6 @@ const PersonalInformationPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Personal Information:', formData);
     // Navigate to next step
   };
 
@@ -39,9 +38,9 @@ const PersonalInformationPage = () => {
       <div className="absolute top-8 right-8">
         <p className="text-[#ABADB0] text-lg font-medium leading-[26px] tracing-[0%]">
           Having troubles?{' '}
-          <button className="text-[#0072F2] font-semibold">
+          <Button variant="text-link" size="sm" className="inline">
             Get Help
-          </button>
+          </Button>
         </p>
       </div>
 

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Button } from '../components/ui';
 
 const EmploymentTypePage = () => {
   const navigate = useNavigate();
@@ -24,7 +25,6 @@ const EmploymentTypePage = () => {
   ];
 
   const handleSubmit = () => {
-    console.log('Selected employment type:', selectedType);
     // Navigate to personal information page
     navigate('/personal-information');
   };
@@ -37,9 +37,9 @@ const EmploymentTypePage = () => {
       <div className="absolute top-8 right-8">
         <p className="text-[#ABADB0] text-lg font-medium leading-[26px] tracing-[0%]">
           Having troubles?{' '}
-          <button className="text-[#0072F2] font-semibold">
+          <Button variant="text-link" size="sm" className="inline">
             Get Help
-          </button>
+          </Button>
         </p>
       </div>
 
