@@ -1,15 +1,16 @@
 import {
   ShortTermLoanHero,
-  ShortTermLoanCTA
 } from '../components/sections';
-import { 
-  TrustSection, 
-  CreditScoreSection, 
-  PartnersMarquee, 
-  TestimonialsSlider, 
+import {
+  TrustSection,
+  CreditScoreSection,
+  PartnersMarquee,
+  TestimonialsSlider,
   FAQSection,
   LoanEligibilitySection,
-  FeaturesBenefitsSection
+  FeaturesBenefitsSection,
+  DebtConsolidationInfo,
+  ApplicationStepsSection
 } from '../components/shared';
 
 const ShortTermLoanPage = () => {
@@ -82,6 +83,30 @@ const ShortTermLoanPage = () => {
     }
   ];
 
+  const whyRupeeQBenefits = [
+    {
+      title: 'Compare Offers',
+      description: 'Calculating EMI For A Personal Loan Without Manual Formulas.',
+      bgColor: 'bg-white',
+      icon: 'InformativeIcon',
+      iconBgColor: 'bg-button-color'
+    },
+    {
+      title: 'Transparent Fees',
+      description: 'Understand The Impact Of Interest Rate Changes On EMI.',
+      bgColor: 'bg-[#E8EFFF]',
+      icon: 'BrodcastIcon',
+      iconBgColor: 'bg-white'
+    },
+    {
+      title: '100% Digital Process',
+      description: 'Compare EMIs For Different Tenures Using The Same Loan Amount.',
+      bgColor: 'bg-[#E5F8F0]',
+      icon: 'MobileIcon',
+      iconBgColor: 'bg-white'
+    }
+  ];
+
   return (
     <>
       {/* Hero Section */}
@@ -91,7 +116,7 @@ const ShortTermLoanPage = () => {
 
       {/* Features & Benefits Section */}
       <section id="short-term-loan-features">
-        <FeaturesBenefitsSection 
+        <FeaturesBenefitsSection
           title="Features & Benefits of Short Term Personal Loan"
           features={shortTermFeatures}
         />
@@ -112,6 +137,24 @@ const ShortTermLoanPage = () => {
           rightColumnImage="/assets/images/loanEligibility/1.png"
           useIconsForLeft={true}
           useDotsForRight={true}
+        />
+      </section>
+
+      {/* Application Steps Section */}
+      <section id="application-steps">
+        <ApplicationStepsSection />
+      </section>
+
+      {/* Why RupeeQ Section */}
+      <section id="why-rupeeq">
+        <DebtConsolidationInfo
+          title="Why RupeeQ Is The Best Platform?"
+          highlightedWord="RupeeQ"
+          description=""
+          subtitle="Compare Offers, Apply In Minutes."
+          bgGradient="bg-white"
+          benefits={whyRupeeQBenefits}
+          showIcons={true}
         />
       </section>
 
@@ -138,11 +181,6 @@ const ShortTermLoanPage = () => {
       {/* FAQ Section */}
       <section id="faq">
         <FAQSection />
-      </section>
-
-      {/* Final CTA */}
-      <section id="short-term-loan-cta">
-        <ShortTermLoanCTA />
       </section>
     </>
   );

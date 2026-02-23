@@ -1,5 +1,5 @@
 // Import sections
-import { HowItWorks, DebtConsolidationInfo, EMIReductionSection, WhyRupeeQSection } from '../components/sections';
+import { HowItWorks, EMIReductionSection, WhyRupeeQSection } from '../components/sections';
 import {
   TrustSection,
   CreditScoreSection,
@@ -8,7 +8,8 @@ import {
   FAQSection,
   LoanEligibilitySection,
   ApplicationStepsSection,
-  ConsolidationBenefitsSection
+  ConsolidationBenefitsSection,
+  DebtConsolidationInfo
 } from '../components/shared';
 
 const DebtConsolidationPage = () => {

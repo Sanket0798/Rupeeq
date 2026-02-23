@@ -1,14 +1,15 @@
 import {
   OverdraftFacilityHero,
 } from '../components/sections';
-import { 
-  TrustSection, 
-  CreditScoreSection, 
-  PartnersMarquee, 
-  TestimonialsSlider, 
+import {
+  TrustSection,
+  CreditScoreSection,
+  PartnersMarquee,
+  TestimonialsSlider,
   FAQSection,
   LoanEligibilitySection,
-  FeaturesBenefitsSection
+  FeaturesBenefitsSection,
+  DebtConsolidationInfo
 } from '../components/shared';
 
 const OverdraftFacilityPage = () => {
@@ -39,6 +40,25 @@ const OverdraftFacilityPage = () => {
       icon: '/assets/logos/MakesDifferent/CreditCounter.png',
     }
   ];
+
+  const whyRupeeQBenefits = [
+    {
+      title: 'Compare Offers',
+      description: 'Calculating EMI For A Personal Loan Without Manual Formulas.',
+      bgColor: 'bg-white'
+    },
+    {
+      title: 'Transparent Fees',
+      description: 'Understand The Impact Of Interest Rate Changes On EMI.',
+      bgColor: 'bg-[#E8EFFF]'
+    },
+    {
+      title: '100% Digital Process',
+      description: 'Compare EMIs For Different Tenures Using The Same Loan Amount.',
+      bgColor: 'bg-[#E5F8F0]'
+    }
+  ];
+
   const eligibilityCriteria = [
     {
       icon: '/assets/logos/LoanEligibility/User.png',
@@ -90,7 +110,7 @@ const OverdraftFacilityPage = () => {
 
       {/* Features & Benefits Section */}
       <section id="overdraft-features">
-        <FeaturesBenefitsSection 
+        <FeaturesBenefitsSection
           title="Features & Benefits of Overdraft Credit Line"
           features={overdraftFeatures}
         />
@@ -111,6 +131,18 @@ const OverdraftFacilityPage = () => {
           rightColumnImage="/assets/images/loanEligibility/1.png"
           useIconsForLeft={true}
           useDotsForRight={true}
+        />
+      </section>
+
+      {/* Why RupeeQ Section */}
+      <section id="why-rupeeq">
+        <DebtConsolidationInfo
+          title="Why RupeeQ Is The Best Platform?"
+          highlightedWord="RupeeQ"
+          description=""
+          subtitle="Compare Offers, Apply In Minutes."
+          bgGradient="bg-white"
+          benefits={whyRupeeQBenefits}
         />
       </section>
 

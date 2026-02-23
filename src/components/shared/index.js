@@ -8,3 +8,4 @@ export { default as LoanEligibilitySection } from './LoanEligibilitySection';
 export { default as ApplicationStepsSection } from './ApplicationStepsSection';
 export { default as ConsolidationBenefitsSection } from './ConsolidationBenefitsSection';
 export { default as FeaturesBenefitsSection } from './FeaturesBenefitsSection';
+export { default as DebtConsolidationInfo } from './DebtConsolidationInfo';
