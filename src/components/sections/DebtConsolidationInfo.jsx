@@ -39,6 +39,7 @@ const DebtConsolidationInfo = () => {
         <div className="grid grid-cols-1 md:grid-cols-3">
           {benefits.map((benefit, index) => (
             <Card
+              variant='custom'
               key={index}
               className={`${benefit.bgColor} p-6 gap-y-3 border-none rounded-lg flex flex-col items-start justify-between text-custom-dark-text`}
               rounded='rounded-none'

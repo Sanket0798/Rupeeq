@@ -8,10 +8,38 @@ import {
   PartnersMarquee, 
   TestimonialsSlider, 
   FAQSection,
-  LoanEligibilitySection
+  LoanEligibilitySection,
+  FeaturesBenefitsSection
 } from '../components/shared';
 
 const ShortTermLoanPage = () => {
+  const shortTermFeatures = [
+    {
+      title: 'Flexible tenure',
+      description: 'Use funds when needed, repay anytime.',
+      icon: '/assets/logos/MakesDifferent/Calender.png',
+    },
+    {
+      title: 'Minimal Documentation',
+      description: 'Withdrawal funds instantly via net banking or mobile app',
+      icon: '/assets/logos/MakesDifferent/PaperWork.png',
+    },
+    {
+      title: 'Quick Disbursal',
+      description: 'Pay interest on the amount you use, not the total limit',
+      icon: '/assets/logos/MakesDifferent/Graph.png',
+    },
+    {
+      title: 'Multiple use cases',
+      description: 'Repay early without extra charges (varies by lender)',
+      icon: '/assets/logos/MakesDifferent/DigitalProcess.png',
+    },
+    {
+      title: 'Flexible Repayment',
+      description: 'Reuse your limit after repayment.',
+      icon: '/assets/logos/MakesDifferent/CalenderWithClock.png',
+    }
+  ];
   const eligibilityCriteria = [
     {
       icon: '/assets/logos/LoanEligibility/User.png',
@@ -59,6 +87,14 @@ const ShortTermLoanPage = () => {
       {/* Hero Section */}
       <section id="short-term-loan-hero">
         <ShortTermLoanHero />
+      </section>
+
+      {/* Features & Benefits Section */}
+      <section id="short-term-loan-features">
+        <FeaturesBenefitsSection 
+          title="Features & Benefits of Short Term Personal Loan"
+          features={shortTermFeatures}
+        />
       </section>
 
       {/* Eligibility Section */}

@@ -56,7 +56,7 @@ const WhatMakesDifferent = () => {
         </div>
 
         {/* Features Grid - Single Big Box */}
-        <div className="bg-white rounded-3xl shadow-[5px_5px_5px_0px_rgba(0,0,0,0.15)] py-14 px-11">
+        <div className="bg-[#F7F7F7] rounded-3xl shadow-[5px_5px_5px_0px_rgba(0,0,0,0.15)] py-14 px-11">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-8">
             {features.map((feature, index) => (
               <div key={index}>

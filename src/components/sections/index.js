@@ -30,7 +30,7 @@ export { default as OverdraftFacilityHero } from './OverdraftFacilityHero';
 // export { default as OverdraftVsPersonalLoan } from './OverdraftVsPersonalLoan';
 // export { default as OverdraftFacilityEligibility } from './OverdraftFacilityEligibility';
 // export { default as OverdraftFacilityUseCases } from './OverdraftFacilityUseCases';
-export { default as OverdraftFacilityCTA } from './OverdraftFacilityCTA';
+// export { default as OverdraftFacilityCTA } from './OverdraftFacilityCTA';
 export { default as CreditScoreHero } from './CreditScoreHero';
 // export { default as CreditScoreACESection } from './CreditScoreACESection';
 // export { default as WhatIsCreditScoreSection } from './WhatIsCreditScoreSection';

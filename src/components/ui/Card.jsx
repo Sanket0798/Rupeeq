@@ -16,7 +16,7 @@ const Card = ({
     'gradient-light': 'bg-gradient-to-br from-primary/10 to-accent-purple/10',
     bordered: 'bg-white border-2 border-neutral-200',
     glass: 'bg-white/80 backdrop-blur-sm shadow-card',
-    custom: 'shadow-card',
+    custom: '',
   };
 
   const hoverStyles = hover ? 'hover:shadow-card-hover hover:scale-105 cursor-pointer' : '';

@@ -1,4 +1,4 @@
-import { PagesIcon, Step1Icon, Step2Icon } from "../common/SvgIcons"
+import { CreditScoreStepsIcon, PagesIcon, Step3Icon } from "../common/SvgIcons"
 
 
 
@@ -42,31 +42,36 @@ const ApplicationStepsSection = () => {
           </div>
         </div>
 
-        <Step1Icon />
+        <CreditScoreStepsIcon />
 
-        <div className="flex flex-row items-center justify-around max-w-[941px] w-full mt-[47px] mb-[89px]">
-          <div className="flex flex-col items-center">
-            <h3 className="text-2xl leading-[34px] tracing-[0%] text-custom-dark-text font-medium">Check Your Credit Health</h3>
-            <p className="text-xl leading-[26px] tracing-[0%] text-[#7D7D7D] font-normal text-center w-[300px]">→ View your free credit score and get RupeeQ ACE (Advanced Credit Evaluation) insights to understand your loan readiness.</p>
+        <div className="flex flex-row items-center justify-between w-full mt-[47px] mb-[89px]">
+          <div className="flex flex-col items-center ml-11">
+            <h3 className="text-2xl leading-[34px] tracing-[0%] text-custom-dark-text font-medium">Check Your Credit Score</h3>
+            <p className="text-xl leading-[26px] tracing-[0%] text-[#7D7D7D] font-normal text-center w-[300px]">→ Enter Your Details and get your Credit Score with RupeeQ ACE</p>
           </div>
 
           <div className="flex flex-col items-center">
-            <h3 className="text-2xl leading-[34px] tracing-[0%] text-custom-dark-text font-medium">Check Your Credit Health</h3>
-            <p className="text-xl leading-[26px] tracing-[0%] text-[#7D7D7D] font-normal text-center w-[300px]">→ View your free credit score and get RupeeQ ACE (Advanced Credit Evaluation) insights to understand your loan readiness.</p>
+            <h3 className="text-2xl leading-[34px] tracing-[0%] text-custom-dark-text font-medium">Get Matched Offers Instantly</h3>
+            <p className="text-xl leading-[26px] tracing-[0%] text-[#7D7D7D] font-normal text-center w-[300px]">→ Our System swiftly processes your application and verifies your contact details in seconds providing you with best offers</p>
+          </div>
+
+          <div className="flex flex-col items-center mr-11">
+            <h3 className="text-2xl leading-[34px] tracing-[0%] text-custom-dark-text font-medium">Upload Documents</h3>
+            <p className="text-xl leading-[26px] tracing-[0%] text-[#7D7D7D] font-normal text-center w-[300px]">→ Upload Your Documents to Process With Your Application</p>
           </div>
         </div>
 
-        <Step2Icon />
+        <Step3Icon />
 
         <div className="flex flex-row items-center justify-around max-w-[1127px] w-full mt-[47px]">
           <div className="flex flex-col items-center">
-            <h3 className="text-2xl leading-[34px] tracing-[0%] text-custom-dark-text font-medium">Check Your Credit Health</h3>
-            <p className="text-xl leading-[26px] tracing-[0%] text-[#7D7D7D] font-normal text-center w-[300px]">→ View your free credit score and get RupeeQ ACE (Advanced Credit Evaluation) insights to understand your loan readiness.</p>
+            <h3 className="text-2xl leading-[34px] tracing-[0%] text-custom-dark-text font-medium">Choose The Best Lender</h3>
+            <p className="text-xl leading-[26px] tracing-[0%] text-[#7D7D7D] font-normal text-center w-[300px]">→ Check Our The Best Lender Based On Rate & Tenure</p>
           </div>
 
           <div className="flex flex-col items-center">
-            <h3 className="text-2xl leading-[34px] tracing-[0%] text-custom-dark-text font-medium">Check Your Credit Health</h3>
-            <p className="text-xl leading-[26px] tracing-[0%] text-[#7D7D7D] font-normal text-center w-[300px]">→ View your free credit score and get RupeeQ ACE (Advanced Credit Evaluation) insights to understand your loan readiness.</p>
+            <h3 className="text-2xl leading-[34px] tracing-[0%] text-custom-dark-text font-medium">Get Funds Swiftly</h3>
+            <p className="text-xl leading-[26px] tracing-[0%] text-[#7D7D7D] font-normal text-center w-[300px]">→ Receive funds swiftly into your bank account hassle-free & Repay your debts</p>
           </div>
         </div>
 

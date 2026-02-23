@@ -32,7 +32,7 @@ const LoanEligibilitySection = ({
         {/* Two Column Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
           {/* Left Column - Eligibility Criteria */}
-          <Card className="pt-[38px] px-[44px] bg-[#F6F7F9]" rounded='rounded-[40px]'>
+          <Card variant="custom" className="pt-[38px] px-[44px] bg-[#F6F7F9]" rounded='rounded-[40px]'>
             <h3 className="text-[30px] leading-[35px] tracing-[0px] text-custom-purple font-bold">
               {leftColumnTitle}
             </h3>
@@ -70,7 +70,7 @@ const LoanEligibilitySection = ({
           </Card>
 
           {/* Right Column */}
-          <Card className="pt-[38px] px-[44px] bg-[#F6F7F9]" rounded='rounded-[40px]'>
+          <Card variant="custom" className="pt-[38px] px-[44px] bg-[#F6F7F9]" rounded='rounded-[40px]'>
             <h3 className="text-[30px] leading-[35px] tracing-[0px] text-custom-purple font-bold max-w-[540px]">
               {rightColumnTitle}
             </h3>
