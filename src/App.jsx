@@ -7,7 +7,8 @@ import {
   PersonalLoanPage, 
   DebtConsolidationPage,
   CreditCardsPage,
-  ToolsPage,
+  EMICalculatorPage,
+  IFSCMICRPage,
   CreditScorePage,
   OverdraftFacilityPage,
   ShortTermLoanPage,
@@ -31,7 +32,8 @@ function App() {
             <Route path="/personal-loan" element={<PersonalLoanPage />} />
             <Route path="/debt-consolidation" element={<DebtConsolidationPage />} />
             <Route path="/credit-cards" element={<CreditCardsPage />} />
-            <Route path="/tools" element={<ToolsPage />} />
+            <Route path="/emi-calculator" element={<EMICalculatorPage />} />
+            <Route path="/ifsc-micr" element={<IFSCMICRPage />} />
             <Route path="/credit-score" element={<CreditScorePage />} />
             <Route path="/overdraft-facility" element={<OverdraftFacilityPage />} />
             <Route path="/short-term-loan" element={<ShortTermLoanPage />} />
@@ -80,7 +82,7 @@ const ConditionalNavbar = () => {
 // Component to conditionally render footer based on route
 const ConditionalFooter = () => {
   const location = useLocation();
-  const showFooterRoutes = ['/', '/personal-loan', '/debt-consolidation', '/credit-cards', '/tools', '/credit-score', '/overdraft-facility', '/short-term-loan', '/login/home'];
+  const showFooterRoutes = ['/', '/personal-loan', '/debt-consolidation', '/credit-cards', '/emi-calculator', '/ifsc-micr', '/credit-score', '/overdraft-facility', '/short-term-loan', '/login/home'];
   
   if (showFooterRoutes.includes(location.pathname)) {
     return <Footer />;

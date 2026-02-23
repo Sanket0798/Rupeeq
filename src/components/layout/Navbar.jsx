@@ -28,8 +28,8 @@ const Navbar = () => {
       name: 'Tools', 
       hasDropdown: true,
       dropdownItems: [
-        { name: 'EMI Calculator', path: '/tools' },
-        { name: 'IFSC & MICR', path: '#' }
+        { name: 'EMI Calculator', path: '/emi-calculator' },
+        { name: 'IFSC & MICR', path: '/ifsc-micr' }
       ]
     },
     { name: 'Credit Score', path: '/credit-score' },
