@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Input } from '../ui';
 import { BlueUpArrowIcon, ChevronUpIcon } from '../common/SvgIcons';
 
-const PersonalLoanHero = () => {
+const DebtConsolidationHero = () => {
   const navigate = useNavigate();
   const [mobileNumber, setMobileNumber] = useState('');
   const [agreedToTerms, setAgreedToTerms] = useState(false);
@@ -19,11 +19,11 @@ const PersonalLoanHero = () => {
   };
 
   const benefits = [
-    'Free Credit Score Check',
-    'Profile - matched loan offers',
-    'Multiple banks. One application',
-    'Transparent interest rates',
-    'Zero spam promise'
+    'Check Credit Score for Free',
+    'Compare top lenders offering consolidation loans from 10.49% p.a.',
+    'Loan Amounts raning from INR 1 Lakh Upto INR 50 Lakhs',
+    'Fast Digital Disbursal, no brand visits',
+    'Dedicated experts, no spam calls'
   ];
 
   return (
@@ -55,26 +55,22 @@ const PersonalLoanHero = () => {
               {/* Left Content */}
               <div className="">
                 <h1 className="text-[40px] text-custom-dark-text font-semibold leading-[53px] tracing-[2%] mb-6">
-                  STOP GUESSING. SEE<br />
-                  PERSONAL LOAN <span className="text-custom-purple font-extrabold">OFFERS</span><br />
-                  <span className="text-custom-purple font-extrabold">THAT FIT YOUR NEEDS</span>
+                  <span className="text-custom-purple font-extrabold">DEBT CONSOLIDATION</span><br />
+                  LOAN IN INDIA
                 </h1>
 
-                <p className="text-custom-dark-text text-base leading-relaxed mb-8 max-w-[500px]">
-                  Big plans. Small emergencies. Or simply the need to breathe easy. With RupeeQ, you don't apply blindly for a personal loan – you get loan offers that actually match your credit profile, from trusted banks and NBFCs.
+                <h2 className="text-[28px] font-bold text-custom-purple leading-[120%] tracing-[2%] mb-6">
+                  One EMI Instead of Many. Lower Your Monthly Burden.
+                </h2>
+
+                <p className="text-custom-dark-text text-base leading-relaxed mb-6 max-w-[500px]">
+                  Struggling with multiple EMIs every month?
                 </p>
 
-                <div className="mb-8">
-                  <h2 className="text-[28px] font-bold text-custom-dark-text leading-[120%] tracing-[2%]">
-                    Compare. Choose. Apply.
-                  </h2>
-                  <p className="text-[28px] font-bold text-custom-dark-text leading-[120%] tracing-[2%]">
-                    All Online. No Guesswork. No Spam.
-                  </p>
-                </div>
+                <p className="text-custom-dark-text text-base leading-relaxed mb-8 max-w-[500px]">
+                  Debt consolidation helps you combine all your loans into one affordable EMI – so your finances feel lighter and more manageable.
+                </p>
               </div>
-
-
 
               {/* Right Content - Application Form Card */}
               <div className="relative">
@@ -82,7 +78,7 @@ const PersonalLoanHero = () => {
                   {/* Form Card */}
                   <div className="bg-brand-gradient px-8 py-[29px] text-white relative w-[656px] min-h-[315px] flex flex-col justify-between rounded-3xl overflow-visible">
                     <h2 className="text-[40px] leading-[60px] font-semibold mb-6">
-                      Check Personal Loan Offers
+                      Quick Apply: Check your Offer
                     </h2>
 
                     <form onSubmit={handleSubmit} className="relative z-20">
@@ -119,15 +115,15 @@ const PersonalLoanHero = () => {
                         type="submit"
                         className="w-[168px] bg-white text-custom-purple font-semibold text-lg py-3 px-4 rounded-full hover:bg-opacity-90 transition-all duration-300 leading-[110%]"
                       >
-                        Sign In
+                        Submit
                       </button>
                     </form>
 
                     {/* Illustration at bottom right - positioned outside card */}
                     <div className="absolute -bottom-[70px] right-7 w-[231px] h-[181px] pointer-events-none z-10">
                       <img
-                        src="/assets/images/hero/2.png"
-                        alt="Personal Loan Illustration"
+                        src="/assets/images/auth/Img2.png"
+                        alt="Debt Consolidation Illustration"
                         className="w-full h-full object-contain"
                       />
                     </div>
@@ -136,32 +132,26 @@ const PersonalLoanHero = () => {
               </div>
             </div>
           </div>
-
-
         </div>
 
         <div className="flex flex-row gap-4">
           <button
-            onClick={() => navigate('/login/personal-loan')}
+            onClick={() => navigate('/login/debt-consolidation')}
             className="bg-button-color text-white font-bold px-6 py-3 rounded-full hover:bg-purple-700 transition-colors duration-300 flex items-center gap-2 text-lg leading-[130%]"
           >
-            Check Your Loan Eligibility
+            Check If You Can Reduce Your EMI
             <ChevronUpIcon />
-          </button>
-          <button
-            onClick={() => navigate('/login/personal-loan')}
-            className="bg-button-color text-white font-bold px-6 py-3 rounded-full hover:bg-purple-700 transition-colors duration-300 flex items-center gap-2 text-lg leading-[130%]"
-          >
-            Get your Personal Loan Offers
-            <ChevronUpIcon />
-
           </button>
         </div>
+
+        <h3 className="text-lg font-bold text-custom-purple leading-[30px] tracing-[0px] mt-4">
+          Quick Check • No Spam • No Impact On Your Credit Score
+        </h3>
 
         {/* Bottom Section - Why Choose RupeeQ */}
         <div className="mt-[60px]">
           <h2 className="text-[40px] font-bold text-center text-[#100701] mb-8 leading-[120%] tracing-[2%]">
-            Why Choose <span className="text-custom-purple">RupeeQ</span> For Your Personal Loan?
+            Why Choose <span className="text-custom-purple">Debt Consolidation On RupeeQ?</span>
           </h2>
 
           {/* Benefits Bar */}
@@ -176,9 +166,24 @@ const PersonalLoanHero = () => {
             </div>
           </div>
         </div>
+
+        {/* How Does It Work Section */}
+        <div className="mt-16 text-center">
+          <h2 className="text-[40px] font-bold text-custom-purple mb-4 leading-[120%] tracing-[2%]">
+            Why Managing Multiple EMIs Gets Difficult?
+          </h2>
+          <p className="text-lg text-custom-dark-text mb-4 leading-relaxed">
+            When You're Paying Several EMIs At Once, It Often Leads To:
+          </p>
+          <div className="flex items-center justify-center gap-8 flex-wrap max-w-5xl mx-auto">
+            <span className="text-base text-custom-dark-text font-semibold">• High Monthly Outflow</span>
+            <span className="text-base text-custom-dark-text font-semibold">• Different Due Dates And Missed Payments</span>
+            <span className="text-base text-custom-dark-text font-semibold">• Stress On Savings And Cash Flow</span>
+          </div>
+        </div>
       </div>
     </section>
   );
 };
 
-export default PersonalLoanHero;
+export default DebtConsolidationHero;

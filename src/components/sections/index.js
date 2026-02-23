@@ -3,6 +3,7 @@ export { default as KeyMilestones } from './KeyMilestones';
 export { default as FinancialProductsSection } from './FinancialProductsSection';
 export { default as HeroSection } from './HeroSection';
 export { default as PersonalLoanHero } from './PersonalLoanHero';
+export { default as DebtConsolidationHero } from './DebtConsolidationHero';
 export { default as WhatMakesDifferent } from './WhatMakesDifferent';
 export { default as LoanTypesSection } from './LoanTypesSection';
 export { default as LoanUseCasesSection } from './LoanUseCasesSection';

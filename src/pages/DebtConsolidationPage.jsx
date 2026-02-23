@@ -1,5 +1,5 @@
 // Import sections
-import { HowItWorks, EMIReductionSection, WhyRupeeQSection } from '../components/sections';
+import { HowItWorks, EMIReductionSection, WhyRupeeQSection, DebtConsolidationHero } from '../components/sections';
 import {
   TrustSection,
   CreditScoreSection,
@@ -62,9 +62,9 @@ const DebtConsolidationPage = () => {
 
   return (
     <>
-      {/* Debt Consolidation Hero - To be created */}
+      {/* Debt Consolidation Hero */}
       <section id="debt-consolidation-hero">
-        {/* Hero section will be added */}
+        <DebtConsolidationHero />
       </section>
 
       {/* What Is Debt Consolidation Section */}
