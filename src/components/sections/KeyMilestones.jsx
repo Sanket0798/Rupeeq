@@ -167,49 +167,49 @@ const KeyMilestones = () => {
   ];
 
   return (
-    <section ref={sectionRef} className="py-16 bg-gradient-to-br from-gray-50 to-white px-4 sm:px-6 lg:px-8">
+    <section ref={sectionRef} className="py-8 md:py-16 bg-gradient-to-br from-gray-50 to-white px-4 sm:px-6 lg:px-8">
       <div className="lg:max-w-[1293px] mx-auto">
-        <div className="flex flex-col lg:flex-row gap-[25px] items-start">
+        <div className="flex flex-col lg:flex-row gap-4 md:gap-[25px] items-start">
           {/* Left side - Main highlight */}
           <div
-            className={`bg-white rounded-3xl p-6 md:p-8 shadow-[5px_5px_5px_0px_rgba(0,0,0,0.25)] transition-all duration-700 w-full lg:w-auto ${isVisible
+            className={`bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 lg:p-8 shadow-[5px_5px_5px_0px_rgba(0,0,0,0.25)] transition-all duration-700 w-full lg:w-auto ${isVisible
               ? 'opacity-100 translate-x-0'
               : 'opacity-0 -translate-x-12'
               }`}
           >
-            <div className="mb-9">
-              <h2 className="text-2xl lg:text-[50px] font-medium leading-[130%] text-[#132644]">
+            <div className="mb-6 md:mb-9">
+              <h2 className="text-xl md:text-2xl lg:text-[50px] font-medium leading-[130%] text-[#132644]">
                 Highlights of
               </h2>
-              <h2 className="text-4xl lg:text-[50px] leading-[130%] font-bold bg-brand-gradient bg-clip-text text-transparent">
+              <h2 className="text-2xl md:text-4xl lg:text-[50px] leading-[130%] font-bold bg-brand-gradient bg-clip-text text-transparent">
                 Our Key Milestones
               </h2>
             </div>
 
             <div className='flex flex-col md:flex-row md:items-center md:justify-between md:w-[790px]'>
-              <div className="flex flex-col justify-end">
-                <div className="text-[100px] font-medium tracing-[1%] text-custom-purple leading-none">
+              <div className="flex flex-col justify-end mb-6 md:mb-0">
+                <div className="text-[60px] md:text-[100px] font-medium tracing-[1%] text-custom-purple leading-none">
                   {count2150}Cr
                 </div>
-                <div className="text-[#070129] font-normal text-2xl leading-[32px] tracking-[1%]">
+                <div className="text-[#070129] font-normal text-lg md:text-2xl leading-[32px] tracking-[1%]">
                   Assets Managed
                 </div>
               </div>
 
               {/* Client reviews section */}
-              <div className="flex flex-col items-start justify-start space-y-9">
+              <div className="flex flex-col items-start justify-start space-y-4 md:space-y-9">
                 <div className="flex flex-row items-center">
                   <AnimatedTooltip items={people} />
-                  <div className="w-14 h-14 rounded-full bg-gray-300 border-2 border-white flex items-center justify-center text-xs font-medium text-gray-600 -ml-1">
+                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gray-300 border-2 border-white flex items-center justify-center text-xs font-medium text-gray-600 -ml-1">
                     +20k
                   </div>
                 </div>
                 <div>
                   <div className="flex items-center gap-1">
-                    <span className="text-[26px] font-bold leading-[32px] tracing-[1%] text-[#070129]">{count49}</span>
+                    <span className="text-[22px] md:text-[26px] font-bold leading-[32px] tracing-[1%] text-[#070129]">{count49}</span>
                     <StarIcon />
                   </div>
-                  <div className="text-[20px] text-[#474A55] leading-[30px] tracing-0">
+                  <div className="text-[18px] md:text-[20px] text-[#474A55] leading-[30px] tracing-0">
                     More than 23K clients reviews
                   </div>
                 </div>
@@ -222,7 +222,7 @@ const KeyMilestones = () => {
             {milestones.map((milestone, index) => (
               <div
                 key={index}
-                className={`rounded-3xl py-4 px-8 ${milestone.color} shadow-[5px_5px_5px_0px_rgba(0,0,0,0.25)] md:w-[413px] transition-all duration-700 ${isVisible
+                className={`rounded-2xl md:rounded-3xl py-3 md:py-4 px-4 md:px-8 ${milestone.color} shadow-[5px_5px_5px_0px_rgba(0,0,0,0.25)] w-full md:w-[413px] transition-all duration-700 ${isVisible
                   ? 'opacity-100 translate-x-0'
                   : 'opacity-0 translate-x-12'
                   }`}
@@ -232,14 +232,14 @@ const KeyMilestones = () => {
               >
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-3xl lg:text-[50px] font-semibold leading-[130%] text-custom-dark-text mb-1">
+                    <div className="text-2xl md:text-3xl lg:text-[50px] font-semibold leading-[130%] text-custom-dark-text mb-1">
                       {milestone.value}{milestone.suffix}
                     </div>
-                    <div className="text-[#747986] text-[15px] leading-[130%] font-medium">
+                    <div className="text-[#747986] text-[13px] md:text-[15px] leading-[130%] font-medium">
                       {milestone.label}
                     </div>
                   </div>
-                  <div>
+                  <div className="scale-75 md:scale-100">
                     {milestone.icon}
                   </div>
                 </div>

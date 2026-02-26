@@ -202,27 +202,27 @@ const FAQSection = () => {
   };
 
   return (
-    <section className="py-16 bg-white px-4 sm:px-6 lg:px-8" ref={sectionRef}>
+    <section className="py-8 md:py-16 bg-white px-4 sm:px-6 lg:px-8" ref={sectionRef}>
       <motion.div
-        className="max-w-[1386px] mx-auto bg-white rounded-24 shadow-[5px_5px_5px_0px_rgba(0,0,0,0.25)] pt-[120px] pr-[84px] pb-[85px] pl-[96px]"
+        className="max-w-[1386px] mx-auto bg-white rounded-3xl md:rounded-24 shadow-[5px_5px_5px_0px_rgba(0,0,0,0.25)] pt-12 md:pt-[120px] pr-6 md:pr-[84px] pb-8 md:pb-[85px] pl-6 md:pl-[96px]"
         initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         viewport={{ once: true, margin: "-100px" }}
       >
-        <div className="flex flex-row items-start justify-between">
+        <div className="flex flex-col lg:flex-row items-start justify-between gap-8 lg:gap-0">
           {/* Left side - FAQ Content */}
           <motion.div
-            className="max-w-[630px] w-full"
+            className="w-full lg:max-w-[630px]"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
           >
             {/* Header */}
-            <motion.div className="mb-8" ref={headerRef} variants={itemVariants}>
+            <motion.div className="mb-6 md:mb-8" ref={headerRef} variants={itemVariants}>
               <motion.h2
-                className="text-4xl lg:text-[50px] font-bold text-custom-purple leading-50 tracking--3"
+                className="text-2xl md:text-4xl lg:text-[50px] font-bold text-custom-purple leading-[36px] md:leading-50 tracking--3"
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
@@ -235,7 +235,7 @@ const FAQSection = () => {
                 </motion.span>
                 <br />
                 <motion.span
-                  className="text-2xl lg:text-[40px] font-light text-[#132644]"
+                  className="text-xl md:text-2xl lg:text-[40px] font-light text-[#132644]"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4, duration: 0.6 }}
@@ -256,7 +256,7 @@ const FAQSection = () => {
 
             {/* FAQ Items */}
             <motion.div
-              className="space-y-4 m-4"
+              className="space-y-3 md:space-y-4 m-3 md:m-4"
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
@@ -266,29 +266,29 @@ const FAQSection = () => {
                 <motion.div
                   key={faq.id}
                   ref={el => faqItemsRef.current[index] = el}
-                  className="border-b border-[#CCCCCC] space-y-[20px]"
+                  className="border-b border-[#CCCCCC] space-y-4 md:space-y-[20px]"
                   variants={itemVariants}
                   whileHover={{ x: 5 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
                   <motion.button
                     onClick={() => toggleFAQ(index)}
-                    className="w-full flex justify-between items-center text-left hover:text-purple-600 transition-colors duration-300 mb-[20px]"
+                    className="w-full flex justify-between items-center text-left hover:text-purple-600 transition-colors duration-300 mb-4 md:mb-[20px]"
                     whileHover={{ scale: 1.01 }}
                     whileTap={{ scale: 0.99 }}
                   >
-                    <span className="text-lg font-semibold text-custom-dark pr-4 leading-30 tracing-0">
+                    <span className="text-base md:text-lg font-semibold text-custom-dark pr-3 md:pr-4 leading-[24px] md:leading-30 tracing-0">
                       {faq.question}
                     </span>
                     <motion.span
-                      className="flex-shrink-0 w-8 h-8 flex items-center justify-center"
+                      className="flex-shrink-0 w-6 h-6 md:w-8 md:h-8 flex items-center justify-center"
                       animate={{ rotate: openFAQ === index ? 180 : 0 }}
                       transition={{ duration: 0.3 }}
                     >
                       {openFAQ === index ? (
-                        <MinusIcon className="w-6 h-6 text-purple-600" />
+                        <MinusIcon className="w-5 h-5 md:w-6 md:h-6 text-purple-600" />
                       ) : (
-                        <PlusIcon className="w-6 h-6 text-purple-600" />
+                        <PlusIcon className="w-5 h-5 md:w-6 md:h-6 text-purple-600" />
                       )}
                     </motion.span>
                   </motion.button>
@@ -304,7 +304,7 @@ const FAQSection = () => {
                         className="overflow-hidden"
                       >
                         <motion.p
-                          className="text-custom-grey text-base leading-7 tracing--0.36 pb-[30px]"
+                          className="text-custom-grey text-sm md:text-base leading-6 md:leading-7 tracing--0.36 pb-6 md:pb-[30px]"
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ delay: 0.1 }}
@@ -328,7 +328,7 @@ const FAQSection = () => {
           // transition={{ duration: 1, ease: "easeOut" }}
           // viewport={{ once: true }}
           >
-            <div className="relative w-[513px] h-auto flex items-center justify-center">
+            <div className="relative w-full lg:w-[513px] h-auto flex items-center justify-center">
               <motion.img
                 src="/assets/images/faq/questionAsset.png"
                 alt="FAQ Questions"

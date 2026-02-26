@@ -167,43 +167,43 @@ const PartnersMarquee = () => {
   };
 
   return (
-    <motion.section 
-      className="py-16 bg-white overflow-hidden" 
+    <motion.section
+      className="py-8 md:py-16 bg-white overflow-hidden"
       ref={sectionRef}
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
       viewport={{ once: true, margin: "-100px" }}
     >
-      <motion.div 
-        className="text-center mb-[30px]" 
+      <motion.div
+        className="text-center flex md:block flex-col items-center w-full justify-center mb-6 md:mb-[30px] px-4"
         ref={headerRef}
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
       >
-        <motion.h2 
-          className="text-3xl lg:text-[50px] font-medium leading-[1.2] tracing-0 text-custom-dark-text mb-6"
+        <motion.h2
+          className="text-2xl w-[300px] md:w-full md:text-3xl lg:text-[50px] font-semibold md:font-medium leading-[1.2] tracing-0 text-custom-dark-text mb-4 md:mb-6"
           variants={itemVariants}
           whileHover={{ scale: 1.02 }}
           transition={{ type: "spring", stiffness: 300 }}
         >
           Trusted across{' '}
-          <motion.span 
+          <motion.span
             className="text-custom-dark-blue font-bold"
           >
             980+
           </motion.span>{' '}
           locations{' '}
-          <motion.span 
+          <motion.span
             className="text-custom-purple font-bold"
           >
             nationwide
           </motion.span>
         </motion.h2>
-        <motion.p 
-          className="text-[#070129] text-[22px] font-normal leading-7 tracking-0"
+        <motion.p
+          className="text-[#070129] w-[300px] md:w-full text-[16px] md:text-[22px] font-normal leading-6 md:leading-7 tracking-0"
           variants={itemVariants}
           whileHover={{ y: -2 }}
           transition={{ type: "spring", stiffness: 300 }}
@@ -213,8 +213,8 @@ const PartnersMarquee = () => {
       </motion.div>
 
       {/* Marquee Container */}
-      <motion.div 
-        className="relative w-full" 
+      <motion.div
+        className="relative w-full"
         ref={marqueeRef}
         initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
@@ -222,13 +222,13 @@ const PartnersMarquee = () => {
         viewport={{ once: true }}
       >
         {/* Gradient overlays for smooth fade effect */}
-        <motion.div 
+        <motion.div
           className="absolute left-0 top-0 w-32 h-full bg-gradient-to-r from-white to-transparent z-10"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.5 }}
         />
-        <motion.div 
+        <motion.div
           className="absolute right-0 top-0 w-32 h-full bg-gradient-to-l from-white to-transparent z-10"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -242,14 +242,14 @@ const PartnersMarquee = () => {
               key={index}
               className="partner-logo flex-shrink-0 mx-8 flex items-center justify-center h-20 w-40"
               variants={logoVariants}
-              whileHover={{ 
+              whileHover={{
                 scale: 1.05,
                 y: -3,
                 transition: { type: "spring", stiffness: 400 }
               }}
               whileTap={{ scale: 0.95 }}
             >
-              <motion.div 
+              <motion.div
                 className="flex items-center justify-center w-full h-full transition-shadow duration-300"
                 whileHover={{
                   boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
@@ -269,7 +269,7 @@ const PartnersMarquee = () => {
                     e.target.nextSibling.style.display = 'block';
                   }}
                 />
-                <motion.span 
+                <motion.span
                   className="hidden text-sm font-medium text-gray-600"
                   whileHover={{ color: "#5528A9" }}
                 >

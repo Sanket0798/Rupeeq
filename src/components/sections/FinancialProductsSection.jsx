@@ -332,7 +332,7 @@ const FinancialProductsSection = () => {
 
   return (
     <motion.section
-      className="py-16 bg-white px-4 sm:px-6 lg:px-8"
+      className="py-8 md:py-16 bg-white px-4 sm:px-6 lg:px-8"
       ref={sectionRef}
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
@@ -348,19 +348,19 @@ const FinancialProductsSection = () => {
       >
         {/* Main heading */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-8 md:mb-16"
           ref={headingRef}
           variants={cardVariants}
         >
           <motion.h2
-            className="text-4xl lg:text-[64px] leading-[100%] font-medium text-[#212121]"
+            className="text-2xl md:text-4xl lg:text-[64px] leading-[100%] font-medium text-[#212121]"
             whileHover={{ scale: 1.02 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
             Find the Right
           </motion.h2>
           <motion.h2
-            className="text-4xl lg:text-[64px] leading-[100%] font-bold bg-brand-gradient bg-clip-text text-transparent"
+            className="text-2xl md:text-4xl lg:text-[64px] leading-[100%] font-bold bg-brand-gradient bg-clip-text text-transparent"
             whileHover={{ scale: 1.02 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
@@ -370,7 +370,7 @@ const FinancialProductsSection = () => {
 
         {/* Top row - Main products */}
         <motion.div
-          className="grid lg:grid-cols-3 gap-[35px] mb-[38px]"
+          className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-[35px] mb-6 md:mb-[38px]"
           ref={topRowRef}
           variants={containerVariants}
           initial="hidden"
@@ -382,7 +382,7 @@ const FinancialProductsSection = () => {
             <motion.div
               key={index}
               ref={el => productCardsRef.current[index] = el}
-              className={`${product.bgColor} ${product.borderColor} ${product.borderWidth || 'border-2'} ${product.borderOpacity || ''} ${product.radius || 'rounded-t-3xl'} ${product.width || ''} ${product.height || ''} ${product.padding || 'p-[44px]'}  text-center`}
+              className={`${product.bgColor} ${product.borderColor} ${product.borderWidth || 'border-2'} ${product.borderOpacity || ''} ${product.radius || 'rounded-t-2xl md:rounded-t-3xl'} ${product.width || ''} ${product.height || ''} ${product.padding || 'p-6 md:p-[44px]'}  text-center`}
               variants={cardVariants}
               whileHover={{
                 y: -5,
@@ -392,21 +392,21 @@ const FinancialProductsSection = () => {
               whileTap={{ scale: 0.98 }}
             >
               <motion.h3
-                className="text-[30px] font-bold text-[#132644] mb-2"
+                className="text-[20px] md:text-[30px] font-bold text-[#132644] mb-2"
                 whileHover={{ x: 5 }}
                 transition={{ type: "spring", stiffness: 400 }}
               >
                 {product.title}
               </motion.h3>
               <motion.p
-                className="text-custom-purple font-bold text-lg tracking-0"
+                className="text-custom-purple font-bold text-base md:text-lg tracking-0"
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 {product.subtitle}
               </motion.p>
               <motion.p
-                className="text-custom-dark-text font-normal text-[17px] leading-[25px] tracking-0 mb-[38px]"
+                className="text-custom-dark-text font-normal text-[15px] md:text-[17px] leading-[22px] md:leading-[25px] tracking-0 mb-6 md:mb-[38px]"
                 initial={{ opacity: 0.8 }}
                 whileHover={{ opacity: 1 }}
               >
@@ -421,14 +421,14 @@ const FinancialProductsSection = () => {
                       navigate('/personal-loan');
                     }
                   }}
-                  className="bg-button-color text-white font-bold px-6 py-3 rounded-full hover:bg-purple-700 transition-colors duration-300 flex items-center gap-2 text-lg leading-[130%]"
+                  className="bg-button-color text-white font-bold px-4 md:px-6 py-2 md:py-3 rounded-full hover:bg-purple-700 transition-colors duration-300 flex items-center gap-2 text-base md:text-lg leading-[130%]"
                   variants={buttonVariants}
                   whileHover="hover"
                   whileTap="tap"
                 >
                   {product.buttonText}
                   <motion.span
-                    className="w-5 h-5 bg-white text-purple-600 rounded-full flex items-center justify-center text-xs"
+                    className="w-4 h-4 md:w-5 md:h-5 bg-white text-purple-600 rounded-full flex items-center justify-center text-xs"
                     variants={arrowVariants}
                   >
                     <ChevronUpIcon />
@@ -447,7 +447,7 @@ const FinancialProductsSection = () => {
           >
             <div className="text-center lg:text-left">
               <motion.p
-                className="text-[30px] text-[#212121] leading-snug tracking-0 font-light"
+                className="text-[20px] md:text-[30px] text-[#212121] leading-snug tracking-0 font-light"
                 whileHover={{ y: -2 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
@@ -466,7 +466,7 @@ const FinancialProductsSection = () => {
 
         {/* Bottom row */}
         <motion.div
-          className="grid lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8"
           ref={bottomRowRef}
           variants={containerVariants}
           initial="hidden"
@@ -482,7 +482,7 @@ const FinancialProductsSection = () => {
           >
             <div className="text-center lg:text-left">
               <motion.p
-                className="text-[30px] text-[#212121] leading-snug tracking-0 font-light"
+                className="text-[20px] md:text-[30px] text-[#212121] leading-snug tracking-0 font-light"
                 whileHover={{ y: -2 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
@@ -504,7 +504,7 @@ const FinancialProductsSection = () => {
             <motion.div
               key={index}
               ref={el => serviceCardsRef.current[index] = el}
-              className={`${service.bgColor} ${service.borderColor} ${service.borderWidth || 'border-2'} ${service.borderOpacity || ''} ${service.radius || 'rounded-t-3xl'} ${service.width || ''} ${service.height || ''} ${service.padding || 'p-[44px]'} text-center`}
+              className={`${service.bgColor} ${service.borderColor} ${service.borderWidth || 'border-2'} ${service.borderOpacity || ''} ${service.radius || 'rounded-t-2xl md:rounded-t-3xl'} ${service.width || ''} ${service.height || ''} ${service.padding || 'p-6 md:p-[44px]'} text-center`}
               variants={cardVariants}
               whileHover={{
                 y: -5,
@@ -515,7 +515,7 @@ const FinancialProductsSection = () => {
               whileTap={{ scale: 0.98 }}
             >
               <motion.h3
-                className="text-[30px] font-bold text-[#132644] mb-2"
+                className="text-[20px] md:text-[30px] font-bold text-[#132644] mb-2"
                 whileHover={{ x: 5 }}
                 transition={{ type: "spring", stiffness: 400 }}
               >
@@ -523,7 +523,7 @@ const FinancialProductsSection = () => {
               </motion.h3>
               {service.subtitle && (
                 <motion.p
-                  className="text-custom-purple font-bold text-lg tracking-0"
+                  className="text-custom-purple font-bold text-base md:text-lg tracking-0"
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
@@ -531,7 +531,7 @@ const FinancialProductsSection = () => {
                 </motion.p>
               )}
               <motion.p
-                className="text-custom-dark-text font-normal text-[17px] leading-[25px] tracking-0 mb-[38px]"
+                className="text-custom-dark-text font-normal text-[15px] md:text-[17px] leading-[22px] md:leading-[25px] tracking-0 mb-6 md:mb-[38px]"
                 initial={{ opacity: 0.8 }}
                 whileHover={{ opacity: 1 }}
               >
@@ -546,14 +546,14 @@ const FinancialProductsSection = () => {
                       navigate('/credit-score');
                     }
                   }}
-                  className="bg-button-color text-white font-bold px-6 py-3 rounded-full hover:bg-purple-700 transition-colors duration-300 flex items-center gap-2 text-lg leading-[130%]"
+                  className="bg-button-color text-white font-bold px-4 md:px-6 py-2 md:py-3 rounded-full hover:bg-purple-700 transition-colors duration-300 flex items-center gap-2 text-base md:text-lg leading-[130%]"
                   variants={buttonVariants}
                   whileHover="hover"
                   whileTap="tap"
                 >
                   {service.buttonText}
                   <motion.span
-                    className="w-5 h-5 bg-white text-purple-600 rounded-full flex items-center justify-center text-xs"
+                    className="w-4 h-4 md:w-5 md:h-5 bg-white text-purple-600 rounded-full flex items-center justify-center text-xs"
                     variants={arrowVariants}
                   >
                     <ChevronUpIcon />

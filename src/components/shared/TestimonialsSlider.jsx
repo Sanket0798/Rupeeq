@@ -76,7 +76,7 @@ const TestimonialsSlider = () => {
 
   return (
     <section
-      className="py-16 px-4 sm:px-6 lg:px-8 relative"
+      className="py-8 md:py-16 px-4 sm:px-6 lg:px-8 relative"
     // style={{
     //   backgroundImage: 'url(/assets/images/bg/TestimonialsBg.png)',
     //   backgroundSize: 'cover',
@@ -86,12 +86,12 @@ const TestimonialsSlider = () => {
     >
       <div className="max-w-[1386px] mx-auto">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-[40px] font-bold leading-[47px] mb-4">
+        <div className="text-center mb-8 md:mb-12">
+          <h2 className="text-[24px] md:text-[40px] font-bold leading-[32px] md:leading-[47px] mb-3 md:mb-4">
             <span className="text-custom-dark-text">What Our Customers Say About </span>
             <span className="bg-brand-gradient bg-clip-text text-transparent">RupeeQ</span>
           </h2>
-          <p className="text-[#747986] text-base leading-[150%] font-medium max-w-3xl mx-auto">
+          <p className="text-[#747986] text-sm md:text-base leading-[150%] font-medium max-w-3xl mx-auto">
             Hear directly from customers who have used RupeeQ to make informed financial decisions.
             Their experiences reflect our commitment to transparency, simplicity, and reliable support.
           </p>
@@ -99,7 +99,7 @@ const TestimonialsSlider = () => {
 
         {/* Slider Container */}
         <div className="relative">
-          <div className="relative min-h-[400px] flex items-center">
+          <div className="relative min-h-[300px] md:min-h-[400px] flex items-center">
             {/* Background Icon Overlay */}
             <div className="absolute inset-0 z-0 pointer-events-none flex items-center justify-center "
               style={{
@@ -115,7 +115,7 @@ const TestimonialsSlider = () => {
             {/* Navigation Arrows */}
             <button
               onClick={goToPrevious}
-              className="absolute left-8"
+              className="absolute left-2 md:left-8 z-20"
               aria-label="Previous testimonial"
             >
               <LeftBlackArrowIcon />
@@ -123,27 +123,27 @@ const TestimonialsSlider = () => {
 
             <button
               onClick={goToNext}
-              className="absolute right-8"
+              className="absolute right-2 md:right-8 z-20"
               aria-label="Next testimonial"
             >
               <RightBlackArrowIcon />
             </button>
 
             {/* Testimonial Content */}
-            <div className="w-full px-24 py-12 relative z-10">
+            <div className="w-full px-8 md:px-24 py-8 md:py-12 relative z-10">
               <div className="text-center max-w-4xl mx-auto">
                 {/* Stars */}
-                <div className="flex justify-center mb-8 gap-1">
+                <div className="flex justify-center mb-4 md:mb-8 gap-1">
                   {renderStars(testimonials[currentSlide].rating)}
                 </div>
 
                 {/* Testimonial Text */}
-                <blockquote className="text-lg lg:text-xl text-custom-dark-text leading-relaxed mb-8 font-medium">
+                <blockquote className="text-base md:text-lg lg:text-xl text-custom-dark-text leading-relaxed mb-4 md:mb-8 font-medium">
                   {testimonials[currentSlide].text}
                 </blockquote>
 
                 {/* Author */}
-                <div className="text-2xl font-semibold text-custom-dark-text">
+                <div className="text-xl md:text-2xl font-semibold text-custom-dark-text">
                   {testimonials[currentSlide].author}
                 </div>
               </div>
@@ -151,12 +151,12 @@ const TestimonialsSlider = () => {
           </div>
 
           {/* Slide Indicators */}
-          <div className="flex justify-center mt-8 space-x-2">
+          <div className="flex justify-center mt-6 md:mt-8 space-x-2">
             {testimonials.map((_, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentSlide
+                className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${index === currentSlide
                   ? 'bg-button-color scale-125'
                   : 'bg-gray-300 hover:bg-gray-400'
                   }`}

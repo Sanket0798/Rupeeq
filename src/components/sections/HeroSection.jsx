@@ -96,19 +96,32 @@ const HeroSection = () => {
 
   return (
     <section
-      className="relative min-h-screen pt-24 pb-16 overflow-hidden"
+      className="relative min-h-screen pt-16 pb-8 md:pt-24 md:pb-16 overflow-hidden"
       style={{
         marginTop: '-80px',
-        paddingTop: '104px',
+        paddingTop: '80px',
         background: 'linear-gradient(135deg, #E8F5F7 0%, #F0E8F7 50%, #E8F7F0 100%)'
       }}
     >
-      <div className="max-w-[1286px] mx-auto w-full">
-        <div className="min-h-[60vh] flex items-center">
+      <div className="max-w-[1286px] mx-auto w-full px-4 md:px-0">
+        <div className="min-h-[40vh] md:min-h-[60vh] flex items-center">
           <div className="w-full">
-            <div className="flex flex-row gap-12 items-start justify-between mb-9">
-              {/* Left Content */}
-              <div className="ml-[30px]">
+            {/* Mobile: Title only */}
+            <div className="md:hidden text-center mb-6 mt-8">
+              <h1 className="text-[25px] text-custom-dark-text font-semibold leading-[35px] tracing-[2%]">
+                SMARTER DECISIONS
+                <br />
+                BEGIN WITH THE RIGHT
+                <br />
+                <span className="text-custom-purple font-extrabold">
+                  PRODUCT
+                </span>
+              </h1>
+            </div>
+
+            <div className="flex flex-col md:flex-row gap-6 md:gap-12 items-start justify-between mb-6 md:mb-9">
+              {/* Left Content - Desktop Only */}
+              <div className="hidden md:block ml-0 md:ml-[30px] w-full text-center md:text-start md:w-auto">
 
                 <h1 className="text-[40px] text-custom-dark-text font-semibold leading-[53px] tracing-[2%] mb-11">
                   SMARTER DECISIONS
@@ -120,7 +133,7 @@ const HeroSection = () => {
                   </span>
                 </h1>
 
-                <button 
+                <button
                   onClick={() => navigate('/personal-loan')}
                   className="bg-button-color text-lg leading-[26px] text-white font-bold px-9 py-4 rounded-full hover:bg-[#6B4FA8] transition-all duration-300 hover:scale-105 mb-5"
                 >
@@ -133,33 +146,33 @@ const HeroSection = () => {
               </div>
 
               {/* Right Content - Hero Slider */}
-              <div className="relative">
-                <div className="relative rounded-3xl shadow-[5px_8px_9px_5px_rgba(0,0,0,0.25)] overflow-visible">
+              <div className="relative w-full md:w-auto">
+                <div className="relative rounded-2xl md:rounded-3xl shadow-[5px_8px_9px_5px_rgba(0,0,0,0.25)] overflow-visible">
                   {/* Hero Card */}
-                  <div className={`bg-brand-gradient px-8 py-[45px] text-white relative w-[656px] min-h-[315px] flex flex-row justify-between overflow-hidden rounded-3xl`}>
+                  <div className={`bg-brand-gradient px-4 md:px-8 py-6 md:py-[45px] text-white relative w-full md:w-[656px] min-h-[200px] md:min-h-[315px] flex flex-row justify-between overflow-hidden rounded-2xl md:rounded-3xl`}>
                     <div className="flex flex-col items-start justify-between">
                       <div>
-                        <h3 className="text-[50px] leading-[60px] tracing-[0%] font-semibold mb-2">
+                        <h3 className="text-[28px] md:text-[50px] leading-[36px] md:leading-[60px] tracing-[0%] font-semibold mb-2">
                           {heroSlides[currentSlide].title}
                         </h3>
-                        <button 
+                        <button
                           onClick={() => navigate('/personal-loan')}
-                          className="bg-white text-button-color px-[11px] py-[9px] rounded-full text-lg leading-[130%] tracing-[0%] font-bold hover:bg-opacity-90 transition-all duration-300 flex items-center gap-2"
+                          className="bg-white text-button-color px-[8px] md:px-[11px] py-[6px] md:py-[9px] rounded-full text-sm md:text-lg leading-[130%] tracing-[0%] font-bold hover:bg-opacity-90 transition-all duration-300 flex items-center gap-1 md:gap-2"
                         >
                           {heroSlides[currentSlide].buttonText}
                           <RightUpArrowIcon />
                         </button>
                       </div>
                       <div>
-                        <h4 className="text-[40px] leading-[130%] tracing-[1%] font-normal">
+                        <h4 className="text-[20px] md:text-[40px] leading-[130%] tracing-[1%] font-normal">
                           {heroSlides[currentSlide].subtitle}
                         </h4>
-                        <p className="text-base leading-[32px] tracing-[1%] font-normal">
+                        <p className="text-sm md:text-base leading-[24px] md:leading-[32px] tracing-[1%] font-normal">
                           {heroSlides[currentSlide].description}
                         </p>
                       </div>
                     </div>
-                    <div className="flex items-center">
+                    <div className="hidden md:flex items-center">
                       <img
                         src={heroSlides[currentSlide].illustration}
                         alt={heroSlides[currentSlide].title}
@@ -172,14 +185,14 @@ const HeroSection = () => {
                   <img
                     src="/assets/images/hero/1.png"
                     alt="Security Shield"
-                    className="absolute -bottom-[90px] -right-[15px] w-40 h-40 object-contain z-10"
+                    className="hidden md:block absolute -bottom-[90px] -right-[15px] w-40 h-40 object-contain z-10"
                   />
 
                   {/* Slide indicators */}
 
                 </div>
 
-                <div className="flex justify-center py-5 space-x-2">
+                <div className="flex justify-center py-3 md:py-5 space-x-2">
                   {heroSlides.map((_, index) => (
                     <button
                       key={index}
@@ -193,16 +206,30 @@ const HeroSection = () => {
                   ))}
                 </div>
               </div>
+
+              {/* Mobile Content - Below Hero Card */}
+              <div className="md:hidden w-full order-2 flex flex-col items-center text-center">
+                <button
+                  onClick={() => navigate('/personal-loan')}
+                  className="bg-button-color text-base leading-[24px] text-white font-bold px-6 py-3 rounded-full hover:bg-[#6B4FA8] transition-all duration-300 hover:scale-105 mb-4"
+                >
+                  Get Started Free
+                </button>
+
+                <p className="bg-brand-gradient bg-clip-text text-transparent text-[16px] font-medium leading-[120%] tracing-[2%]">
+                  Aapki Choti Zarurato Ka Bada Bharosemand Sathi
+                </p>
+              </div>
             </div>
           </div>
         </div>
 
         {/* Product Cards Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
           {productCards.map((card) => (
             <div
               key={card.id}
-              className="relative p-[4px] rounded-3xl hover:shadow-xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 overflow-hidden group"
+              className="relative p-[3px] md:p-[4px] rounded-2xl md:rounded-3xl hover:shadow-xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 overflow-hidden group"
             >
               {/* Animated rotating gradient border (visible on hover) */}
               <div
@@ -221,31 +248,31 @@ const HeroSection = () => {
                 }}
               />
 
-              <div className={`relative bg-gradient-to-br ${card.bgGradient} rounded-[22px] h-full z-10 flex items-center flex-col justify-between`}>
-                <div className="h-[174px] flex items-center">
+              <div className={`relative bg-gradient-to-br ${card.bgGradient} rounded-[18px] md:rounded-[22px] h-full z-10 flex items-center flex-col justify-between`}>
+                <div className="h-[100px] md:h-[174px] flex items-center">
                   <img
                     src={card.icon}
                     alt={card.title}
-                    className="object-contain"
+                    className="object-contain max-w-[80px] md:max-w-full"
                   />
                 </div>
 
-                <div className='w-full bg-gradient-to-r from-[#0072F2]/10 to-[#00D6A0]/20 py-5 px-6 rounded-b-[22px]'>
-                  <h3 className="text-[22px] leading-[130%] tracing-[0%] font-semibold text-[#16110D]">
+                <div className='w-full bg-gradient-to-r from-[#0072F2]/10 to-[#00D6A0]/20 py-2 md:py-5 px-3 md:px-6 rounded-b-[18px] md:rounded-b-[22px]'>
+                  <h3 className="text-[15px] md:text-[22px] leading-[120%] tracing-[0%] font-semibold text-[#16110D]">
                     {card.title}
                   </h3>
 
-                  <p className="text-custom-purple font-bold text-lg">
+                  <p className="text-custom-purple font-bold text-sm md:text-lg mb-3 md:mb-0">
                     {card.subtitle}
                   </p>
 
-                  <p className="text-custom-dark-text text-sm my-3 leading-[14px] font-normal">
+                  <p className="text-custom-dark-text text-[11px] md:text-sm my-2 md:my-3 leading-[13px] md:leading-[14px] font-normal hidden md:block">
                     {card.description}
                   </p>
 
-                  <button 
+                  <button
                     onClick={() => navigate('/personal-loan')}
-                    className="bg-button-color text-white font-semibold px-6 py-3 rounded-full text-sm hover:bg-[#6B4FA8] transition-all duration-300 flex items-center gap-2 group"
+                    className="bg-button-color w-full md:w-auto text-white font-semibold px-3 md:px-6 py-2 md:py-3 rounded-full text-[11px] md:text-sm hover:bg-[#6B4FA8] transition-all duration-300 flex items-center justify-center gap-[10px] md:gap-2 group"
                   >
                     {card.buttonText}
                     <ChevronUpIcon />
@@ -257,7 +284,7 @@ const HeroSection = () => {
         </div>
 
         {/* Bottom indicators for product cards */}
-        <div className="flex justify-center mt-5 space-x-2">
+        <div className="flex md:hidden justify-center mt-4 space-x-2">
           <div className="w-2 h-2 bg-[#1E293B] rounded-full"></div>
           <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
         </div>
