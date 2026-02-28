@@ -104,7 +104,7 @@ const HeroSection = () => {
       }}
     >
       <div className="max-w-[1286px] mx-auto w-full px-4 md:px-0">
-        <div className="min-h-[40vh] md:min-h-[60vh] flex items-center">
+        <div className="min-h-[40vh] md:min-h-[60vh] mt-0 md:mt-20 flex items-center">
           <div className="w-full">
             {/* Mobile: Title only */}
             <div className="md:hidden text-center mb-6 mt-8">
