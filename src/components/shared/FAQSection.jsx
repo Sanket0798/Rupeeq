@@ -222,7 +222,7 @@ const FAQSection = () => {
             {/* Header */}
             <motion.div className="mb-6 md:mb-8" ref={headerRef} variants={itemVariants}>
               <motion.h2
-                className="text-2xl md:text-4xl lg:text-[50px] font-bold text-custom-purple leading-[36px] md:leading-50 tracking--3"
+                className="text-2xl md:text-4xl lg:text-[50px] text-center md:text-start font-semibold md:font-bold text-custom-purple leading-[30px] md:leading-50"
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
@@ -235,7 +235,7 @@ const FAQSection = () => {
                 </motion.span>
                 <br />
                 <motion.span
-                  className="text-xl md:text-2xl lg:text-[40px] font-light text-[#132644]"
+                  className="text-base md:text-2xl lg:text-[40px] font-light text-[#132644]"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4, duration: 0.6 }}

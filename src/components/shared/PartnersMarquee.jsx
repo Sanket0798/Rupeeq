@@ -223,13 +223,13 @@ const PartnersMarquee = () => {
       >
         {/* Gradient overlays for smooth fade effect */}
         <motion.div
-          className="absolute left-0 top-0 w-32 h-full bg-gradient-to-r from-white to-transparent z-10"
+          className="absolute left-0 top-0 w-32 h-full md:bg-gradient-to-r md:from-white md:to-transparent z-10"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.5 }}
         />
         <motion.div
-          className="absolute right-0 top-0 w-32 h-full bg-gradient-to-l from-white to-transparent z-10"
+          className="absolute right-0 top-0 w-32 h-full md:bg-gradient-to-l md:from-white md:to-transparent z-10"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.5 }}
@@ -240,7 +240,7 @@ const PartnersMarquee = () => {
           {duplicatedPartners.map((partner, index) => (
             <motion.div
               key={index}
-              className="partner-logo flex-shrink-0 mx-8 flex items-center justify-center h-20 w-40"
+              className="partner-logo flex-shrink-0 mx-3 md:mx-8 flex items-center justify-center h-20 w-40"
               variants={logoVariants}
               whileHover={{
                 scale: 1.05,

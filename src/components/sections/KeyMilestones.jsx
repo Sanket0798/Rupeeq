@@ -172,26 +172,26 @@ const KeyMilestones = () => {
         <div className="flex flex-col lg:flex-row gap-4 md:gap-[25px] items-start">
           {/* Left side - Main highlight */}
           <div
-            className={`bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 lg:p-8 shadow-[5px_5px_5px_0px_rgba(0,0,0,0.25)] transition-all duration-700 w-full lg:w-auto ${isVisible
+            className={`bg-[#E9E9E9] md:bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 lg:p-8 shadow-[5px_5px_5px_0px_rgba(0,0,0,0.25)] transition-all duration-700 w-full lg:w-auto ${isVisible
               ? 'opacity-100 translate-x-0'
               : 'opacity-0 -translate-x-12'
               }`}
           >
             <div className="mb-6 md:mb-9">
-              <h2 className="text-xl md:text-2xl lg:text-[50px] font-medium leading-[130%] text-[#132644]">
+              <h2 className="text-lg md:text-[50px] font-medium leading-[130%] text-[#132644]">
                 Highlights of
               </h2>
-              <h2 className="text-2xl md:text-4xl lg:text-[50px] leading-[130%] font-bold bg-brand-gradient bg-clip-text text-transparent">
+              <h2 className="text-lg md:text-[50px] leading-[130%] font-bold bg-brand-gradient bg-clip-text text-transparent">
                 Our Key Milestones
               </h2>
             </div>
 
-            <div className='flex flex-col md:flex-row md:items-center md:justify-between md:w-[790px]'>
-              <div className="flex flex-col justify-end mb-6 md:mb-0">
-                <div className="text-[60px] md:text-[100px] font-medium tracing-[1%] text-custom-purple leading-none">
+            <div className='flex flex-row-reverse md:flex-row  md:items-center justify-between md:w-[790px]'>
+              <div className="flex flex-col items-center md:items-start justify-end md:mb-0">
+                <div className="text-[40px] md:text-[100px] font-bold md:font-medium md:leading-[138px] md:tracing-[1%] text-custom-purple leading-[47px] tracing-[0px]">
                   {count2150}Cr
                 </div>
-                <div className="text-[#070129] font-normal text-lg md:text-2xl leading-[32px] tracking-[1%]">
+                <div className="text-[#070129] font-normal text-base md:text-2xl md:leading-[32px] tracking-[1%]">
                   Assets Managed
                 </div>
               </div>
@@ -206,10 +206,10 @@ const KeyMilestones = () => {
                 </div>
                 <div>
                   <div className="flex items-center gap-1">
-                    <span className="text-[22px] md:text-[26px] font-bold leading-[32px] tracing-[1%] text-[#070129]">{count49}</span>
+                    <span className="text-[22px] md:text-[26px] font-bold md:leading-[32px] tracing-[1%] text-[#070129]">{count49}</span>
                     <StarIcon />
                   </div>
-                  <div className="text-[18px] md:text-[20px] text-[#474A55] leading-[30px] tracing-0">
+                  <div className="text-sm md:text-[20px] text-[#474A55] md:leading-[30px] tracing-0">
                     More than 23K clients reviews
                   </div>
                 </div>
@@ -232,10 +232,10 @@ const KeyMilestones = () => {
               >
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-2xl md:text-3xl lg:text-[50px] font-semibold leading-[130%] text-custom-dark-text mb-1">
+                    <div className="text-[40px] md:text-[50px] font-bold md:font-semibold leading-[130%] text-custom-purple md:text-custom-dark-text mb-1">
                       {milestone.value}{milestone.suffix}
                     </div>
-                    <div className="text-[#747986] text-[13px] md:text-[15px] leading-[130%] font-medium">
+                    <div className="text-custom-dark-text md:text-[#747986] text-[18px] md:text-[15px] leading-[22px] md:leading-[130%] font-bold md:font-medium">
                       {milestone.label}
                     </div>
                   </div>

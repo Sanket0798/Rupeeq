@@ -332,7 +332,7 @@ const FinancialProductsSection = () => {
 
   return (
     <motion.section
-      className="py-8 md:py-16 bg-white px-4 sm:px-6 lg:px-8"
+      className="py-8 md:py-16 bg-white px-[40px] md:px-8"
       ref={sectionRef}
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
@@ -348,23 +348,30 @@ const FinancialProductsSection = () => {
       >
         {/* Main heading */}
         <motion.div
-          className="text-center mb-8 md:mb-16"
+          className="text-center mb-4 md:mb-16"
           ref={headingRef}
           variants={cardVariants}
         >
           <motion.h2
-            className="text-2xl md:text-4xl lg:text-[64px] leading-[100%] font-medium text-[#212121]"
+            className="text-3xl md:text-4xl lg:text-[64px] md:leading-[100%] font-bold md:font-medium text-custom-dark-text leading-[35px] md:text-[#212121]"
             whileHover={{ scale: 1.02 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
             Find the Right
           </motion.h2>
           <motion.h2
-            className="text-2xl md:text-4xl lg:text-[64px] leading-[100%] font-bold bg-brand-gradient bg-clip-text text-transparent"
+            className="text-3xl md:text-4xl lg:text-[64px] text-custom-purple md:leading-[100%] leading-[35px] font-bold md:bg-brand-gradient md:bg-clip-text md:text-transparent"
             whileHover={{ scale: 1.02 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
             Financial Product
+          </motion.h2>
+          <motion.h2
+            className="font-normal text-xs leading-[16px] mt-1 text-custom-dark-text md:hidden"
+            whileHover={{ scale: 1.02 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            Trusted By 23k+ Clients Over 980+ Locations Nationwide.
           </motion.h2>
         </motion.div>
 
@@ -440,7 +447,7 @@ const FinancialProductsSection = () => {
 
           {/* Right side text */}
           <motion.div
-            className="flex items-center text-content"
+            className="hidden md:flex items-center text-content"
             variants={cardVariants}
             whileHover={{ scale: 1.02 }}
             transition={{ type: "spring", stiffness: 300 }}
@@ -475,7 +482,7 @@ const FinancialProductsSection = () => {
         >
           {/* Trust indicator */}
           <motion.div
-            className="flex items-center justify-center lg:justify-start text-content"
+            className="hidden md:flex items-center justify-center lg:justify-start text-content"
             variants={cardVariants}
             whileHover={{ scale: 1.02 }}
             transition={{ type: "spring", stiffness: 300 }}
@@ -562,6 +569,27 @@ const FinancialProductsSection = () => {
               </div>
             </motion.div>
           ))}
+        </motion.div>
+
+        {/* Mobile only text - at the bottom */}
+        <motion.div
+          className="md:hidden mt-8 text-center bg-white"
+          variants={cardVariants}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <motion.p
+            className="font-normal text-base leading-[25px] tracing-[0%] text-custom-dark-text"
+          >
+            Get Started In Minutes With Our{' '}
+            <motion.span
+              className="text-button-color"
+            >
+              Simple, Fast And Convenient Application Process.
+            </motion.span>
+          </motion.p>
         </motion.div>
       </motion.div>
     </motion.section>

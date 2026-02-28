@@ -63,7 +63,7 @@ const HowItWorks = () => {
             : 'opacity-0 -translate-y-8'
             }`}
         >
-          <h2 className="text-2xl md:text-3xl lg:text-[50px] font-bold leading-[120%] text-custom-dark-text mb-8 md:mb-16 px-4">
+          <h2 className="text-2xl md:text-3xl lg:text-[50px] font-semibold md:font-bold leading-[120%] text-custom-dark-text mb-8 md:mb-16 px-4">
             How <span className="bg-brand-gradient bg-clip-text text-transparent">RupeeQ</span> Helps You Choose Better
           </h2>
         </div>

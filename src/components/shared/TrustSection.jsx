@@ -53,7 +53,7 @@ const TrustSection = () => {
             : 'opacity-0 -translate-y-8'
             }`}
         >
-          <h2 className="text-2xl md:text-3xl lg:text-[40px] leading-[30px] md:leading-[47px] font-bold text-white mb-3 md:mb-3">
+          <h2 className="text-2xl md:text-3xl lg:text-[40px] leading-[30px] md:leading-[47px] font-semibold md:font-bold text-white mb-3 md:mb-3">
             RupeeQ Motto: <br className="md:hidden" />No Spam. Just Trust.
           </h2>
           <p className="text-sm md:text-2xl font-normal md:font-semibold leading-[19px] md:leading-[30px] text-[#B0E6EC] mb-6 md:mb-[30px]">
@@ -77,7 +77,7 @@ const TrustSection = () => {
               <h3 className="text-lg md:text-[30px] font-bold md:font-semibold leading-[28px] md:leading-[38px] tracing-0 text-button-color">
                 {point.title}
               </h3>
-              <p className="text-[#070707] text-sm md:text-base leading-[20px] md:leading-[23px] font-normal">
+              <p className="text-[#070707] text-xs md:text-base leading-[20px] md:leading-[23px] font-medium">
                 {point.description}
               </p>
             </div>
