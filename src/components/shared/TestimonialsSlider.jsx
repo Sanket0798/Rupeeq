@@ -31,33 +31,43 @@ const TestimonialsSlider = () => {
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   // Auto-play functionality
   useEffect(() => {
     if (!isAutoPlaying) return;
 
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % testimonials.length);
+      handleSlideChange((currentSlide + 1) % testimonials.length);
     }, 5000); // Change slide every 5 seconds
 
     return () => clearInterval(interval);
-  }, [isAutoPlaying, testimonials.length]);
+  }, [isAutoPlaying, currentSlide, testimonials.length]);
+
+  const handleSlideChange = (index) => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setCurrentSlide(index);
+    setTimeout(() => setIsTransitioning(false), 500);
+  };
 
   const goToSlide = (index) => {
-    setCurrentSlide(index);
+    handleSlideChange(index);
     setIsAutoPlaying(false);
     // Resume autoplay after 10 seconds of manual interaction
     setTimeout(() => setIsAutoPlaying(true), 10000);
   };
 
   const goToPrevious = () => {
-    setCurrentSlide((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    const newIndex = (currentSlide - 1 + testimonials.length) % testimonials.length;
+    handleSlideChange(newIndex);
     setIsAutoPlaying(false);
     setTimeout(() => setIsAutoPlaying(true), 10000);
   };
 
   const goToNext = () => {
-    setCurrentSlide((prev) => (prev + 1) % testimonials.length);
+    const newIndex = (currentSlide + 1) % testimonials.length;
+    handleSlideChange(newIndex);
     setIsAutoPlaying(false);
     setTimeout(() => setIsAutoPlaying(true), 10000);
   };
@@ -75,23 +85,25 @@ const TestimonialsSlider = () => {
   };
 
   return (
-    <section
-      className="py-8 md:py-16 px-4 sm:px-6 lg:px-8 relative"
-    // style={{
-    //   backgroundImage: 'url(/assets/images/bg/TestimonialsBg.png)',
-    //   backgroundSize: 'cover',
-    //   backgroundPosition: 'center',
-    //   backgroundRepeat: 'no-repeat'
-    // }}
-    >
-      <div className="max-w-[1386px] mx-auto">
+    <section className="md:py-16 py-8 px-4 md:px-8 mx-2 md:mx-6 relative overflow-hidden md:bg-gradient-to-b bg-[#5084FF]/10 md:from-[#5084FF]/10 md:to-white rounded-24 md:rounded-24">
+      {/* Background image - Desktop only with padding effect */}
+      <div
+        className="absolute md:top-9 md:bottom-9 md:left-9 md:right-9 top-0 bottom-0 left-0 right-0 z-0 hidden md:block rounded-3xl opacity-35"
+        style={{
+          backgroundImage: 'url(/assets/images/bg/TestimonialsBg.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
+      />
+      <div className="max-w-[1386px] mx-auto relative z-10">
         {/* Header */}
-        <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-[24px] md:text-[40px] font-bold leading-[32px] md:leading-[47px] mb-3 md:mb-4">
+        <div className="text-center md:mb-12 mb-8">
+          <h2 className="md:text-[40px] text-[28px] font-bold md:leading-[47px] leading-[36px] md:mb-4 mb-3">
             <span className="text-custom-dark-text">What Our Customers Say About </span>
             <span className="bg-brand-gradient bg-clip-text text-transparent">RupeeQ</span>
           </h2>
-          <p className="text-[#747986] text-sm md:text-base leading-[150%] font-medium max-w-3xl mx-auto">
+          <p className="text-[#747986] md:text-base text-sm leading-[150%] font-medium max-w-3xl mx-auto px-4 md:block hidden">
             Hear directly from customers who have used RupeeQ to make informed financial decisions.
             Their experiences reflect our commitment to transparency, simplicity, and reliable support.
           </p>
@@ -99,9 +111,10 @@ const TestimonialsSlider = () => {
 
         {/* Slider Container */}
         <div className="relative">
-          <div className="relative min-h-[300px] md:min-h-[400px] flex items-center">
-            {/* Background Icon Overlay */}
-            <div className="absolute inset-0 z-0 pointer-events-none flex items-center justify-center "
+          <div className="relative md:min-h-[400px] min-h-[500px] flex items-center">
+            {/* Background Icon Overlay - Desktop Only */}
+            <div
+              className="absolute inset-0 z-0 pointer-events-none md:flex hidden items-center justify-center opacity-10"
               style={{
                 backgroundImage: 'url(/assets/images/bg/TestimonialsBg.png)',
                 backgroundSize: 'cover',
@@ -112,10 +125,11 @@ const TestimonialsSlider = () => {
               <TestimonialsBgIcon />
             </div>
 
-            {/* Navigation Arrows */}
+            {/* Navigation Arrows - Desktop Only */}
             <button
               onClick={goToPrevious}
-              className="absolute left-2 md:left-8 z-20"
+              disabled={isTransitioning}
+              className="absolute left-8 z-20 transition-all duration-300 hover:scale-110 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed md:block hidden"
               aria-label="Previous testimonial"
             >
               <LeftBlackArrowIcon />
@@ -123,27 +137,31 @@ const TestimonialsSlider = () => {
 
             <button
               onClick={goToNext}
-              className="absolute right-2 md:right-8 z-20"
+              disabled={isTransitioning}
+              className="absolute right-8 z-20 transition-all duration-300 hover:scale-110 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed md:block hidden"
               aria-label="Next testimonial"
             >
               <RightBlackArrowIcon />
             </button>
 
             {/* Testimonial Content */}
-            <div className="w-full px-8 md:px-24 py-8 md:py-12 relative z-10">
-              <div className="text-center max-w-4xl mx-auto">
+            <div className="w-full md:px-24 px-6 md:py-12 py-8 relative z-10">
+              <div
+                className={`text-center max-w-4xl mx-auto transition-all duration-500 ${isTransitioning ? 'opacity-0 transform scale-95' : 'opacity-100 transform scale-100'
+                  }`}
+              >
                 {/* Stars */}
-                <div className="flex justify-center mb-4 md:mb-8 gap-1">
+                <div className="flex justify-center md:mb-8 mb-6 gap-1">
                   {renderStars(testimonials[currentSlide].rating)}
                 </div>
 
                 {/* Testimonial Text */}
-                <blockquote className="text-base md:text-lg lg:text-xl text-custom-dark-text leading-relaxed mb-4 md:mb-8 font-medium">
+                <blockquote className="md:text-lg text-base lg:text-xl text-custom-dark-text md:leading-relaxed leading-[24px] md:mb-8 mb-6 font-medium">
                   {testimonials[currentSlide].text}
                 </blockquote>
 
                 {/* Author */}
-                <div className="text-xl md:text-2xl font-semibold text-custom-dark-text">
+                <div className="md:text-2xl text-xl font-semibold text-custom-dark-text">
                   {testimonials[currentSlide].author}
                 </div>
               </div>
@@ -151,12 +169,13 @@ const TestimonialsSlider = () => {
           </div>
 
           {/* Slide Indicators */}
-          <div className="flex justify-center mt-6 md:mt-8 space-x-2">
+          <div className="flex justify-center md:mt-8 mt-6 space-x-2">
             {testimonials.map((_, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${index === currentSlide
+                disabled={isTransitioning}
+                className={`md:w-3 md:h-3 w-2.5 h-2.5 rounded-full transition-all duration-300 disabled:cursor-not-allowed ${index === currentSlide
                   ? 'bg-button-color scale-125'
                   : 'bg-gray-300 hover:bg-gray-400'
                   }`}
