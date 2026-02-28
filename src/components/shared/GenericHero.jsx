@@ -213,7 +213,6 @@ const GenericHero = ({
                         type="submit"
                         disabled={isSubmitting}
                         variant="primary-white"
-                        size="lg"
                         className="w-[168px] py-3 px-4 gap-2"
                       >
                         {isSubmitting ? (
@@ -262,10 +261,9 @@ const GenericHero = ({
 
         {/* Bottom Section - Why Choose RupeeQ */}
         <div className="mt-[60px]">
-          <h2 
-            className="text-[40px] font-bold text-center text-[#100701] mb-8 leading-[120%] tracing-[2%]"
-            dangerouslySetInnerHTML={{ __html: benefitsTitle }}
-          />
+          <h2 className="text-[40px] font-bold text-center text-[#100701] mb-8 leading-[120%] tracing-[2%]">
+            {benefitsTitle}
+          </h2>
 
           {/* Benefits Bar */}
           <div className="bg-[#B0E6EC] shadow-[5px_5px_5px_0px_rgba(0,0,0,0.15)] rounded-t-24 border border-[#000000]/10 border-b-transparent py-6 px-4">
