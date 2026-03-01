@@ -1,21 +1,27 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 
 const ScrollToTopOnRouteChange = () => {
   const { pathname } = useLocation();
+  const prevPathnameRef = useRef(pathname);
 
   useEffect(() => {
-    // Disable automatic scroll restoration
-    if ('scrollRestoration' in window.history) {
-      window.history.scrollRestoration = 'manual';
+    // Only scroll if pathname actually changed (not just HMR reload)
+    if (prevPathnameRef.current !== pathname) {
+      // Disable automatic scroll restoration
+      if ('scrollRestoration' in window.history) {
+        window.history.scrollRestoration = 'manual';
+      }
+      
+      // Scroll to top immediately
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'instant'
+      });
+      
+      prevPathnameRef.current = pathname;
     }
-    
-    // Scroll to top immediately
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'instant'
-    });
   }, [pathname]);
 
   return null;

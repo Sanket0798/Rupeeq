@@ -12,22 +12,41 @@ const LoanEligibilitySection = ({
   leftColumnImage = "/assets/images/loanEligibility/2.jpg",
   rightColumnImage = "/assets/images/loanEligibility/1.png",
   useIconsForLeft = true,
-  useDotsForRight = true
+  useDotsForRight = true,
+  mobileHeading = "", // New prop for mobile-only heading
+  mobileSubtitle = "" // New prop for mobile-only subtitle
 }) => {
   return (
     <div className="w-full bg-white py-8 md:py-16 lg:py-20">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
-        {/* Main Heading */}
-        <div className="text-center mb-6 md:mb-11 text-2xl md:text-[40px] leading-[30px] md:leading-[50px] tracing-[0%] font-semibold md:font-bold">
-          <h2 className="">
-            <span className="text-custom-purple">{mainTitle}</span>
-          </h2>
-          {subtitle && (
-            <p className="text-[#4B5768] mt-1 md:mt-0">
-              {subtitle}
-            </p>
-          )}
-        </div>
+        {/* Main Heading - Desktop: show if mainTitle exists, Mobile: show if mainTitle OR mobileHeading exists */}
+        {(mainTitle || mobileHeading) && (
+          <div className="text-center mb-6 md:mb-11 text-2xl md:text-[40px] leading-[30px] md:leading-[50px] tracing-[0%] font-semibold md:font-bold">
+            {/* Desktop heading - only show if mainTitle exists */}
+            {mainTitle && (
+              <h2 className="hidden lg:block">
+                <span className="text-custom-purple">{mainTitle}</span>
+              </h2>
+            )}
+            {subtitle && mainTitle && (
+              <p className="hidden lg:block text-[#4B5768] mt-1 md:mt-0">
+                {subtitle}
+              </p>
+            )}
+
+            {/* Mobile heading - show mobileHeading if provided, otherwise show mainTitle */}
+            {(mobileHeading || mainTitle) && (
+              <h2 className="lg:hidden px-10">
+                <span className="text-custom-purple">{mobileHeading || mainTitle}</span>
+              </h2>
+            )}
+            {(mobileSubtitle || (subtitle && mainTitle)) && (
+              <p className="lg:hidden text-[#4B5768] mt-1 md:mt-0 px-10">
+                {mobileSubtitle || subtitle}
+              </p>
+            )}
+          </div>
+        )}
 
         {/* Desktop View - Two Column Layout */}
         <div className="hidden lg:grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">

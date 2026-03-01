@@ -9,6 +9,7 @@ export { default as ApplicationStepsSection } from './ApplicationStepsSection';
 export { default as ConsolidationBenefitsSection } from './ConsolidationBenefitsSection';
 export { default as FeaturesBenefitsSection } from './FeaturesBenefitsSection';
 export { default as DebtConsolidationInfo } from './DebtConsolidationInfo';
+export { default as ExploreRupeeQAdvantagesSection } from './ExploreRupeeQAdvantagesSection';
 export { default as GenericHero } from './GenericHero';
 export { default as GenericHeroWrapper } from './GenericHeroWrapper';
 export { default as GenericLoginPage } from './GenericLoginPage';

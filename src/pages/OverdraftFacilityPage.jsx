@@ -9,7 +9,9 @@ import {
   FAQSection,
   LoanEligibilitySection,
   FeaturesBenefitsSection,
-  DebtConsolidationInfo
+  DebtConsolidationInfo,
+  ExploreRupeeQAdvantagesSection,
+  ApplicationStepsSection
 } from '../components/shared';
 
 const OverdraftFacilityPage = () => {
@@ -121,6 +123,8 @@ const OverdraftFacilityPage = () => {
         <LoanEligibilitySection
           mainTitle=""
           subtitle=""
+          mobileHeading="Personal Loans & Eligibility"
+          mobileSubtitle="To Get A Loan Via RupeeQ"
           leftColumnTitle="Eligibility Criteria"
           rightColumnTitle="Who Should Consider This Loan?"
           eligibilityCriteria={eligibilityCriteria}
@@ -144,6 +148,47 @@ const OverdraftFacilityPage = () => {
           bgGradient="bg-white"
           benefits={whyRupeeQBenefits}
         />
+      </section>
+
+      {/* Application Steps Section */}
+      <section id="application-steps">
+        <ApplicationStepsSection
+          title="Seamless Application in easy steps"
+          subtitle="Debt Consolidation Application Process"
+          mobileTitle="Seamless Application In Easy Steps"
+          steps={[
+            {
+              number: '01',
+              title: 'Eligibility Check',
+              description: '→ Check Your Eligibility For Overdraft Credit.'
+            },
+            {
+              number: '02',
+              title: 'Review Offers',
+              description: '→ Review Offers From Lenders & Limits Tailored To Your Profile.'
+            },
+            {
+              number: '03',
+              title: 'Submission',
+              description: '→ Submit Basic Documents Digitally.'
+            },
+            {
+              number: '04',
+              title: 'Approval',
+              description: '→ Get Approval - Within Hours'
+            },
+            {
+              number: '05',
+              title: 'Get Funds Swiftly',
+              description: '→ Access Your Limits Instantly, Use Anytime As Per Requirement.'
+            }
+          ]}
+        />
+      </section>
+
+      {/* Explore RupeeQ Advantages Section */}
+      <section id="explore-advantages">
+        <ExploreRupeeQAdvantagesSection />
       </section>
 
       {/* Credit Score Section */}
