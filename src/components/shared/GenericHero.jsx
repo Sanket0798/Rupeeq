@@ -1,8 +1,12 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Input, FormFieldError, LoadingSpinner, Button } from '../ui';
 import { BlueUpArrowIcon, ChevronUpIcon } from '../common/SvgIcons';
 import { mobileNumberSchema, validateForm } from '../../utils/validationSchemas';
+
+gsap.registerPlugin(ScrollTrigger);
 
 /**
  * GenericHero - Reusable hero section component for all loan pages
@@ -40,35 +44,248 @@ const GenericHero = ({
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Animation refs
+  const sectionRef = useRef(null);
+  const titleRef = useRef(null);
+  const descriptionsRef = useRef(null);
+  const formCardRef = useRef(null);
+  const illustrationRef = useRef(null);
+  const benefitsSectionRef = useRef(null);
+  const benefitsItemsRef = useRef([]);
+  const howItWorksRef = useRef(null);
+  const mobileTitleRef = useRef(null);
+  const mobileFormRef = useRef(null);
+  const mobileDescRef = useRef(null);
+  const mobileTaglineRef = useRef(null);
+  const mobileButtonsRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Desktop Animations
+      if (window.innerWidth >= 768) {
+        // Title animation - fade in and slide up
+        gsap.from(titleRef.current, {
+          opacity: 0,
+          y: 50,
+          duration: 1,
+          ease: 'power3.out',
+          delay: 0.2
+        });
+
+        // Descriptions animation - stagger fade in
+        if (descriptionsRef.current) {
+          gsap.from(descriptionsRef.current.children, {
+            opacity: 0,
+            y: 30,
+            duration: 0.8,
+            stagger: 0.2,
+            ease: 'power2.out',
+            delay: 0.5
+          });
+        }
+
+        // Form card animation - slide in from right with scale
+        if (formCardRef.current) {
+          gsap.from(formCardRef.current, {
+            opacity: 0,
+            x: 100,
+            scale: 0.95,
+            duration: 1,
+            ease: 'power3.out',
+            delay: 0.3
+          });
+
+          // Form card floating animation
+          gsap.to(formCardRef.current, {
+            y: -10,
+            duration: 2,
+            repeat: -1,
+            yoyo: true,
+            ease: 'power1.inOut'
+          });
+        }
+
+        // Illustration animation - bounce in
+        if (illustrationRef.current) {
+          gsap.from(illustrationRef.current, {
+            opacity: 0,
+            scale: 0,
+            rotation: -15,
+            duration: 1,
+            ease: 'elastic.out(1, 0.5)',
+            delay: 1
+          });
+
+          // Illustration floating animation
+          gsap.to(illustrationRef.current, {
+            y: -15,
+            rotation: 5,
+            duration: 3,
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut'
+          });
+        }
+      } else {
+        // Mobile Animations
+        // Title animation
+        if (mobileTitleRef.current) {
+          gsap.from(mobileTitleRef.current, {
+            opacity: 0,
+            y: 30,
+            duration: 0.8,
+            ease: 'power3.out',
+            delay: 0.2
+          });
+        }
+
+        // Form card animation
+        if (mobileFormRef.current) {
+          gsap.from(mobileFormRef.current, {
+            opacity: 0,
+            y: 40,
+            scale: 0.95,
+            duration: 0.8,
+            ease: 'power3.out',
+            delay: 0.4
+          });
+        }
+
+        // Descriptions animation
+        if (mobileDescRef.current) {
+          gsap.from(mobileDescRef.current.children, {
+            opacity: 0,
+            y: 20,
+            duration: 0.6,
+            stagger: 0.15,
+            ease: 'power2.out',
+            delay: 0.6
+          });
+        }
+
+        // Tagline animation
+        if (mobileTaglineRef.current) {
+          gsap.from(mobileTaglineRef.current, {
+            opacity: 0,
+            y: 20,
+            duration: 0.6,
+            ease: 'power2.out',
+            delay: 0.8
+          });
+        }
+
+        // Action buttons animation
+        if (mobileButtonsRef.current) {
+          gsap.from(mobileButtonsRef.current.children, {
+            opacity: 0,
+            x: -30,
+            duration: 0.6,
+            stagger: 0.1,
+            ease: 'power2.out',
+            delay: 1
+          });
+        }
+      }
+
+      // Benefits section animation - scroll triggered (both mobile and desktop)
+      if (benefitsSectionRef.current) {
+        gsap.from(benefitsSectionRef.current, {
+          scrollTrigger: {
+            trigger: benefitsSectionRef.current,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+          },
+          opacity: 0,
+          y: 50,
+          duration: 0.8,
+          ease: 'power3.out'
+        });
+
+        // Benefits items stagger animation
+        if (benefitsItemsRef.current.length > 0) {
+          gsap.from(benefitsItemsRef.current, {
+            scrollTrigger: {
+              trigger: benefitsSectionRef.current,
+              start: 'top 75%',
+              toggleActions: 'play none none reverse'
+            },
+            opacity: 0,
+            y: 30,
+            scale: 0.9,
+            duration: 0.6,
+            stagger: 0.1,
+            ease: 'back.out(1.7)',
+            delay: 0.3
+          });
+        }
+      }
+
+      // How it works section animation - scroll triggered
+      if (howItWorksRef.current) {
+        gsap.from(howItWorksRef.current.children, {
+          scrollTrigger: {
+            trigger: howItWorksRef.current,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+          },
+          opacity: 0,
+          y: 40,
+          duration: 0.8,
+          stagger: 0.2,
+          ease: 'power3.out'
+        });
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  // Form input focus animations
+  const handleInputFocus = (e) => {
+    gsap.to(e.target, {
+      scale: 1.02,
+      duration: 0.3,
+      ease: 'power2.out'
+    });
+  };
+
+  const handleInputBlur = (e) => {
+    gsap.to(e.target, {
+      scale: 1,
+      duration: 0.3,
+      ease: 'power2.out'
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Clear previous errors
     setErrors({});
-    
+
     // Validate mobile number
     const validationErrors = await validateForm(mobileNumberSchema, {
       mobileNumber: mobileNumber
     });
-    
+
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
-    
+
     if (!agreedToTerms) {
       setErrors({ terms: 'Please agree to Privacy Policy and Terms and Conditions' });
       return;
     }
-    
+
     setIsSubmitting(true);
-    
+
     try {
       // TODO: API integration
-      
+
       // Store mobile number for next step
       localStorage.setItem('temp_mobile', mobileNumber);
-      
+
       // Navigate to login page
       navigate(loginRoute);
     } catch (error) {
@@ -89,16 +306,32 @@ const GenericHero = ({
 
   return (
     <section
-      className="relative min-h-screen rounded-24 pt-24 pb-16 overflow-hidden"
+      ref={sectionRef}
+      className="relative pt-20 md:pt-24 pb-8 md:pb-16 overflow-hidden"
       style={{
         marginTop: '-80px',
-        paddingTop: '104px',
-        background: 'linear-gradient(135deg, #E8F5F7 0%, #F0E8F7 50%, #E8F7F0 100%)'
+        paddingTop: '100px',
       }}
     >
-      {/* Background Pattern Overlay */}
+      {/* Background gradient with controlled height - Mobile: 70vh, Desktop: full */}
       <div
-        className="absolute inset-0 -right-[1300px] -top-[400px]"
+        className="absolute top-0 left-0 right-0 h-[70vh] md:h-full -z-10"
+        style={{
+          background: 'linear-gradient(135deg, #E8F5F7 0%, #F0E8F7 50%, #E8F7F0 100%)'
+        }}
+      >
+        {/* Fade overlay at bottom - Mobile only */}
+        <div
+          className="md:hidden absolute bottom-0 left-0 right-0 h-20"
+          style={{
+            background: 'linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1))'
+          }}
+        />
+      </div>
+
+      {/* Background Pattern Overlay - Desktop Only */}
+      <div
+        className="hidden md:block absolute inset-0 -right-[1300px] -top-[400px]"
         style={{
           backgroundImage: 'url(/assets/images/bg/HowWorksBg.png)',
           backgroundSize: 'cover',
@@ -109,14 +342,15 @@ const GenericHero = ({
       />
 
       {/* Content */}
-      <div className="max-w-[1260px] mx-auto w-full relative z-10 mt-11">
-        <div className="min-h-[60vh] flex items-center">
+      <div className="max-w-[1260px] mx-auto w-full relative z-10 px-4 md:px-0 md:mt-11">
+        {/* Desktop Layout */}
+        <div className="hidden md:block min-h-[60vh]">
           <div className="w-full">
             <div className="flex flex-row gap-12 items-start justify-between mb-9">
-              {/* Left Content */}
+              {/* Left Content - Desktop */}
               <div className="">
                 {/* Title */}
-                <h1 className="text-[40px] text-custom-dark-text font-semibold leading-[53px] tracing-[2%] mb-6">
+                <h1 ref={titleRef} className="text-[40px] text-custom-dark-text font-semibold leading-[53px] tracing-[2%] mb-6">
                   {titleLines.map((line, index) => (
                     <span key={index}>
                       {line.highlight ? (
@@ -130,16 +364,17 @@ const GenericHero = ({
                 </h1>
 
                 {/* Descriptions */}
-                {descriptions.map((desc, index) => (
-                  <p 
-                    key={index} 
-                    className={`text-custom-dark-text text-base leading-relaxed max-w-[500px] ${
-                      index < descriptions.length - 1 ? 'mb-6' : ''
-                    }`}
-                  >
-                    {desc}
-                  </p>
-                ))}
+                <div ref={descriptionsRef}>
+                  {descriptions.map((desc, index) => (
+                    <p
+                      key={index}
+                      className={`text-custom-dark-text text-base leading-relaxed max-w-[500px] ${index < descriptions.length - 1 ? 'mb-6' : ''
+                        }`}
+                    >
+                      {desc}
+                    </p>
+                  ))}
+                </div>
 
                 {/* Optional Tagline */}
                 {tagline && (
@@ -154,9 +389,9 @@ const GenericHero = ({
                 )}
               </div>
 
-              {/* Right Content - Application Form Card */}
+              {/* Right Content - Application Form Card - Desktop */}
               <div className="relative">
-                <div className="relative rounded-3xl shadow-[5px_8px_9px_5px_rgba(0,0,0,0.25)]">
+                <div ref={formCardRef} className="relative rounded-3xl shadow-[5px_8px_9px_5px_rgba(0,0,0,0.25)]">
                   {/* Form Card */}
                   <div className="bg-brand-gradient px-8 py-[29px] text-white relative w-[656px] min-h-[315px] flex flex-col justify-between rounded-3xl overflow-visible">
                     <h2 className="text-[40px] leading-[60px] font-semibold mb-6">
@@ -172,6 +407,8 @@ const GenericHero = ({
                           type="tel"
                           value={mobileNumber}
                           onChange={handleMobileChange}
+                          onFocus={handleInputFocus}
+                          onBlur={handleInputBlur}
                           placeholder="Enter your Mobile Number"
                           className="w-full px-4 py-3 rounded-[20px] bg-white text-gray-900 placeholder-[#58626C]/50 focus:outline-none focus:ring-2 focus:ring-white border-none"
                           maxLength={10}
@@ -227,7 +464,7 @@ const GenericHero = ({
                     </form>
 
                     {/* Illustration at bottom right - positioned outside card */}
-                    <div className="absolute -bottom-[70px] right-7 w-[231px] h-[181px] pointer-events-none z-10">
+                    <div ref={illustrationRef} className="absolute -bottom-[70px] right-7 w-[231px] h-[181px] pointer-events-none z-10">
                       <img
                         src={illustrationSrc}
                         alt="Illustration"
@@ -241,9 +478,145 @@ const GenericHero = ({
           </div>
         </div>
 
-        {/* Optional Action Buttons */}
+        {/* Mobile Layout */}
+        <div className="md:hidden space-y-6">
+          {/* Title - Mobile */}
+          <h1 ref={mobileTitleRef} className="text-[25px] text-center text-custom-dark-text font-semibold leading-[35px] tracing-[2%] px-2">
+            {titleLines.map((line, index) => (
+              <span key={index}>
+                {line.highlight ? (
+                  <span className="text-custom-purple font-bold">{line.text}</span>
+                ) : (
+                  line.text
+                )}
+                {index < titleLines.length - 1 && <br />}
+              </span>
+            ))}
+          </h1>
+
+          {/* Form Card - Mobile */}
+          <div ref={mobileFormRef} className="relative rounded-3xl shadow-[0px_4px_15px_rgba(0,0,0,0.2)] mx-4">
+            <div className="bg-brand-gradient px-6 py-6 text-white relative rounded-3xl overflow-visible">
+              <h2 className="text-[22px] leading-[28px] font-bold mb-4">
+                {formTitle}
+              </h2>
+
+              <form onSubmit={handleSubmit} className="relative z-20">
+                <div className="mb-4">
+                  <label className="block text-white font-semibold text-sm mb-2">
+                    Mobile Number
+                  </label>
+                  <Input
+                    type="tel"
+                    value={mobileNumber}
+                    onChange={handleMobileChange}
+                    onFocus={handleInputFocus}
+                    onBlur={handleInputBlur}
+                    placeholder="Enter your Mobile Number"
+                    className="w-full px-4 py-3 rounded-[20px] bg-white text-gray-900 placeholder-[#58626C]/50 focus:outline-none focus:ring-2 focus:ring-white border-none text-sm"
+                    maxLength={10}
+                  />
+                  {errors.mobileNumber && (
+                    <FormFieldError error={errors.mobileNumber} />
+                  )}
+                </div>
+
+                <div className="mb-4">
+                  <label className="flex items-start gap-2 text-white text-xs font-medium cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={agreedToTerms}
+                      onChange={(e) => {
+                        setAgreedToTerms(e.target.checked);
+                        if (errors.terms) {
+                          setErrors({ ...errors, terms: '' });
+                        }
+                      }}
+                      className="w-4 h-4 rounded border-white mt-0.5 flex-shrink-0"
+                    />
+                    <span>
+                      I agree to <a href="/privacy-policy" className="underline">Privacy Policy</a> and <a href="/terms" className="underline">Terms and Conditions</a>.
+                    </span>
+                  </label>
+                  {errors.terms && (
+                    <FormFieldError error={errors.terms} />
+                  )}
+                </div>
+
+                {errors.submit && (
+                  <div className="mb-4">
+                    <FormFieldError error={errors.submit} />
+                  </div>
+                )}
+
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  variant="primary-white"
+                  className="w-full py-3 px-4 gap-2 text-base font-bold"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <LoadingSpinner size="sm" color="purple" />
+                      <span>Please wait...</span>
+                    </>
+                  ) : (
+                    formButtonText
+                  )}
+                </Button>
+              </form>
+            </div>
+          </div>
+
+          {/* Descriptions - Mobile */}
+          {descriptions.length > 0 && (
+            <div ref={mobileDescRef} className="px-6 text-center">
+              {descriptions.map((desc, index) => (
+                <p
+                  key={index}
+                  className={`text-[#4B5768] text-sm leading-[20px] ${index < descriptions.length - 1 ? 'mb-4' : ''
+                    }`}
+                >
+                  {desc}
+                </p>
+              ))}
+            </div>
+          )}
+
+          {/* Tagline - Mobile */}
+          {tagline && (
+            <div ref={mobileTaglineRef} className="px-6 text-center">
+              <h2 className="text-lg font-bold text-custom-purple leading-[24px]">
+                {tagline.line1}
+              </h2>
+              <p className="text-lg font-bold text-custom-purple leading-[24px]">
+                {tagline.line2}
+              </p>
+            </div>
+          )}
+
+          {/* Action Buttons - Mobile */}
+          {actionButtons.length > 0 && (
+            <div ref={mobileButtonsRef} className="flex flex-col gap-3 px-6">
+              {actionButtons.map((button, index) => (
+                <Button
+                  key={index}
+                  onClick={() => navigate(button.route)}
+                  variant="primary"
+                  size="md"
+                  className="w-full py-3 px-4 gap-2 text-sm font-bold"
+                >
+                  {button.text}
+                  <ChevronUpIcon />
+                </Button>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Optional Action Buttons - Desktop Only */}
         {actionButtons.length > 0 && (
-          <div className="flex flex-row gap-4">
+          <div className="hidden md:flex flex-row gap-4">
             {actionButtons.map((button, index) => (
               <Button
                 key={index}
@@ -260,44 +633,62 @@ const GenericHero = ({
         )}
 
         {/* Bottom Section - Why Choose RupeeQ */}
-        <div className="mt-[60px]">
-          <h2 className="text-[40px] font-bold text-center text-[#100701] mb-8 leading-[120%] tracing-[2%]">
+        <div ref={benefitsSectionRef} className="mt-8 md:mt-[60px]">
+          <h2 className="text-3xl  md:text-[40px] font-bold text-center text-[#100701] mb-4 md:mb-8 leading-[35px] md:leading-[120%] px-6 md:px-4">
             {benefitsTitle}
           </h2>
 
-          {/* Benefits Bar */}
-          <div className="bg-[#B0E6EC] shadow-[5px_5px_5px_0px_rgba(0,0,0,0.15)] rounded-t-24 border border-[#000000]/10 border-b-transparent py-6 px-4">
+          {/* Benefits Bar - Desktop */}
+          <div className="hidden md:block bg-[#B0E6EC] shadow-[5px_5px_5px_0px_rgba(0,0,0,0.15)] rounded-t-24 border border-[#000000]/10 border-b-transparent py-6 px-4">
             <div className="flex items-center justify-center gap-8 flex-wrap">
               {benefits.map((benefit, index) => (
-                <div key={index} className="flex items-center gap-1 whitespace-nowrap">
+                <div 
+                  key={index} 
+                  ref={el => benefitsItemsRef.current[index] = el}
+                  className="flex items-center gap-1 whitespace-nowrap"
+                >
                   <BlueUpArrowIcon />
                   <span className="text-base text-[#5432AF] font-semibold leading-[21px]">{benefit}</span>
                 </div>
               ))}
             </div>
           </div>
+
+          {/* Benefits Cards - Mobile */}
+          <div className="md:hidden space-y-3 px-4">
+            {benefits.map((benefit, index) => (
+              <div
+                key={index}
+                ref={el => benefitsItemsRef.current[index] = el}
+                className="bg-[#DAF3F6] rounded-[10px] py-4 px-5 flex items-center gap-5 shadow-sm"
+              >
+                <BlueUpArrowIcon />
+                <span className="text-base text-[#5432AF] font-semibold leading-[21px]">{benefit}</span>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* How Does It Work Section */}
         {howItWorks && (
-          <div className="mt-16 text-center">
-            <h2 className="text-[40px] font-bold text-custom-purple mb-4 leading-[120%] tracing-[2%]">
+          <div ref={howItWorksRef} className="mt-8 md:mt-16 text-center px-4">
+            <h2 className="text-[24px] md:text-[40px] font-bold text-custom-purple mb-3 md:mb-4 leading-[30px] md:leading-[120%]">
               {howItWorks.title}
             </h2>
             {howItWorks.description && (
-              <p className="text-base text-custom-dark-text max-w-4xl mx-auto leading-relaxed">
+              <p className="text-sm md:text-base text-custom-dark-text max-w-4xl mx-auto leading-relaxed">
                 {howItWorks.description}
               </p>
             )}
             {howItWorks.subtitle && (
-              <p className="text-lg text-custom-dark-text mb-4 leading-relaxed">
+              <p className="text-base md:text-lg text-custom-dark-text mb-3 md:mb-4 leading-relaxed">
                 {howItWorks.subtitle}
               </p>
             )}
             {howItWorks.points && (
-              <div className="flex items-center justify-center gap-8 flex-wrap max-w-5xl mx-auto">
+              <div className="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-8 max-w-5xl mx-auto">
                 {howItWorks.points.map((point, index) => (
-                  <span key={index} className="text-base text-custom-dark-text font-semibold">
+                  <span key={index} className="text-sm md:text-base text-custom-dark-text font-semibold">
                     • {point}
                   </span>
                 ))}

@@ -41,11 +41,11 @@ const LoanTypesSection = () => {
     <div className="w-full bg-white py-16 md:py-20">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         {/* Main Heading */}
-        <div className="text-center mb-[84px]">
-          <h2 className="text-[40px] leading-[48px] tracing-[0px] font-bold text-black mb-[14px]">
-            Types Of <span className="text-custom-purple">Personal Loans Available On RupeeQ</span>
+        <div className="text-center mb-5 md:mb-[84px]">
+          <h2 className="text-2xl md:text-[40px] leading-[30px] md:leading-[48px] tracing-[0px] font-semibold md:font-bold text-black mb-[14px]">
+            Types Of <span className="text-custom-purple">Personal Loans <br /> Available On RupeeQ</span>
           </h2>
-          <p className="text-[20px] text-custom-dark-text font-normal leading-[26px] tracing-[0%]">
+          <p className="text-sm md:text-xl px-10 md:px-0 text-custom-dark-text font-normal leading-[19px] md:leading-[26px] tracing-[0%]">
             Not All Personal Loans Serve The Same Purpose. We Help You Pick What Suits You Best.
           </p>
         </div>
@@ -53,8 +53,13 @@ const LoanTypesSection = () => {
         {/* Loan Types Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           {loanTypes.map((loan, index) => (
-            <Card key={index} variant="custom" rounded='rounded-none' className={`p-6 ${loan.bgColor} flex flex-col justify-between`}>
-              <h3 className="text-2xl leading-[34px] tracing-[0%] text-custom-dark-text font-medium">
+            <Card 
+              key={index}
+              variant="custom" 
+              rounded='rounded-[10px] md:rounded-none' 
+              className={`p-6 ${loan.bgColor} flex flex-col justify-between`}
+            >
+              <h3 className="text-2xl mb-7 md:mb-0 leading-[30px] md:leading-[34px] tracing-[0%] text-custom-dark-text font-semibold md:font-medium">
                 {loan.title}
               </h3>
               <p className="text-[#4B5768] text-lg leading-[22px] font-normal tracing-[0%] mb-7">
@@ -62,7 +67,7 @@ const LoanTypesSection = () => {
               </p>
 
               <div className="mb-6">
-                <h4 className="text-[#4B5768] text-lg leading-[22px] font-bold tracing-[0%]">Best For:</h4>
+                <h4 className="text-button-color font-normal md:text-[#4B5768] text-lg leading-[22px] md:font-bold tracing-[0%]">Best For:</h4>
                 <p className="text-[#4B5768] text-lg leading-[22px] font-normal tracing-[0%]">
                   {loan.bestFor}
                 </p>
@@ -70,7 +75,7 @@ const LoanTypesSection = () => {
 
               <div>
                 <button
-                  className="bg-button-color text-white font-bold px-6 py-3 rounded-full text-lg leading-[130%] tracing-[0%] hover:bg-[#6B4FA8] transition-all duration-300 flex items-center gap-x-3"
+                  className="bg-button-color w-full md:w-auto text-white font-bold px-6 py-3 rounded-full text-lg leading-[130%] tracing-[0%] hover:bg-[#6B4FA8] transition-all duration-300 flex items-center justify-center gap-x-3"
                 >
                   {loan.buttonText}
                   <ChevronUpIcon />

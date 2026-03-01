@@ -10,9 +10,23 @@ const LoanUseCasesSection = () => {
       height: 'h-[240px]'
     },
     {
+      title: 'Travel & Vacation',
+      description: 'Turn your dream vacation into reality without financial worries.',
+      bgColor: 'bg-gradient-to-b from-[#9FF1FA]/70 to-white',
+      borderColor: 'border-black/12',
+      height: 'h-[220px]'
+    },
+    {
       title: 'Medical Emergency',
       description: 'Cover medical expenses not covered by insurance.',
       bgColor: 'bg-gradient-to-b from-[#508AFF]/20 to-white',
+      borderColor: 'border-black/12',
+      height: 'h-[268px]'
+    },
+    {
+      title: 'Wedding Expenses',
+      description: 'Make your special day by funding a dream wedding.',
+      bgColor: 'bg-gradient-to-b from-[#5528A9]/15 to-white',
       borderColor: 'border-black/12',
       height: 'h-[268px]'
     },
@@ -24,27 +38,6 @@ const LoanUseCasesSection = () => {
       height: 'h-[240px]'
     },
     {
-      title: 'Home Renovation',
-      description: 'Home Renovation expenses can be funded.',
-      bgColor: 'bg-gradient-to-b from-[#57BA00]/15 to-white',
-      borderColor: 'border-black/12',
-      height: 'h-[268px]'
-    },
-    {
-      title: 'Travel & Vacation',
-      description: 'Turn your dream vacation into reality without financial worries.',
-      bgColor: 'bg-gradient-to-b from-[#9FF1FA]/70 to-white',
-      borderColor: 'border-black/12',
-      height: 'h-[220px]'
-    },
-    {
-      title: 'Wedding Expenses',
-      description: 'Make your special day by funding a dream wedding.',
-      bgColor: 'bg-gradient-to-b from-[#5528A9]/15 to-white',
-      borderColor: 'border-black/12',
-      height: 'h-[268px]'
-    },
-    {
       title: 'Debt Consolidation',
       description: 'Simplify your finances by consolidating multiple debts.',
       bgColor: 'bg-gradient-to-b from-[#178FE5]/20 to-white',
@@ -52,8 +45,15 @@ const LoanUseCasesSection = () => {
       height: 'h-[234px]'
     },
     {
+      title: 'Home Renovation',
+      description: 'Home Renovation expenses can be funded.',
+      bgColor: 'bg-gradient-to-b from-[#57BA00]/15 to-white',
+      borderColor: 'border-black/12',
+      height: 'h-[268px]'
+    },
+    {
       title: 'Unexpected Financial Gaps',
-      description: 'Cover sudden expenses like medical emergencies, urgent repairs, or unforeseen bills without stress.',
+      description: 'Cover sudden expenses like medical emergencies.',
       bgColor: 'bg-gradient-to-b from-[#BAA200]/15 to-white',
       borderColor: 'border-black/12',
       height: 'h-[240px]'
@@ -61,16 +61,41 @@ const LoanUseCasesSection = () => {
   ];
 
   return (
-    <div className="w-full py-16 md:py-20 relative">
-      {/* Background Icon Overlay */}
-      <div className="absolute inset-0 z-0 pointer-events-none flex items-center justify-center">
-        <LoanCasesBgIcon />
+    <div className="w-full py-8 md:py-16 lg:py-20 relative">
+      {/* Background Icon Overlay - Desktop Only */}
+      <div className="hidden lg:block absolute inset-0 z-0 pointer-events-none">
+        <div className="flex items-center justify-center h-full">
+          <LoanCasesBgIcon />
+        </div>
       </div>
 
       <div className="max-w-[1400px] mx-auto px-4 md:px-6 lg:px-8 relative z-10">
+        {/* Mobile Heading */}
+        <div className="lg:hidden text-center mb-6">
+          <div className='md:hidden mb-3'>
+            <h2 className="text-3xl md:text-[28px] font-bold md:font-semibold text-[#212121] leading-[30px] md:leading-[36px] md:mb-2">
+              Common <span className="text-custom-purple font-bold">Personal</span>
+            </h2>
+            <h2 className="text-[28px] text-custom-purple font-bold leading-[36px] md:mb-3">
+              Loan Use Cases
+            </h2>
+          </div>
+          <div className='hidden md:block'>
+            <h2 className="text-3xl md:text-[28px] font-bold md:font-semibold text-[#212121] leading-[30px] md:leading-[36px] md:mb-2">
+              Common <span className="text-custom-purple font-bold">Personal Loan</span>
+            </h2>
+            <h2 className="text-[28px] text-custom-purple font-bold leading-[36px] md:mb-3">
+              Use Cases
+            </h2>
+          </div>
+          <p className="text-sm text-[#747986] font-normal leading-[20px] px-4">
+            People Use Personal Loans For Many Reasons — What Matters Is <span className="font-semibold text-custom-dark-text">Structured Repayment.</span>
+          </p>
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-          {/* Left Side - Heading */}
-          <div className="lg:col-span-4 flex items-center">
+          {/* Left Side - Heading - Desktop Only */}
+          <div className="hidden lg:flex lg:col-span-4 items-center">
             <div className='space-y-3'>
               <h2 className="text-[55px] font-medium text-[#212121] leading-[85px]">
                 Common
@@ -85,12 +110,13 @@ const LoanUseCasesSection = () => {
             </div>
           </div>
 
-          {/* Right Side - Use Cases Grid - Masonry Layout */}
-          <div className="lg:col-span-8">
+          {/* Right Side - Use Cases Grid */}
+          {/* Desktop View - Masonry Layout */}
+          <div className="hidden lg:block lg:col-span-8">
             <div className="grid grid-cols-2 gap-6">
               {/* Left Column */}
               <div className="space-y-10">
-                {[useCases[0], useCases[1], useCases[2], useCases[3]].map((useCase, index) => (
+                {[useCases[0], useCases[2], useCases[4], useCases[6]].map((useCase, index) => (
                   <div
                     key={index}
                     className={`${useCase.bgColor} ${useCase.borderColor} ${useCase.height} border border-b-0 rounded-t-3xl py-9 px-[50px] text-center transition-all duration-300 hover:scale-105 hover:shadow-lg flex flex-col justify-center`}
@@ -107,7 +133,7 @@ const LoanUseCasesSection = () => {
 
               {/* Right Column */}
               <div className="space-y-10 pt-[37px]">
-                {[useCases[4], useCases[5], useCases[6], useCases[7]].map((useCase, index) => (
+                {[useCases[1], useCases[3], useCases[5], useCases[7]].map((useCase, index) => (
                   <div
                     key={index}
                     className={`${useCase.bgColor} ${useCase.borderColor} ${useCase.height} border border-b-0 rounded-t-3xl py-9 px-[50px] text-center transition-all duration-300 hover:scale-105 hover:shadow-lg flex flex-col justify-center`}
@@ -123,6 +149,30 @@ const LoanUseCasesSection = () => {
               </div>
             </div>
           </div>
+
+          {/* Mobile View - Single Column */}
+          <div className="lg:hidden space-y-3">
+            {useCases.map((useCase, index) => (
+              <div
+                key={index}
+                className={`${useCase.bgColor} ${useCase.borderColor} border border-b-0 rounded-t-3xl py-6 px-6 text-center min-h-[160px] flex flex-col justify-center`}
+              >
+                <h3 className="text-xl font-bold text-custom-dark-text mb-3 leading-[26px]">
+                  {useCase.title}
+                </h3>
+                <p className="text-[#4B5768] text-sm leading-[20px] font-normal">
+                  {useCase.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Mobile Bottom Text */}
+        <div className="lg:hidden text-center mt-6 px-4">
+          <p className="font-normal text-sm leading-[16px] mt-8 mb-5 text-custom-dark-text">
+            RupeeQ Helps You Borrow Responsibly, Not Impulsively.
+          </p>
         </div>
       </div>
     </div>

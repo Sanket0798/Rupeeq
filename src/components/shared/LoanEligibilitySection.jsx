@@ -1,6 +1,6 @@
 import { Card } from '../ui';
 
-const LoanEligibilitySection = ({ 
+const LoanEligibilitySection = ({
   mainTitle = "Personal Loans & Eligibility",
   subtitle = "to get a loan via RupeeQ",
   leftColumnTitle = "Eligibility Criteria",
@@ -15,24 +15,24 @@ const LoanEligibilitySection = ({
   useDotsForRight = true
 }) => {
   return (
-    <div className="w-full bg-white py-16 md:py-20">
+    <div className="w-full bg-white py-8 md:py-16 lg:py-20">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         {/* Main Heading */}
-        <div className="text-center mb-11 text-[40px] leading-[50px] tracing-[0%] font-bold">
+        <div className="text-center mb-6 md:mb-11 text-2xl md:text-[40px] leading-[30px] md:leading-[50px] tracing-[0%] font-semibold md:font-bold">
           <h2 className="">
             <span className="text-custom-purple">{mainTitle}</span>
           </h2>
           {subtitle && (
-            <p className="text-[#4B5768]">
+            <p className="text-[#4B5768] mt-1 md:mt-0">
               {subtitle}
             </p>
           )}
         </div>
 
-        {/* Two Column Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+        {/* Desktop View - Two Column Layout */}
+        <div className="hidden lg:grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
           {/* Left Column - Eligibility Criteria */}
-          <Card variant="custom" className="pt-[38px] px-[44px] bg-[#F6F7F9]" rounded='rounded-[40px]'>
+          <Card variant="custom" className="pt-[38px] px-[44px]  md:bg-[#F6F7F9]" rounded='rounded-[40px]'>
             <h3 className="text-[30px] leading-[35px] tracing-[0px] text-custom-purple font-bold">
               {leftColumnTitle}
             </h3>
@@ -70,7 +70,7 @@ const LoanEligibilitySection = ({
           </Card>
 
           {/* Right Column */}
-          <Card variant="custom" className="pt-[38px] px-[44px] bg-[#F6F7F9]" rounded='rounded-[40px]'>
+          <Card variant="custom" className="pt-[38px] px-[44px] bg-[#FF3333] md:bg-[#F6F7F9]" rounded='rounded-[40px]'>
             <h3 className="text-[30px] leading-[35px] tracing-[0px] text-custom-purple font-bold max-w-[540px]">
               {rightColumnTitle}
             </h3>
@@ -106,6 +106,65 @@ const LoanEligibilitySection = ({
                   className="w-[457px] h-[269px] object-cover object-top"
                 />
               </div>
+            )}
+          </Card>
+        </div>
+
+        {/* Mobile View - Stacked Cards */}
+        <div className="lg:hidden space-y-6 px-11">
+          {/* Left Column - Eligibility Criteria - Mobile */}
+          <Card variant="custom" className="p-6 bg-[#5084FF]/15 md:bg-[#EEF2FF]" rounded='rounded-[10px]'>
+            <h3 className="text-xl leading-[25px] text-custom-purple font-bold text-center mb-4">
+              {leftColumnTitle}
+            </h3>
+
+            <div className="space-y-4 mb-5">
+              {eligibilityCriteria.map((item, index) => (
+                <div key={index} className="flex items-start gap-4">
+                  {useIconsForLeft && item.icon && (
+                    <img src={item.icon} alt="" className="w-8 h-8 flex-shrink-0" />
+                  )}
+                  <div className=''>
+                    <div className="font-semibold text-[15px] leading-[18px] tracing-[0%] text-custom-dark-text mb-1">{item.label}</div>
+                    <div className="text-[#4B5768] text-sm leading-[16px] font-normal">{item.value}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {leftColumnNote && (
+              <p className="text-sm leading-[18px] text-center text-[#4B5768] font-normal mt-4 ">
+                {leftColumnNote}
+              </p>
+            )}
+          </Card>
+
+          {/* Right Column - Interest Rates & Details - Mobile */}
+          <Card variant="custom" className="pt-6 px-5 pb-6 bg-[#FF3333]/10 md:bg-[#FFF5F5]" rounded='rounded-[10px]'>
+            <h3 className="text-xl leading-[25px] text-custom-purple font-bold text-center mb-6">
+              {rightColumnTitle}
+            </h3>
+
+            <div className="space-y-4 px-10 mb-5">
+              {rightColumnItems.map((item, index) => (
+                <div key={index} className="flex items-start gap-3">
+                  {useDotsForRight ? (
+                    <div className="w-2 h-2 rounded-full bg-[#34CA8D] flex-shrink-0 mt-1"></div>
+                  ) : item.icon ? (
+                    <img src={item.icon} alt="" className="w-10 h-10 flex-shrink-0 mt-1" />
+                  ) : null}
+                  <div className=''>
+                    <div className="font-semibold text-[15px] leading-[18px] tracing-[0%] text-custom-dark-text mb-1">{item.label}</div>
+                    <div className="text-[#4B5768] text-sm leading-[16px] font-normal">{item.value}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {rightColumnNote && (
+              <p className="text-sm leading-[18px] text-center text-[#4B5768] font-normal mt-4">
+                {rightColumnNote}
+              </p>
             )}
           </Card>
         </div>
