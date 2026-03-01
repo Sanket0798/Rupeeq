@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Card } from '../ui';
@@ -35,6 +35,7 @@ const DebtConsolidationInfo = ({
   const headingRef = useRef(null);
   const desktopCardsRef = useRef([]);
   const mobileCardsRef = useRef([]);
+  const [expandedCard, setExpandedCard] = useState(null);
 
   const iconComponents = {
     'ChartDonutIcon': ChartDonutIcon,
@@ -45,9 +46,14 @@ const DebtConsolidationInfo = ({
     'MobileIcon': MobileIcon
   };
 
+  const toggleCard = (index) => {
+    setExpandedCard(expandedCard === index ? null : index);
+  };
+
+
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Heading animation
+      // Heading animation - removed opacity
       if (headingRef.current) {
         gsap.from(headingRef.current.children, {
           scrollTrigger: {
@@ -55,7 +61,6 @@ const DebtConsolidationInfo = ({
             start: 'top 85%',
             toggleActions: 'play none none reverse'
           },
-          opacity: 0,
           y: 30,
           duration: 0.8,
           stagger: 0.15,
@@ -63,36 +68,40 @@ const DebtConsolidationInfo = ({
         });
       }
 
-      // Desktop cards animation
+      // Desktop cards animation - removed opacity
       if (window.innerWidth >= 768 && desktopCardsRef.current.length > 0) {
-        gsap.from(desktopCardsRef.current, {
-          scrollTrigger: {
-            trigger: desktopCardsRef.current[0],
-            start: 'top 80%',
-            toggleActions: 'play none none reverse'
-          },
-          opacity: 0,
-          y: 40,
-          duration: 0.7,
-          stagger: 0.15,
-          ease: 'power3.out'
-        });
+        const validCards = desktopCardsRef.current.filter(card => card !== null);
+        if (validCards.length > 0) {
+          gsap.from(validCards, {
+            scrollTrigger: {
+              trigger: validCards[0],
+              start: 'top 80%',
+              toggleActions: 'play none none reverse'
+            },
+            y: 40,
+            duration: 0.7,
+            stagger: 0.15,
+            ease: 'power3.out'
+          });
+        }
       }
 
-      // Mobile cards animation
+      // Mobile cards animation - removed opacity
       if (window.innerWidth < 768 && mobileCardsRef.current.length > 0) {
-        gsap.from(mobileCardsRef.current, {
-          scrollTrigger: {
-            trigger: mobileCardsRef.current[0],
-            start: 'top 85%',
-            toggleActions: 'play none none reverse'
-          },
-          opacity: 0,
-          y: 30,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: 'power2.out'
-        });
+        const validMobileCards = mobileCardsRef.current.filter(card => card !== null);
+        if (validMobileCards.length > 0) {
+          gsap.from(validMobileCards, {
+            scrollTrigger: {
+              trigger: validMobileCards[0],
+              start: 'top 85%',
+              toggleActions: 'play none none reverse'
+            },
+            y: 30,
+            duration: 0.6,
+            stagger: 0.1,
+            ease: 'power2.out'
+          });
+        }
       }
     }, sectionRef);
 
@@ -138,6 +147,7 @@ const DebtConsolidationInfo = ({
                 ref={el => desktopCardsRef.current[index] = el}
                 className={`${benefit.bgColor} p-6 gap-y-3 border-none rounded-lg flex flex-col items-start justify-between text-custom-dark-text shadow-card`}
                 rounded='rounded-none'
+                style={{ opacity: 1, visibility: 'visible' }}
               >
                 {showIcons && IconComponent && (
                   <div className={`${benefit.iconBgColor || 'bg-button-color'} w-[48px] h-[48px] flex items-center justify-center mb-8`}>
@@ -156,21 +166,42 @@ const DebtConsolidationInfo = ({
         </div>
 
         {/* Mobile View - Stacked Cards with Click to Expand */}
-        <div className="md:hidden space-y-4">
-          {benefits.map((benefit, index) => (
-            <div
-              key={index}
-              ref={el => mobileCardsRef.current[index] = el}
-              className="bg-[#0072F2]/10 rounded-[10px] py-5 px-8 shadow-[0px_6px_5px_0px_rgba(0,0,0,0.10)]"
-            >
-              <h3 className="font-semibold text-2xl leading-[30px] mb-2 text-button-color">
-                {benefit.title}
-              </h3>
-              <p className="text-sm leading-[19px] font-normal text-[#4B5768]">
-                {benefit.description}
-              </p>
-            </div>
-          ))}
+        <div className="md:hidden space-y-4 px-4">
+          {benefits.map((benefit, index) => {
+            const IconComponent = benefit.icon ? iconComponents[benefit.icon] : null;
+            const isExpanded = expandedCard === index;
+
+            return (
+              <div
+                key={index}
+                onClick={() => toggleCard(index)}
+                className={`${isExpanded ? 'bg-[#00AA4E]/10' : 'border border-[#DDE5FB]'} rounded-24 transition-all duration-300 cursor-pointer`}
+              >
+                {/* Card Header - Always Visible */}
+                <div className="flex items-center gap-4 p-6">
+                  {/* Number Circle */}
+                  <div className={`flex-shrink-0 w-[48px] h-[48px] rounded-full ${isExpanded ? 'bg-white' : 'bg-[#151801]/10'} flex items-center justify-center`}>
+                    <span className="font-normal text-2xl leading-[29px] text-[#2E3502]">{index + 1}</span>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className={`flex-1 font-semibold transition-all ${isExpanded ? 'text-button-color text-2xl leading-[30px]' : 'text-2xl leading-[30px] text-custom-dark-text'
+                    }`}>
+                    {benefit.title}
+                  </h3>
+                </div>
+
+                {/* Expanded Description */}
+                {isExpanded && (
+                  <div className="px-5 pb-5 pt-0">
+                    <p className="text-base leading-[23px] font-normal text-custom-dark-text">
+                      {benefit.description}
+                    </p>
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

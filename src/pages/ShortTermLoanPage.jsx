@@ -127,6 +127,8 @@ const ShortTermLoanPage = () => {
         <LoanEligibilitySection
           mainTitle=""
           subtitle=""
+          mobileHeading="Personal Loans & Eligibility"
+          mobileSubtitle="To Get A Loan Via RupeeQ"
           leftColumnTitle="Eligibility Criteria"
           rightColumnTitle="Who Should Consider This Loan?"
           eligibilityCriteria={eligibilityCriteria}
