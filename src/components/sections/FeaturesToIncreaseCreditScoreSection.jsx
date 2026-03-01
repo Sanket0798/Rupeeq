@@ -42,22 +42,22 @@ const FeaturesToIncreaseCreditScoreSection = () => {
   ];
 
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-[1400px] mx-auto bg-[#E6F2FD] text-center rounded-24 pt-[51px] pb-[97px] px-[76px]">
+    <section className="py-8 md:py-16 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1400px] mx-auto bg-[#E6F2FD] text-center rounded-[15px] md:rounded-24 pt-6 md:pt-[51px] pb-8 md:pb-[97px] px-4 md:px-[76px]">
         {/* Title */}
-        <h2 className="text-[40px] font-bold leading-[47px] tracing-[0px] text-custom-dark-blue mb-6">
+        <h2 className="text-2xl md:text-[40px] font-bold leading-[30px] md:leading-[47px] tracing-[0px] text-custom-dark-blue mb-4 md:mb-6">
           Features To Increase Your Credit Score
         </h2>
 
         {/* Tabs */}
-        <div className="flex justify-center gap-6 mb-[92px] flex-wrap">
+        <div className="flex justify-center gap-3 md:gap-6 mb-8 md:mb-[92px] flex-wrap">
           {tabs.map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`px-4 py-2 rounded-full font-helvetica-neue font-bold text-[#0072F2] ${activeTab === tab
+              className={`px-3 md:px-4 py-2 rounded-full font-helvetica-neue font-bold text-sm md:text-base ${activeTab === tab
                 ? 'bg-[#0072F2] text-white'
-                : 'bg-transparent text-base leading-[110%] tracing-[0px] border border-[#0072F2] hover:bg-[#0072F2] hover:text-white'
+                : 'bg-transparent text-[#0072F2] leading-[110%] tracing-[0px] border border-[#0072F2] hover:bg-[#0072F2] hover:text-white'
                 }`}
             >
               {tab}
@@ -66,11 +66,11 @@ const FeaturesToIncreaseCreditScoreSection = () => {
         </div>
 
         {/* Features Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
           {features.map((feature, index) => (
             <div
               key={index}
-              className={`${feature.bgColor} rounded-2xl p-5 hover:shadow-lg hover:bg-[#34CA8D]/30 cursor-pointer transition-all duration-300 relative min-h-[222px] flex flex-col justify-between items-start`}
+              className={`${feature.bgColor} rounded-xl md:rounded-2xl p-4 md:p-5 hover:shadow-lg hover:bg-[#34CA8D]/30 cursor-pointer transition-all duration-300 relative min-h-[160px] md:min-h-[222px] flex flex-col justify-between items-start`}
             >
               {/* Arrow Icon */}
               <div className="flex w-full items-end justify-end">
@@ -78,7 +78,7 @@ const FeaturesToIncreaseCreditScoreSection = () => {
               </div>
 
               {/* Feature Title */}
-              <h3 className="text-2xl leading-[29px] tracing-[0%] text-custom-dark-text font-normal text-start">
+              <h3 className="text-base md:text-2xl leading-[20px] md:leading-[29px] tracing-[0%] text-custom-dark-text font-normal text-start">
                 {feature.title.split('\n').map((line, lineIndex) => (
                   <span key={lineIndex}>
                     {line}

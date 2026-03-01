@@ -1,146 +1,236 @@
 import { useState } from 'react';
+import { ChevronUpIcon } from '../common/SvgIcons';
 
 const CreditScoreHero = () => {
   const [formData, setFormData] = useState({
-    name: '',
+    fullName: '',
     mobile: '',
+    dob: '',
+    panCard: '',
     email: '',
-    panCard: ''
+    agreeToTerms: false
   });
 
+  const features = [
+    'Free Credit Score With No Impact',
+    'RupeeQ ACE Insights Beyond Just The Score',
+    'Clear Indicators Of Loan Eligibility & Risk Areas',
+    'Action-Oriented Recommendations, Not Generic Advice'
+  ];
+
+  const ctaButtons = [
+    { text: 'Check Free Credit Score', action: () => console.log('Check Credit Score') },
+    { text: 'See Your ACE Insights', action: () => console.log('See ACE Insights') }
+  ];
+
   const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [name]: type === 'checkbox' ? checked : value
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // TODO: Handle form submission
+    console.log('Form submitted:', formData);
   };
 
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-blue-50 to-white">
-      <div className="max-w-[1286px] mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+    <section
+      className="relative pb-12 md:pb-16 lg:pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#DDEDF9] to-[#F7F7F7] rounded-24 mx-4 overflow-visible"
+      style={{
+        marginTop: '-80px',
+        paddingTop: '120px'
+      }}
+    >
+      <div className="max-w-[1400px] mx-auto overflow-visible">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-[104px] items-start md:mt-16 overflow-visible">
           {/* Left Content */}
-          <div>
-            <h1 className="text-4xl lg:text-[50px] font-bold leading-tight mb-6">
-              <span className="text-custom-purple">
-                KNOW YOUR CREDIT SCORE.
-                <br />
-                UNDERSTAND WHAT IT MEANS.
-              </span>
-            </h1>
-            <p className="text-xl text-[#747986] mb-8 leading-relaxed">
-              Check your free credit score and get RupeeQ ACE - Advanced Credit Evaluation 
-              that tells you where you stand and what to do next.
-            </p>
+          <div className="space-y-6 md:space-y-9">
+            <div>
+              <h1 className="text-2xl md:text-[40px] lg:text-[50px] font-medium md:font-medium leading-tight mb-4 md:mb-8 text-custom-dark-text">
+                Know Your <span className="text-custom-purple font-bold">CREDIT SCORE.</span>
+                <br />Understand What It Means.
+              </h1>
+              <p className="text-sm md:text-lg leading-[18px] md:leading-[22px] font-normal md:pr-24 mb-4 md:mb-8 text-custom-dark-text">
+                Check your <span className="font-semibold">free credit score</span> and get{' '}
+                <span className="font-semibold">RupeeQ ACE – Advanced Credit Evaluation</span>{' '}
+                that tells you where you stand and what to do next.
+              </p>
+              <p className="text-sm md:text-lg leading-[18px] md:leading-[22px] font-normal md:pr-24 mb-4 md:mb-8 text-custom-dark-text">
+                Most platforms stop at numbers. <span className="font-semibold">RupeeQ goes deeper</span> — analysing
+                your credit behaviour, risk signals, and loan readiness in one smart view.
+              </p>
+            </div>
 
-            {/* Quick Check Form */}
-            <div className="bg-white rounded-3xl shadow-[5px_5px_4px_0px_rgba(0,0,0,0.25)] p-8">
-              <h3 className="text-2xl font-bold text-custom-purple mb-6">
-                Quick Credit Score Report
-              </h3>
-              <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Feature List */}
+            <div className="space-y-3 md:space-y-4">
+              {features.map((feature, index) => (
+                <div key={index} className="flex items-center gap-3">
+                  <div className="w-[10px] h-[10px] rounded-full bg-[#178FE5] flex-shrink-0"></div>
+                  <p className="text-sm md:text-base lg:text-lg font-semibold md:font-bold leading-[18px] md:leading-[22px] text-custom-dark-text">
+                    {feature}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col w-full md:w-[289px] gap-3 md:gap-4">
+              {ctaButtons.map((button, index) => (
+                <button
+                  key={index}
+                  onClick={button.action}
+                  className="bg-button-color text-white font-bold text-base md:text-lg leading-[130%] px-6 py-3 md:py-4 rounded-full hover:bg-[#4a2470] transition-all duration-300 hover:shadow-xl flex items-center justify-center gap-2"
+                >
+                  {button.text}
+                  <ChevronUpIcon />
+                </button>
+              ))}
+            </div>
+
+            {/* Credit Score Gauge Image - Positioned to overflow */}
+            {/* <div className="relative top-[50px] overflow-visible">
+              <img
+                src="/assets/images/creditScore/GoodCreditScore2.png"
+                alt="Credit Score Gauge"
+                className="w-full max-w-[320px] lg:max-w-[420px] h-auto object-contain mx-auto lg:mx-0 relative"
+                // style={{
+                //   bottom: '-60px',
+                //   zIndex: 1
+                // }}
+              />
+            </div> */}
+          </div>
+
+          {/* Right - Form */}
+          <div className="max-w-[528px] relative z-10">
+            <h3 className="font-semibold text-2xl md:text-[40px] leading-[32px] md:leading-[60px] text-custom-dark-text mb-4 md:mb-6">
+              Quick Credit score report
+            </h3>
+            <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
+              {/* Full Name */}
+              <div>
+                <label className="block font-semibold md:font-bold text-base md:text-lg leading-[22px] md:leading-[26px] mb-2 text-custom-dark-text">
+                  Full Name
+                </label>
                 <input
                   type="text"
-                  name="name"
-                  placeholder="Name"
-                  value={formData.name}
+                  name="fullName"
+                  placeholder="Enter your Full Name"
+                  value={formData.fullName}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-button-color"
+                  className="w-full px-4 py-3 rounded-[20px] border border-[#D0D0D0] focus:outline-none focus:ring-2 focus:ring-button-color text-custom-dark-text placeholder:text-[#58626C]/50 text-sm md:text-base placeholder:text-sm md:placeholder:text-base leading-[22px] md:leading-[26px]"
+                  required
                 />
+              </div>
+
+              {/* Mobile Number */}
+              <div>
+                <label className="block font-semibold md:font-bold text-base md:text-lg leading-[22px] md:leading-[26px] mb-2 text-custom-dark-text">
+                  Mobile Number
+                </label>
                 <input
                   type="tel"
                   name="mobile"
-                  placeholder="Mobile"
+                  placeholder="Enter your Mobile Number"
                   value={formData.mobile}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-button-color"
+                  className="w-full px-4 py-3 rounded-[20px] border border-[#D0D0D0] focus:outline-none focus:ring-2 focus:ring-button-color text-custom-dark-text placeholder:text-[#58626C]/50 text-sm md:text-base placeholder:text-sm md:placeholder:text-base leading-[22px] md:leading-[26px]"
+                  required
                 />
+              </div>
+
+              {/* Date of Birth */}
+              <div>
+                <label className="block font-semibold md:font-bold text-base md:text-lg leading-[22px] md:leading-[26px] mb-2 text-custom-dark-text">
+                  Date of Birth
+                </label>
                 <input
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  value={formData.email}
+                  type="text"
+                  name="dob"
+                  placeholder="Enter your DOB (DD-MM-YY)"
+                  value={formData.dob}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-button-color"
+                  className="w-full px-4 py-3 rounded-[20px] border border-[#D0D0D0] focus:outline-none focus:ring-2 focus:ring-button-color text-custom-dark-text placeholder:text-[#58626C]/50 text-sm md:text-base placeholder:text-sm md:placeholder:text-base leading-[22px] md:leading-[26px]"
+                  required
                 />
+              </div>
+
+              {/* Pan Card */}
+              <div>
+                <label className="block font-semibold md:font-bold text-base md:text-lg leading-[22px] md:leading-[26px] mb-2 text-custom-dark-text">
+                  Pan Card
+                </label>
                 <input
                   type="text"
                   name="panCard"
-                  placeholder="PAN Card"
+                  placeholder="Enter your Pan Card No."
                   value={formData.panCard}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-button-color"
+                  className="w-full px-4 py-3 rounded-[20px] border border-[#D0D0D0] focus:outline-none focus:ring-2 focus:ring-button-color text-custom-dark-text placeholder:text-[#58626C]/50 text-sm md:text-base placeholder:text-sm md:placeholder:text-base leading-[22px] md:leading-[26px]"
+                  required
                 />
-                <button
-                  type="submit"
-                  className="w-full bg-button-color text-white font-semibold py-4 rounded-full hover:bg-[#4a2470] transition-all duration-300 shadow-lg hover:shadow-xl"
-                >
-                  Check Credit Score
-                </button>
-              </form>
-              <p className="text-sm text-gray-500 mt-4 text-center">
-                100% Safe and Secure. No impact on your credit score.
-              </p>
-            </div>
-          </div>
-
-          {/* Right - Credit Score Gauge */}
-          <div className="flex justify-center">
-            <div className="relative w-full max-w-md">
-              <div className="aspect-square bg-gradient-to-br from-purple-100 to-blue-100 rounded-full flex items-center justify-center p-8">
-                {/* Credit Score Gauge Illustration */}
-                <div className="relative w-full h-full">
-                  <svg viewBox="0 0 200 200" className="w-full h-full">
-                    {/* Background arc */}
-                    <path
-                      d="M 30 170 A 85 85 0 1 1 170 170"
-                      fill="none"
-                      stroke="#E5E7EB"
-                      strokeWidth="20"
-                      strokeLinecap="round"
-                    />
-                    {/* Colored segments */}
-                    <path
-                      d="M 30 170 A 85 85 0 0 1 60 70"
-                      fill="none"
-                      stroke="#EF4444"
-                      strokeWidth="20"
-                      strokeLinecap="round"
-                    />
-                    <path
-                      d="M 60 70 A 85 85 0 0 1 100 30"
-                      fill="none"
-                      stroke="#F59E0B"
-                      strokeWidth="20"
-                      strokeLinecap="round"
-                    />
-                    <path
-                      d="M 100 30 A 85 85 0 0 1 140 70"
-                      fill="none"
-                      stroke="#EAB308"
-                      strokeWidth="20"
-                      strokeLinecap="round"
-                    />
-                    <path
-                      d="M 140 70 A 85 85 0 0 1 170 170"
-                      fill="none"
-                      stroke="#22C55E"
-                      strokeWidth="20"
-                      strokeLinecap="round"
-                    />
-                  </svg>
-                  <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <div className="text-6xl font-bold text-custom-purple">750</div>
-                    <div className="text-xl text-gray-600 mt-2">Good Score</div>
-                  </div>
-                </div>
               </div>
-            </div>
+
+              {/* Email ID */}
+              <div>
+                <label className="block font-semibold md:font-bold text-base md:text-lg leading-[22px] md:leading-[26px] mb-2 text-custom-dark-text">
+                  Email ID
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Enter your Email Address"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 rounded-[20px] border border-[#D0D0D0] focus:outline-none focus:ring-2 focus:ring-button-color text-custom-dark-text placeholder:text-[#58626C]/50 text-sm md:text-base placeholder:text-sm md:placeholder:text-base leading-[22px] md:leading-[26px]"
+                  required
+                />
+              </div>
+
+              {/* Terms and Conditions */}
+              <div className="flex items-start gap-3">
+                <input
+                  type="checkbox"
+                  name="agreeToTerms"
+                  id="agreeToTerms"
+                  checked={formData.agreeToTerms}
+                  onChange={handleInputChange}
+                  className="w-4 h-4 mt-1 text-button-color border-gray-300 rounded focus:ring-button-color flex-shrink-0"
+                  required
+                />
+                <label htmlFor="agreeToTerms" className="text-sm md:text-[17px] font-semibold leading-[20px] md:leading-[127%] tracing-[-0.2%] text-[#555555]">
+                  I agree to{' '}
+                  <a href="/privacy-policy" className="text-[#0072F2] underline">
+                    Privacy Policy
+                  </a>{' '}
+                  and{' '}
+                  <a href="/terms-and-conditions" className="text-[#0072F2] underline">
+                    Terms and Conditions.
+                  </a>
+                </label>
+              </div>
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                className="w-full md:w-[168px] bg-white font-semibold py-3 px-4 rounded-full hover:opacity-80 transition-all duration-300 text-base md:text-lg relative overflow-hidden"
+              >
+                <span
+                  style={{
+                    backgroundImage: 'linear-gradient(to right, #0072F2, rgba(0, 214, 160, 0.5))',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text'
+                  }}
+                >
+                  Submit
+                </span>
+              </button>
+            </form>
           </div>
         </div>
       </div>

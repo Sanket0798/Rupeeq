@@ -23,24 +23,24 @@ const WhatACEAnalysesSection = () => {
   ];
 
   return (
-    <div className="w-full py-16 md:py-20 px-4 md:px-6 lg:px-8">
-      <div className="max-w-[1387px] text-center mx-auto rounded-24 z-10 bg-gradient-to-b from-[#34CA8D]/5 to-white pt-[51px] px-[57px]">
+    <div className="w-full py-8 md:py-16 lg:py-20 px-4 md:px-6 lg:px-8">
+      <div className="max-w-[1387px] text-center mx-auto rounded-[15px] md:rounded-24 z-10 bg-gradient-to-b from-[#34CA8D]/5 to-white pt-6 md:pt-[51px] px-4 md:px-[57px] pb-6 md:pb-0">
         {/* Title */}
-        <h2 className="font-bold text-[30px] leading-[35px] text-[#212121] mb-11">
+        <h2 className="font-bold text-xl md:text-[30px] leading-[26px] md:leading-[35px] text-[#212121] mb-6 md:mb-11">
           What RupeeQ ACE Analyses
         </h2>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {analyses.map((item, index) => (
             <div
               key={index}
-              className={`${item.bgColor} rounded-t-3xl p-6 border border-black/10 border-b-white transition-all duration-300 hover:scale-105 hover:shadow-lg flex flex-col items-center justify-center min-h-[239px]`}
+              className={`${item.bgColor} rounded-t-2xl md:rounded-t-3xl p-4 md:p-6 border border-black/10 border-b-white transition-all duration-300 hover:scale-105 hover:shadow-lg flex flex-col items-center justify-center min-h-[180px] md:min-h-[239px]`}
             >
-              <h3 className="text-[30px] font-bold tracing-[6%] leading-[130%] text-custom-dark-text mb-6">
+              <h3 className="text-xl md:text-[30px] font-bold tracing-[6%] leading-[130%] text-custom-dark-text mb-3 md:mb-6">
                 {item.title}
               </h3>
-              <p className="text-custom-dark-text text-center text-2xl leading-[130%] font-light">
+              <p className="text-custom-dark-text text-center text-base md:text-2xl leading-[130%] font-light">
                 {item.description}
               </p>
             </div>
