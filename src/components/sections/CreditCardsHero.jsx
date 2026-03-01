@@ -1,83 +1,152 @@
 import { Button } from '../ui';
 
 const CreditCardsHero = () => {
-  const cardCategories = [
+  // Credit card data for the slider
+  const creditCards = [
     {
-      title: 'Cashback Cards',
-      description: 'Get money back on every purchase',
-      features: ['Up to 5% cashback', 'No annual fee options', 'Instant rewards'],
-      gradient: 'from-purple-500 to-blue-500'
+      name: 'Razor Pay',
+      image: '/assets/images/creditCards/card1.png',
     },
     {
-      title: 'Travel Cards',
-      description: 'Perfect for frequent travelers',
-      features: ['Airport lounge access', 'Travel insurance', 'Miles rewards'],
-      gradient: 'from-blue-500 to-cyan-500'
+      name: 'Alpha',
+      image: '/assets/images/creditCards/card2.png',
     },
     {
-      title: 'Premium Cards',
-      description: 'Exclusive benefits and privileges',
-      features: ['Concierge service', 'Golf privileges', 'Dining benefits'],
-      gradient: 'from-purple-600 to-pink-500'
+      name: 'Axis Bank',
+      image: '/assets/images/creditCards/card3.png',
+    },
+    {
+      name: 'Razor Pay',
+      image: '/assets/images/creditCards/card1.png',
+    },
+    {
+      name: 'Alpha',
+      image: '/assets/images/creditCards/card2.png',
     }
   ];
 
   return (
-    <section id="credit-cards-hero" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-purple-50 to-white">
-      <div className="max-w-[1286px] mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl lg:text-[50px] font-bold leading-tight mb-6">
-            <span className="bg-brand-gradient bg-clip-text text-transparent">
-              Smart Credit Cards Designed For You
-            </span>
-          </h1>
-          <p className="text-xl text-[#747986] max-w-3xl mx-auto leading-relaxed">
-            Compare and choose from India's best credit cards. Get instant approval, 
-            exclusive rewards, and benefits tailored to your lifestyle.
-          </p>
-        </div>
-
-        {/* CTA Button */}
-        <div className="flex justify-center mb-20">
-          <Button variant="primary" size="lg" className="gap-3">
-            Explore Credit Cards
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
+    <section id="credit-cards-hero" className="py-16 bg-gradient-to-b from-blue-50 to-white overflow-hidden">
+      {/* Header - Contained */}
+      <div className="max-w-[1286px] mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
+          <div>
+            <h1 className="text-4xl lg:text-[50px] font-bold leading-tight mb-4">
+              Smart <span className="text-custom-purple">Credit Cards</span> Designed For You
+            </h1>
+            <p className="text-lg text-[#747986] max-w-2xl">
+              Choose From Our Wide Range Of Cards The One That Best Suits Your Needs.
+            </p>
+          </div>
+          <Button variant="primary" size="lg" className="px-8 py-3 whitespace-nowrap">
+            View More...
           </Button>
         </div>
+      </div>
 
-        {/* Credit Card Categories */}
-        <div className="grid md:grid-cols-3 gap-8">
-          {cardCategories.map((category, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-3xl overflow-hidden shadow-[5px_5px_4px_0px_rgba(0,0,0,0.25)] hover:shadow-xl transition-all duration-300 hover:scale-105"
-            >
-              <div className={`h-48 bg-gradient-to-br ${category.gradient} flex items-center justify-center relative overflow-hidden`}>
-                <div className="absolute inset-0 bg-black/10"></div>
-                <div className="relative z-10 text-white text-center p-6">
-                  <h3 className="text-2xl font-bold mb-2">{category.title}</h3>
-                  <p className="text-sm opacity-90">{category.description}</p>
+      {/* Auto-scrolling Credit Cards Slider - Full Width */}
+      <div className="relative w-full">
+        {/* Gradient overlays for fade effect */}
+        {/* <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-blue-50 to-transparent z-10 pointer-events-none"></div> */}
+        {/* <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div> */}
+        
+        {/* Scrolling container */}
+        <div className="overflow-hidden">
+          <div className="flex gap-8 animate-scroll-left">
+            {/* First set of cards */}
+            {creditCards.map((card, index) => (
+              <div
+                key={`card-1-${index}`}
+                className="flex-shrink-0 w-[400px] lg:w-[450px] relative group"
+              >
+                <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 relative">
+                  {/* Tags - Show on every card when hovered */}
+                  <div className="absolute top-6 right-6 z-10 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span className="bg-custom-purple text-white px-4 py-2 rounded-full text-sm font-semibold">
+                      Lorem
+                    </span>
+                    <span className="bg-custom-purple text-white px-4 py-2 rounded-full text-sm font-semibold">
+                      Ipsum
+                    </span>
+                  </div>
+                  
+                  {/* Card Image */}
+                  <div className="h-[300px] bg-gradient-to-br from-purple-100 to-blue-100 flex items-center justify-center p-8">
+                    <img
+                      src={card.image}
+                      alt={card.name}
+                      className="w-full h-full object-contain"
+                      onError={(e) => {
+                        // Fallback gradient card design
+                        e.target.style.display = 'none';
+                        const fallback = document.createElement('div');
+                        fallback.className = 'w-full h-full bg-gradient-to-br from-purple-500 to-blue-500 rounded-2xl shadow-2xl flex items-center justify-center';
+                        fallback.innerHTML = `
+                          <div class="text-white text-center">
+                            <div class="text-2xl font-bold mb-2">${card.name}</div>
+                            <div class="text-sm opacity-80">Credit Card</div>
+                          </div>
+                        `;
+                        e.target.parentElement.appendChild(fallback);
+                      }}
+                    />
+                  </div>
+                  
+                  {/* Card Name */}
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-custom-dark-text">{card.name}</h3>
+                  </div>
                 </div>
               </div>
-              <div className="p-6">
-                <ul className="space-y-3">
-                  {category.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-[#747986]">
-                      <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                      </svg>
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Button variant="primary" size="md" className="mt-6 w-full">
-                  View Cards
-                </Button>
+            ))}
+            
+            {/* Duplicate set for seamless loop */}
+            {creditCards.map((card, index) => (
+              <div
+                key={`card-2-${index}`}
+                className="flex-shrink-0 w-[400px] lg:w-[450px] relative group"
+              >
+                <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 relative">
+                  {/* Tags - Show on every card when hovered */}
+                  <div className="absolute top-6 right-6 z-10 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span className="bg-custom-purple text-white px-4 py-2 rounded-full text-sm font-semibold">
+                      Lorem
+                    </span>
+                    <span className="bg-custom-purple text-white px-4 py-2 rounded-full text-sm font-semibold">
+                      Ipsum
+                    </span>
+                  </div>
+                  
+                  {/* Card Image */}
+                  <div className="h-[300px] bg-gradient-to-br from-purple-100 to-blue-100 flex items-center justify-center p-8">
+                    <img
+                      src={card.image}
+                      alt={card.name}
+                      className="w-full h-full object-contain"
+                      onError={(e) => {
+                        // Fallback gradient card design
+                        e.target.style.display = 'none';
+                        const fallback = document.createElement('div');
+                        fallback.className = 'w-full h-full bg-gradient-to-br from-purple-500 to-blue-500 rounded-2xl shadow-2xl flex items-center justify-center';
+                        fallback.innerHTML = `
+                          <div class="text-white text-center">
+                            <div class="text-2xl font-bold mb-2">${card.name}</div>
+                            <div class="text-sm opacity-80">Credit Card</div>
+                          </div>
+                        `;
+                        e.target.parentElement.appendChild(fallback);
+                      }}
+                    />
+                  </div>
+                  
+                  {/* Card Name */}
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-custom-dark-text">{card.name}</h3>
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

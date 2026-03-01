@@ -25,3 +25,13 @@ export { default as CheckCreditScoreStepsSection } from './CheckCreditScoreSteps
 export { default as FeaturesToIncreaseCreditScoreSection } from './FeaturesToIncreaseCreditScoreSection';
 export { default as WhatIsGoodCreditScoreSection } from './WhatIsGoodCreditScoreSection';
 export { default as FactorsAffectingCreditScoreSection } from './FactorsAffectingCreditScoreSection';
+export { default as EMICalculatorHero } from './EMICalculatorHero';
+export { default as WhatIsEMICalculatorSection } from './WhatIsEMICalculatorSection';
+export { default as CalculatingEMISection } from './CalculatingEMISection';
+export { default as ImpactOfInterestRateSection } from './ImpactOfInterestRateSection';
+export { default as CompareEMIsSection } from './CompareEMIsSection';
+export { default as EMICalculatorBenefitsSection } from './EMICalculatorBenefitsSection';
+export { default as EMICalculatorCTASection } from './EMICalculatorCTASection';
+export { default as IFSCMICRHero } from './IFSCMICRHero';
+export { default as IFSCMICRSearchSection } from './IFSCMICRSearchSection';
+export { default as IFSCMICRCTASection } from './IFSCMICRCTASection';
