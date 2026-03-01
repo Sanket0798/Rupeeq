@@ -1,4 +1,67 @@
+import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
 const WhatIsGoodCreditScoreSection = () => {
+  const sectionRef = useRef(null);
+  const titleRef = useRef(null);
+  const descriptionRef = useRef(null);
+  const benefitsCardRef = useRef(null);
+  const imageRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Animate title
+      gsap.from(titleRef.current, {
+        y: 50,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: titleRef.current,
+          start: 'top 80%',
+        }
+      });
+
+      // Animate description
+      gsap.from(descriptionRef.current, {
+        y: 40,
+        duration: 0.7,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: descriptionRef.current,
+          start: 'top 80%',
+        }
+      });
+
+      // Animate benefits card from left
+      gsap.from(benefitsCardRef.current, {
+        x: -80,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: benefitsCardRef.current,
+          start: 'top 80%',
+        }
+      });
+
+      // Animate credit score gauge image from right
+      gsap.from(imageRef.current, {
+        x: 80,
+        scale: 0.9,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: imageRef.current,
+          start: 'top 80%',
+        }
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   const benefits = [
     'Your Applications For Loans And Credit Cards Are More Likely To Be Approved.',
     'A Higher Score Can Lead To Higher Credit Limits, Giving You More Financial Flexibility.',
@@ -7,15 +70,15 @@ const WhatIsGoodCreditScoreSection = () => {
   ];
 
   return (
-    <section className="py-8 md:py-16 px-4 sm:px-6 lg:px-8 bg-white">
+    <section ref={sectionRef} className="py-8 md:py-16 px-4 sm:px-6 lg:px-8 bg-white">
       <div className="max-w-[1226px] mx-auto text-center">
         {/* Title */}
-        <h2 className="text-2xl md:text-[40px] font-bold leading-[30px] md:leading-[37px] tracing-[0px] text-custom-purple mb-4 md:mb-8">
+        <h2 ref={titleRef} className="text-2xl md:text-[40px] font-bold leading-[30px] md:leading-[37px] tracing-[0px] text-custom-purple mb-4 md:mb-8">
           What Is A Good Credit Score?
         </h2>
 
         {/* Description */}
-        <p className="text-center font-normal text-sm md:text-xl leading-[20px] md:leading-[28px] tracing-[0%] max-w-5xl mx-auto mb-8 md:mb-20 px-4">
+        <p ref={descriptionRef} className="text-center font-normal text-sm md:text-xl leading-[20px] md:leading-[28px] tracing-[0%] max-w-5xl mx-auto mb-8 md:mb-20 px-4">
           According To The FICO Scoring Model, A Good Credit Score Is Considered In The Range Of 670 To 739.
           <br className="hidden md:block" />
           This Range Indicates To Lenders That The Borrower Is A Dependable Applicant With A Solid Track.
@@ -24,7 +87,7 @@ const WhatIsGoodCreditScoreSection = () => {
         {/* Content Grid */}
         <div className="grid lg:grid-cols-2 gap-6 md:gap-12 items-center">
           {/* Left - Benefits Card */}
-          <div className="bg-[#F6F7F9] rounded-[20px] md:rounded-[40px] py-6 md:py-[38px] px-6 md:px-11 text-start shadow-[5px_5px_4px_rgba(0,0,0,0.25)]">
+          <div ref={benefitsCardRef} className="bg-[#F6F7F9] rounded-[20px] md:rounded-[40px] py-6 md:py-[38px] px-6 md:px-11 text-start shadow-[5px_5px_4px_rgba(0,0,0,0.25)]">
             <h3 className="font-bold text-xl md:text-[30px] leading-[26px] md:leading-[35px] tracing-[0px] text-custom-purple mb-6 md:mb-11">
               Benefits Of Good Credit Score
             </h3>
@@ -42,7 +105,7 @@ const WhatIsGoodCreditScoreSection = () => {
           </div>
 
           {/* Right - Credit Score Gauge and Info */}
-          <div className="text-center">
+          <div ref={imageRef} className="text-center">
             <p className="text-custom-dark-text font-normal text-sm md:text-xl max-w-[485px] leading-[20px] md:leading-[26px] mb-6 md:mb-11 mx-auto px-4">
               This Range Helps Lenders Assess The Lending Risk And Decide On Loan Approvals And Interest Rates.
             </p>

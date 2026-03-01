@@ -1,8 +1,58 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { CreditScoreUpIcon } from '../common/SvgIcons';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const FeaturesToIncreaseCreditScoreSection = () => {
   const [activeTab, setActiveTab] = useState('Transaction');
+  const sectionRef = useRef(null);
+  const titleRef = useRef(null);
+  const tabsRef = useRef(null);
+  const cardsRef = useRef([]);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Animate title
+      gsap.from(titleRef.current, {
+        y: 50,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: titleRef.current,
+          start: 'top 80%',
+        }
+      });
+
+      // Animate tabs
+      gsap.from(tabsRef.current, {
+        y: 30,
+        duration: 0.6,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: tabsRef.current,
+          start: 'top 80%',
+        }
+      });
+
+      // Animate feature cards with stagger
+      const validCards = cardsRef.current.filter(card => card !== null);
+      gsap.from(validCards, {
+        y: 50,
+        scale: 0.95,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: 'back.out(1.2)',
+        scrollTrigger: {
+          trigger: validCards[0],
+          start: 'top 80%',
+        }
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   const tabs = ['Wealth', 'Transaction', 'Tracking', 'Accessibility'];
 
@@ -42,15 +92,15 @@ const FeaturesToIncreaseCreditScoreSection = () => {
   ];
 
   return (
-    <section className="py-8 md:py-16 px-4 sm:px-6 lg:px-8">
+    <section ref={sectionRef} className="py-8 md:py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-[1400px] mx-auto bg-[#E6F2FD] text-center rounded-[15px] md:rounded-24 pt-6 md:pt-[51px] pb-8 md:pb-[97px] px-4 md:px-[76px]">
         {/* Title */}
-        <h2 className="text-2xl md:text-[40px] font-bold leading-[30px] md:leading-[47px] tracing-[0px] text-custom-dark-blue mb-4 md:mb-6">
+        <h2 ref={titleRef} className="text-2xl md:text-[40px] font-bold leading-[30px] md:leading-[47px] tracing-[0px] text-custom-dark-blue mb-4 md:mb-6">
           Features To Increase Your Credit Score
         </h2>
 
         {/* Tabs */}
-        <div className="flex justify-center gap-3 md:gap-6 mb-8 md:mb-[92px] flex-wrap">
+        <div ref={tabsRef} className="flex justify-center gap-3 md:gap-6 mb-8 md:mb-[92px] flex-wrap">
           {tabs.map((tab) => (
             <button
               key={tab}
@@ -70,6 +120,7 @@ const FeaturesToIncreaseCreditScoreSection = () => {
           {features.map((feature, index) => (
             <div
               key={index}
+              ref={el => cardsRef.current[index] = el}
               className={`${feature.bgColor} rounded-xl md:rounded-2xl p-4 md:p-5 hover:shadow-lg hover:bg-[#34CA8D]/30 cursor-pointer transition-all duration-300 relative min-h-[160px] md:min-h-[222px] flex flex-col justify-between items-start`}
             >
               {/* Arrow Icon */}

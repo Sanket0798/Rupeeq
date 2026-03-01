@@ -1,6 +1,77 @@
+import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { CreditScoreStepsIcon, PagesIcon } from "../common/SvgIcons";
 
+gsap.registerPlugin(ScrollTrigger);
+
 const CheckCreditScoreStepsSection = () => {
+  const sectionRef = useRef(null);
+  const headerRef = useRef(null);
+  const iconRef = useRef(null);
+  const desktopStepsRef = useRef([]);
+  const mobileStepsRef = useRef([]);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Animate header
+      gsap.from(headerRef.current, {
+        y: 50,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: headerRef.current,
+          start: 'top 80%',
+        }
+      });
+
+      // Animate icon (desktop only)
+      if (iconRef.current) {
+        gsap.from(iconRef.current, {
+          scale: 0.8,
+          duration: 0.8,
+          ease: 'back.out(1.3)',
+          scrollTrigger: {
+            trigger: iconRef.current,
+            start: 'top 80%',
+          }
+        });
+      }
+
+      // Animate desktop steps
+      const validDesktopSteps = desktopStepsRef.current.filter(step => step !== null);
+      if (validDesktopSteps.length > 0) {
+        gsap.from(validDesktopSteps, {
+          y: 60,
+          duration: 0.7,
+          stagger: 0.2,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: validDesktopSteps[0],
+            start: 'top 80%',
+          }
+        });
+      }
+
+      // Animate mobile steps
+      const validMobileSteps = mobileStepsRef.current.filter(step => step !== null);
+      if (validMobileSteps.length > 0) {
+        gsap.from(validMobileSteps, {
+          x: -50,
+          duration: 0.6,
+          stagger: 0.15,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: validMobileSteps[0],
+            start: 'top 80%',
+          }
+        });
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   const steps = [
     {
       number: '01',
@@ -20,10 +91,10 @@ const CheckCreditScoreStepsSection = () => {
   ];
 
   return (
-    <section className="py-8 md:py-16 px-4 sm:px-6 lg:px-8">
+    <section ref={sectionRef} className="py-8 md:py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-[1168px] mx-auto flex flex-col justify-center items-center">
         {/* Header with Icon - Desktop */}
-        <div className="hidden md:flex items-center max-w-[740px] gap-x-7 mb-[89px]">
+        <div ref={headerRef} className="hidden md:flex items-center max-w-[740px] gap-x-7 mb-[89px]">
           <PagesIcon />
           <div className="flex flex-col items-center gap-y-[15px]">
             <h2 className="text-[30px] font-semibold leading-[38px] tracing-[0px] text-custom-purple">
@@ -36,7 +107,7 @@ const CheckCreditScoreStepsSection = () => {
         </div>
 
         {/* Header - Mobile Only */}
-        <div className="md:hidden text-center mb-5 px-4">
+        <div ref={headerRef} className="md:hidden text-center mb-5 px-4">
           <h2 className="font-semibold text-2xl leading-[30px] tracing-[0%] text-custom-purple mb-3">
             Check Your Credit Score For Free
           </h2>
@@ -46,14 +117,14 @@ const CheckCreditScoreStepsSection = () => {
         </div>
 
         {/* Steps Timeline - Desktop Only */}
-        <div className="hidden md:flex justify-center">
+        <div ref={iconRef} className="hidden md:flex justify-center">
           <CreditScoreStepsIcon />
         </div>
 
         {/* Desktop Steps */}
         <div className="hidden md:flex flex-row items-center justify-between w-full mt-[47px] mb-[89px]">
           {steps.map((step, index) => (
-            <div key={index} className="flex flex-col items-center">
+            <div key={index} ref={el => desktopStepsRef.current[index] = el} className="flex flex-col items-center">
               <h3 className="text-2xl leading-[34px] tracing-[0%] text-custom-dark-text font-medium">{step.title}</h3>
               <p className="text-xl leading-[26px] tracing-[0%] text-[#7D7D7D] font-normal text-center w-[300px]">{step.description}</p>
             </div>
@@ -68,7 +139,7 @@ const CheckCreditScoreStepsSection = () => {
           <div className="absolute left-[46px] top-4 w-[1px] h-[40px] bg-[#0076BC]" />
 
           {steps.map((step, index) => (
-            <div key={index} className="relative flex gap-4 pb-8 last:pb-0">
+            <div key={index} ref={el => mobileStepsRef.current[index] = el} className="relative flex gap-4 pb-8 last:pb-0">
               {/* Timeline Line connecting to next step */}
               {index < steps.length - 1 && (
                 <div className="absolute left-[30px] top-[60px] w-[1px] h-[calc(100%-20px)] bg-[#0076BC]" />

@@ -34,11 +34,11 @@ const HowACEHelpsYouSection = () => {
           </h2>
 
           {/* Benefits Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 max-w-[852px] w-full gap-4 md:gap-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 max-w-[852px] w-full gap-4 md:gap-x-6 md:gap-y-6 mb-6 md:mb-[38px]">
             {benefits.map((benefit, index) => (
               <div
                 key={index}
-                className={`${benefit.bgColor} p-4 md:p-6 text-start hover:shadow-[0px_4px_4px_rgba(0,0,0,0.25)] transition-all duration-300 space-y-2 md:space-y-3 text-black mb-4 md:mb-[38px] rounded-lg`}
+                className={`${benefit.bgColor} p-4 md:p-6 text-start hover:shadow-[0px_4px_4px_rgba(0,0,0,0.25)] transition-all duration-300 space-y-2 md:space-y-3 text-black rounded-xl md:rounded-2xl`}
               >
                 <h3 className="text-xl md:text-[30px] font-semibold leading-[26px] md:leading-[38px] tracing-[0px]">
                   {benefit.title}

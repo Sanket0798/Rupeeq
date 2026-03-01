@@ -1,8 +1,52 @@
+import { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
 const RupeeQACESection = () => {
+  const sectionRef = useRef(null);
+  const cardRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Card entrance animation
+      if (cardRef.current) {
+        gsap.from(cardRef.current, {
+          scrollTrigger: {
+            trigger: cardRef.current,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+          },
+          y: 50,
+          scale: 0.95,
+          duration: 0.8,
+          ease: 'power3.out'
+        });
+
+        // Animate children
+        const children = cardRef.current.children;
+        gsap.from(children, {
+          scrollTrigger: {
+            trigger: cardRef.current,
+            start: 'top 75%',
+            toggleActions: 'play none none reverse'
+          },
+          y: 30,
+          duration: 0.6,
+          stagger: 0.15,
+          ease: 'power2.out'
+        });
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="py-8 md:py-16 px-4 sm:px-6 lg:px-8 bg-white">
+    <section ref={sectionRef} className="py-8 md:py-16 px-4 sm:px-6 lg:px-8 bg-white">
       <div className="max-w-[1339px] mx-auto">
-        <div className="bg-white rounded-[15px] md:rounded-[25px] shadow-[5px_5px_4px_rgba(0,0,0,0.25)] p-6 md:p-11 text-center space-y-3 md:space-y-2">
+        <div ref={cardRef} className="bg-white rounded-[15px] md:rounded-[25px] shadow-[5px_5px_4px_rgba(0,0,0,0.25)] p-6 md:p-11 text-center space-y-3 md:space-y-2">
           {/* Main Title */}
           <h2 className="text-2xl md:text-[40px] leading-[30px] md:leading-[48px] tracing-[0px] font-bold text-custom-purple">
             RupeeQ ACE — Advanced Credit Evaluation
