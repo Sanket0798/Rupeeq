@@ -642,8 +642,8 @@ const GenericHero = ({
           <div className="hidden md:block bg-[#B0E6EC] shadow-[5px_5px_5px_0px_rgba(0,0,0,0.15)] rounded-t-24 border border-[#000000]/10 border-b-transparent py-6 px-4">
             <div className="flex items-center justify-center gap-8 flex-wrap">
               {benefits.map((benefit, index) => (
-                <div 
-                  key={index} 
+                <div
+                  key={index}
                   ref={el => benefitsItemsRef.current[index] = el}
                   className="flex items-center gap-1 whitespace-nowrap"
                 >
@@ -662,7 +662,9 @@ const GenericHero = ({
                 ref={el => benefitsItemsRef.current[index] = el}
                 className="bg-[#DAF3F6] rounded-[10px] py-4 px-5 flex items-center gap-5 shadow-sm"
               >
-                <BlueUpArrowIcon />
+                <div>
+                  <BlueUpArrowIcon />
+                </div>
                 <span className="text-base text-[#5432AF] font-semibold leading-[21px]">{benefit}</span>
               </div>
             ))}
@@ -672,23 +674,23 @@ const GenericHero = ({
         {/* How Does It Work Section */}
         {howItWorks && (
           <div ref={howItWorksRef} className="mt-8 md:mt-16 text-center px-4">
-            <h2 className="text-[24px] md:text-[40px] font-bold text-custom-purple mb-3 md:mb-4 leading-[30px] md:leading-[120%]">
+            <h2 className="text-lg md:text-[40px] font-bold text-custom-purple mb-3 md:mb-4 leading-[22px] md:leading-[120%]">
               {howItWorks.title}
             </h2>
             {howItWorks.description && (
-              <p className="text-sm md:text-base text-custom-dark-text max-w-4xl mx-auto leading-relaxed">
+              <p className="text-sm md:text-base text-custom-dark-text max-w-4xl mx-auto leading-relaxed mb-3">
                 {howItWorks.description}
               </p>
             )}
             {howItWorks.subtitle && (
-              <p className="text-base md:text-lg text-custom-dark-text mb-3 md:mb-4 leading-relaxed">
+              <p className="text-xs md:text-lg text-[#4B5768] md:text-custom-dark-text mb-6 md:mb-4">
                 {howItWorks.subtitle}
               </p>
             )}
             {howItWorks.points && (
-              <div className="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-8 max-w-5xl mx-auto">
+              <div className="flex flex-col md:flex-row items-start md:items-center md:justify-center gap-3 md:gap-8 max-w-5xl mx-auto">
                 {howItWorks.points.map((point, index) => (
-                  <span key={index} className="text-sm md:text-base text-custom-dark-text font-semibold">
+                  <span key={index} className="text-[17px] md:text-base text-custom-dark-text font-semibold">
                     • {point}
                   </span>
                 ))}

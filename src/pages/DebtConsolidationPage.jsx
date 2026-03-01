@@ -1,5 +1,5 @@
 // Import sections
-import { HowItWorks, EMIReductionSection, WhyRupeeQSection, DebtConsolidationHero } from '../components/sections';
+import { EMIReductionSection, WhyRupeeQSection, DebtConsolidationHero } from '../components/sections';
 import {
   TrustSection,
   CreditScoreSection,
@@ -8,7 +8,8 @@ import {
   FAQSection,
   LoanEligibilitySection,
   ApplicationStepsSection,
-  ConsolidationBenefitsSection,
+  // ConsolidationBenefitsSection,
+  FeaturesBenefitsSection,
   DebtConsolidationInfo
 } from '../components/shared';
 
@@ -60,6 +61,67 @@ const DebtConsolidationPage = () => {
     }
   ];
 
+  const applicationSteps = [
+    {
+      number: '01',
+      title: 'Check Your Credit Score',
+      description: '→ Enter Your Details And Get Your Credit Score With RupeeQ ACE'
+    },
+    {
+      number: '02',
+      title: 'Get Matched Offers Instantly',
+      description: '→ Our System Swiftly Processes Your Application And Verifies Your Contact Details In Seconds Providing You With Best Offers'
+    },
+    {
+      number: '03',
+      title: 'Upload Documents',
+      description: '→ Upload Your Documents To Process With Your Application'
+    },
+    {
+      number: '04',
+      title: 'Approval',
+      description: '→ Get Approval - Within Hours'
+    },
+    {
+      number: '04',
+      title: 'Get Funds Swiftly',
+      description: '→ Receive Funds Swiftly Into Your Bank Account Hassle-Free & Repay Your Debts'
+    }
+  ];
+
+  const consolidationFeatures = [
+    {
+      title: 'Single Loan & EMI',
+      description: 'One Manageable Due Date Instead Of Multiple EMIs.',
+      icon: '/assets/logos/MakesDifferent/Calender.png',
+    },
+    {
+      title: 'Lower Interest',
+      description: 'Consolidate High-Rate Debts (30-36%) Into ~ 10-14% P.A.',
+      icon: '/assets/logos/MakesDifferent/Graph.png',
+    },
+    {
+      title: 'Better Credit Health',
+      description: 'Timely Repayment Of Debt Improved Your Credit Profile.',
+      icon: '/assets/logos/MakesDifferent/CreditCounter.png',
+    },
+    {
+      title: 'Minimal Documentation',
+      description: 'Withdrawal Funds Instantly Via Net Banking Or Mobile App',
+      icon: '/assets/logos/MakesDifferent/PaperWork.png',
+    },
+    {
+      title: 'Flexible Tenure',
+      description: '1-7 Years, Adjust EMI To Fit Income.',
+      icon: '/assets/logos/MakesDifferent/CalenderWithClock.png',
+    },
+    {
+      title: '100% Digital Process',
+      description: 'Upload Documents & Get Funds Online & Paperless.',
+      icon: '/assets/logos/MakesDifferent/DigitalProcess.png',
+    }
+  ];
+
   return (
     <>
       {/* Debt Consolidation Hero */}
@@ -87,6 +149,8 @@ const DebtConsolidationPage = () => {
         <LoanEligibilitySection
           mainTitle=""
           subtitle=""
+          mobileHeading="Loans & Eligibility"
+          mobileSubtitle="To Get A Loan Via RupeeQ"
           leftColumnTitle="Eligibility Criteria"
           rightColumnTitle="Who Should Consider This Loan?"
           eligibilityCriteria={eligibilityCriteria}
@@ -103,12 +167,15 @@ const DebtConsolidationPage = () => {
 
       {/* Application Steps Section - Reusable */}
       <section id="application-steps">
-        <ApplicationStepsSection />
+        <ApplicationStepsSection steps={applicationSteps} />
       </section>
 
-      {/* Consolidation Benefits Section - Reusable */}
+      {/* Features & Benefits Section - Reusable */}
       <section id="consolidation-benefits">
-        <ConsolidationBenefitsSection />
+        <FeaturesBenefitsSection
+          title="How RupeeQ Helps You Consolidate Debt?"
+          features={consolidationFeatures}
+        />
       </section>
 
       {/* Credit Score Section - Reused from Landing Page */}

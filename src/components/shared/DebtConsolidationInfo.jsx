@@ -1,33 +1,40 @@
-import { useState } from 'react';
+import { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Card } from '../ui';
 import { ChartDonutIcon, GlobeStandIcon, CreditCardFormUpIcon, InformativeIcon, BrodcastIcon, MobileIcon } from '../common/SvgIcons';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const DebtConsolidationInfo = ({
   title = "What Is Debt Consolidation?",
   highlightedWord = "Debt Consolidation",
   description = "Debt Consolidation Is A Smarter Way To Manage Repayments. It Combines Multiple Existing Loans Into One Single Loan With A More Manageable EMI.",
   subtitle = "Instead Of Tracking Many Payments, You Deal With:",
-  bgGradient = "bg-gradient-to-tr from-white to-[#E5EDFF]",
+  bgGradient = "bg-gradient-to-r from-white to-[#E5EDFF]/50",
   benefits = [
     {
       title: 'One EMI',
       description: 'Calculating EMI For A Personal Loan without Manual Formulas. (Need Text)',
-      // bgColor: 'bg-[#E1F7FF]'
+      bgColor: 'bg-[#E1F7FF]'
     },
     {
       title: 'One Due Date',
       description: 'Understand The Impact Of Interest Rate Changes On EMI. (Need Text)',
-      // bgColor: 'bg-[#BAEAFC]'
+      bgColor: 'bg-[#BAEAFC]'
     },
     {
       title: 'Better Monthly Control',
       description: 'Compare EMIs For Different Tenures Using The Same Loan Amount. (Need EMI)',
-      // bgColor: 'bg-[#88E1FF]'
+      bgColor: 'bg-[#88E1FF]'
     }
   ],
   showIcons = false
 }) => {
-  const [expandedCard, setExpandedCard] = useState(null);
+  const sectionRef = useRef(null);
+  const headingRef = useRef(null);
+  const desktopCardsRef = useRef([]);
+  const mobileCardsRef = useRef([]);
 
   const iconComponents = {
     'ChartDonutIcon': ChartDonutIcon,
@@ -38,15 +45,65 @@ const DebtConsolidationInfo = ({
     'MobileIcon': MobileIcon
   };
 
-  const toggleCard = (index) => {
-    setExpandedCard(expandedCard === index ? null : index);
-  };
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Heading animation
+      if (headingRef.current) {
+        gsap.from(headingRef.current.children, {
+          scrollTrigger: {
+            trigger: headingRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none reverse'
+          },
+          opacity: 0,
+          y: 30,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: 'power3.out'
+        });
+      }
+
+      // Desktop cards animation
+      if (window.innerWidth >= 768 && desktopCardsRef.current.length > 0) {
+        gsap.from(desktopCardsRef.current, {
+          scrollTrigger: {
+            trigger: desktopCardsRef.current[0],
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+          },
+          opacity: 0,
+          y: 40,
+          duration: 0.7,
+          stagger: 0.15,
+          ease: 'power3.out'
+        });
+      }
+
+      // Mobile cards animation
+      if (window.innerWidth < 768 && mobileCardsRef.current.length > 0) {
+        gsap.from(mobileCardsRef.current, {
+          scrollTrigger: {
+            trigger: mobileCardsRef.current[0],
+            start: 'top 85%',
+            toggleActions: 'play none none reverse'
+          },
+          opacity: 0,
+          y: 30,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: 'power2.out'
+        });
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <section className={`w-full ${bgGradient} py-8 md:py-20 px-4 md:px-6 lg:px-8`}>
+    <section ref={sectionRef} className={`w-full md:${bgGradient} py-8 md:py-20 px-4 md:px-6 lg:px-8`}>
       <div className="container mx-auto max-w-screen-xl">
         {/* Main Heading */}
-        <div className="text-center space-y-4 mb-6 md:mb-11">
+        <div ref={headingRef} className="text-center space-y-4 mb-6 md:mb-11">
           <h2 className="text-2xl md:text-[40px] px-10 md:px-0 leading-[30px] md:leading-[48px] font-semibold md:font-bold text-custom-dark-text">
             {title.split(highlightedWord).map((part, index) => (
               <span key={index}>
@@ -58,12 +115,12 @@ const DebtConsolidationInfo = ({
             ))}
           </h2>
           {description && (
-            <p className="text-sm md:text-2xl leading-[19px] md:leading-[34px] text-custom-dark-text font-normal md:font-medium max-w-[959px] mx-auto w-full px-4 md:px-0">
+            <p className="text-sm md:text-2xl leading-[19px] md:leading-[34px] text-custom-dark-text font-normal md:font-medium max-w-[959px] mx-auto w-full px-10 md:px-0">
               {description}
             </p>
           )}
           {subtitle && (
-            <p className="text-sm md:text-base leading-[18px] md:leading-[23px] text-[#4B5768] font-normal px-4 md:px-0">
+            <p className="hidden md:block text-sm md:text-base leading-[18px] md:leading-[23px] text-[#4B5768] font-normal px-4 md:px-0">
               {subtitle}
             </p>
           )}
@@ -78,6 +135,7 @@ const DebtConsolidationInfo = ({
               <Card
                 variant='custom'
                 key={index}
+                ref={el => desktopCardsRef.current[index] = el}
                 className={`${benefit.bgColor} p-6 gap-y-3 border-none rounded-lg flex flex-col items-start justify-between text-custom-dark-text shadow-card`}
                 rounded='rounded-none'
               >
@@ -98,42 +156,21 @@ const DebtConsolidationInfo = ({
         </div>
 
         {/* Mobile View - Stacked Cards with Click to Expand */}
-        <div className="md:hidden space-y-4 px-4">
-          {benefits.map((benefit, index) => {
-            const IconComponent = benefit.icon ? iconComponents[benefit.icon] : null;
-            const isExpanded = expandedCard === index;
-
-            return (
-              <div
-                key={index}
-                onClick={() => toggleCard(index)}
-                className={`${isExpanded ? 'bg-[#00AA4E]/10' : 'border border-[#DDE5FB]'} rounded-24 transition-all duration-300 cursor-pointer`}
-              >
-                {/* Card Header - Always Visible */}
-                <div className="flex items-center gap-4 p-6">
-                  {/* Number Circle */}
-                  <div className={`flex-shrink-0 w-[48px] h-[48px] rounded-full ${isExpanded ? 'bg-white' : 'bg-[#151801]/10'} flex items-center justify-center`}>
-                    <span className="font-normal text-2xl leading-[29px] text-[#2E3502]">{index + 1}</span>
-                  </div>
-
-                  {/* Title */}
-                  <h3 className={`flex-1 font-semibold transition-all ${isExpanded ? 'text-button-color text-2xl leading-[30px]' : 'text-2xl leading-[30px] text-custom-dark-text'
-                    }`}>
-                    {benefit.title}
-                  </h3>
-                </div>
-
-                {/* Expanded Description */}
-                {isExpanded && (
-                  <div className="px-5 pb-5 pt-0">
-                    <p className="text-base leading-[23px] font-normal text-custom-dark-text">
-                      {benefit.description}
-                    </p>
-                  </div>
-                )}
-              </div>
-            );
-          })}
+        <div className="md:hidden space-y-4">
+          {benefits.map((benefit, index) => (
+            <div
+              key={index}
+              ref={el => mobileCardsRef.current[index] = el}
+              className="bg-[#0072F2]/10 rounded-[10px] py-5 px-8 shadow-[0px_6px_5px_0px_rgba(0,0,0,0.10)]"
+            >
+              <h3 className="font-semibold text-2xl leading-[30px] mb-2 text-button-color">
+                {benefit.title}
+              </h3>
+              <p className="text-sm leading-[19px] font-normal text-[#4B5768]">
+                {benefit.description}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

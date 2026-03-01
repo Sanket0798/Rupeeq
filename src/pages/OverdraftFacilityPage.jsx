@@ -113,7 +113,7 @@ const OverdraftFacilityPage = () => {
       {/* Features & Benefits Section */}
       <section id="overdraft-features">
         <FeaturesBenefitsSection
-          title="Features & Benefits of Overdraft Credit Line"
+          title="Features & Benefits"
           features={overdraftFeatures}
         />
       </section>
