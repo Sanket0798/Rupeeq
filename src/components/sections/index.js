@@ -31,7 +31,6 @@ export { default as CalculatingEMISection } from './CalculatingEMISection';
 export { default as ImpactOfInterestRateSection } from './ImpactOfInterestRateSection';
 export { default as CompareEMIsSection } from './CompareEMIsSection';
 export { default as EMICalculatorBenefitsSection } from './EMICalculatorBenefitsSection';
-export { default as EMICalculatorCTASection } from './EMICalculatorCTASection';
 export { default as IFSCMICRHero } from './IFSCMICRHero';
 export { default as IFSCMICRSearchSection } from './IFSCMICRSearchSection';
 export { default as IFSCMICRCTASection } from './IFSCMICRCTASection';

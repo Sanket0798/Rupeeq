@@ -1,11 +1,7 @@
 import {
   EMICalculatorHero,
   WhatIsEMICalculatorSection,
-  CalculatingEMISection,
-  ImpactOfInterestRateSection,
-  CompareEMIsSection,
   EMICalculatorBenefitsSection,
-  EMICalculatorCTASection
 } from '../components/sections';
 import { FAQSection } from '../components/shared';
 
@@ -30,11 +26,6 @@ const EMICalculatorPage = () => {
       {/* FAQ Section */}
       <section id="faq">
         <FAQSection />
-      </section>
-
-      {/* CTA Section */}
-      <section id="emi-calculator-cta">
-        <EMICalculatorCTASection />
       </section>
     </>
   );
