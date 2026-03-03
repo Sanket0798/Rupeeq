@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { Button } from '../ui';
 
 const EMICalculatorHero = () => {
-  const [loanAmount, setLoanAmount] = useState(2000000);
-  const [interestRate, setInterestRate] = useState(8.5);
+  const [loanAmount, setLoanAmount] = useState(2500000);
+  const [interestRate, setInterestRate] = useState(6.5);
   const [loanTenure, setLoanTenure] = useState(5);
 
   // Calculate EMI
@@ -16,7 +16,7 @@ const EMICalculatorHero = () => {
       return principal / numberOfMonths;
     }
 
-    const emi = 
+    const emi =
       (principal * ratePerMonth * Math.pow(1 + ratePerMonth, numberOfMonths)) /
       (Math.pow(1 + ratePerMonth, numberOfMonths) - 1);
 
@@ -30,28 +30,35 @@ const EMICalculatorHero = () => {
   const interestPercentage = (totalInterest / totalAmount) * 100;
 
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-blue-50 to-white">
-      <div className="max-w-[1286px] mx-auto">
+    <section
+      className="pt-20 md:pt-32 pb-[34px] md:pb-[45px] shadow-[0px_6px_5px_0px_rgba(0,0,0,0.09)] md:shadow-none px-4 sm:px-6 lg:px-8 mx-[15px] md:mx-3 rounded-[10px] md:rounded-24"
+      style={{
+        background: 'linear-gradient(190deg, #E8F5F7 0%, #F0E8F7 50%, #E8F7F0 100%)',
+        marginTop: '-80px',
+        paddingTop: '100px',
+      }}
+    >
+      <div className="max-w-[1364px] mx-auto">
         {/* Title */}
-        <div className="mb-12">
-          <h1 className="text-4xl lg:text-[50px] font-bold mb-4">
-            <span className="text-custom-purple">EMI CALCULATOR</span>
+        <div className="mb-6 md:mb-10">
+          <h1 className="font-bold md:font-extrabold text-2xl md:text-[40px] leading-[35px] md:leading-[53px] tracing-[2%] text-custom-purple text-center md:text-left">
+            EMI CALCULATOR
           </h1>
         </div>
 
         {/* Calculator Card */}
-        <div className="bg-white rounded-3xl shadow-[5px_5px_4px_0px_rgba(0,0,0,0.25)] p-8 lg:p-12">
-          <div className="grid lg:grid-cols-2 gap-12">
+        <div className="md:bg-white rounded-24 md:shadow-[3px_0px_5px_0px_rgba(0,0,0,0.25)] py-8 px-6 md:py-[60px] md:px-[48px] mb-6 md:mb-10">
+          <div className="grid lg:grid-cols-[1fr_auto] gap-8 md:gap-12 items-center">
             {/* Left Side - Input Controls */}
-            <div className="space-y-8">
+            <div className="space-y-6 md:space-y-6">
               {/* Loan Amount */}
               <div>
-                <div className="flex justify-between items-center mb-3">
-                  <label className="text-lg font-semibold text-custom-dark-text">
+                <div className="flex justify-between items-center mb-3 md:mb-4">
+                  <label className="font-semibold text-xl md:text-3xl leading-[26px] md:leading-[38px] text-custom-dark-text">
                     Loan Amount
                   </label>
-                  <div className="bg-button-color text-white px-6 py-2 rounded-full font-semibold">
-                    ₹{loanAmount.toLocaleString('en-IN')}
+                  <div className="font-semibold text-xl md:text-3xl leading-[26px] md:leading-[38px] py-1.5 px-3 md:py-2 md:px-3 bg-custom-purple rounded-full text-white">
+                    ₹ {loanAmount.toLocaleString('en-IN')}
                   </div>
                 </div>
                 <input
@@ -61,21 +68,20 @@ const EMICalculatorHero = () => {
                   step="100000"
                   value={loanAmount}
                   onChange={(e) => setLoanAmount(Number(e.target.value))}
-                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-button-color"
+                  className="w-full h-1.5 bg-gray-300 rounded-lg appearance-none cursor-pointer accent-custom-purple"
+                  style={{
+                    background: `linear-gradient(to right, #5528A9 0%, #5528A9 ${((loanAmount - 100000) / (10000000 - 100000)) * 100}%, #D9D9D9 ${((loanAmount - 100000) / (10000000 - 100000)) * 100}%, #D9D9D9 100%)`
+                  }}
                 />
-                <div className="flex justify-between text-sm text-gray-500 mt-1">
-                  <span>₹1L</span>
-                  <span>₹1Cr</span>
-                </div>
               </div>
 
               {/* Rate of Interest */}
               <div>
-                <div className="flex justify-between items-center mb-3">
-                  <label className="text-lg font-semibold text-custom-dark-text">
-                    Rate of Interest (p.a)
+                <div className="flex justify-between items-center mb-3 md:mb-4">
+                  <label className="font-semibold text-xl md:text-3xl leading-[26px] md:leading-[38px] text-custom-dark-text">
+                    Rate Of Interest
                   </label>
-                  <div className="bg-button-color text-white px-6 py-2 rounded-full font-semibold">
+                  <div className="font-semibold text-xl md:text-3xl leading-[26px] md:leading-[38px] py-1.5 px-3 md:py-2 md:px-3 bg-custom-purple rounded-full text-white">
                     {interestRate}%
                   </div>
                 </div>
@@ -86,21 +92,20 @@ const EMICalculatorHero = () => {
                   step="0.1"
                   value={interestRate}
                   onChange={(e) => setInterestRate(Number(e.target.value))}
-                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-button-color"
+                  className="w-full h-1.5 bg-gray-300 rounded-lg appearance-none cursor-pointer accent-custom-purple"
+                  style={{
+                    background: `linear-gradient(to right, #5528A9 0%, #5528A9 ${((interestRate - 5) / (20 - 5)) * 100}%, #D9D9D9 ${((interestRate - 5) / (20 - 5)) * 100}%, #D9D9D9 100%)`
+                  }}
                 />
-                <div className="flex justify-between text-sm text-gray-500 mt-1">
-                  <span>5%</span>
-                  <span>20%</span>
-                </div>
               </div>
 
               {/* Loan Tenure */}
               <div>
-                <div className="flex justify-between items-center mb-3">
-                  <label className="text-lg font-semibold text-custom-dark-text">
+                <div className="flex justify-between items-center mb-3 md:mb-4">
+                  <label className="font-semibold text-xl md:text-3xl leading-[26px] md:leading-[38px] text-custom-dark-text">
                     Loan Tenure
                   </label>
-                  <div className="bg-button-color text-white px-6 py-2 rounded-full font-semibold">
+                  <div className="font-semibold text-xl md:text-3xl leading-[26px] md:leading-[38px] py-1.5 px-3 md:py-2 md:px-3 bg-custom-purple rounded-full text-white">
                     {loanTenure} Years
                   </div>
                 </div>
@@ -111,86 +116,75 @@ const EMICalculatorHero = () => {
                   step="1"
                   value={loanTenure}
                   onChange={(e) => setLoanTenure(Number(e.target.value))}
-                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-button-color"
+                  className="w-full h-1.5 bg-gray-300 rounded-lg appearance-none cursor-pointer accent-custom-purple"
+                  style={{
+                    background: `linear-gradient(to right, #5528A9 0%, #5528A9 ${((loanTenure - 1) / (30 - 1)) * 100}%, #D9D9D9 ${((loanTenure - 1) / (30 - 1)) * 100}%, #D9D9D9 100%)`
+                  }}
                 />
-                <div className="flex justify-between text-sm text-gray-500 mt-1">
-                  <span>1 Year</span>
-                  <span>30 Years</span>
-                </div>
               </div>
-
-              {/* Calculate Button */}
-              <Button variant="primary" size="lg" className="w-full py-4">
-                Calculate
-              </Button>
             </div>
 
-            {/* Right Side - Results */}
-            <div className="flex flex-col justify-center">
+            {/* Right Side - Results - Desktop Only */}
+            <div className="hidden lg:flex flex-col items-center justify-center lg:min-w-[400px]">
               {/* Pie Chart */}
-              <div className="relative w-64 h-64 mx-auto mb-8">
+              <div className="relative w-[177px] h-[177px] mb-6">
                 <svg viewBox="0 0 200 200" className="transform -rotate-90">
-                  {/* Principal Amount (Blue) */}
-                  <circle
-                    cx="100"
-                    cy="100"
-                    r="80"
-                    fill="none"
-                    stroke="#5084FF"
-                    strokeWidth="40"
-                    strokeDasharray={`${principalPercentage * 5.03} ${500 - principalPercentage * 5.03}`}
+                  {/* Principal Amount (Dark Purple) - Filled Pie Slice */}
+                  <path
+                    d={`M 100 100 L 100 0 A 100 100 0 ${principalPercentage > 50 ? 1 : 0} 1 ${100 + 100 * Math.sin((principalPercentage * 2 * Math.PI) / 100)
+                      } ${100 - 100 * Math.cos((principalPercentage * 2 * Math.PI) / 100)
+                      } Z`}
+                    fill="#B0E6EC"
                   />
-                  {/* Interest Amount (Purple) */}
-                  <circle
-                    cx="100"
-                    cy="100"
-                    r="80"
-                    fill="none"
-                    stroke="#5528A9"
-                    strokeWidth="40"
-                    strokeDasharray={`${interestPercentage * 5.03} ${500 - interestPercentage * 5.03}`}
-                    strokeDashoffset={-principalPercentage * 5.03}
+                  {/* Interest Amount (Light Teal) - Filled Pie Slice */}
+                  <path
+                    d={`M 100 100 L ${100 + 100 * Math.sin((principalPercentage * 2 * Math.PI) / 100)
+                      } ${100 - 100 * Math.cos((principalPercentage * 2 * Math.PI) / 100)
+                      } A 100 100 0 ${interestPercentage > 50 ? 1 : 0} 1 100 0 Z`}
+                    fill="#352C6D"
                   />
                 </svg>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-custom-purple">
-                      ₹{Math.round(emi / 1000)}K
-                    </div>
-                    <div className="text-sm text-gray-500">Monthly EMI</div>
+                {/* Legend on the right side of pie chart */}
+                <div className="absolute right-[-60px] top-1/2 transform -translate-y-1/2 text-xs space-y-2">
+                  <div className="flex items-center gap-1">
+                    <div className="w-3 h-3 bg-[#352C6D] rounded-sm"></div>
+                    <span className="text-gray-600">{principalPercentage.toFixed(0)}%</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <div className="w-3 h-3 bg-[#B0E6EC] rounded-sm"></div>
+                    <span className="text-gray-600">{interestPercentage.toFixed(0)}%</span>
                   </div>
                 </div>
               </div>
 
-              {/* Breakdown */}
-              <div className="bg-blue-50 rounded-2xl p-6 space-y-3">
+              {/* Breakdown Box */}
+              <div className="bg-[#0072F2]/30 rounded-2xl p-3 w-full max-w-[300px] space-y-2 text-white font-normal text-[17px] leading-[23px]">
                 <div className="flex justify-between items-center">
-                  <div className="flex items-center gap-2">
-                    <div className="w-4 h-4 bg-[#5084FF] rounded"></div>
-                    <span className="text-sm text-gray-700">Principal Amount</span>
-                  </div>
-                  <span className="font-semibold text-custom-dark-text">
-                    ₹{(loanAmount / 100000).toFixed(1)}L
-                  </span>
+                  <span className="">Monthly EMI</span>
+                  <span className="">₹ {(emi / 100000).toFixed(2).replace('.', ',')}L</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <div className="flex items-center gap-2">
-                    <div className="w-4 h-4 bg-button-color rounded"></div>
-                    <span className="text-sm text-gray-700">Total Interest</span>
-                  </div>
-                  <span className="font-semibold text-custom-dark-text">
-                    ₹{(totalInterest / 100000).toFixed(1)}L
-                  </span>
+                  <span className="">Principal Amount</span>
+                  <span className="">₹ {loanAmount.toLocaleString('en-IN')}</span>
                 </div>
-                <div className="border-t border-gray-300 pt-3 flex justify-between items-center">
-                  <span className="font-semibold text-gray-700">Total Amount</span>
-                  <span className="font-bold text-custom-purple text-lg">
-                    ₹{(totalAmount / 100000).toFixed(1)}L
-                  </span>
+                <div className="flex justify-between items-center">
+                  <span className="">Total Interest</span>
+                  <span className="">₹ {Math.round(totalInterest).toLocaleString('en-IN')}</span>
+                </div>
+                <div className="flex justify-between items-center border-t border-white/30 pt-2">
+                  <span className="">Total Amount</span>
+                  <span className="">₹ {Math.round(totalAmount).toLocaleString('en-IN')}</span>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+
+        {/* View More Button */}
+        <div className="flex justify-center">
+          <Button variant='custom' className="w-full md:w-[218px] bg-custom-purple hover:bg-custom-purple/90 text-white px-8 py-[15px] rounded-full font-bold text-lg leading-[26px]">
+            View More...
+          </Button>
         </div>
       </div>
     </section>

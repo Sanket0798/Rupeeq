@@ -35,7 +35,7 @@ const WhatIsEMICalculatorSection = () => {
 
   return (
     <section
-      className="md:py-16 px-[15px] sm:px-6 lg:px-8 md:bg-gradient-to-l md:from-[#E5EDFF]/50 md:to-white"
+      className="pt-[51px] md:py-16 px-[15px] sm:px-6 lg:px-8 md:bg-gradient-to-l md:from-[#E5EDFF]/50 md:to-white"
     >
       <div className="max-w-[1286px] mx-auto">
         {/* Section Header */}
