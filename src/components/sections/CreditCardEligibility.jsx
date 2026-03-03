@@ -4,22 +4,22 @@ const CreditCardEligibility = () => {
   const eligibilityCriteria = [
     {
       icon: '/assets/logos/LoanEligibility/User.png',
-      label: 'Age Limit:',
-      value: 'From 18 Years +'
+      label: 'Age Limit',
+      value: 'From 18 + Years'
     },
     {
       icon: '/assets/logos/LoanEligibility/Money.png',
-      label: 'Minimum Income:',
-      value: '₹1.5 Lakhs+ Annual Salary'
+      label: 'Minimum Income',
+      value: '₹1.5 Lakhs + Annual Salary'
     },
     {
       icon: '/assets/logos/LoanEligibility/Counter.png',
-      label: 'Credit Score:',
-      value: '750+ (unlocks better limits & rates)'
+      label: 'Credit Score',
+      value: 'Preferably 750+'
     },
     {
       icon: '/assets/logos/LoanEligibility/Files.png',
-      label: 'Documents Required:',
+      label: 'Documents Required',
       value: 'Pan, Aadhar, Salary Slips/ Bank Statements, Address Proof'
     }
   ];
@@ -49,7 +49,7 @@ const CreditCardEligibility = () => {
 
   return (
     <LoanEligibilitySection
-      mainTitle="Credit Cards Eligibility Criteria"
+      mainTitle="Credit Card Eligibility"
       subtitle=""
       leftColumnTitle="Eligibility Criteria"
       rightColumnTitle="Choose Best Credit Card For You?"

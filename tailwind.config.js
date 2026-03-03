@@ -214,9 +214,14 @@ export default {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-50%)' },
         },
+        'marquee-once': {
+          '0%': { transform: 'translateX(100%)' },
+          '100%': { transform: 'translateX(-100%)' },
+        },
       },
       animation: {
         'scroll-left': 'scroll-left 30s linear infinite',
+        'marquee-once': 'marquee-once 20s linear infinite',
       },
     },
   },
