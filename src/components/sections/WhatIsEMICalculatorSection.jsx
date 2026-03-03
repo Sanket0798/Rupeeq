@@ -1,9 +1,153 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { RightArrowIcon } from '../common/SvgIcons';
 import { Button } from '../ui';
 
+gsap.registerPlugin(ScrollTrigger);
+
 const WhatIsEMICalculatorSection = () => {
   const [expandedCard, setExpandedCard] = useState(null);
+
+  // Animation refs
+  const sectionRef = useRef(null);
+  const headerRef = useRef(null);
+  const leftContentRef = useRef(null);
+  const illustrationRef = useRef(null);
+  const desktopCardsRef = useRef([]);
+  const mobileCardsRef = useRef([]);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      if (window.innerWidth >= 768) {
+        // Desktop Animations
+        
+        // Header animation
+        if (headerRef.current) {
+          gsap.set(headerRef.current.children, { opacity: 1 }); // Ensure visible by default
+          gsap.from(headerRef.current.children, {
+            scrollTrigger: {
+              trigger: headerRef.current,
+              start: 'top 80%',
+              toggleActions: 'play none none reverse'
+            },
+            opacity: 0,
+            y: 30,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: 'power3.out'
+          });
+        }
+
+        // Left content animation
+        if (leftContentRef.current) {
+          gsap.set(leftContentRef.current.children, { opacity: 1 }); // Ensure visible by default
+          gsap.from(leftContentRef.current.children, {
+            scrollTrigger: {
+              trigger: leftContentRef.current,
+              start: 'top 75%',
+              toggleActions: 'play none none reverse'
+            },
+            opacity: 0,
+            x: -50,
+            duration: 0.8,
+            stagger: 0.2,
+            ease: 'power3.out'
+          });
+        }
+
+        // Illustration animation
+        if (illustrationRef.current) {
+          gsap.set(illustrationRef.current, { opacity: 1 }); // Ensure visible by default
+          gsap.from(illustrationRef.current, {
+            scrollTrigger: {
+              trigger: illustrationRef.current,
+              start: 'top 75%',
+              toggleActions: 'play none none reverse'
+            },
+            opacity: 0,
+            x: 50,
+            scale: 0.9,
+            duration: 1,
+            ease: 'power3.out'
+          });
+        }
+
+        // Desktop cards stagger animation
+        if (desktopCardsRef.current.length > 0) {
+          gsap.set(desktopCardsRef.current, { opacity: 1 }); // Ensure visible by default
+          gsap.from(desktopCardsRef.current, {
+            scrollTrigger: {
+              trigger: desktopCardsRef.current[0],
+              start: 'top 80%',
+              toggleActions: 'play none none reverse'
+            },
+            opacity: 0,
+            y: 50,
+            duration: 0.7,
+            stagger: 0.15,
+            ease: 'back.out(1.3)'
+          });
+        }
+      } else {
+        // Mobile Animations
+        
+        // Header animation
+        if (headerRef.current) {
+          gsap.set(headerRef.current.children, { opacity: 1 }); // Ensure visible by default
+          gsap.from(headerRef.current.children, {
+            scrollTrigger: {
+              trigger: headerRef.current,
+              start: 'top 85%',
+              toggleActions: 'play none none reverse'
+            },
+            opacity: 0,
+            y: 20,
+            duration: 0.6,
+            stagger: 0.1,
+            ease: 'power3.out'
+          });
+        }
+
+        // Left content animation
+        if (leftContentRef.current) {
+          gsap.set(leftContentRef.current.children, { opacity: 1 }); // Ensure visible by default
+          gsap.from(leftContentRef.current.children, {
+            scrollTrigger: {
+              trigger: leftContentRef.current,
+              start: 'top 80%',
+              toggleActions: 'play none none reverse'
+            },
+            opacity: 0,
+            y: 20,
+            duration: 0.6,
+            stagger: 0.15,
+            ease: 'power2.out'
+          });
+        }
+
+        // Mobile cards animation
+        if (mobileCardsRef.current.length > 0) {
+          gsap.set(mobileCardsRef.current, { opacity: 1 }); // Ensure visible by default
+          gsap.from(mobileCardsRef.current, {
+            scrollTrigger: {
+              trigger: mobileCardsRef.current[0],
+              start: 'top 85%',
+              toggleActions: 'play none none reverse'
+            },
+            opacity: 0,
+            y: 30,
+            scale: 0.95,
+            duration: 0.6,
+            stagger: 0.1,
+            ease: 'back.out(1.5)'
+          });
+        }
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   const cards = [
     {
@@ -35,11 +179,12 @@ const WhatIsEMICalculatorSection = () => {
 
   return (
     <section
+      ref={sectionRef}
       className="pt-[51px] md:py-16 px-[15px] sm:px-6 lg:px-8 md:bg-gradient-to-l md:from-[#E5EDFF]/50 md:to-white"
     >
       <div className="max-w-[1286px] mx-auto">
         {/* Section Header */}
-        <div className="text-center md:space-y-[14px] mb-6 md:mb-[71px]">
+        <div ref={headerRef} className="text-center md:space-y-[14px] mb-6 md:mb-[71px]">
           <p className="hidden md:block text-[#4B5768] font-normal text-sm md:text-xl leading-[19px] md:leading-[26px]">Our Expertise</p>
           <h2 className="text-2xl md:text-[40px] font-semibold md:font-bold leading-[30px] md:leading-[48px] text-custom-purple md:text-custom-dark-text px-4 md:px-0 mb-6">
             What Is A <span className="text-custom-purple">Personal Loan EMI Calculator?</span>
@@ -51,7 +196,7 @@ const WhatIsEMICalculatorSection = () => {
 
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-9 md:mb-[182px]">
           {/* Left Content */}
-          <div className="px-4 md:px-0">
+          <div ref={leftContentRef} className="px-4 md:px-0">
             <h3 className="text-custom-dark-text font-normal md:font-medium text-sm md:text-2xl text-center md:text-start leading-[19px] md:leading-[34px] px-4 md:px-0 mb-6 md:mb-3">
               A Personal Loan EMI Calculator Helps You Calculate Your Monthly Instalment Based On The Loan Amount, Interest Rate, And Repayment Period.
             </h3>
@@ -65,7 +210,7 @@ const WhatIsEMICalculatorSection = () => {
           </div>
 
           {/* Right Illustration */}
-          <div className="hidden md:flex justify-center">
+          <div ref={illustrationRef} className="hidden md:flex justify-center">
             <div className="relative">
               <img
                 src="/assets/images/tools/calculator.png"
@@ -81,6 +226,7 @@ const WhatIsEMICalculatorSection = () => {
           {cards.map((card, index) => (
             <div
               key={index}
+              ref={el => desktopCardsRef.current[index] = el}
               className={`${card.bgColor} border border-[#EBEBEB] p-6 shadow-sm hover:shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] transition-shadow`}
             >
               <h4 className={`font-semibold text-3xl leading-[38px] mb-3 ${card.textColor}`}>
@@ -107,6 +253,7 @@ const WhatIsEMICalculatorSection = () => {
             return (
               <div
                 key={index}
+                ref={el => mobileCardsRef.current[index] = el}
                 onClick={() => toggleCard(index)}
                 className={`${isExpanded ? 'bg-[#5085FF]/10' : 'border border-[#DDE5FB]'} rounded-24 transition-all duration-300 cursor-pointer`}
               >

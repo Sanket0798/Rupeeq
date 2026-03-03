@@ -1,10 +1,20 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import gsap from 'gsap';
 import { Button } from '../ui';
 
 const EMICalculatorHero = () => {
   const [loanAmount, setLoanAmount] = useState(2500000);
   const [interestRate, setInterestRate] = useState(6.5);
   const [loanTenure, setLoanTenure] = useState(5);
+
+  // Animation refs
+  const sectionRef = useRef(null);
+  const titleRef = useRef(null);
+  const cardRef = useRef(null);
+  const slidersRef = useRef([]);
+  const pieChartRef = useRef(null);
+  const breakdownRef = useRef(null);
+  const buttonRef = useRef(null);
 
   // Calculate EMI
   const calculateEMI = () => {
@@ -29,8 +39,135 @@ const EMICalculatorHero = () => {
   const principalPercentage = (loanAmount / totalAmount) * 100;
   const interestPercentage = (totalInterest / totalAmount) * 100;
 
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      if (window.innerWidth >= 768) {
+        // Desktop Animations
+        
+        // Title animation - fade in from top
+        if (titleRef.current) {
+          gsap.from(titleRef.current, {
+            opacity: 0,
+            y: -30,
+            duration: 0.8,
+            ease: 'power3.out',
+            delay: 0.2
+          });
+        }
+
+        // Calculator card - slide in with scale
+        if (cardRef.current) {
+          gsap.from(cardRef.current, {
+            opacity: 0,
+            y: 50,
+            scale: 0.95,
+            duration: 1,
+            ease: 'power3.out',
+            delay: 0.4
+          });
+        }
+
+        // Sliders stagger animation
+        if (slidersRef.current.length > 0) {
+          gsap.from(slidersRef.current, {
+            opacity: 0,
+            x: -50,
+            duration: 0.7,
+            stagger: 0.15,
+            ease: 'power2.out',
+            delay: 0.7
+          });
+        }
+
+        // Pie chart animation - scale and rotate
+        if (pieChartRef.current) {
+          gsap.from(pieChartRef.current, {
+            opacity: 0,
+            scale: 0,
+            rotation: -180,
+            duration: 1,
+            ease: 'back.out(1.5)',
+            delay: 1
+          });
+        }
+
+        // Breakdown box - fade in from bottom
+        if (breakdownRef.current) {
+          gsap.from(breakdownRef.current, {
+            opacity: 0,
+            y: 30,
+            duration: 0.8,
+            ease: 'power3.out',
+            delay: 1.2
+          });
+        }
+
+        // Button - bounce in
+        if (buttonRef.current) {
+          gsap.from(buttonRef.current, {
+            opacity: 0,
+            scale: 0.8,
+            duration: 0.6,
+            ease: 'back.out(1.7)',
+            delay: 1.4
+          });
+        }
+      } else {
+        // Mobile Animations - Simpler and faster
+        
+        // Title animation
+        if (titleRef.current) {
+          gsap.from(titleRef.current, {
+            opacity: 0,
+            y: -20,
+            duration: 0.6,
+            ease: 'power3.out',
+            delay: 0.2
+          });
+        }
+
+        // Card animation
+        if (cardRef.current) {
+          gsap.from(cardRef.current, {
+            opacity: 0,
+            y: 30,
+            duration: 0.7,
+            ease: 'power3.out',
+            delay: 0.4
+          });
+        }
+
+        // Sliders stagger
+        if (slidersRef.current.length > 0) {
+          gsap.from(slidersRef.current, {
+            opacity: 0,
+            x: -30,
+            duration: 0.6,
+            stagger: 0.1,
+            ease: 'power2.out',
+            delay: 0.6
+          });
+        }
+
+        // Button
+        if (buttonRef.current) {
+          gsap.from(buttonRef.current, {
+            opacity: 0,
+            y: 20,
+            duration: 0.5,
+            ease: 'power2.out',
+            delay: 0.9
+          });
+        }
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section
+      ref={sectionRef}
       className="pt-20 md:pt-32 pb-[34px] md:pb-[45px] shadow-[0px_6px_5px_0px_rgba(0,0,0,0.09)] md:shadow-none px-4 sm:px-6 lg:px-8 mx-[15px] md:mx-3 rounded-[10px] md:rounded-24"
       style={{
         background: 'linear-gradient(190deg, #E8F5F7 0%, #F0E8F7 50%, #E8F7F0 100%)',
@@ -41,18 +178,18 @@ const EMICalculatorHero = () => {
       <div className="max-w-[1364px] mx-auto">
         {/* Title */}
         <div className="mb-6 md:mb-10">
-          <h1 className="font-bold md:font-extrabold text-2xl md:text-[40px] leading-[35px] md:leading-[53px] tracing-[2%] text-custom-purple text-center md:text-left">
+          <h1 ref={titleRef} className="font-bold md:font-extrabold text-2xl md:text-[40px] leading-[35px] md:leading-[53px] tracing-[2%] text-custom-purple text-center md:text-left">
             EMI CALCULATOR
           </h1>
         </div>
 
         {/* Calculator Card */}
-        <div className="md:bg-white rounded-24 md:shadow-[3px_0px_5px_0px_rgba(0,0,0,0.25)] py-8 px-6 md:py-[60px] md:px-[48px] mb-6 md:mb-10">
+        <div ref={cardRef} className="md:bg-white rounded-24 md:shadow-[3px_0px_5px_0px_rgba(0,0,0,0.25)] py-8 px-6 md:py-[60px] md:px-[48px] mb-6 md:mb-10">
           <div className="grid lg:grid-cols-[1fr_auto] gap-8 md:gap-12 items-center">
             {/* Left Side - Input Controls */}
             <div className="space-y-6 md:space-y-6">
               {/* Loan Amount */}
-              <div>
+              <div ref={el => slidersRef.current[0] = el}>
                 <div className="flex justify-between items-center mb-3 md:mb-4">
                   <label className="font-semibold text-xl md:text-3xl leading-[26px] md:leading-[38px] text-custom-dark-text">
                     Loan Amount
@@ -76,7 +213,7 @@ const EMICalculatorHero = () => {
               </div>
 
               {/* Rate of Interest */}
-              <div>
+              <div ref={el => slidersRef.current[1] = el}>
                 <div className="flex justify-between items-center mb-3 md:mb-4">
                   <label className="font-semibold text-xl md:text-3xl leading-[26px] md:leading-[38px] text-custom-dark-text">
                     Rate Of Interest
@@ -100,7 +237,7 @@ const EMICalculatorHero = () => {
               </div>
 
               {/* Loan Tenure */}
-              <div>
+              <div ref={el => slidersRef.current[2] = el}>
                 <div className="flex justify-between items-center mb-3 md:mb-4">
                   <label className="font-semibold text-xl md:text-3xl leading-[26px] md:leading-[38px] text-custom-dark-text">
                     Loan Tenure
@@ -127,7 +264,7 @@ const EMICalculatorHero = () => {
             {/* Right Side - Results - Desktop Only */}
             <div className="hidden lg:flex flex-col items-center justify-center lg:min-w-[400px]">
               {/* Pie Chart */}
-              <div className="relative w-[177px] h-[177px] mb-6">
+              <div ref={pieChartRef} className="relative w-[177px] h-[177px] mb-6">
                 <svg viewBox="0 0 200 200" className="transform -rotate-90">
                   {/* Principal Amount (Dark Purple) - Filled Pie Slice */}
                   <path
@@ -158,7 +295,7 @@ const EMICalculatorHero = () => {
               </div>
 
               {/* Breakdown Box */}
-              <div className="bg-[#0072F2]/30 rounded-2xl p-3 w-full max-w-[300px] space-y-2 text-white font-normal text-[17px] leading-[23px]">
+              <div ref={breakdownRef} className="bg-[#0072F2]/30 rounded-2xl p-3 w-full max-w-[300px] space-y-2 text-white font-normal text-[17px] leading-[23px]">
                 <div className="flex justify-between items-center">
                   <span className="">Monthly EMI</span>
                   <span className="">₹ {(emi / 100000).toFixed(2).replace('.', ',')}L</span>
@@ -181,7 +318,7 @@ const EMICalculatorHero = () => {
         </div>
 
         {/* View More Button */}
-        <div className="flex justify-center">
+        <div ref={buttonRef} className="flex justify-center">
           <Button variant='custom' className="w-full md:w-[218px] bg-custom-purple hover:bg-custom-purple/90 text-white px-8 py-[15px] rounded-full font-bold text-lg leading-[26px]">
             View More...
           </Button>
