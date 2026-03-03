@@ -1,6 +1,10 @@
 import { Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 
 const Footer = () => {
+  const location = useLocation();
+  const isHomeLoginPage = location.pathname === '/login/home';
+
   const footerLinks = {
     About: ['Who We Are', 'Our Mission', 'Careers', 'Contact Us', 'Consent Withdrawal/ Grievance'],
     Legal: ['Privacy Policy', 'Term\'s & Conditions', 'FAQ', 'RBI Sachet'],
@@ -8,7 +12,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="mx-3 mb-3">
+    <footer className={`mx-3 mb-3 ${isHomeLoginPage ? 'hidden md:block' : ''}`}>
       {/* Main Footer Container with gradient background and rounded corners */}
       <div
         className="rounded-3xl overflow-hidden py-7 px-[14px] md:py-[51px] md:px-[97px]"
