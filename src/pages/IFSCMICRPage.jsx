@@ -1,9 +1,7 @@
 import {
   IFSCMICRHero,
   IFSCMICRSearchSection,
-  IFSCMICRCTASection
 } from '../components/sections';
-import { FAQSection } from '../components/shared';
 
 const IFSCMICRPage = () => {
   return (
@@ -16,11 +14,6 @@ const IFSCMICRPage = () => {
       {/* Search Section */}
       <section id="ifsc-micr-search">
         <IFSCMICRSearchSection />
-      </section>
-
-      {/* FAQ Section */}
-      <section id="faq">
-        <FAQSection />
       </section>
     </>
   );

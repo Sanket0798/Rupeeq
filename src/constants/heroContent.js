@@ -131,3 +131,23 @@ export const SHORT_TERM_LOAN_HERO = {
   loginRoute: "/login/short-term-loan",
   illustrationSrc: "/assets/images/hero/2.png"
 };
+
+export const IFSC_MICR_HERO = {
+  titleLines: [
+    { text: "IFSC & MICR", highlight: true }
+  ],
+  descriptions: [
+    "List of IFSC & MICR personal loan is a quick financing option designed to cover immediate expenses, typically repaid within a few months to a couple of years.",
+    "It offers fast approval, flexible usage, and fixed monthly installments, making it ideal for emergencies or short-term cash needs."
+  ],
+  tagline: null,
+  formTitle: "Quick Personal Loan Offer",
+  formButtonText: "Submit",
+  benefits: [],
+  benefitsTitle: null,
+  howItWorks: null,
+  actionButtons: [],
+  loginRoute: "/login/ifsc-micr",
+  illustrationSrc: "/assets/images/tools/Img1.png",
+  disableBackground: true
+};

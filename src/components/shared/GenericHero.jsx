@@ -36,7 +36,8 @@ const GenericHero = ({
   howItWorks = null,
   actionButtons = [],
   loginRoute = "/login",
-  illustrationSrc = "/assets/images/hero/2.png"
+  illustrationSrc = "/assets/images/hero/2.png",
+  disableBackground = false
 }) => {
   const navigate = useNavigate();
   const [mobileNumber, setMobileNumber] = useState('');
@@ -314,32 +315,36 @@ const GenericHero = ({
       }}
     >
       {/* Background gradient with controlled height - Mobile: 70vh, Desktop: full */}
-      <div
-        className="absolute top-0 left-0 right-0 h-[70vh] md:h-full -z-10"
-        style={{
-          background: 'linear-gradient(135deg, #E8F5F7 0%, #F0E8F7 50%, #E8F7F0 100%)'
-        }}
-      >
-        {/* Fade overlay at bottom - Mobile only */}
+      {!disableBackground && (
         <div
-          className="md:hidden absolute bottom-0 left-0 right-0 h-20"
+          className="absolute top-0 left-0 right-0 h-[70vh] md:h-full -z-10"
           style={{
-            background: 'linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1))'
+            background: 'linear-gradient(135deg, #E8F5F7 0%, #F0E8F7 50%, #E8F7F0 100%)'
           }}
-        />
-      </div>
+        >
+          {/* Fade overlay at bottom - Mobile only */}
+          <div
+            className="md:hidden absolute bottom-0 left-0 right-0 h-20"
+            style={{
+              background: 'linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1))'
+            }}
+          />
+        </div>
+      )}
 
       {/* Background Pattern Overlay - Desktop Only */}
-      <div
-        className="hidden md:block absolute inset-0 -right-[1300px] -top-[400px]"
-        style={{
-          backgroundImage: 'url(/assets/images/bg/HowWorksBg.png)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          transform: 'rotate(41.99deg)',
-        }}
-      />
+      {!disableBackground && (
+        <div
+          className="hidden md:block absolute inset-0 -right-[1300px] -top-[400px]"
+          style={{
+            backgroundImage: 'url(/assets/images/bg/HowWorksBg.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            transform: 'rotate(41.99deg)',
+          }}
+        />
+      )}
 
       {/* Content */}
       <div className="max-w-[1260px] mx-auto w-full relative z-10 px-4 md:px-0 md:mt-11">
@@ -633,43 +638,45 @@ const GenericHero = ({
         )}
 
         {/* Bottom Section - Why Choose RupeeQ */}
-        <div ref={benefitsSectionRef} className="mt-8 md:mt-[60px]">
-          <h2 className="text-3xl  md:text-[40px] font-bold text-center text-[#100701] mb-4 md:mb-8 leading-[35px] md:leading-[120%] px-6 md:px-4">
-            {benefitsTitle}
-          </h2>
+        {benefitsTitle && (
+          <div ref={benefitsSectionRef} className="mt-8 md:mt-[60px]">
+            <h2 className="text-3xl  md:text-[40px] font-bold text-center text-[#100701] mb-4 md:mb-8 leading-[35px] md:leading-[120%] px-6 md:px-4">
+              {benefitsTitle}
+            </h2>
 
-          {/* Benefits Bar - Desktop */}
-          <div className="hidden md:block bg-[#B0E6EC] shadow-[5px_5px_5px_0px_rgba(0,0,0,0.15)] rounded-t-24 border border-[#000000]/10 border-b-transparent py-6 px-4">
-            <div className="flex items-center justify-center gap-8 flex-wrap">
+            {/* Benefits Bar - Desktop */}
+            <div className="hidden md:block bg-[#B0E6EC] shadow-[5px_5px_5px_0px_rgba(0,0,0,0.15)] rounded-t-24 border border-[#000000]/10 border-b-transparent py-6 px-4">
+              <div className="flex items-center justify-center gap-8 flex-wrap">
+                {benefits.map((benefit, index) => (
+                  <div
+                    key={index}
+                    ref={el => benefitsItemsRef.current[index] = el}
+                    className="flex items-center gap-1 whitespace-nowrap"
+                  >
+                    <BlueUpArrowIcon />
+                    <span className="text-base text-[#5432AF] font-semibold leading-[21px]">{benefit}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Benefits Cards - Mobile */}
+            <div className="md:hidden space-y-3 px-4">
               {benefits.map((benefit, index) => (
                 <div
                   key={index}
                   ref={el => benefitsItemsRef.current[index] = el}
-                  className="flex items-center gap-1 whitespace-nowrap"
+                  className="bg-[#DAF3F6] rounded-[10px] py-4 px-5 flex items-center gap-5 shadow-sm"
                 >
-                  <BlueUpArrowIcon />
+                  <div>
+                    <BlueUpArrowIcon />
+                  </div>
                   <span className="text-base text-[#5432AF] font-semibold leading-[21px]">{benefit}</span>
                 </div>
               ))}
             </div>
           </div>
-
-          {/* Benefits Cards - Mobile */}
-          <div className="md:hidden space-y-3 px-4">
-            {benefits.map((benefit, index) => (
-              <div
-                key={index}
-                ref={el => benefitsItemsRef.current[index] = el}
-                className="bg-[#DAF3F6] rounded-[10px] py-4 px-5 flex items-center gap-5 shadow-sm"
-              >
-                <div>
-                  <BlueUpArrowIcon />
-                </div>
-                <span className="text-base text-[#5432AF] font-semibold leading-[21px]">{benefit}</span>
-              </div>
-            ))}
-          </div>
-        </div>
+        )}
 
         {/* How Does It Work Section */}
         {howItWorks && (
