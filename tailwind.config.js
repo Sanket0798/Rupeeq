@@ -124,6 +124,8 @@ export default {
         sans: ['Delight', 'system-ui', 'sans-serif'],
         'inter-tight': ['"Inter Tight"', 'sans-serif'],
         'helvetica-neue': ['"Helvetica Neue"', 'sans-serif'],
+        'lexend': ['Lexend', 'sans-serif'],
+        'open-sans': ['"Open Sans"', 'sans-serif'],
       },
       fontSize: {
         'xs': ['12px', { lineHeight: '16px' }],
