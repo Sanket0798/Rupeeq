@@ -20,8 +20,8 @@ export const personalLoanInfo1Content = {
   ),
   cardBackground: 'bg-gradient-to-b from-[rgba(80,132,255,0.25)] to-white',
   titleMargin: 'mb-[92px]',
-  formMarginTop: 'mt-[73px]',
-  alignItems: 'gap-[79px]',
+  formMarginTop: 'mt-0',
+  alignItems: 'gap-[42px]',
   nextRoute: '/personal-loan-info-2',
 };
 
@@ -44,7 +44,7 @@ export const personalLoanInfo2Content = {
   ),
   cardBackground: 'bg-gradient-to-b from-[rgba(80,132,255,0.25)] to-white',
   titleMargin: 'mb-[92px]',
-  formMarginTop: 'mt-[73px]',
+  formMarginTop: 'mt-0',
   initialFormData: {
     salaryType: 'salaried',
     monthlyIncome: '',
@@ -77,7 +77,7 @@ export const debtConsolidationInfo1Content = {
   cardBackground: 'bg-gradient-to-b from-[#B0E6EC]/50 to-white',
   titleMargin: 'mb-8',
   formMarginTop: '',
-  alignItems: 'items-center gap-[79px]',
+  alignItems: 'items-center gap-[42px]',
   nextRoute: '/debt-consolidation-info-2',
 };
 
@@ -118,9 +118,9 @@ export const debtConsolidationInfo2Content = {
   additionalFields: (formData, handleChange, errors = {}) => (
     <>
       {/* Current EMI - placed after Company Name */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
         <div>
-          <label className="block text-base leading-[26px] font-bold tracing-[4%] text-[#58626C] mb-2">
+          <label className="block text-sm md:text-base leading-[26px] font-bold tracing-[4%] text-[#58626C] mb-2">
             Current EMI
           </label>
           <div className="relative">
@@ -141,9 +141,9 @@ export const debtConsolidationInfo2Content = {
       </div>
 
       {/* CC Outstanding and EMI Delay */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
         <div>
-          <label className="block text-base leading-[26px] font-bold tracing-[4%] text-[#58626C] mb-2">
+          <label className="block text-sm md:text-base leading-[26px] font-bold tracing-[4%] text-[#58626C] mb-2">
             CC Outstanding
           </label>
           <div className="relative">
@@ -162,7 +162,7 @@ export const debtConsolidationInfo2Content = {
           )}
         </div>
         <div>
-          <label className="block text-base leading-[26px] font-bold tracing-[4%] text-[#58626C] mb-2">
+          <label className="block text-sm md:text-base leading-[26px] font-bold tracing-[4%] text-[#58626C] mb-2">
             EMI Delay in last 6 Months
           </label>
           <Input
@@ -180,8 +180,8 @@ export const debtConsolidationInfo2Content = {
       </div>
 
       {/* Residence Status */}
-      <div>
-        <label className="block text-base leading-[26px] font-bold tracing-[4%] text-[#58626C] mb-2">
+      <div className="mb-4">
+        <label className="block text-sm md:text-base leading-[26px] font-bold tracing-[4%] text-[#58626C] mb-2">
           Residence Status
         </label>
         <Input
@@ -221,7 +221,7 @@ export const overdraftFacilityInfo1Content = {
   cardBackground: 'bg-gradient-to-b from-[#F9AAA6]/30 to-white',
   titleMargin: 'mb-8',
   formMarginTop: '',
-  alignItems: 'items-center gap-[79px]',
+  alignItems: 'items-center gap-[42px]',
   nextRoute: '/overdraft-facility-info-2',
 };
 
@@ -276,8 +276,8 @@ export const shortTermLoanInfo1Content = {
   ),
   cardBackground: 'bg-gradient-to-b from-[#0072F2]/20 to-white',
   titleMargin: 'mb-8',
-  formMarginTop: 'mt-[73px]',
-  alignItems: 'gap-[79px]',
+  formMarginTop: 'mt-0',
+  alignItems: 'gap-[42px]',
   nextRoute: '/short-term-loan-info-2',
 };
 
@@ -300,7 +300,7 @@ export const shortTermLoanInfo2Content = {
   ),
   cardBackground: 'bg-gradient-to-b from-[#0072F2]/20 to-white',
   titleMargin: 'mb-8',
-  formMarginTop: 'mt-[73px]',
+  formMarginTop: 'mt-0',
   initialFormData: {
     salaryType: 'salaried',
     monthlyIncome: '',

@@ -5,7 +5,16 @@ import { ArrowUp } from 'lucide-react';
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
   const location = useLocation();
-  const isHomeLoginPage = location.pathname === '/login/home';
+  
+  // Hide on all info pages
+  const isInfoPage = location.pathname.includes('-info-');
+  
+  // Hide on mobile for all loan login pages
+  const isLoanLoginPage = location.pathname === '/login/home' || 
+                          location.pathname === '/login/personal-loan' ||
+                          location.pathname === '/login/overdraft-facility' ||
+                          location.pathname === '/login/short-term-loan' ||
+                          location.pathname === '/login/debt-consolidation';
 
   useEffect(() => {
     const toggleVisibility = () => {
@@ -27,13 +36,18 @@ const ScrollToTop = () => {
     });
   };
 
+  // Don't render on info pages
+  if (isInfoPage) {
+    return null;
+  }
+
   return (
     <>
       {isVisible && (
         <button
           onClick={scrollToTop}
           className={`fixed bottom-8 right-8 bg-primary text-white p-3 rounded-full shadow-lg hover:bg-primary-dark transition-all duration-300 hover:scale-110 z-40 ${
-            isHomeLoginPage ? 'hidden md:block' : ''
+            isLoanLoginPage ? 'hidden md:block' : ''
           }`}
           aria-label="Scroll to top"
         >
