@@ -14,11 +14,17 @@ const PartnersMarquee = () => {
   const partners = [
     { name: 'Partner 1', logo: '/assets/images/partners/1.png', alt: 'Partner 1 Logo' },
     { name: 'Partner 2', logo: '/assets/images/partners/2.jpg', alt: 'Partner 2 Logo' },
-    { name: 'Partner 3', logo: '/assets/images/partners/3.png', alt: 'Partner 3 Logo' },
+    { name: 'Partner 3', logo: '/assets/images/partners/3.jpg', alt: 'Partner 3 Logo' },
     { name: 'Partner 4', logo: '/assets/images/partners/4.png', alt: 'Partner 4 Logo' },
     { name: 'Partner 5', logo: '/assets/images/partners/5.png', alt: 'Partner 5 Logo' },
     { name: 'Partner 6', logo: '/assets/images/partners/6.png', alt: 'Partner 6 Logo' },
     { name: 'Partner 7', logo: '/assets/images/partners/7.png', alt: 'Partner 7 Logo' },
+    { name: 'Partner 8', logo: '/assets/images/partners/8.png', alt: 'Partner 8 Logo' },
+    { name: 'Partner 9', logo: '/assets/images/partners/9.png', alt: 'Partner 9 Logo' },
+    { name: 'Partner 10', logo: '/assets/images/partners/10.png', alt: 'Partner 10 Logo' },
+    { name: 'Partner 11', logo: '/assets/images/partners/11.jpg', alt: 'Partner 11 Logo' },
+    { name: 'Partner 12', logo: '/assets/images/partners/12.png', alt: 'Partner 12 Logo' },
+    { name: 'Partner 13', logo: '/assets/images/partners/13.jpg', alt: 'Partner 13 Logo' },
   ];
 
   // Duplicate the array to create seamless loop

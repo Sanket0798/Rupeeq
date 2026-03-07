@@ -172,7 +172,7 @@ const KeyMilestones = () => {
         <div className="flex flex-col lg:flex-row gap-4 md:gap-[25px] items-start">
           {/* Left side - Main highlight */}
           <div
-            className={`bg-[#E9E9E9] md:bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 lg:p-8 shadow-[5px_5px_5px_0px_rgba(0,0,0,0.25)] transition-all duration-700 w-full lg:w-auto ${isVisible
+            className={`bg-[#E9E9E9] md:bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 lg:p-7 shadow-[5px_5px_5px_0px_rgba(0,0,0,0.25)] transition-all duration-700 w-full lg:w-auto ${isVisible
               ? 'opacity-100 translate-x-0'
               : 'opacity-0 -translate-x-12'
               }`}
@@ -218,7 +218,7 @@ const KeyMilestones = () => {
           </div>
 
           {/* Right side - Statistics cards */}
-          <div className="flex flex-col justify-start gap-[11px] w-full">
+          <div className="flex flex-col justify-start gap-[15px] w-full">
             {milestones.map((milestone, index) => (
               <div
                 key={index}
