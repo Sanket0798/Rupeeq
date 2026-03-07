@@ -94,6 +94,38 @@ const CreditCardsHero = () => {
       name: 'Axis Bank',
       image: '/assets/images/creditCards/hero/Img3.png',
     },
+    // {
+    //   name: 'HDFC Bank',
+    //   image: '/assets/images/creditCards/hero/Img4.jpg',
+    // },
+    // {
+    //   name: 'HDFC Bank',
+    //   image: '/assets/images/creditCards/hero/Img5.jpg',
+    // },
+    // {
+    //   name: 'HDFC Bank',
+    //   image: '/assets/images/creditCards/hero/Img6.jpg',
+    // },
+    // {
+    //   name: 'HDFC Bank',
+    //   image: '/assets/images/creditCards/hero/Img7.jpg',
+    // },
+    // {
+    //   name: 'HDFC Bank',
+    //   image: '/assets/images/creditCards/hero/Img8.jpg',
+    // },
+    // {
+    //   name: 'HDFC Bank',
+    //   image: '/assets/images/creditCards/hero/Img9.jpg',
+    // },
+    // {
+    //   name: 'HDFC Bank',
+    //   image: '/assets/images/creditCards/hero/Img10.jpg',
+    // }, 
+    //     {
+    //   name: 'HDFC Bank',
+    //   image: '/assets/images/creditCards/hero/Img11.webp',
+    // },
   ];
 
   return (

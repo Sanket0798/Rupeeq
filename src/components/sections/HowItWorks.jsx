@@ -108,7 +108,7 @@ const HowItWorks = () => {
               }`}
           >
             {/* Horizontal line between 01 and 02 */}
-            <div className="absolute top-1/4 left-[660px]">
+            <div className="absolute top-1/4 left-[656px]">
               <ConnectingLineIcon />
             </div>
 
