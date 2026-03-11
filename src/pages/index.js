@@ -22,3 +22,4 @@ export { default as OverdraftFacilityInfoPage2 } from './OverdraftFacilityInfoPa
 export { default as ShortTermLoanLoginPage } from './ShortTermLoanLoginPage';
 export { default as ShortTermLoanInfoPage1 } from './ShortTermLoanInfoPage1';
 export { default as ShortTermLoanInfoPage2 } from './ShortTermLoanInfoPage2';
+export { default as BlogsPage } from './BlogsPage';

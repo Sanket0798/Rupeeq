@@ -34,3 +34,6 @@ export { default as EMICalculatorBenefitsSection } from './EMICalculatorBenefits
 export { default as IFSCMICRHero } from './IFSCMICRHero';
 export { default as IFSCMICRSearchSection } from './IFSCMICRSearchSection';
 export { default as IFSCMICRCTASection } from './IFSCMICRCTASection';
+export { default as BlogsHero } from './BlogsHero';
+export { default as BlogListingSection } from './BlogListingSection';
+export { default as BlogCTASection } from './BlogCTASection';

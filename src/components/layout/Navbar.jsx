@@ -33,6 +33,7 @@ const Navbar = () => {
       ]
     },
     { name: 'Credit Score', path: '/credit-score' },
+    { name: 'Blog', path: '/blogs' },
     { name: 'FAQ', id: 'faq' },
   ];
 
