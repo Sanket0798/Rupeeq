@@ -118,21 +118,21 @@ const BlogListingSection = ({ category = 'all' }) => {
 
   return (
     <section className="py-12 md:py-16 bg-white">
-      <div className="max-w-[1289px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-[47px]">
+      <div className="max-w-[1289px] mx-auto px-4 md:px-6 lg:px-0">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-[47px]">
           {/* Left Column - Blog Posts */}
           <div className="lg:col-span-2">
             <div className="space-y-4">
               {currentPosts.map((post) => (
                 <article
                   key={post.id}
-                  className="bg-white rounded-[25px] py-6 px-10 shadow-[0px_4px_40px_rgba(0,0,0,0.06)] hover:shadow-[0px_4px_16px_rgba(0,0,0,0.12)] transition-shadow duration-300"
+                  className="bg-white rounded-2xl md:rounded-[25px] py-4 md:py-6 px-5 md:px-10 shadow-[0px_4px_40px_rgba(0,0,0,0.06)] hover:shadow-[0px_4px_16px_rgba(0,0,0,0.12)] transition-shadow duration-300"
                 >
-                  <p className="font-bold text-lg leading-[22px] text-[#949494] mb-3">{post.date}</p>
-                  <h2 className="font-semibold text-2xl leading-[30px] text-button-color underline mb-2">
+                  <p className="font-bold text-base md:text-lg leading-tight md:leading-[22px] text-[#949494] mb-2 md:mb-3">{post.date}</p>
+                  <h2 className="font-semibold text-lg md:text-2xl leading-tight md:leading-[30px] text-button-color underline mb-2">
                     {post.title}
                   </h2>
-                  <p className="text-[#949494] font-normal text-base">
+                  <p className="text-[#949494] font-normal text-sm md:text-base">
                     {post.excerpt}  <button className="text-[#0072F2] font-medium underline">
                       Read More...
                     </button>
@@ -144,12 +144,12 @@ const BlogListingSection = ({ category = 'all' }) => {
 
             {/* Pagination */}
             {totalPages > 1 && (
-              <div className="flex justify-center items-center gap-2 mt-9">
+              <div className="flex justify-center items-center gap-2 mt-6 md:mt-9">
                 {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
                   <button
                     key={pageNum}
                     onClick={() => handlePageChange(pageNum)}
-                    className={`w-10 h-10 rounded-lg font-semibold transition-all duration-300 ${currentPage === pageNum
+                    className={`w-8 h-8 md:w-10 md:h-10 rounded-lg font-semibold text-sm md:text-base transition-all duration-300 ${currentPage === pageNum
                       ? 'bg-custom-purple text-white shadow-lg'
                       : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                       }`}
@@ -163,24 +163,24 @@ const BlogListingSection = ({ category = 'all' }) => {
 
           {/* Right Column - Sidebar */}
           <div className="lg:col-span-1">
-            <div className="sticky top-24">
+            <div className="lg:sticky lg:top-24 space-y-6 md:space-y-8 lg:space-y-0">
               {/* Credit Score Widget */}
-              <div className="bg-[#E5FBF5] text-center rounded-[10px] shadow-[4px_4px_4px_rgba(0,0,0,0.25)] px-[45px] pb-[53px]">
+              <div className="bg-[#E5FBF5] text-center rounded-[10px] shadow-[4px_4px_4px_rgba(0,0,0,0.25)] px-6 md:px-[45px] pb-8 md:pb-[53px]">
                 <div className="flex justify-center mb-4 relative">
                   <img
                     src="/assets/images/creditScore/CreditCounter.png"
                     alt="Credit Score"
-                    className="object-contain absolute -top-20"
+                    className="object-contain absolute -top-12 md:-top-20 w-48 md:w-auto"
                     onError={(e) => {
                       e.target.style.display = 'none';
                     }}
                   />
                 </div>
-                <h3 className="text-center font-semibold text-2xl leading-[30px] text-custom-purple mt-52">
+                <h3 className="text-center font-semibold text-xl md:text-2xl leading-tight md:leading-[30px] text-custom-purple mt-36 md:mt-52">
                   Know Your Credit Score.<br />
                   Understand What It Means.
                 </h3>
-                <p className="font-normal text-sm leading-[22px] text-[#747986] my-5">
+                <p className="font-normal text-xs md:text-sm leading-tight md:leading-[22px] text-[#747986] my-4 md:my-5">
                   Check Your <span className="text-custom-dark-text">Free Credit Score</span> And Get RupeeQ's{' '}
                   <span className="text-custom-dark-text">Advanced Credit Evaluation</span> That Tells You Where You Stand
                   And What To Do Next. Most Platforms Stop At Numbers.{' '}
@@ -188,7 +188,7 @@ const BlogListingSection = ({ category = 'all' }) => {
                     Read More...
                   </span>
                 </p>
-                <ul className="text-sm font-normal leading-[21px] text-[#747986] space-y-2 mb-6">
+                <ul className="text-xs md:text-sm font-normal leading-tight md:leading-[21px] text-[#747986] space-y-2 mb-4 md:mb-6 text-left">
                   <li className="flex items-start">
                     <span className="mr-2">•</span>
                     <span>Free Credit Score With No Impact</span>
@@ -206,11 +206,11 @@ const BlogListingSection = ({ category = 'all' }) => {
                     <span>Action-Oriented Recommendations, Not Generic Advice</span>
                   </li>
                 </ul>
-                <Button variant="primary" size="sm" className="py-[10px] md:py-[13px] pl-[20px] md:pl-[34px] pr-[24px] md:pr-[41px] gap-2 md:gap-3 w-[316px] sm:w-auto mb-2">
+                <Button variant="primary" size="sm" className="py-[10px] md:py-[13px] pl-[20px] md:pl-[34px] pr-[24px] md:pr-[41px] gap-2 md:gap-3 w-full md:w-[316px] mb-2 text-sm md:text-base">
                   Check Free Credit Score
                   <ChevronUpIcon />
                 </Button>
-                <Button variant="primary" size="sm" className="py-[10px] md:py-[13px] pl-[20px] md:pl-[34px] pr-[24px] md:pr-[41px] gap-2 md:gap-3 w-[259px] sm:w-auto">
+                <Button variant="primary" size="sm" className="py-[10px] md:py-[13px] pl-[20px] md:pl-[34px] pr-[24px] md:pr-[41px] gap-2 md:gap-3 w-full md:w-[259px] text-sm md:text-base">
                   See Your ACE Insights
                   <ChevronUpIcon />
 
@@ -218,14 +218,14 @@ const BlogListingSection = ({ category = 'all' }) => {
               </div>
 
               {/* Personal Loan Offers Widget */}
-              <div className="bg-brand-gradient px-8 py-4 text-white relative w-full flex flex-col justify-between rounded-3xl overflow-visible mt-[69px] shadow-[5px_8px_9px_rgba(0,0,0,0.25)]">
-                <h3 className="font-semibold text-xl leading-[35px] mb-5">Check Personal Loan Offers</h3>
-                <div className="mb-6">
-                  <label className="block font-normal text-[15px] leading-[26px] tracing-[4%] mb-2">Mobile Number</label>
+              <div className="bg-brand-gradient px-6 md:px-8 py-4 text-white relative w-full flex flex-col justify-between rounded-2xl md:rounded-3xl overflow-visible mt-6 md:mt-8 lg:mt-[69px] shadow-[5px_8px_9px_rgba(0,0,0,0.25)]">
+                <h3 className="font-semibold text-lg md:text-xl leading-tight md:leading-[35px] mb-4 md:mb-5">Check Personal Loan Offers</h3>
+                <div className="mb-4 md:mb-6">
+                  <label className="block font-normal text-sm md:text-[15px] leading-tight md:leading-[26px] tracing-[4%] mb-2">Mobile Number</label>
                   <input
                     type="tel"
                     placeholder="Enter your mobile number"
-                    className="w-full px-4 py-3 rounded-full text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
+                    className="w-full px-4 py-2 md:py-3 rounded-full text-sm md:text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
                     maxLength={10}
                   />
                 </div>
@@ -233,7 +233,7 @@ const BlogListingSection = ({ category = 'all' }) => {
                   <label className="flex items-start gap-2 text-xs cursor-pointer">
                     <input
                       type="checkbox"
-                      className="w-4 h-4 rounded flex-shrink-0"
+                      className="w-4 h-4 rounded flex-shrink-0 mt-0.5"
                     />
                     <span>
                       I agree to <span className="underline">Privacy Policy</span> and{' '}
@@ -243,18 +243,18 @@ const BlogListingSection = ({ category = 'all' }) => {
                 </div>
                 <Button
                   variant="primary-white"
-                  className="w-full py-3 text-[15px] leading-[130%] font-bold rounded-full"
+                  className="w-full py-2 md:py-3 text-sm md:text-[15px] leading-[130%] font-bold rounded-full"
                 >
                   Sign In
                 </Button>
               </div>
 
               {/* Interest Rates Table */}
-              <div className="bg-white rounded-b-[20px] mt-[66px]">
-                <h3 className="font-semibold text-xl leading-[35px] rounded-b-[20px] text-center py-5 bg-[#D9D9D9]">
+              <div className="bg-white rounded-b-[20px] mt-6 md:mt-8 lg:mt-[66px]">
+                <h3 className="font-semibold text-base md:text-xl leading-tight md:leading-[35px] rounded-t-[20px] text-center py-4 md:py-5 bg-[#D9D9D9]">
                   Personal Loan Interest Rates Feb, 2026
                 </h3>
-                <div className="overflow-hidden rounded-b-[20px]">
+                <div className="overflow-x-auto rounded-b-[20px]">
                   <table className="w-full">
                     <tbody>
                       {interestRates.map((item, index) => (
@@ -262,10 +262,10 @@ const BlogListingSection = ({ category = 'all' }) => {
                           key={index}
                           className="bg-[#0072F2]/10 border-b text-start border-gray-400 last:border-b-0"
                         >
-                          <td className="py-2 px-6 font-semibold text-base leading-[35px] border-r border-gray-400">
+                          <td className="py-2 px-3 md:px-6 font-semibold text-sm md:text-base leading-tight md:leading-[35px] border-r border-gray-400">
                             {item.bank}
                           </td>
-                          <td className="py-2 px-6 font-semibold text-base leading-[35px] text-center">
+                          <td className="py-2 px-3 md:px-6 font-semibold text-sm md:text-base leading-tight md:leading-[35px] text-center">
                             {item.rate}
                           </td>
                         </tr>

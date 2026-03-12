@@ -144,8 +144,25 @@ const BlogsHero = ({ onTabChange }) => {
       {/* Content */}
       <div className="max-w-[1293px] mx-auto w-full relative z-10 px-4 md:px-0">
         {/* Tab Navigation */}
-        <div ref={tabsRef} className="mb-[49px]">
-          <div className="flex flex-wrap items-center justify-between bg-white rounded-full w-[628px] h-[48px]">
+        <div ref={tabsRef} className="mb-6 md:mb-[49px]">
+          {/* Mobile: 2x2 Grid */}
+          <div className="md:hidden grid grid-cols-2 gap-3 bg-white rounded-3xl p-3 w-full max-w-md mx-auto">
+            {BLOG_CATEGORIES.map((category) => (
+              <button
+                key={category.id}
+                onClick={() => handleTabClick(category.id)}
+                className={`py-3 px-4 rounded-full font-medium text-sm leading-[110%] transition-all duration-300 ${activeTab === category.id
+                  ? 'bg-custom-purple text-white shadow-md'
+                  : 'bg-gray-50 text-[#1C1C29] hover:bg-purple-50 hover:text-custom-purple'
+                  }`}
+              >
+                {category.label}
+              </button>
+            ))}
+          </div>
+          
+          {/* Desktop: Horizontal Layout */}
+          <div className="hidden md:flex items-center justify-between bg-white rounded-full w-[628px] h-[48px]">
             {BLOG_CATEGORIES.map((category) => (
               <button
                 key={category.id}
@@ -165,17 +182,17 @@ const BlogsHero = ({ onTabChange }) => {
         <div className="text-center">
           {/* Show banner images only for "All Blogs" tab */}
           {activeTab === 'all' ? (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-[25px]">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-[25px]">
               {/* Finance Banner - Larger, Left Side (2 columns) */}
               <div className="relative group cursor-pointer md:col-span-2 md:row-span-2">
                 <img
                   src="/assets/images/blogs/finance.svg"
                   alt="Finance"
-                  className="w-full h-full object-cover rounded-3xl duration-300"
+                  className="w-full h-full object-cover rounded-2xl md:rounded-3xl duration-300"
                 />
                 {/* Finance Label */}
-                <div className="absolute bottom-4 left-4">
-                  <span className="font-extrabold text-[40px] leading-[68px] text-custom-purple">Finance</span>
+                <div className="absolute bottom-3 md:bottom-4 left-3 md:left-4">
+                  <span className="font-extrabold text-2xl md:text-[40px] leading-tight md:leading-[68px] text-custom-purple">Finance</span>
                 </div>
               </div>
 
@@ -184,11 +201,11 @@ const BlogsHero = ({ onTabChange }) => {
                 <img
                   src="/assets/images/blogs/CreditCards.svg"
                   alt="Credit Cards"
-                  className="w-full h-auto rounded-3xl transition-shadow duration-300"
+                  className="w-full h-auto rounded-2xl md:rounded-3xl transition-shadow duration-300"
                 />
                 {/* Credit Cards Label */}
-                <div className="absolute bottom-4 left-4">
-                  <span className="font-bold text-lg leading-[22px] text-custom-purple underline">Credit Cards</span>
+                <div className="absolute bottom-3 md:bottom-4 left-3 md:left-4">
+                  <span className="font-bold text-base md:text-lg leading-tight md:leading-[22px] text-custom-purple underline">Credit Cards</span>
                 </div>
               </div>
 
@@ -197,11 +214,11 @@ const BlogsHero = ({ onTabChange }) => {
                 <img
                   src="/assets/images/blogs/CreditScore.svg"
                   alt="Credit Score"
-                  className="w-full h-auto rounded-3xl transition-shadow duration-300"
+                  className="w-full h-auto rounded-2xl md:rounded-3xl transition-shadow duration-300"
                 />
                 {/* Credit Score Label */}
-                <div className="absolute bottom-4 left-4">
-                  <span className="font-bold text-lg leading-[22px] text-custom-purple underline">Credit Score</span>
+                <div className="absolute bottom-3 md:bottom-4 left-3 md:left-4">
+                  <span className="font-bold text-base md:text-lg leading-tight md:leading-[22px] text-custom-purple underline">Credit Score</span>
                 </div>
               </div>
             </div>
