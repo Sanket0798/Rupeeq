@@ -8,10 +8,10 @@ const Footer = () => {
   const footerLinks = {
     About: [
       { name: 'Who We Are', path: '/about-us' },
-      { name: 'Our Mission', path: '#' },
-      { name: 'Careers', path: '#' },
-      { name: 'Contact Us', path: '#' },
-      { name: 'Consent Withdrawal/ Grievance', path: '#' }
+      { name: 'Our Mission', path: '/our-mission' },
+      { name: 'Careers', path: '/careers' },
+      { name: 'Contact Us', path: '/contact-us' },
+      { name: 'Consent Withdrawal/ Grievance', path: '/consent-withdrawal' }
     ],
     Legal: [
       { name: 'Privacy Policy', path: '#' },

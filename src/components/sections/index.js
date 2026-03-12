@@ -41,4 +41,8 @@ export { default as CreditCardBlogDetail } from './CreditCardBlogDetail';
 export { default as AboutUsHero } from './AboutUsHero';
 export { default as AboutUsStory } from './AboutUsStory';
 export { default as AboutUsEasyLoan } from './AboutUsEasyLoan';
+export { default as OurMissionHero } from './OurMissionHero';
+export { default as ConsentWithdrawalHero } from './ConsentWithdrawalHero';
+export { default as CareersHero } from './CareersHero';
+export { default as ContactUsHero } from './ContactUsHero';
 export { default as WeHaveYouCoveredSection } from './WeHaveYouCoveredSection';

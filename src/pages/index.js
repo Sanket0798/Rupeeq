@@ -1,5 +1,9 @@
 export { default as LandingPage } from './LandingPage';
 export { default as AboutUsPage } from './AboutUsPage';
+export { default as OurMissionPage } from './OurMissionPage';
+export { default as ConsentWithdrawalPage } from './ConsentWithdrawalPage';
+export { default as CareersPage } from './CareersPage';
+export { default as ContactUsPage } from './ContactUsPage';
 export { default as PersonalLoanPage } from './PersonalLoanPage';
 export { default as DebtConsolidationPage } from './DebtConsolidationPage';
 export { default as CreditCardsPage } from './CreditCardsPage';

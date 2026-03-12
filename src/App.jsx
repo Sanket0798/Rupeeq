@@ -7,6 +7,10 @@ import { LoadingSpinner } from './components/ui';
 // Lazy load pages for better performance
 const LandingPage = lazy(() => import('./pages/LandingPage'));
 const AboutUsPage = lazy(() => import('./pages/AboutUsPage'));
+const OurMissionPage = lazy(() => import('./pages/OurMissionPage'));
+const ConsentWithdrawalPage = lazy(() => import('./pages/ConsentWithdrawalPage'));
+const CareersPage = lazy(() => import('./pages/CareersPage'));
+const ContactUsPage = lazy(() => import('./pages/ContactUsPage'));
 const PersonalLoanPage = lazy(() => import('./pages/PersonalLoanPage'));
 const DebtConsolidationPage = lazy(() => import('./pages/DebtConsolidationPage'));
 const CreditCardsPage = lazy(() => import('./pages/CreditCardsPage'));
@@ -54,6 +58,10 @@ function App() {
               {/* Main Pages */}
             <Route path="/" element={<LandingPage />} />
             <Route path="/about-us" element={<AboutUsPage />} />
+            <Route path="/our-mission" element={<OurMissionPage />} />
+            <Route path="/consent-withdrawal" element={<ConsentWithdrawalPage />} />
+            <Route path="/careers" element={<CareersPage />} />
+            <Route path="/contact-us" element={<ContactUsPage />} />
             <Route path="/personal-loan" element={<PersonalLoanPage />} />
             <Route path="/debt-consolidation" element={<DebtConsolidationPage />} />
             <Route path="/credit-cards" element={<CreditCardsPage />} />
@@ -130,7 +138,7 @@ const ConditionalNavbar = () => {
 // Component to conditionally render footer based on route
 const ConditionalFooter = () => {
   const location = useLocation();
-  const showFooterRoutes = ['/', '/about-us', '/personal-loan', '/debt-consolidation', '/credit-cards', '/emi-calculator', '/ifsc-micr', '/credit-score', '/overdraft-facility', '/short-term-loan', '/blogs', '/login/home'];
+  const showFooterRoutes = ['/', '/about-us', '/our-mission', '/consent-withdrawal', '/careers', '/contact-us', '/personal-loan', '/debt-consolidation', '/credit-cards', '/emi-calculator', '/ifsc-micr', '/credit-score', '/overdraft-facility', '/short-term-loan', '/blogs', '/login/home'];
   
   if (showFooterRoutes.includes(location.pathname)) {
     return <Footer />;
