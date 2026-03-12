@@ -3,6 +3,7 @@ import { lazy, Suspense } from 'react';
 import { Navbar, Footer } from './components/layout';
 import { ScrollToTop, ScrollToTopOnRouteChange } from './components/common';
 import { LoadingSpinner } from './components/ui';
+import { ROUTES, HIDE_NAVBAR_ROUTES, SHOW_FOOTER_ROUTES, HIDE_SCROLL_TO_TOP_ROUTES } from './constants';
 
 // Lazy load pages for better performance
 const LandingPage = lazy(() => import('./pages/LandingPage'));
@@ -56,67 +57,52 @@ function App() {
           <Suspense fallback={<PageLoader />}>
             <Routes>
               {/* Main Pages */}
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/about-us" element={<AboutUsPage />} />
-            <Route path="/our-mission" element={<OurMissionPage />} />
-            <Route path="/consent-withdrawal" element={<ConsentWithdrawalPage />} />
-            <Route path="/careers" element={<CareersPage />} />
-            <Route path="/contact-us" element={<ContactUsPage />} />
-            <Route path="/personal-loan" element={<PersonalLoanPage />} />
-            <Route path="/debt-consolidation" element={<DebtConsolidationPage />} />
-            <Route path="/credit-cards" element={<CreditCardsPage />} />
-            <Route path="/emi-calculator" element={<EMICalculatorPage />} />
-            <Route path="/ifsc-micr" element={<IFSCMICRPage />} />
-            <Route path="/credit-score" element={<CreditScorePage />} />
-            <Route path="/overdraft-facility" element={<OverdraftFacilityPage />} />
-            <Route path="/short-term-loan" element={<ShortTermLoanPage />} />
-            <Route path="/blogs" element={<BlogsPage />} />
-            
-            {/* Home Login - With Footer */}
-            <Route path="/login/home" element={<HomeLoginPage />} />
-            
-            {/* Personal Loan Login Flow - With Navbar only */}
-            <Route path="/login/personal-loan" element={<PersonalLoanLoginPage />} />
-            
-            {/* Debt Consolidation Login Flow - With Navbar only */}
-            <Route path="/login/debt-consolidation" element={<DebtConsolidationLoginPage />} />
-            
-            {/* Overdraft Facility Login Flow - With Navbar only */}
-            <Route path="/login/overdraft-facility" element={<OverdraftFacilityLoginPage />} />
-            
-            {/* Short Term Loan Login Flow - With Navbar only */}
-            <Route path="/login/short-term-loan" element={<ShortTermLoanLoginPage />} />
-            
-            {/* Employment Type Selection - No Navbar/Footer */}
-            <Route path="/employment-type" element={<EmploymentTypePage />} />
-            
-            {/* Personal Information - No Navbar/Footer */}
-            <Route path="/personal-information" element={<PersonalInformationPage />} />
-            
-            {/* Personal Loan Info Pages - No Navbar/Footer */}
-            <Route path="/personal-loan-info-1" element={<PersonalLoanInfoPage1 />} />
-            <Route path="/personal-loan-info-2" element={<PersonalLoanInfoPage2 />} />
-            
-            {/* Debt Consolidation Info Pages - No Navbar/Footer */}
-            <Route path="/debt-consolidation-info-1" element={<DebtConsolidationInfoPage1 />} />
-            <Route path="/debt-consolidation-info-2" element={<DebtConsolidationInfoPage2 />} />
-            
-            {/* Overdraft Facility Info Pages - No Navbar/Footer */}
-            <Route path="/overdraft-facility-info-1" element={<OverdraftFacilityInfoPage1 />} />
-            <Route path="/overdraft-facility-info-2" element={<OverdraftFacilityInfoPage2 />} />
-            
-            {/* Short Term Loan Info Pages - No Navbar/Footer */}
-            <Route path="/short-term-loan-info-1" element={<ShortTermLoanInfoPage1 />} />
-            <Route path="/short-term-loan-info-2" element={<ShortTermLoanInfoPage2 />} />
-            
-            {/* Other Login Pages - Without Footer (will be added later) */}
-            {/* <Route path="/login/personal-loan" element={<PersonalLoanLoginPage />} /> */}
-            {/* <Route path="/login/debt-consolidation" element={<DebtConsolidationLoginPage />} />*/}
-          </Routes>
+              <Route path={ROUTES.HOME} element={<LandingPage />} />
+              <Route path={ROUTES.ABOUT_US} element={<AboutUsPage />} />
+              <Route path={ROUTES.OUR_MISSION} element={<OurMissionPage />} />
+              <Route path={ROUTES.CONSENT_WITHDRAWAL} element={<ConsentWithdrawalPage />} />
+              <Route path={ROUTES.CAREERS} element={<CareersPage />} />
+              <Route path={ROUTES.CONTACT_US} element={<ContactUsPage />} />
+              <Route path={ROUTES.PERSONAL_LOAN} element={<PersonalLoanPage />} />
+              <Route path={ROUTES.DEBT_CONSOLIDATION} element={<DebtConsolidationPage />} />
+              <Route path={ROUTES.CREDIT_CARDS} element={<CreditCardsPage />} />
+              <Route path={ROUTES.EMI_CALCULATOR} element={<EMICalculatorPage />} />
+              <Route path={ROUTES.IFSC_MICR} element={<IFSCMICRPage />} />
+              <Route path={ROUTES.CREDIT_SCORE} element={<CreditScorePage />} />
+              <Route path={ROUTES.OVERDRAFT_FACILITY} element={<OverdraftFacilityPage />} />
+              <Route path={ROUTES.SHORT_TERM_LOAN} element={<ShortTermLoanPage />} />
+              <Route path={ROUTES.BLOGS} element={<BlogsPage />} />
+              
+              {/* Login Pages */}
+              <Route path={ROUTES.LOGIN.HOME} element={<HomeLoginPage />} />
+              <Route path={ROUTES.LOGIN.PERSONAL_LOAN} element={<PersonalLoanLoginPage />} />
+              <Route path={ROUTES.LOGIN.DEBT_CONSOLIDATION} element={<DebtConsolidationLoginPage />} />
+              <Route path={ROUTES.LOGIN.OVERDRAFT_FACILITY} element={<OverdraftFacilityLoginPage />} />
+              <Route path={ROUTES.LOGIN.SHORT_TERM_LOAN} element={<ShortTermLoanLoginPage />} />
+              
+              {/* Application Flow */}
+              <Route path={ROUTES.EMPLOYMENT_TYPE} element={<EmploymentTypePage />} />
+              <Route path={ROUTES.PERSONAL_INFORMATION} element={<PersonalInformationPage />} />
+              
+              {/* Personal Loan Info Pages */}
+              <Route path={ROUTES.PERSONAL_LOAN_INFO_1} element={<PersonalLoanInfoPage1 />} />
+              <Route path={ROUTES.PERSONAL_LOAN_INFO_2} element={<PersonalLoanInfoPage2 />} />
+              
+              {/* Debt Consolidation Info Pages */}
+              <Route path={ROUTES.DEBT_CONSOLIDATION_INFO_1} element={<DebtConsolidationInfoPage1 />} />
+              <Route path={ROUTES.DEBT_CONSOLIDATION_INFO_2} element={<DebtConsolidationInfoPage2 />} />
+              
+              {/* Overdraft Facility Info Pages */}
+              <Route path={ROUTES.OVERDRAFT_FACILITY_INFO_1} element={<OverdraftFacilityInfoPage1 />} />
+              <Route path={ROUTES.OVERDRAFT_FACILITY_INFO_2} element={<OverdraftFacilityInfoPage2 />} />
+              
+              {/* Short Term Loan Info Pages */}
+              <Route path={ROUTES.SHORT_TERM_LOAN_INFO_1} element={<ShortTermLoanInfoPage1 />} />
+              <Route path={ROUTES.SHORT_TERM_LOAN_INFO_2} element={<ShortTermLoanInfoPage2 />} />
+            </Routes>
           </Suspense>
         </main>
         
-        {/* Conditionally render Footer - only for main pages and home login */}
         <ConditionalFooter />
         <ConditionalScrollToTop />
       </div>
@@ -127,9 +113,8 @@ function App() {
 // Component to conditionally render navbar based on route
 const ConditionalNavbar = () => {
   const location = useLocation();
-  const hideNavbarRoutes = ['/employment-type', '/personal-information', '/personal-loan-info-1', '/personal-loan-info-2', '/debt-consolidation-info-1', '/debt-consolidation-info-2', '/overdraft-facility-info-1', '/overdraft-facility-info-2', '/short-term-loan-info-1', '/short-term-loan-info-2'];
   
-  if (hideNavbarRoutes.includes(location.pathname)) {
+  if (HIDE_NAVBAR_ROUTES.includes(location.pathname)) {
     return null;
   }
   return <Navbar />;
@@ -138,9 +123,8 @@ const ConditionalNavbar = () => {
 // Component to conditionally render footer based on route
 const ConditionalFooter = () => {
   const location = useLocation();
-  const showFooterRoutes = ['/', '/about-us', '/our-mission', '/consent-withdrawal', '/careers', '/contact-us', '/personal-loan', '/debt-consolidation', '/credit-cards', '/emi-calculator', '/ifsc-micr', '/credit-score', '/overdraft-facility', '/short-term-loan', '/blogs', '/login/home'];
   
-  if (showFooterRoutes.includes(location.pathname)) {
+  if (SHOW_FOOTER_ROUTES.includes(location.pathname)) {
     return <Footer />;
   }
   return null;
@@ -149,9 +133,8 @@ const ConditionalFooter = () => {
 // Component to conditionally render scroll to top based on route
 const ConditionalScrollToTop = () => {
   const location = useLocation();
-  const hideScrollToTopRoutes = ['/employment-type', '/personal-information', '/personal-loan-info-1', '/personal-loan-info-2', '/debt-consolidation-info-1', '/debt-consolidation-info-2', '/overdraft-facility-info-1', '/overdraft-facility-info-2', '/short-term-loan-info-1', '/short-term-loan-info-2'];
   
-  if (hideScrollToTopRoutes.includes(location.pathname)) {
+  if (HIDE_SCROLL_TO_TOP_ROUTES.includes(location.pathname)) {
     return null;
   }
   return <ScrollToTop />;

@@ -7,9 +7,13 @@
     "predev": "node restore-index.js",
     "dev": "vite",
     "build": "vite build",
+    "build:analyze": "vite build --mode analyze",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "preview": "vite preview",
-    "restore": "node restore-index.js"
+    "restore": "node restore-index.js",
+    "clean": "rm -rf dist node_modules/.vite",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "framer-motion": "^12.34.0",

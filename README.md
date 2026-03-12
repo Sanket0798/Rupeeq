@@ -1,149 +1,314 @@
-# RupeeQ - Financial Services Landing Page
+# RupeeQ - Financial Services Platform
 
-A modern, responsive single-page landing page for RupeeQ financial services built with React, Vite, and Tailwind CSS.
+A modern, production-ready financial services platform built with React, Vite, and Tailwind CSS. RupeeQ helps users find personalized loan offers from trusted banks and NBFCs.
 
-## Features
+## 🚀 Features
 
-- ✅ Responsive design (mobile, tablet, desktop)
-- ✅ Modern UI with Tailwind CSS
-- ✅ Smooth animations and transitions
-- ✅ Interactive components (tabs, accordion, carousel)
-- ✅ Credit score visualization
-- ✅ Product showcase
-- ✅ Partner logos section
-- ✅ Customer testimonials
-- ✅ FAQ accordion
-- ✅ Complete navigation and footer
+- ✅ **Responsive Design**: Mobile-first, works on all devices
+- ✅ **Modern UI**: Built with Tailwind CSS and custom animations
+- ✅ **Performance Optimized**: Code splitting, lazy loading, optimized bundles
+- ✅ **SEO Ready**: Comprehensive meta tags and social sharing
+- ✅ **Secure**: Security headers, environment-based configuration
+- ✅ **Production Ready**: Optimized build, error handling, logging
+- ✅ **Multiple Loan Products**: Personal loans, debt consolidation, overdraft, short-term loans
+- ✅ **Interactive Tools**: EMI calculator, credit score checker, IFSC/MICR finder
+- ✅ **Form Validation**: Comprehensive validation with Yup
+- ✅ **Smooth Animations**: GSAP and Framer Motion
 
-## Tech Stack
+## 📋 Tech Stack
 
-- **Framework**: React 18+
-- **Build Tool**: Vite
-- **Styling**: Tailwind CSS v3+
-- **Icons**: Lucide React
+- **Framework**: React 19.2.0
+- **Build Tool**: Vite 7.2.4
+- **Styling**: Tailwind CSS 3.4.1
+- **Routing**: React Router DOM 7.13.0
+- **Form Handling**: React Hook Form 7.71.2
+- **Validation**: Yup 1.7.1
+- **Animations**: GSAP 3.14.2, Framer Motion 12.34.0
+- **Icons**: Lucide React 0.563.0
 - **Language**: JavaScript (ES6+)
 
-## Getting Started
-
-### Development Server
-
-The server is already running at: http://localhost:5173/
-
-To start it manually:
-```bash
-npm run dev
-```
-
-### Build for Production
-
-```bash
-npm run build
-```
-
-### Preview Production Build
-
-```bash
-npm run preview
-```
-
-## Project Structure
+## 🏗️ Project Structure
 
 ```
-src/
-├── components/
-│   ├── Navbar.jsx          # Navigation bar with mobile menu
-│   ├── Hero.jsx            # Hero section with loan calculator
-│   ├── Milestones.jsx      # Key statistics and achievements
-│   ├── HowItWorks.jsx      # 4-step process timeline
-│   ├── CreditScore.jsx     # Credit score check section
-│   ├── Products.jsx        # RupeeQ products grid
-│   ├── Partners.jsx        # Partner logos section
-│   ├── Testimonials.jsx    # Customer testimonials carousel
-│   ├── FAQ.jsx             # FAQ accordion
-│   └── Footer.jsx          # Footer with links and CTA
-├── App.jsx                 # Main app component
-├── main.jsx               # App entry point
-└── index.css              # Global styles and Tailwind imports
+Rupeeq/
+├── public/
+│   ├── assets/          # Images, icons, logos
+│   ├── fonts/           # Custom fonts
+│   └── robots.txt       # SEO configuration
+├── src/
+│   ├── components/
+│   │   ├── common/      # Reusable components (ErrorBoundary, Loader, etc.)
+│   │   ├── layout/      # Layout components (Navbar, Footer)
+│   │   ├── sections/    # Page-specific sections
+│   │   ├── shared/      # Shared components across pages
+│   │   └── ui/          # UI primitives (Button, Input, Card, etc.)
+│   ├── config/
+│   │   └── env.js       # Environment configuration
+│   ├── constants/
+│   │   ├── routes.js    # Centralized route definitions
+│   │   ├── heroContent.js
+│   │   ├── loginContent.js
+│   │   ├── blogContent.js
+│   │   └── infoPageContent.jsx
+│   ├── hooks/
+│   │   └── useScrollPosition.js
+│   ├── pages/           # Page components (lazy loaded)
+│   ├── utils/
+│   │   ├── api.js       # API utilities
+│   │   ├── logger.js    # Logging utilities
+│   │   ├── performance.js # Performance utilities
+│   │   ├── formatters.js
+│   │   ├── validationSchemas.js
+│   │   └── scrollUtils.js
+│   ├── App.jsx          # Main app component
+│   ├── main.jsx         # Entry point
+│   └── index.css        # Global styles
+├── .env.example         # Environment variables template
+├── .env.production      # Production environment variables
+├── DEPLOYMENT.md        # Deployment guide
+├── OPTIMIZATION_REPORT.md # Optimization details
+└── README.md            # This file
 ```
 
-## Components Overview
+## 🚦 Getting Started
 
-### 1. Navbar
-- Responsive navigation with mobile hamburger menu
-- Smooth scroll links
-- Login button
+### Prerequisites
 
-### 2. Hero Section
-- Eye-catching headline
-- Loan calculator with tabs (Personal/Multi-Purpose)
-- 4 product cards with icons
+- Node.js 18+ and npm/yarn
+- Git
 
-### 3. Milestones
-- Animated statistics
-- Star ratings
-- Circular progress indicators
-- Counter animations
+### Installation
 
-### 4. How It Works
-- 4-step process with icons
-- Timeline connector (desktop)
-- Hover animations
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd Rupeeq
+   ```
 
-### 5. Credit Score
-- Gradient background
-- Credit score gauge visualization
-- Dual CTA buttons
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-### 6. Products Grid
-- 3 product cards with feature lists
-- Special credit score check card
-- Trust badge
+3. **Set up environment variables**
+   ```bash
+   cp .env.example .env
+   # Edit .env with your configuration
+   ```
 
-### 7. Partners
-- Logo grid of partner institutions
-- Responsive layout
+4. **Start development server**
+   ```bash
+   npm run dev
+   ```
 
-### 8. Testimonials
-- Carousel with navigation
-- Star ratings
-- Customer quotes
+   The app will be available at `http://localhost:5173`
 
-### 9. FAQ
-- Expandable accordion
-- Smooth animations
-- Illustration
+## 📜 Available Scripts
 
-### 10. Footer
-- CTA banner
-- 4-column link layout
-- Social media icons
-- Copyright notice
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run build:analyze` - Build and analyze bundle size
+- `npm run preview` - Preview production build locally
+- `npm run lint` - Run ESLint
+- `npm run lint:fix` - Fix ESLint errors automatically
+- `npm run clean` - Clean build artifacts
+- `npm run restore` - Restore index.html if deleted
 
-## Color Palette
+## 🌐 Pages & Routes
 
-- **Primary**: Purple (#6C5CE7)
-- **Secondary**: Green (#00D9A3)
-- **Accent Purple**: #8B5CF6
-- **Accent Pink**: #EC4899
-- **Accent Orange**: #F97316
+### Main Pages
+- `/` - Landing page
+- `/about-us` - About us
+- `/our-mission` - Our mission
+- `/careers` - Careers
+- `/contact-us` - Contact us
+- `/blogs` - Blog listing
 
-## Customization
+### Loan Products
+- `/personal-loan` - Personal loan information
+- `/debt-consolidation` - Debt consolidation
+- `/overdraft-facility` - Overdraft facility
+- `/short-term-loan` - Short-term loans
+- `/credit-cards` - Credit cards
 
-### Colors
-Edit `tailwind.config.js` to customize the color palette.
+### Tools
+- `/emi-calculator` - EMI calculator
+- `/credit-score` - Credit score checker
+- `/ifsc-micr` - IFSC/MICR finder
 
-### Content
-Update component files in `src/components/` to modify text, images, and data.
+### Application Flow
+- `/login/*` - Login pages for different loan types
+- `/*-info-1` - Personal information (step 1)
+- `/*-info-2` - Personal information (step 2)
 
-### Styling
-Modify `src/index.css` for global styles or use Tailwind utility classes directly in components.
+## 🔧 Configuration
 
-## Next Steps
+### Environment Variables
 
-- Add real images and illustrations
-- Integrate with backend API
-- Add form validation
-- Implement analytics
-- Add more animations
-- Optimize performance
-- Add SEO meta tags
+Create a `.env` file based on `.env.example`:
+
+```env
+# API Configuration
+VITE_API_BASE_URL=http://localhost:3000/api
+VITE_API_TIMEOUT=30000
+
+# Authentication
+VITE_AUTH_TOKEN_KEY=rupeeq_auth_token
+VITE_REFRESH_TOKEN_KEY=rupeeq_refresh_token
+
+# Feature Flags
+VITE_ENABLE_ANALYTICS=false
+VITE_ENABLE_CHAT_SUPPORT=false
+
+# Environment
+VITE_ENV=development
+
+# App Configuration
+VITE_APP_NAME=RupeeQ
+VITE_APP_VERSION=1.0.0
+```
+
+### Vite Configuration
+
+The project uses optimized Vite configuration with:
+- Path aliases for cleaner imports
+- Code splitting for better caching
+- Terser minification
+- Console.log removal in production
+- Optimized chunk sizes
+
+## 🎨 Styling
+
+- **Tailwind CSS**: Utility-first CSS framework
+- **Custom Fonts**: Delight, Helvetica Neue, Inter Tight, Lexend, Open Sans
+- **Responsive Design**: Mobile-first approach
+- **Custom Colors**: Brand colors defined in `tailwind.config.js`
+- **Animations**: Custom animations and transitions
+
+## 🔐 Security
+
+- Environment-based configuration
+- Security headers in HTML
+- API authentication with token management
+- Request timeout protection
+- XSS protection
+- CSRF protection ready
+
+## 📊 Performance
+
+### Optimizations Implemented
+- Route-based code splitting
+- Lazy loading of pages
+- Optimized bundle sizes
+- Image optimization
+- Font optimization with preconnect
+- Debounce and throttle utilities
+
+### Performance Metrics (Target)
+- Lighthouse Score: 90+
+- First Contentful Paint: < 1.5s
+- Time to Interactive: < 2.5s
+- Total Bundle Size: < 500KB
+
+## 🧪 Testing
+
+### Recommended Testing Strategy
+1. **Unit Tests**: Jest + React Testing Library
+2. **E2E Tests**: Playwright or Cypress
+3. **Accessibility**: aXe DevTools
+4. **Performance**: Lighthouse CI
+
+## 📦 Building for Production
+
+1. **Build the project**
+   ```bash
+   npm run build
+   ```
+
+2. **Preview the build**
+   ```bash
+   npm run preview
+   ```
+
+3. **Deploy**
+   - See `DEPLOYMENT.md` for detailed deployment instructions
+   - Supports Vercel, Netlify, AWS S3, traditional hosting
+
+## 🚀 Deployment
+
+Refer to `DEPLOYMENT.md` for comprehensive deployment guide including:
+- Pre-deployment checklist
+- Build process
+- Deployment options (Vercel, Netlify, AWS, etc.)
+- Post-deployment verification
+- Nginx configuration
+- Rollback plan
+
+## 📈 Monitoring & Analytics
+
+### Recommended Tools
+- **Error Tracking**: Sentry, LogRocket
+- **Analytics**: Google Analytics, Mixpanel
+- **Performance**: Lighthouse CI, Web Vitals
+- **Uptime**: UptimeRobot, Pingdom
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📝 Code Style
+
+- ESLint configuration included
+- Run `npm run lint` before committing
+- Use `npm run lint:fix` to auto-fix issues
+- Follow React best practices
+- Use functional components and hooks
+
+## 🐛 Known Issues
+
+None currently. See `OPTIMIZATION_REPORT.md` for recommendations.
+
+## 📚 Documentation
+
+- `README.md` - This file
+- `DEPLOYMENT.md` - Deployment guide
+- `OPTIMIZATION_REPORT.md` - Optimization details
+- Inline code comments for complex logic
+
+## 🔄 Version History
+
+- **v1.0.0** - Initial production-ready release
+  - Complete UI implementation
+  - All loan product pages
+  - Form validation
+  - Performance optimizations
+  - SEO enhancements
+  - Security improvements
+
+## 📞 Support
+
+For support, please contact:
+- Technical Lead: [Contact Info]
+- Email: support@rupeeq.com
+- Website: https://rupeeq.com
+
+## 📄 License
+
+[Your License Here]
+
+## 🙏 Acknowledgments
+
+- Design team for the beautiful UI
+- Development team for implementation
+- All contributors and testers
+
+---
+
+**Built with ❤️ by the RupeeQ Team**
+
+**Status**: ✅ Production Ready
+**Last Updated**: March 12, 2026
