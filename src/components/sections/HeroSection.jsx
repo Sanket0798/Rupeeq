@@ -148,37 +148,50 @@ const HeroSection = () => {
               {/* Right Content - Hero Slider */}
               <div className="relative w-full md:w-auto">
                 <div className="relative rounded-2xl md:rounded-3xl shadow-[5px_8px_9px_5px_rgba(0,0,0,0.25)] overflow-visible">
-                  {/* Hero Card */}
-                  <div className={`bg-brand-gradient px-4 md:px-8 py-6 md:py-[45px] text-white relative w-full md:w-[656px] min-h-[200px] md:min-h-[315px] flex flex-row justify-between overflow-hidden rounded-2xl md:rounded-3xl`}>
-                    <div className="flex flex-col items-start justify-between">
-                      <div>
-                        <h3 className="text-[28px] md:text-[50px] leading-[36px] md:leading-[60px] tracing-[0%] font-semibold mb-2">
-                          {heroSlides[currentSlide].title}
-                        </h3>
-                        <button
-                          onClick={() => navigate('/personal-loan')}
-                          className="bg-white text-button-color px-[8px] md:px-[11px] py-[6px] md:py-[9px] rounded-full text-sm md:text-lg leading-[130%] tracing-[0%] font-bold hover:bg-opacity-90 transition-all duration-300 flex items-center gap-1 md:gap-2"
-                        >
-                          {heroSlides[currentSlide].buttonText}
-                          <RightUpArrowIcon />
-                        </button>
+                  {/* Hero Card Slider Container */}
+                  <div className="relative w-full md:w-[656px] min-h-[200px] md:min-h-[315px] overflow-hidden rounded-2xl md:rounded-3xl">
+                    {heroSlides.map((slide, index) => (
+                      <div
+                        key={slide.id}
+                        className={`absolute inset-0 bg-brand-gradient px-4 md:px-8 py-6 md:py-[45px] text-white w-full h-full flex flex-row justify-between transition-transform duration-700 ease-in-out ${
+                          index === currentSlide
+                            ? 'translate-x-0'
+                            : index < currentSlide
+                            ? '-translate-x-full'
+                            : 'translate-x-full'
+                        }`}
+                      >
+                        <div className="flex flex-col items-start justify-between">
+                          <div>
+                            <h3 className="text-[28px] md:text-[50px] leading-[36px] md:leading-[60px] tracing-[0%] font-semibold mb-2">
+                              {slide.title}
+                            </h3>
+                            <button
+                              onClick={() => navigate('/personal-loan')}
+                              className="bg-white text-button-color px-[8px] md:px-[11px] py-[6px] md:py-[9px] rounded-full text-sm md:text-lg leading-[130%] tracing-[0%] font-bold hover:bg-opacity-90 transition-all duration-300 flex items-center gap-1 md:gap-2"
+                            >
+                              {slide.buttonText}
+                              <RightUpArrowIcon />
+                            </button>
+                          </div>
+                          <div>
+                            <h4 className="text-[20px] md:text-[40px] leading-[130%] tracing-[1%] font-normal">
+                              {slide.subtitle}
+                            </h4>
+                            <p className="text-sm md:text-base leading-[24px] md:leading-[32px] tracing-[1%] font-normal">
+                              {slide.description}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="hidden md:flex items-center">
+                          <img
+                            src={slide.illustration}
+                            alt={slide.title}
+                            className="object-contain"
+                          />
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="text-[20px] md:text-[40px] leading-[130%] tracing-[1%] font-normal">
-                          {heroSlides[currentSlide].subtitle}
-                        </h4>
-                        <p className="text-sm md:text-base leading-[24px] md:leading-[32px] tracing-[1%] font-normal">
-                          {heroSlides[currentSlide].description}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="hidden md:flex items-center">
-                      <img
-                        src={heroSlides[currentSlide].illustration}
-                        alt={heroSlides[currentSlide].title}
-                        className="object-contain"
-                      />
-                    </div>
+                    ))}
                   </div>
 
                   {/* Shield Image - positioned at bottom right */}
