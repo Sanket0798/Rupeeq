@@ -115,11 +115,6 @@
     @apply bg-white rounded-xl shadow-card hover:shadow-card-hover transition-all duration-300 p-6;
   }
   
-  /* Navbar container - 100% width with 12px horizontal padding and 12px top padding */
-  /* .nav-container {
-    @apply max-w-nav-container w-full mx-auto px-[12px] rounded-3xl;
-  } */
-  
   /* Container utilities with different sizes */
   .container-custom {
     @apply max-w-container mx-auto px-4 sm:px-6 lg:px-8;
@@ -143,6 +138,171 @@
   
   .container-custom-full {
     @apply max-w-container-full mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* ========================================
+     OPTIMIZED REUSABLE CLASSES
+     Based on frequency analysis of the codebase
+     ======================================== */
+
+  /* Form Labels - Used 16x */
+  .form-label {
+    @apply block text-sm md:text-base leading-[26px] font-bold tracing-[4%] text-[#58626C] mb-2;
+  }
+
+  /* Form Labels Large - Used 14x */
+  .form-label-lg {
+    @apply block font-bold text-sm md:text-lg leading-[26px] tracing-[4%] text-[#58626C] mb-[6px];
+  }
+
+  /* Form Input Base - Used 10x */
+  .form-input {
+    @apply bg-white border-[#D0D0D0] rounded-[20px] py-3;
+  }
+
+  /* Form Input with Left Padding - Used 6x */
+  .form-input-currency {
+    @apply bg-white border-[#D0D0D0] rounded-[20px] py-3 pl-8;
+  }
+
+  /* Form Input Responsive - Used 5x */
+  .form-input-responsive {
+    @apply bg-white border-[#D0D0D0] rounded-[20px] py-3 md:py-4 text-sm md:text-base placeholder:text-[#58626C]/50;
+  }
+
+  /* Form Select - Used 6x */
+  .form-select {
+    @apply w-full px-4 py-3 rounded-full border border-gray-300 focus:border-custom-purple focus:outline-none focus:ring-2 focus:ring-custom-purple/20 transition-all;
+  }
+
+  /* Form Select Rounded - Used 5x */
+  .form-select-rounded {
+    @apply w-full px-4 py-3 rounded-[20px] border border-[#D0D0D0] focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary;
+  }
+
+  /* Form Label Small - Used 6x */
+  .form-label-sm {
+    @apply block font-semibold text-base leading-[26px] text-[#58626C] mb-2;
+  }
+
+  /* Form Label Medium - Used 5x */
+  .form-label-md {
+    @apply block font-semibold md:font-bold text-base md:text-lg leading-[22px] md:leading-[26px] mb-2 text-custom-dark-text;
+  }
+
+  /* Grid 2 Columns - Used 5x */
+  .grid-2-cols {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-4 mb-4;
+  }
+
+  /* Logo Container - Used 8x */
+  .logo-container {
+    @apply mb-8 flex items-center justify-center;
+  }
+
+  /* Logo Container Small - Used 6x */
+  .logo-container-sm {
+    @apply mb-6 flex items-center justify-center;
+  }
+
+  /* Section Container - Used 5x */
+  .section-container {
+    @apply max-w-[1286px] mx-auto;
+  }
+
+  /* Section Padding - Used 5x */
+  .section-padding {
+    @apply pt-20 md:pt-24 pb-12 md:pb-20 overflow-hidden bg-gradient-to-b from-[#DDEDF9] via-[#DDEDF9] to-[#F7F7F7] [mask-image:linear-gradient(to_bottom,black_80%,transparent)];
+  }
+
+  /* Desktop Only - Used 6x */
+  .desktop-only {
+    @apply hidden md:block relative;
+  }
+
+  /* Mobile Help Link - Used 6x */
+  .mobile-help-link {
+    @apply md:hidden text-center mt-4;
+  }
+
+  /* Link Blue - Used 6x */
+  .link-blue {
+    @apply text-[#0072F2] underline;
+  }
+
+  /* Link Blue Bold - Used 4x */
+  .link-blue-bold {
+    @apply text-[#0072F2] font-semibold;
+  }
+
+  /* Footer Link - Used 6x */
+  .footer-link {
+    @apply text-neutral-600 hover:text-primary transition-colors text-xs md:text-base;
+  }
+
+  /* Currency Symbol - Used 4x */
+  .currency-symbol {
+    @apply absolute left-4 top-1/2 -translate-y-1/2 text-[#58626C];
+  }
+
+  /* Page Title - Used 4x */
+  .page-title {
+    @apply font-bold text-xl md:text-[30px] leading-[28px] md:leading-[40px] tracing-[0%] text-custom-purple;
+  }
+
+  /* Card Title Mobile - Used 4x */
+  .card-title-mobile {
+    @apply text-[25px] font-bold leading-[38px] text-custom-dark-text;
+  }
+
+  /* Card Subtitle - Used 4x */
+  .card-subtitle {
+    @apply text-lg leading-[26px] text-custom-purple font-semibold;
+  }
+
+  /* Card Subtitle Large - Used 4x */
+  .card-subtitle-lg {
+    @apply text-2xl leading-[26px] tracing-[6%] text-custom-purple font-semibold;
+  }
+
+  /* Card Text - Used 4x */
+  .card-text {
+    @apply text-[#4B5768] font-medium text-2xl leading-[30px] tracing-[2%];
+  }
+
+  /* Heading Large - Used 6x */
+  .heading-lg {
+    @apply text-2xl leading-[34px] tracing-[0%] text-custom-dark-text font-medium;
+  }
+
+  /* Heading Medium - Used 6x */
+  .heading-md {
+    @apply text-xl leading-[26px] tracing-[0%] text-[#7D7D7D] font-normal text-center w-[300px];
+  }
+
+  /* Heading Small - Used 4x */
+  .heading-sm {
+    @apply font-bold text-lg md:text-xl leading-[22px] md:leading-[25px] text-custom-dark-text mb-3 md:mb-4;
+  }
+
+  /* Text Normal - Used 4x */
+  .text-normal {
+    @apply font-normal text-[17px] leading-[17px] text-[#575757];
+  }
+
+  /* Mobile Card Container - Used 4x */
+  .mobile-card-container {
+    @apply p-8 text-center;
+  }
+
+  /* Illustration Small - Used 4x */
+  .illustration-sm {
+    @apply w-[110px] h-[86px];
+  }
+
+  /* Logo Small - Used 4x */
+  .logo-sm {
+    @apply w-[180px] h-auto;
   }
 }
 

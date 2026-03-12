@@ -115,11 +115,11 @@ const DebtConsolidationPage = () => {
       description: '1-7 Years, Adjust EMI To Fit Income.',
       icon: '/assets/logos/MakesDifferent/CalenderWithClock.png',
     },
-    {
-      title: '100% Digital Process',
-      description: 'Upload Documents & Get Funds Online & Paperless.',
-      icon: '/assets/logos/MakesDifferent/DigitalProcess.png',
-    }
+    // {
+    //   title: '100% Digital Process',
+    //   description: 'Upload Documents & Get Funds Online & Paperless.',
+    //   icon: '/assets/logos/MakesDifferent/DigitalProcess.png',
+    // }
   ];
 
   return (
