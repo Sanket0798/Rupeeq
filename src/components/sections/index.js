@@ -37,3 +37,8 @@ export { default as IFSCMICRCTASection } from './IFSCMICRCTASection';
 export { default as BlogsHero } from './BlogsHero';
 export { default as BlogListingSection } from './BlogListingSection';
 export { default as BlogCTASection } from './BlogCTASection';
+export { default as CreditCardBlogDetail } from './CreditCardBlogDetail';
+export { default as AboutUsHero } from './AboutUsHero';
+export { default as AboutUsStory } from './AboutUsStory';
+export { default as AboutUsEasyLoan } from './AboutUsEasyLoan';
+export { default as WeHaveYouCoveredSection } from './WeHaveYouCoveredSection';

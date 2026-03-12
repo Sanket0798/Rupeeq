@@ -6,6 +6,7 @@ import { LoadingSpinner } from './components/ui';
 
 // Lazy load pages for better performance
 const LandingPage = lazy(() => import('./pages/LandingPage'));
+const AboutUsPage = lazy(() => import('./pages/AboutUsPage'));
 const PersonalLoanPage = lazy(() => import('./pages/PersonalLoanPage'));
 const DebtConsolidationPage = lazy(() => import('./pages/DebtConsolidationPage'));
 const CreditCardsPage = lazy(() => import('./pages/CreditCardsPage'));
@@ -52,6 +53,7 @@ function App() {
             <Routes>
               {/* Main Pages */}
             <Route path="/" element={<LandingPage />} />
+            <Route path="/about-us" element={<AboutUsPage />} />
             <Route path="/personal-loan" element={<PersonalLoanPage />} />
             <Route path="/debt-consolidation" element={<DebtConsolidationPage />} />
             <Route path="/credit-cards" element={<CreditCardsPage />} />
@@ -128,7 +130,7 @@ const ConditionalNavbar = () => {
 // Component to conditionally render footer based on route
 const ConditionalFooter = () => {
   const location = useLocation();
-  const showFooterRoutes = ['/', '/personal-loan', '/debt-consolidation', '/credit-cards', '/emi-calculator', '/ifsc-micr', '/credit-score', '/overdraft-facility', '/short-term-loan', '/blogs', '/login/home'];
+  const showFooterRoutes = ['/', '/about-us', '/personal-loan', '/debt-consolidation', '/credit-cards', '/emi-calculator', '/ifsc-micr', '/credit-score', '/overdraft-facility', '/short-term-loan', '/blogs', '/login/home'];
   
   if (showFooterRoutes.includes(location.pathname)) {
     return <Footer />;

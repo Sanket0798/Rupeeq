@@ -1,14 +1,30 @@
 import { Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 
 const Footer = () => {
   const location = useLocation();
   const isHomeLoginPage = location.pathname === '/login/home';
 
   const footerLinks = {
-    About: ['Who We Are', 'Our Mission', 'Careers', 'Contact Us', 'Consent Withdrawal/ Grievance'],
-    Legal: ['Privacy Policy', 'Term\'s & Conditions', 'FAQ', 'RBI Sachet'],
-    Blogs: ['Personal Loan', 'Credit Score', 'Credit Card', 'Search IFSC Code'],
+    About: [
+      { name: 'Who We Are', path: '/about-us' },
+      { name: 'Our Mission', path: '#' },
+      { name: 'Careers', path: '#' },
+      { name: 'Contact Us', path: '#' },
+      { name: 'Consent Withdrawal/ Grievance', path: '#' }
+    ],
+    Legal: [
+      { name: 'Privacy Policy', path: '#' },
+      { name: "Term's & Conditions", path: '#' },
+      { name: 'FAQ', path: '#' },
+      { name: 'RBI Sachet', path: '#' }
+    ],
+    Blogs: [
+      { name: 'Personal Loan', path: '/blogs?tab=personal-loan' },
+      { name: 'Credit Score', path: '/blogs?tab=credit-score' },
+      { name: 'Credit Card', path: '/blogs?tab=credit-card' },
+      { name: 'Search IFSC Code', path: '/ifsc-micr' }
+    ],
   };
 
   return (
@@ -88,13 +104,22 @@ const Footer = () => {
             <h4 className="font-semibold text-[#100701] mb-3 md:mb-4 text-base md:text-lg">About</h4>
             <ul className="space-y-1.5 md:space-y-2">
               {footerLinks.About.map((link) => (
-                <li key={link}>
-                  <a
-                    href="#"
-                    className="text-neutral-600 hover:text-primary transition-colors text-xs md:text-base"
-                  >
-                    {link}
-                  </a>
+                <li key={link.name}>
+                  {link.path.startsWith('#') ? (
+                    <a
+                      href={link.path}
+                      className="text-neutral-600 hover:text-primary transition-colors text-xs md:text-base"
+                    >
+                      {link.name}
+                    </a>
+                  ) : (
+                    <Link
+                      to={link.path}
+                      className="text-neutral-600 hover:text-primary transition-colors text-xs md:text-base"
+                    >
+                      {link.name}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -105,13 +130,22 @@ const Footer = () => {
             <h4 className="font-semibold text-[#100701] mb-3 md:mb-4 text-base md:text-lg">Legal</h4>
             <ul className="space-y-1.5 md:space-y-2">
               {footerLinks.Legal.map((link) => (
-                <li key={link}>
-                  <a
-                    href="#"
-                    className="text-neutral-600 hover:text-primary transition-colors text-xs md:text-base"
-                  >
-                    {link}
-                  </a>
+                <li key={link.name}>
+                  {link.path.startsWith('#') ? (
+                    <a
+                      href={link.path}
+                      className="text-neutral-600 hover:text-primary transition-colors text-xs md:text-base"
+                    >
+                      {link.name}
+                    </a>
+                  ) : (
+                    <Link
+                      to={link.path}
+                      className="text-neutral-600 hover:text-primary transition-colors text-xs md:text-base"
+                    >
+                      {link.name}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -122,13 +156,22 @@ const Footer = () => {
             <h4 className="font-semibold text-[#100701] mb-3 md:mb-4 text-base md:text-lg">Blogs</h4>
             <ul className="space-y-1.5 md:space-y-2">
               {footerLinks.Blogs.map((link) => (
-                <li key={link}>
-                  <a
-                    href="#"
-                    className="text-neutral-600 hover:text-primary transition-colors text-xs md:text-base"
-                  >
-                    {link}
-                  </a>
+                <li key={link.name}>
+                  {link.path.startsWith('#') ? (
+                    <a
+                      href={link.path}
+                      className="text-neutral-600 hover:text-primary transition-colors text-xs md:text-base"
+                    >
+                      {link.name}
+                    </a>
+                  ) : (
+                    <Link
+                      to={link.path}
+                      className="text-neutral-600 hover:text-primary transition-colors text-xs md:text-base"
+                    >
+                      {link.name}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>

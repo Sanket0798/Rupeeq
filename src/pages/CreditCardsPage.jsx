@@ -1,16 +1,16 @@
-import { 
+import {
   CreditCardsHero,
   WhyCreditCardsSection,
   CreditCardApprovalGuide,
   CreditCardFeaturesSection,
   CreditCardEligibility
 } from '../components/sections';
-import { 
-  TrustSection, 
-  CreditScoreSection, 
-  PartnersMarquee, 
-  TestimonialsSlider, 
-  FAQSection 
+import {
+  TrustSection,
+  CreditScoreSection,
+  PartnersMarquee,
+  TestimonialsSlider,
+  FAQSection
 } from '../components/shared';
 
 const CreditCardsPage = () => {
