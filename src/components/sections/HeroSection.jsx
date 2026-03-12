@@ -99,7 +99,7 @@ const HeroSection = () => {
       className="relative min-h-screen pt-16 pb-8 md:pt-24 md:pb-16 overflow-hidden"
       style={{
         marginTop: '-80px',
-        paddingTop: '80px',
+        paddingTop: '0px',
         background: 'linear-gradient(135deg, #E8F5F7 0%, #F0E8F7 50%, #E8F7F0 100%)'
       }}
     >
