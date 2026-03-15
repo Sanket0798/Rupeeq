@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronUpIcon, RightUpArrowIcon } from '../common/SvgIcons';
 
 const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const navigate = useNavigate();
+  const touchStartX = useRef(null);
 
   // Hero slider data
   const heroSlides = [
@@ -36,6 +37,23 @@ const HeroSection = () => {
       illustration: '/assets/images/hero/2.png'
     }
   ];
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e) => {
+    if (touchStartX.current === null) return;
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) {
+        setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+      } else {
+        setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
+      }
+    }
+    touchStartX.current = null;
+  };
 
   // Product cards data
   const productCards = [
@@ -96,15 +114,14 @@ const HeroSection = () => {
 
   return (
     <section
-      className="relative min-h-screen pt-16 pb-8 md:pt-24 md:pb-16 overflow-hidden"
+      className="relative min-h-screen pt-[80px] pb-8 md:pt-[100px] md:pb-16 overflow-hidden"
       style={{
         marginTop: '-80px',
-        paddingTop: '0px',
         background: 'linear-gradient(135deg, #E8F5F7 0%, #F0E8F7 50%, #E8F7F0 100%)'
       }}
     >
       <div className="max-w-[1286px] mx-auto w-full px-4 md:px-0">
-        <div className="min-h-[40vh] md:min-h-[60vh] mt-0 md:mt-20 flex items-center">
+        <div className="min-h-[40vh] md:min-h-[60vh] mt-0 md:mt-14 flex items-center">
           <div className="w-full">
             {/* Mobile: Title only */}
             <div className="md:hidden text-center mb-6 mt-8">
@@ -149,7 +166,10 @@ const HeroSection = () => {
               <div className="relative w-full md:w-auto">
                 <div className="relative rounded-2xl md:rounded-3xl shadow-[5px_8px_9px_5px_rgba(0,0,0,0.25)] overflow-visible">
                   {/* Hero Card Slider Container */}
-                  <div className="relative w-full md:w-[656px] min-h-[200px] md:min-h-[315px] overflow-hidden rounded-2xl md:rounded-3xl">
+                  <div className="relative w-full md:w-[656px] min-h-[200px] md:min-h-[315px] overflow-hidden rounded-2xl md:rounded-3xl"
+                    onTouchStart={handleTouchStart}
+                    onTouchEnd={handleTouchEnd}
+                  >
                     {heroSlides.map((slide, index) => (
                       <div
                         key={slide.id}

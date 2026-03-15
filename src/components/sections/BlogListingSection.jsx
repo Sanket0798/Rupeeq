@@ -163,7 +163,7 @@ const BlogListingSection = ({ category = 'all' }) => {
 
           {/* Right Column - Sidebar */}
           <div className="lg:col-span-1">
-            <div className="lg:sticky lg:top-24 space-y-6 md:space-y-8 lg:space-y-0">
+            <div className="lg:sticky lg:top-24 space-y-6 md:space-y-8 lg:space-y-16">
               {/* Credit Score Widget */}
               <div className="bg-[#E5FBF5] text-center rounded-[10px] shadow-[4px_4px_4px_rgba(0,0,0,0.25)] px-6 md:px-[45px] pb-8 md:pb-[53px]">
                 <div className="flex justify-center mb-4 relative">
@@ -210,7 +210,7 @@ const BlogListingSection = ({ category = 'all' }) => {
                   Check Free Credit Score
                   <ChevronUpIcon />
                 </Button>
-                <Button variant="primary" size="sm" className="py-[10px] md:py-[13px] pl-[20px] md:pl-[34px] pr-[24px] md:pr-[41px] gap-2 md:gap-3 w-full md:w-[259px] text-sm md:text-base">
+                <Button variant="primary" size="sm" className="py-[10px] md:py-[13px] pl-[20px] md:pl-[34px] pr-[24px] gap-2 md:gap-3 w-full md:w-[259px] text-sm md:text-base">
                   See Your ACE Insights
                   <ChevronUpIcon />
 
