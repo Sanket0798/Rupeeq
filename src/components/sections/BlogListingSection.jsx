@@ -206,14 +206,9 @@ const BlogListingSection = ({ category = 'all' }) => {
                     <span>Action-Oriented Recommendations, Not Generic Advice</span>
                   </li>
                 </ul>
-                <Button variant="primary" size="sm" className="py-[10px] md:py-[13px] pl-[20px] md:pl-[34px] pr-[24px] md:pr-[41px] gap-2 md:gap-3 w-full md:w-[316px] mb-2 text-sm md:text-base">
+                <Button onClick={() => navigate('/credit-score')} variant="primary" size="sm" className="py-[10px] md:py-[13px] pl-[20px] md:pl-[34px] pr-[24px] md:pr-[41px] gap-2 md:gap-3 w-full md:w-[316px] mb-2 text-sm md:text-base">
                   Check Free Credit Score
                   <ChevronUpIcon />
-                </Button>
-                <Button variant="primary" size="sm" className="py-[10px] md:py-[13px] pl-[20px] md:pl-[34px] pr-[24px] gap-2 md:gap-3 w-full md:w-[259px] text-sm md:text-base">
-                  See Your ACE Insights
-                  <ChevronUpIcon />
-
                 </Button>
               </div>
 

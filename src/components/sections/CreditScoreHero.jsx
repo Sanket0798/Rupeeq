@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ChevronUpIcon } from '../common/SvgIcons';
 
 const CreditScoreHero = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullName: '',
     mobile: '',
@@ -19,8 +21,7 @@ const CreditScoreHero = () => {
   ];
 
   const ctaButtons = [
-    { text: 'Check Free Credit Score', action: () => console.log('Check Credit Score') },
-    { text: 'See Your ACE Insights', action: () => console.log('See ACE Insights') }
+    { text: 'Check Free Credit Score', action: () => navigate('/credit-score') },
   ];
 
   const handleInputChange = (e) => {

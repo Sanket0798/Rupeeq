@@ -1,9 +1,23 @@
+import { useState } from 'react';
 import { Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
 import { useLocation, Link } from 'react-router-dom';
 
 const Footer = () => {
   const location = useLocation();
   const isHomeLoginPage = location.pathname === '/login/home';
+  const [email, setEmail] = useState('');
+  const [subscribeStatus, setSubscribeStatus] = useState(null); // 'success' | 'error'
+
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setSubscribeStatus('error');
+      return;
+    }
+    setSubscribeStatus('success');
+    setEmail('');
+  };
 
   const footerLinks = {
     About: [
@@ -14,10 +28,10 @@ const Footer = () => {
       { name: 'Consent Withdrawal/ Grievance', path: '/consent-withdrawal' }
     ],
     Legal: [
-      { name: 'Privacy Policy', path: '#' },
-      { name: "Term's & Conditions", path: '#' },
-      { name: 'FAQ', path: '#' },
-      { name: 'RBI Sachet', path: '#' }
+      { name: 'Privacy Policy', path: '/privacy-policy' },
+      { name: "Term's & Conditions", path: '/terms-and-conditions' },
+      { name: 'FAQ', path: '/faq' },
+      { name: 'RBI Sachet', path: 'https://sachet.rbi.org.in/', external: true }
     ],
     Blogs: [
       { name: 'Personal Loan', path: '/blogs?tab=personal-loan' },
@@ -131,9 +145,11 @@ const Footer = () => {
             <ul className="space-y-1.5 md:space-y-2">
               {footerLinks.Legal.map((link) => (
                 <li key={link.name}>
-                  {link.path.startsWith('#') ? (
+                  {link.external ? (
                     <a
                       href={link.path}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="text-neutral-600 hover:text-primary transition-colors text-xs md:text-base"
                     >
                       {link.name}
@@ -182,15 +198,43 @@ const Footer = () => {
             <h4 className="font-semibold text-custom-dark-text mb-3 md:mb-4 text-base md:text-lg">Disclaimer:</h4>
             <p className="text-[#4B5768] text-xs md:text-sm leading-relaxed">
               As RupeeQ, we act as a facilitator for financial services, but we don't directly sell or distribute loans. We do not charge any fees to customers or website visitors at any stage of the loan process. Our platform is designed to help you explore and compare loan offers from trusted banks and NBFCs.{' '}
-              <a href="#" className="text-[#5084FF] hover:underline">
+              <Link to="/disclaimer" className="text-[#5084FF] hover:underline">
                 read more...
-              </a>
+              </Link>
             </p>
           </div>
         </div>
 
+        {/* Subscribe Section */}
+        <div className="max-w-[90%] mx-auto py-4 md:py-6 border-t border-[#CCCCCC]">
+          {subscribeStatus === 'success' ? (
+            <p className="text-sm text-green-600 font-medium">Thank you for subscribing!</p>
+          ) : (
+            <form onSubmit={handleSubscribe} className="flex flex-col gap-2 w-full max-w-sm">
+              <div className="flex items-center gap-3">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => { setEmail(e.target.value); setSubscribeStatus(null); }}
+                  placeholder="Email"
+                  className="flex-1 px-5 py-2.5 rounded-full border border-[#CCCCCC] text-sm text-[#4B5768] placeholder:text-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-button-color bg-white"
+                />
+                <button
+                  type="submit"
+                  className="px-6 py-2.5 bg-button-color hover:bg-[#4a2470] text-white text-sm font-semibold rounded-full transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap"
+                >
+                  Subscribe
+                </button>
+              </div>
+              {subscribeStatus === 'error' && (
+                <p className="text-xs text-red-500 pl-4">Please enter a valid email address.</p>
+              )}
+            </form>
+          )}
+        </div>
+
         {/* Copyright Section */}
-        <div className="text-center py-4 md:py-6 max-w-[90%] mx-auto">
+        <div className="text-center py-4 md:py-6 max-w-[90%] mx-auto border-t border-[#CCCCCC]">
           <p className="text-[#4B5768] text-xs md:text-base">
             © 2026 All Rights Reserved. Intulro Business Consulting India Private Limited
           </p>

@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -9,6 +10,7 @@ import { Button } from '../ui';
 gsap.registerPlugin(ScrollTrigger);
 
 const CreditScoreSection = () => {
+  const navigate = useNavigate();
   const sectionRef = useRef(null);
   const cardRef = useRef(null);
   const imageRef = useRef(null);
@@ -404,20 +406,8 @@ const CreditScoreSection = () => {
                 whileHover="hover"
                 whileTap="tap"
               >
-                <Button variant="primary" size="sm" className="py-[10px] md:py-[13px] pl-[20px] md:pl-[34px] pr-[24px] md:pr-[41px] gap-2 md:gap-3 w-[316px] sm:w-auto">
+                <Button onClick={() => navigate('/credit-score')} variant="primary" size="sm" className="py-[10px] md:py-[13px] pl-[20px] md:pl-[34px] pr-[24px] md:pr-[41px] gap-2 md:gap-3 w-[316px] sm:w-auto">
                   Check Free Credit Score
-                  <motion.span variants={arrowVariants}>
-                    <ChevronUpIcon />
-                  </motion.span>
-                </Button>
-              </motion.div>
-              <motion.div
-                variants={buttonVariants}
-                whileHover="hover"
-                whileTap="tap"
-              >
-                <Button variant="primary" size="sm" className="py-[10px] md:py-[13px] pl-[20px] md:pl-[34px] pr-[24px] md:pr-[41px] gap-2 md:gap-3 w-[259px] sm:w-auto">
-                  See Your ACE Insights
                   <motion.span variants={arrowVariants}>
                     <ChevronUpIcon />
                   </motion.span>

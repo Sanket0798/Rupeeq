@@ -18,7 +18,10 @@ const Navbar = () => {
       dropdownItems: [
         { name: 'Personal Loan', path: '/personal-loan' },
         { name: 'Overdraft Personal Loan', path: '/overdraft-facility' },
-        { name: 'Short Term Personal Loan', path: '/short-term-loan' }
+        { name: 'Short Term Personal Loan', path: '/short-term-loan' },
+        { name: 'Business Loan', path: '/business-loan' },
+        { name: 'Home Loan', path: '/home-loan' },
+        { name: 'Debt Consolidation', path: '/debt-consolidation' }
       ]
     },
     { name: 'How It Works', id: 'how-it-works' },
@@ -32,7 +35,7 @@ const Navbar = () => {
         { name: 'IFSC & MICR', path: '/ifsc-micr' }
       ]
     },
-    { name: 'Credit Score', path: '/credit-score' },
+    { name: 'Free Credit Score', path: '/credit-score' },
     { name: 'Blog', path: '/blogs' },
     { name: 'FAQ', id: 'faq' },
   ];

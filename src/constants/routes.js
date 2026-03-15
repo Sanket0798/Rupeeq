@@ -16,9 +16,17 @@ export const ROUTES = {
   // Loan Pages
   PERSONAL_LOAN: '/personal-loan',
   DEBT_CONSOLIDATION: '/debt-consolidation',
+  BUSINESS_LOAN: '/business-loan',
+  HOME_LOAN: '/home-loan',
   CREDIT_CARDS: '/credit-cards',
   OVERDRAFT_FACILITY: '/overdraft-facility',
   SHORT_TERM_LOAN: '/short-term-loan',
+
+  // Legal Pages
+  PRIVACY_POLICY: '/privacy-policy',
+  TERMS_AND_CONDITIONS: '/terms-and-conditions',
+  FAQ_PAGE: '/faq',
+  DISCLAIMER: '/disclaimer',
 
   // Tools
   EMI_CALCULATOR: '/emi-calculator',
@@ -75,6 +83,10 @@ export const HIDE_NAVBAR_ROUTES = [
  * Routes where footer should be shown
  */
 export const SHOW_FOOTER_ROUTES = [
+  ROUTES.PRIVACY_POLICY,
+  ROUTES.TERMS_AND_CONDITIONS,
+  ROUTES.FAQ_PAGE,
+  ROUTES.DISCLAIMER,
   ROUTES.HOME,
   ROUTES.ABOUT_US,
   ROUTES.OUR_MISSION,
@@ -83,6 +95,8 @@ export const SHOW_FOOTER_ROUTES = [
   ROUTES.CONTACT_US,
   ROUTES.PERSONAL_LOAN,
   ROUTES.DEBT_CONSOLIDATION,
+  ROUTES.BUSINESS_LOAN,
+  ROUTES.HOME_LOAN,
   ROUTES.CREDIT_CARDS,
   ROUTES.EMI_CALCULATOR,
   ROUTES.IFSC_MICR,

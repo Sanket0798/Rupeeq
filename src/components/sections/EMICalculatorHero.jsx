@@ -7,6 +7,11 @@ const EMICalculatorHero = () => {
   const [interestRate, setInterestRate] = useState(6.5);
   const [loanTenure, setLoanTenure] = useState(5);
 
+  // String states for controlled inputs (allows empty/partial typing)
+  const [loanAmountInput, setLoanAmountInput] = useState('2500000');
+  const [interestRateInput, setInterestRateInput] = useState('6.5');
+  const [loanTenureInput, setLoanTenureInput] = useState('5');
+
   // Animation refs
   const sectionRef = useRef(null);
   const titleRef = useRef(null);
@@ -16,11 +21,15 @@ const EMICalculatorHero = () => {
   const breakdownRef = useRef(null);
   const buttonRef = useRef(null);
 
-  // Calculate EMI
+  // Calculate EMI — use safe values so chart never breaks
+  const safeLoan = loanAmount > 0 ? loanAmount : 100000;
+  const safeRate = interestRate > 0 ? interestRate : 0.1;
+  const safeTenure = loanTenure > 0 ? loanTenure : 1;
+
   const calculateEMI = () => {
-    const principal = loanAmount;
-    const ratePerMonth = interestRate / 12 / 100;
-    const numberOfMonths = loanTenure * 12;
+    const principal = safeLoan;
+    const ratePerMonth = safeRate / 12 / 100;
+    const numberOfMonths = safeTenure * 12;
 
     if (ratePerMonth === 0) {
       return principal / numberOfMonths;
@@ -34,10 +43,10 @@ const EMICalculatorHero = () => {
   };
 
   const emi = calculateEMI();
-  const totalAmount = emi * loanTenure * 12;
-  const totalInterest = totalAmount - loanAmount;
-  const principalPercentage = (loanAmount / totalAmount) * 100;
-  const interestPercentage = (totalInterest / totalAmount) * 100;
+  const totalAmount = emi * safeTenure * 12;
+  const totalInterest = Math.max(0, totalAmount - safeLoan);
+  const principalPercentage = totalAmount > 0 ? (safeLoan / totalAmount) * 100 : 85;
+  const interestPercentage = totalAmount > 0 ? (totalInterest / totalAmount) * 100 : 15;
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -194,8 +203,23 @@ const EMICalculatorHero = () => {
                   <label className="font-semibold text-xl md:text-3xl leading-[26px] md:leading-[38px] text-custom-dark-text">
                     Loan Amount
                   </label>
-                  <div className="font-semibold text-xl md:text-3xl leading-[26px] md:leading-[38px] py-1.5 px-3 md:py-2 md:px-3 bg-custom-purple rounded-full text-white">
-                    ₹ {loanAmount.toLocaleString('en-IN')}
+                  <div className="flex items-center gap-1 font-semibold text-xl md:text-3xl leading-[26px] md:leading-[38px] py-1.5 px-3 md:py-2 md:px-3 bg-custom-purple rounded-full text-white">
+                    <span>₹</span>
+                    <input
+                      type="number"
+                      value={loanAmountInput}
+                      onChange={(e) => {
+                        setLoanAmountInput(e.target.value);
+                        const v = Number(e.target.value);
+                        if (v >= 100000 && v <= 10000000) setLoanAmount(v);
+                      }}
+                      onBlur={() => {
+                        const v = Math.min(10000000, Math.max(100000, Number(loanAmountInput) || 100000));
+                        setLoanAmount(v);
+                        setLoanAmountInput(String(v));
+                      }}
+                      className="bg-transparent text-white font-semibold text-xl md:text-3xl w-[120px] md:w-[160px] outline-none text-right [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                    />
                   </div>
                 </div>
                 <input
@@ -204,7 +228,7 @@ const EMICalculatorHero = () => {
                   max="10000000"
                   step="100000"
                   value={loanAmount}
-                  onChange={(e) => setLoanAmount(Number(e.target.value))}
+                  onChange={(e) => { setLoanAmount(Number(e.target.value)); setLoanAmountInput(e.target.value); }}
                   className="w-full h-1.5 bg-gray-300 rounded-lg appearance-none cursor-pointer accent-custom-purple"
                   style={{
                     background: `linear-gradient(to right, #5528A9 0%, #5528A9 ${((loanAmount - 100000) / (10000000 - 100000)) * 100}%, #D9D9D9 ${((loanAmount - 100000) / (10000000 - 100000)) * 100}%, #D9D9D9 100%)`
@@ -218,8 +242,23 @@ const EMICalculatorHero = () => {
                   <label className="font-semibold text-xl md:text-3xl leading-[26px] md:leading-[38px] text-custom-dark-text">
                     Rate Of Interest
                   </label>
-                  <div className="font-semibold text-xl md:text-3xl leading-[26px] md:leading-[38px] py-1.5 px-3 md:py-2 md:px-3 bg-custom-purple rounded-full text-white">
-                    {interestRate}%
+                  <div className="flex items-center gap-1 font-semibold text-xl md:text-3xl leading-[26px] md:leading-[38px] py-1.5 px-3 md:py-2 md:px-3 bg-custom-purple rounded-full text-white">
+                    <input
+                      type="number"
+                      value={interestRateInput}
+                      onChange={(e) => {
+                        setInterestRateInput(e.target.value);
+                        const v = Number(e.target.value);
+                        if (v >= 5 && v <= 20) setInterestRate(v);
+                      }}
+                      onBlur={() => {
+                        const v = Math.min(20, Math.max(5, Number(interestRateInput) || 5));
+                        setInterestRate(parseFloat(v.toFixed(1)));
+                        setInterestRateInput(String(parseFloat(v.toFixed(1))));
+                      }}
+                      className="bg-transparent text-white font-semibold text-xl md:text-3xl w-[50px] md:w-[60px] outline-none text-right [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                    />
+                    <span>%</span>
                   </div>
                 </div>
                 <input
@@ -228,7 +267,7 @@ const EMICalculatorHero = () => {
                   max="20"
                   step="0.1"
                   value={interestRate}
-                  onChange={(e) => setInterestRate(Number(e.target.value))}
+                  onChange={(e) => { setInterestRate(Number(e.target.value)); setInterestRateInput(e.target.value); }}
                   className="w-full h-1.5 bg-gray-300 rounded-lg appearance-none cursor-pointer accent-custom-purple"
                   style={{
                     background: `linear-gradient(to right, #5528A9 0%, #5528A9 ${((interestRate - 5) / (20 - 5)) * 100}%, #D9D9D9 ${((interestRate - 5) / (20 - 5)) * 100}%, #D9D9D9 100%)`
@@ -242,8 +281,23 @@ const EMICalculatorHero = () => {
                   <label className="font-semibold text-xl md:text-3xl leading-[26px] md:leading-[38px] text-custom-dark-text">
                     Loan Tenure
                   </label>
-                  <div className="font-semibold text-xl md:text-3xl leading-[26px] md:leading-[38px] py-1.5 px-3 md:py-2 md:px-3 bg-custom-purple rounded-full text-white">
-                    {loanTenure} Years
+                  <div className="flex items-center gap-1 font-semibold text-xl md:text-3xl leading-[26px] md:leading-[38px] py-1.5 px-3 md:py-2 md:px-3 bg-custom-purple rounded-full text-white">
+                    <input
+                      type="number"
+                      value={loanTenureInput}
+                      onChange={(e) => {
+                        setLoanTenureInput(e.target.value);
+                        const v = Number(e.target.value);
+                        if (v >= 1 && v <= 30) setLoanTenure(v);
+                      }}
+                      onBlur={() => {
+                        const v = Math.min(30, Math.max(1, Math.round(Number(loanTenureInput) || 1)));
+                        setLoanTenure(v);
+                        setLoanTenureInput(String(v));
+                      }}
+                      className="bg-transparent text-white font-semibold text-xl md:text-3xl w-[40px] md:w-[50px] outline-none text-right [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                    />
+                    <span>Years</span>
                   </div>
                 </div>
                 <input
@@ -252,7 +306,7 @@ const EMICalculatorHero = () => {
                   max="30"
                   step="1"
                   value={loanTenure}
-                  onChange={(e) => setLoanTenure(Number(e.target.value))}
+                  onChange={(e) => { setLoanTenure(Number(e.target.value)); setLoanTenureInput(e.target.value); }}
                   className="w-full h-1.5 bg-gray-300 rounded-lg appearance-none cursor-pointer accent-custom-purple"
                   style={{
                     background: `linear-gradient(to right, #5528A9 0%, #5528A9 ${((loanTenure - 1) / (30 - 1)) * 100}%, #D9D9D9 ${((loanTenure - 1) / (30 - 1)) * 100}%, #D9D9D9 100%)`
@@ -295,7 +349,7 @@ const EMICalculatorHero = () => {
               </div>
 
               {/* Breakdown Box */}
-              <div ref={breakdownRef} className="bg-[#0072F2]/30 rounded-2xl p-3 w-full max-w-[300px] space-y-2 text-white font-normal text-[17px] leading-[23px]">
+              <div ref={breakdownRef} className="bg-custom-purple rounded-2xl p-3 w-full max-w-[300px] space-y-2 text-white font-normal text-[17px] leading-[23px]">
                 <div className="flex justify-between items-center">
                   <span className="">Monthly EMI</span>
                   <span className="">₹ {(emi / 100000).toFixed(2).replace('.', ',')}L</span>

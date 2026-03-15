@@ -14,6 +14,8 @@ const CareersPage = lazy(() => import('./pages/CareersPage'));
 const ContactUsPage = lazy(() => import('./pages/ContactUsPage'));
 const PersonalLoanPage = lazy(() => import('./pages/PersonalLoanPage'));
 const DebtConsolidationPage = lazy(() => import('./pages/DebtConsolidationPage'));
+const BusinessLoanPage = lazy(() => import('./pages/BusinessLoanPage'));
+const HomeLoanPage = lazy(() => import('./pages/HomeLoanPage'));
 const CreditCardsPage = lazy(() => import('./pages/CreditCardsPage'));
 const EMICalculatorPage = lazy(() => import('./pages/EMICalculatorPage'));
 const IFSCMICRPage = lazy(() => import('./pages/IFSCMICRPage'));
@@ -21,6 +23,10 @@ const CreditScorePage = lazy(() => import('./pages/CreditScorePage'));
 const OverdraftFacilityPage = lazy(() => import('./pages/OverdraftFacilityPage'));
 const ShortTermLoanPage = lazy(() => import('./pages/ShortTermLoanPage'));
 const BlogsPage = lazy(() => import('./pages/BlogsPage'));
+const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage'));
+const TermsAndConditionsPage = lazy(() => import('./pages/TermsAndConditionsPage'));
+const FAQPage = lazy(() => import('./pages/FAQPage'));
+const DisclaimerPage = lazy(() => import('./pages/DisclaimerPage'));
 const HomeLoginPage = lazy(() => import('./pages/HomeLoginPage'));
 const EmploymentTypePage = lazy(() => import('./pages/EmploymentTypePage'));
 const PersonalInformationPage = lazy(() => import('./pages/PersonalInformationPage'));
@@ -65,6 +71,8 @@ function App() {
               <Route path={ROUTES.CONTACT_US} element={<ContactUsPage />} />
               <Route path={ROUTES.PERSONAL_LOAN} element={<PersonalLoanPage />} />
               <Route path={ROUTES.DEBT_CONSOLIDATION} element={<DebtConsolidationPage />} />
+              <Route path={ROUTES.BUSINESS_LOAN} element={<BusinessLoanPage />} />
+              <Route path={ROUTES.HOME_LOAN} element={<HomeLoanPage />} />
               <Route path={ROUTES.CREDIT_CARDS} element={<CreditCardsPage />} />
               <Route path={ROUTES.EMI_CALCULATOR} element={<EMICalculatorPage />} />
               <Route path={ROUTES.IFSC_MICR} element={<IFSCMICRPage />} />
@@ -72,6 +80,10 @@ function App() {
               <Route path={ROUTES.OVERDRAFT_FACILITY} element={<OverdraftFacilityPage />} />
               <Route path={ROUTES.SHORT_TERM_LOAN} element={<ShortTermLoanPage />} />
               <Route path={ROUTES.BLOGS} element={<BlogsPage />} />
+              <Route path={ROUTES.PRIVACY_POLICY} element={<PrivacyPolicyPage />} />
+              <Route path={ROUTES.TERMS_AND_CONDITIONS} element={<TermsAndConditionsPage />} />
+              <Route path={ROUTES.FAQ_PAGE} element={<FAQPage />} />
+              <Route path={ROUTES.DISCLAIMER} element={<DisclaimerPage />} />
               
               {/* Login Pages */}
               <Route path={ROUTES.LOGIN.HOME} element={<HomeLoginPage />} />

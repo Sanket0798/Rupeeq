@@ -15,6 +15,7 @@ const HeroSection = () => {
       subtitle: 'Multi-Purpose',
       description: 'Find loan offers matched to your credit profile.',
       buttonText: 'Check Offers',
+      route: '/personal-loan',
       bgGradient: 'from-[#7B5FB8] via-[#6B9FB8] to-[#5FD4A8]',
       illustration: '/assets/images/hero/2.png'
     },
@@ -24,6 +25,7 @@ const HeroSection = () => {
       subtitle: 'Growth Focused',
       description: 'Fuel your business growth with competitive rates.',
       buttonText: 'Explore Options',
+      route: '/business-loan',
       bgGradient: 'from-[#5B8FD8] via-[#5FB8B8] to-[#5FD4A8]',
       illustration: '/assets/images/hero/2.png'
     },
@@ -33,6 +35,7 @@ const HeroSection = () => {
       subtitle: 'Dream Home',
       description: 'Make your dream home a reality with best rates.',
       buttonText: 'Get Started',
+      route: '/home-loan',
       bgGradient: 'from-[#FF8A5B] via-[#FF6B9D] to-[#C96DD8]',
       illustration: '/assets/images/hero/2.png'
     }
@@ -63,6 +66,7 @@ const HeroSection = () => {
       subtitle: 'One EMI',
       description: 'Merge multiple EMIs into one smarter payment.',
       buttonText: 'Explore Now',
+      route: '/debt-consolidation',
       icon: '/assets/images/hero/3.png',
       borderGradient: 'linear-gradient(90deg, #5528A9 11%, #34CA8D 100%)',
       conicGradient: 'conic-gradient(from 0deg, #5528A9, #34CA8D, #5528A9)',
@@ -74,6 +78,7 @@ const HeroSection = () => {
       subtitle: 'Multi-Purpose',
       description: 'Find loan offers matched to your credit profile.',
       buttonText: 'Check Offers',
+      route: '/personal-loan',
       icon: '/assets/images/hero/4.png',
       borderGradient: 'linear-gradient(90deg, #5528A9 11%, #34CA8D 100%)',
       conicGradient: 'conic-gradient(from 0deg, #5528A9, #34CA8D, #5528A9)',
@@ -85,6 +90,7 @@ const HeroSection = () => {
       subtitle: 'Pay For Only What You Use',
       description: 'Use funds anytime. Pay interest only on usage.',
       buttonText: 'Apply Now',
+      route: '/overdraft-facility',
       icon: '/assets/images/hero/5.png',
       borderGradient: 'linear-gradient(90deg, #5528A9 11%, #34CA8D 100%)',
       conicGradient: 'conic-gradient(from 0deg, #5528A9, #34CA8D, #5528A9)',
@@ -96,6 +102,7 @@ const HeroSection = () => {
       subtitle: '100% Free',
       description: 'Know your credit score and borrowing strength instantly.',
       buttonText: 'Check Score',
+      route: '/credit-score',
       icon: '/assets/images/hero/6.png',
       borderGradient: 'linear-gradient(90deg, #5528A9 11%, #34CA8D 100%)',
       conicGradient: 'conic-gradient(from 0deg, #5528A9, #34CA8D, #5528A9)',
@@ -187,7 +194,7 @@ const HeroSection = () => {
                               {slide.title}
                             </h3>
                             <button
-                              onClick={() => navigate('/personal-loan')}
+                              onClick={() => navigate(slide.route)}
                               className="bg-white text-button-color px-[8px] md:px-[11px] py-[6px] md:py-[9px] rounded-full text-sm md:text-lg leading-[130%] tracing-[0%] font-bold hover:bg-opacity-90 transition-all duration-300 flex items-center gap-1 md:gap-2"
                             >
                               {slide.buttonText}
@@ -304,7 +311,7 @@ const HeroSection = () => {
                   </p>
 
                   <button
-                    onClick={() => navigate('/personal-loan')}
+                    onClick={() => navigate(card.route)}
                     className="bg-button-color w-full md:w-auto text-white font-semibold px-3 md:px-6 py-2 md:py-3 rounded-full text-[11px] md:text-sm hover:bg-[#6B4FA8] transition-all duration-300 flex items-center justify-center gap-[10px] md:gap-2 group"
                   >
                     {card.buttonText}
@@ -322,17 +329,6 @@ const HeroSection = () => {
           <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes rotateBorder {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
-        }
-      `}</style>
     </section>
   );
 };

@@ -3,6 +3,7 @@ import { ConnectingLine2Icon, ConnectingLineIcon } from '../common/SvgIcons';
 
 const HowItWorks = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [activeCard, setActiveCard] = useState(null);
   const sectionRef = useRef(null);
 
   useEffect(() => {
@@ -38,14 +39,14 @@ const HowItWorks = () => {
       description: 'Your eligibility is checked securely using partner criteria.',
     },
     {
-      number: '03',
-      title: 'Transparent Selection',
-      description: 'Compare relevant offers clearly and choose what fits you best.',
-    },
-    {
       number: '04',
       title: 'Easy Accessibility',
       description: 'Complete the journey smoothly and get access without hassle.',
+    },
+    {
+      number: '03',
+      title: 'Transparent Selection',
+      description: 'Compare relevant offers clearly and choose what fits you best.',
     },
   ];
 
@@ -82,11 +83,14 @@ const HowItWorks = () => {
                   transitionDelay: isVisible ? `${index * 150}ms` : '0ms'
                 }}
               >
-                <div className="bg-[#E1DEDE]/20 rounded-xl md:rounded-2xl px-6 md:px-[54px] py-6 md:py-[45px] transition-all duration-300 group shadow-[5px_5px_4px_0px_rgba(0,0,0,0.25)]">
+                <div
+                  className="bg-[#E1DEDE]/20 rounded-xl md:rounded-2xl px-6 md:px-[54px] py-6 md:py-[45px] transition-all duration-300 group shadow-[5px_5px_4px_0px_rgba(0,0,0,0.25)]"
+                  onClick={() => setActiveCard(activeCard === index ? null : index)}
+                >
                   <div className="flex flex-col items-start space-y-2 md:space-y-3">
                     <div className='flex flex-row items-center justify-center space-x-4 md:space-x-[30px]'>
-                      <div className="w-16 md:w-[129px] h-0.5 bg-[#212121] group-hover:bg-purple-400 transition-colors duration-300"></div>
-                      <div className="text-3xl md:text-5xl font-semibold leading-[100%] text-custom-dark-text group-hover:text-purple-600 transition-colors duration-300">
+                      <div className={`w-16 md:w-[129px] h-0.5 transition-colors duration-300 ${activeCard === index ? 'bg-purple-400' : 'bg-[#212121] group-hover:bg-purple-400'}`}></div>
+                      <div className={`text-3xl md:text-5xl font-semibold leading-[100%] transition-colors duration-300 ${activeCard === index ? 'text-custom-purple' : 'text-custom-dark-text group-hover:text-custom-purple'}`}>
                         {step.number}
                       </div>
                     </div>
