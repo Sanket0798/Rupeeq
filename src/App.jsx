@@ -23,6 +23,7 @@ const CreditScorePage = lazy(() => import('./pages/CreditScorePage'));
 const OverdraftFacilityPage = lazy(() => import('./pages/OverdraftFacilityPage'));
 const ShortTermLoanPage = lazy(() => import('./pages/ShortTermLoanPage'));
 const BlogsPage = lazy(() => import('./pages/BlogsPage'));
+const BlogDetailPage = lazy(() => import('./pages/BlogDetailPage'));
 const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage'));
 const TermsAndConditionsPage = lazy(() => import('./pages/TermsAndConditionsPage'));
 const FAQPage = lazy(() => import('./pages/FAQPage'));
@@ -80,6 +81,7 @@ function App() {
               <Route path={ROUTES.OVERDRAFT_FACILITY} element={<OverdraftFacilityPage />} />
               <Route path={ROUTES.SHORT_TERM_LOAN} element={<ShortTermLoanPage />} />
               <Route path={ROUTES.BLOGS} element={<BlogsPage />} />
+              <Route path={ROUTES.BLOG_DETAIL} element={<BlogDetailPage />} />
               <Route path={ROUTES.PRIVACY_POLICY} element={<PrivacyPolicyPage />} />
               <Route path={ROUTES.TERMS_AND_CONDITIONS} element={<TermsAndConditionsPage />} />
               <Route path={ROUTES.FAQ_PAGE} element={<FAQPage />} />
@@ -135,8 +137,9 @@ const ConditionalNavbar = () => {
 // Component to conditionally render footer based on route
 const ConditionalFooter = () => {
   const location = useLocation();
-  
-  if (SHOW_FOOTER_ROUTES.includes(location.pathname)) {
+  const showFooter = SHOW_FOOTER_ROUTES.includes(location.pathname)
+    || location.pathname.startsWith('/blogs/');
+  if (showFooter) {
     return <Footer />;
   }
   return null;

@@ -12,6 +12,7 @@ export const ROUTES = {
   CAREERS: '/careers',
   CONTACT_US: '/contact-us',
   BLOGS: '/blogs',
+  BLOG_DETAIL: '/blogs/:slug',
 
   // Loan Pages
   PERSONAL_LOAN: '/personal-loan',

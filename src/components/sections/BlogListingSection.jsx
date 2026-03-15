@@ -129,11 +129,16 @@ const BlogListingSection = ({ category = 'all' }) => {
                   className="bg-white rounded-2xl md:rounded-[25px] py-4 md:py-6 px-5 md:px-10 shadow-[0px_4px_40px_rgba(0,0,0,0.06)] hover:shadow-[0px_4px_16px_rgba(0,0,0,0.12)] transition-shadow duration-300"
                 >
                   <p className="font-bold text-base md:text-lg leading-tight md:leading-[22px] text-[#949494] mb-2 md:mb-3">{post.date}</p>
-                  <h2 className="font-semibold text-lg md:text-2xl leading-tight md:leading-[30px] text-button-color underline mb-2">
+                  <h2
+                    onClick={() => navigate(`/blogs/${post.id}`)}
+                    className="font-semibold text-lg md:text-2xl leading-tight md:leading-[30px] text-button-color underline mb-2 cursor-pointer hover:text-custom-purple transition-colors"
+                  >
                     {post.title}
                   </h2>
                   <p className="text-[#949494] font-normal text-sm md:text-base">
-                    {post.excerpt}  <button className="text-[#0072F2] font-medium underline">
+                    {post.excerpt}  <button
+                      onClick={() => navigate(`/blogs/${post.id}`)}
+                      className="text-[#0072F2] font-medium underline">
                       Read More...
                     </button>
                   </p>
