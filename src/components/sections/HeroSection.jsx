@@ -205,16 +205,16 @@ const HeroSection = () => {
                             <h4 className="text-[20px] md:text-[40px] leading-[130%] tracing-[1%] font-normal">
                               {slide.subtitle}
                             </h4>
-                            <p className="text-sm md:text-base leading-[24px] md:leading-[32px] tracing-[1%] font-normal">
+                            <p className="hidden md:block text-sm md:text-base leading-[24px] md:leading-[32px] tracing-[1%] font-normal">
                               {slide.description}
                             </p>
                           </div>
                         </div>
-                        <div className="hidden md:flex items-center">
+                        <div className="flex items-center">
                           <img
                             src={slide.illustration}
                             alt={slide.title}
-                            className="object-contain"
+                            className="object-contain w-[136px] md:w-auto"
                           />
                         </div>
                       </div>
