@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import { Button } from '../components/ui';
@@ -96,10 +96,48 @@ const BLOG_POST = {
   ],
 };
 
+const RELATED_ARTICLES = [
+  {
+    id: 1,
+    date: 'January 27, 2026',
+    title: 'What Credit Enquiries Reveal About Borrowing Behaviour',
+    excerpt: 'Your credit score often gets all the attention, but lenders look far beyond just that number. One of',
+  },
+  {
+    id: 2,
+    date: 'January 27, 2026',
+    title: 'How Financial Emergencies Leave Long-Term Credit Footprints',
+    excerpt: 'Financial emergencies rarely come with a warning. A medical expense, sudden job loss, urgent home repair, or a',
+  },
+  {
+    id: 8,
+    date: 'January 27, 2026',
+    title: 'Why Your Credit Score Improves Slower Than It Falls—And How To Fix That',
+    excerpt: 'Many borrowers experience this frustrating pattern: one missed payment',
+  },
+  {
+    id: 4,
+    date: 'January 27, 2026',
+    title: 'How Credit Mix Impacts Long-Term Loan Eligibility',
+    excerpt: 'When people talk about credit health, most conversations revolve around credit score. While the score is important, it',
+  },
+  {
+    id: 5,
+    date: 'January 27, 2026',
+    title: 'Why Two People With The Same Credit Score Get Different Loan Offers',
+    excerpt: 'At first glance, a credit score feels like a final verdict. If two people have the same credit',
+  },
+];
+
+const CARDS_PER_SLIDE = 3;
+
 const BlogDetailPage = () => {
   const navigate = useNavigate();
   const heroRef = useRef(null);
   const titleRef = useRef(null);
+  const [slideIndex, setSlideIndex] = useState(0);
+  const totalSlides = Math.ceil(RELATED_ARTICLES.length / CARDS_PER_SLIDE);
+  const visibleCards = RELATED_ARTICLES.slice(slideIndex * CARDS_PER_SLIDE, slideIndex * CARDS_PER_SLIDE + CARDS_PER_SLIDE);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -112,7 +150,7 @@ const BlogDetailPage = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero — same style as BlogsHero */}
+      {/* Hero */}
       <section
         ref={heroRef}
         className="relative pb-12 md:pb-16 overflow-hidden bg-gradient-to-b from-[#DDEDF9] via-[#DDEDF9] to-[#F7F7F7] [mask-image:linear-gradient(to_bottom,black_80%,transparent)]"
@@ -129,7 +167,7 @@ const BlogDetailPage = () => {
           <img
             src={BLOG_POST.heroImage}
             alt={BLOG_POST.title}
-            className="w-full object-cover md:object-contain rounded-2xl"
+            className="w-full max-h-[260px] md:max-h-[480px] object-cover md:object-contain rounded-2xl"
           />
         </div>
       </section>
@@ -164,9 +202,80 @@ const BlogDetailPage = () => {
                   </div>
                 </div>
               ))}
+
+              {/* Read More Articles — Mobile: stacked, Desktop: slider */}
+              <div className="pt-4">
+                <h3 className="font-semibold text-lg md:text-xl text-custom-purple mb-4">Read More Articles</h3>
+
+                {/* Desktop slider */}
+                <div className="hidden md:block">
+                  <div className="grid grid-cols-3 gap-4">
+                    {visibleCards.map((article) => (
+                      <div
+                        key={article.id}
+                        className="bg-white rounded-2xl p-5 shadow-[0px_4px_20px_rgba(0,0,0,0.08)] flex flex-col gap-2"
+                      >
+                        <p className="text-[#949494] font-bold text-sm">{article.date}</p>
+                        <h4
+                          onClick={() => navigate(`/blogs/${article.id}`)}
+                          className="font-semibold text-base text-button-color underline cursor-pointer hover:text-custom-purple transition-colors leading-snug"
+                        >
+                          {article.title}
+                        </h4>
+                        <p className="text-[#949494] text-sm">
+                          {article.excerpt}{' '}
+                          <button
+                            onClick={() => navigate(`/blogs/${article.id}`)}
+                            className="text-[#0072F2] font-medium underline"
+                          >
+                            Read More....
+                          </button>
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                  {/* Dot indicators */}
+                  <div className="flex justify-center gap-2 mt-5">
+                    {Array.from({ length: totalSlides }).map((_, i) => (
+                      <button
+                        key={i}
+                        onClick={() => setSlideIndex(i)}
+                        className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${i === slideIndex ? 'bg-custom-purple w-5' : 'bg-gray-300'}`}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                {/* Mobile: stacked list */}
+                <div className="md:hidden space-y-4 mb-5 md:mb-0">
+                  {RELATED_ARTICLES.map((article) => (
+                    <div
+                      key={article.id}
+                      className="bg-white rounded-2xl p-5 shadow-[0px_4px_20px_rgba(0,0,0,0.08)]"
+                    >
+                      <p className="text-[#949494] font-bold text-sm mb-1">{article.date}</p>
+                      <h4
+                        onClick={() => navigate(`/blogs/${article.id}`)}
+                        className="font-semibold text-base text-button-color underline cursor-pointer hover:text-custom-purple transition-colors leading-snug mb-2"
+                      >
+                        {article.title}
+                      </h4>
+                      <p className="text-[#949494] text-sm">
+                        {article.excerpt}{' '}
+                        <button
+                          onClick={() => navigate(`/blogs/${article.id}`)}
+                          className="text-[#0072F2] font-medium underline"
+                        >
+                          Read More....
+                        </button>
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
 
-            {/* Right — Sidebar (same as BlogListingSection) */}
+            {/* Right — Sidebar */}
             <div className="lg:col-span-1">
               <div className="lg:sticky lg:top-24 space-y-6 md:space-y-8 lg:space-y-16">
                 {/* Credit Score Widget */}
