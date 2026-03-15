@@ -5,8 +5,13 @@ import { BLOG_CATEGORIES, BLOG_HERO_CONTENT } from '../../constants/blogContent'
 /**
  * BlogsHero - Hero section with tab navigation for blog categories
  */
-const BlogsHero = ({ onTabChange }) => {
-  const [activeTab, setActiveTab] = useState('all');
+const BlogsHero = ({ onTabChange, initialTab = 'all' }) => {
+  const [activeTab, setActiveTab] = useState(initialTab);
+
+  // Sync when parent tab changes (URL-driven)
+  useEffect(() => {
+    setActiveTab(initialTab);
+  }, [initialTab]);
   const sectionRef = useRef(null);
   const titleRef = useRef(null);
   const descriptionsRef = useRef(null);

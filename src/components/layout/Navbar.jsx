@@ -9,6 +9,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
+  const navRef = useRef(null);
   const dropdownRef = useRef(null);
 
   const navLinks = [
@@ -24,8 +25,6 @@ const Navbar = () => {
         { name: 'Debt Consolidation', path: '/debt-consolidation' }
       ]
     },
-    { name: 'How It Works', id: 'how-it-works' },
-    { name: 'Products', id: 'products' },
     { name: 'Credit Cards', path: '/credit-cards' },
     { 
       name: 'Tools', 
@@ -37,7 +36,6 @@ const Navbar = () => {
     },
     { name: 'Free Credit Score', path: '/credit-score' },
     { name: 'Blog', path: '/blogs' },
-    { name: 'FAQ', id: 'faq' },
   ];
 
   useEffect(() => {
@@ -59,11 +57,18 @@ const Navbar = () => {
     return () => document.removeEventListener('keydown', handleEscape);
   }, [isOpen]);
 
-  // Close dropdown when clicking outside
+  // Close mobile menu on route change
+  useEffect(() => {
+    setIsOpen(false);
+    setOpenDropdown(null);
+  }, [location.pathname]);
+
+  // Close dropdown when clicking outside — covers both desktop and mobile
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      if (navRef.current && !navRef.current.contains(event.target)) {
         setOpenDropdown(null);
+        setIsOpen(false);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
@@ -77,23 +82,32 @@ const Navbar = () => {
   const handleNavClick = (e, link) => {
     e.preventDefault();
     setIsOpen(false);
-    
-    // If it's a path-based link, navigate to that path
+    setOpenDropdown(null);
+
     if (link.path) {
       navigate(link.path);
       return;
     }
-    
-    // Otherwise, scroll to the section
-    const element = document.getElementById(link.id);
-    if (element) {
-      const offset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
+
+    // Section scroll — if not on home page, go home first then scroll
+    if (link.id) {
+      if (location.pathname !== '/') {
+        navigate('/');
+        setTimeout(() => {
+          const element = document.getElementById(link.id);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 400);
+      } else {
+        const element = document.getElementById(link.id);
+        if (element) {
+          const offset = 80;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - offset;
+          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        }
+      }
     }
   };
 
@@ -116,7 +130,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`bg-white sticky top-0 z-50 rounded-3xl transition-shadow duration-300 max-w-full mx-3 mt-3 ${scrolled ? 'shadow-md' : 'shadow-sm'}`}>
+    <nav ref={navRef} className={`bg-white sticky top-0 z-50 rounded-3xl transition-shadow duration-300 max-w-full mx-3 mt-3 ${scrolled ? 'shadow-md' : 'shadow-sm'}`}>
       <div className="flex justify-between items-center h-[72px] px-3 lg:pl-[88px] lg:pr-[62px]">
           {/* Logo */}
           <div className="flex-shrink-0">
@@ -139,7 +153,7 @@ const Navbar = () => {
 
           <div className='flex flex-row space-x-[84px]'>
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8" ref={dropdownRef}>
+            <div className="hidden md:flex items-center space-x-8">
               {navLinks.map((link) => (
                 <div key={link.name} className="relative">
                   {link.hasDropdown ? (
@@ -207,7 +221,7 @@ const Navbar = () => {
 
       {/* Mobile Navigation */}
       {isOpen && (
-        <div className="md:hidden bg-white border-t animate-slide-up">
+        <div className="md:hidden bg-white border-t border-gray-100 rounded-b-3xl overflow-hidden animate-slide-up">
           <div className="px-2 pt-2 pb-3 space-y-1">
             {navLinks.map((link) => (
               <div key={link.name}>
