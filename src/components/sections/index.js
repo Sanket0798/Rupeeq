@@ -46,3 +46,6 @@ export { default as ConsentWithdrawalHero } from './ConsentWithdrawalHero';
 export { default as CareersHero } from './CareersHero';
 export { default as ContactUsHero } from './ContactUsHero';
 export { default as WeHaveYouCoveredSection } from './WeHaveYouCoveredSection';
+export { default as LoanOffersHero } from './LoanOffersHero';
+export { default as LoanOffersGrid } from './LoanOffersGrid';
+export { default as WhyChooseRupeeQSection } from './WhyChooseRupeeQSection';

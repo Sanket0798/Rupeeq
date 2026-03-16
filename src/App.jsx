@@ -43,6 +43,7 @@ const OverdraftFacilityInfoPage2 = lazy(() => import('./pages/OverdraftFacilityI
 const ShortTermLoanLoginPage = lazy(() => import('./pages/ShortTermLoanLoginPage'));
 const ShortTermLoanInfoPage1 = lazy(() => import('./pages/ShortTermLoanInfoPage1'));
 const ShortTermLoanInfoPage2 = lazy(() => import('./pages/ShortTermLoanInfoPage2'));
+const LoanOffersDashboardPage = lazy(() => import('./pages/LoanOffersDashboardPage'));
 
 // Loading fallback component
 const PageLoader = () => (
@@ -113,6 +114,9 @@ function App() {
               {/* Short Term Loan Info Pages */}
               <Route path={ROUTES.SHORT_TERM_LOAN_INFO_1} element={<ShortTermLoanInfoPage1 />} />
               <Route path={ROUTES.SHORT_TERM_LOAN_INFO_2} element={<ShortTermLoanInfoPage2 />} />
+              
+              {/* Loan Offers Dashboard */}
+              <Route path={ROUTES.LOAN_OFFERS_DASHBOARD} element={<LoanOffersDashboardPage />} />
             </Routes>
           </Suspense>
         </main>

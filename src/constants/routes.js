@@ -62,6 +62,9 @@ export const ROUTES = {
   // Short Term Loan Flow
   SHORT_TERM_LOAN_INFO_1: '/short-term-loan-info-1',
   SHORT_TERM_LOAN_INFO_2: '/short-term-loan-info-2',
+
+  // Dashboard
+  LOAN_OFFERS_DASHBOARD: '/loan-offers',
 };
 
 /**
@@ -106,6 +109,7 @@ export const SHOW_FOOTER_ROUTES = [
   ROUTES.SHORT_TERM_LOAN,
   ROUTES.BLOGS,
   ROUTES.LOGIN.HOME,
+  ROUTES.LOAN_OFFERS_DASHBOARD,
 ];
 
 /**

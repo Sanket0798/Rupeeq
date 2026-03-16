@@ -148,7 +148,9 @@ const PersonalInformationPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Navigate to next step
+    // Save form data and navigate to loan offers dashboard
+    localStorage.setItem('personal_information', JSON.stringify(formData));
+    navigate('/loan-offers');
   };
 
   return (

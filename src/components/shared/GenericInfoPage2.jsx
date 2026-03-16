@@ -188,11 +188,7 @@ const GenericInfoPage2 = ({ content }) => {
       localStorage.setItem('loan_info_2', JSON.stringify(formData));
       
       // TODO: API integration - submit complete application
-      // For now, just show success message
-      alert('Application submitted successfully!');
-      
-      // Navigate to next step or complete
-      // navigate('/success');
+      navigate('/loan-offers');
     } catch (error) {
       setErrors({ submit: 'Something went wrong. Please try again.' });
     } finally {

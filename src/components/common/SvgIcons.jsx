@@ -698,3 +698,23 @@ export const GradientRightArrowIcon = () => (
     </svg>
 
 )
+
+export const RightHandSideArrowIcon = () => (
+    <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="16.9454" height="16.9454" rx="8.47269" fill="white" />
+        <mask id="mask0_15_5249" style={{ maskType: 'alpha' }} maskUnits="userSpaceOnUse" x="2" y="2" width="13" height="13">
+            <rect x="2.82422" y="2.82422" width="11.2969" height="11.2969" fill="#1882FA" />
+        </mask>
+        <g mask="url(#mask0_15_5249)">
+            <path d="M6.60015 13.1788L5.76465 12.3432L9.6362 8.4717L5.76465 4.60015L6.60015 3.76465L11.3072 8.4717L6.60015 13.1788Z" fill="#1882FA" />
+        </g>
+    </svg>
+
+)
+
+export const LongRightArrowIcon = () => (
+    <svg width="182" height="30" viewBox="0 0 182 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M181.414 16.1418C182.195 15.3607 182.195 14.0944 181.414 13.3133L168.686 0.585418C167.905 -0.195631 166.639 -0.195631 165.858 0.585418C165.077 1.36647 165.077 2.6328 165.858 3.41385L177.172 14.7276L165.858 26.0413C165.077 26.8223 165.077 28.0886 165.858 28.8697C166.639 29.6507 167.905 29.6507 168.686 28.8697L181.414 16.1418ZM0 14.7275L-1.74846e-07 16.7275L180 16.7276L180 14.7276L180 12.7276L1.74846e-07 12.7275L0 14.7275Z" fill="#505F77" fill-opacity="0.77" />
+    </svg>
+
+)
