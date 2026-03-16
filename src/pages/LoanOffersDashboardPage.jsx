@@ -1,6 +1,17 @@
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { LoanOffersHero, LoanOffersGrid, WhyChooseRupeeQSection } from '../components/sections';
 
 const LoanOffersDashboardPage = () => {
+  const { hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      const el = document.querySelector(hash);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [hash]);
+
   const personalInfo = (() => {
     try { return JSON.parse(localStorage.getItem('personal_information') || '{}'); }
     catch { return {}; }

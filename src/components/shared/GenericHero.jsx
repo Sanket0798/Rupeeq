@@ -1,30 +1,41 @@
 import { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Input, FormFieldError, LoadingSpinner, Button } from '../ui';
 import { BlueUpArrowIcon, ChevronUpIcon } from '../common/SvgIcons';
 import { mobileNumberSchema, validateForm } from '../../utils/validationSchemas';
+import OtpModal from '../common/OtpModal';
 
 gsap.registerPlugin(ScrollTrigger);
 
-/**
- * GenericHero - Reusable hero section component for all loan pages
- * 
- * @param {Object} props
- * @param {string} props.title - Main title (supports JSX for styling)
- * @param {Array<Object>} props.titleLines - Array of title line objects with text and highlight boolean
- * @param {Array<string>} props.descriptions - Array of description paragraphs
- * @param {Object} props.tagline - Optional tagline object with line1 and line2
- * @param {string} props.formTitle - Title for the form card
- * @param {string} props.formButtonText - Text for form submit button (default: "Submit")
- * @param {Array<string>} props.benefits - Array of benefit strings
- * @param {string} props.benefitsTitle - Title for benefits section
- * @param {Object} props.howItWorks - Object with title and description/content
- * @param {Array<Object>} props.actionButtons - Optional array of button objects
- * @param {string} props.loginRoute - Route to navigate on form submit
- * @param {string} props.illustrationSrc - Path to illustration image (default: /assets/images/hero/2.png)
- */
+const PhoneForm = ({ isMobile, mobileNumber, onMobileChange, agreedToTerms, onTermsChange, errors, isSubmitting, formButtonText, onSubmit }) => (
+  <form onSubmit={onSubmit} className="relative z-20">
+    <div className={isMobile ? 'mb-4' : 'mb-9'}>
+      <label className={`block text-white font-bold mb-2 leading-[26px] ${isMobile ? 'text-sm' : 'text-lg'}`}>Mobile Number</label>
+      <Input
+        type="tel" value={mobileNumber} onChange={onMobileChange}
+        placeholder="Enter your Mobile Number"
+        className={`w-full px-4 py-3 rounded-[20px] bg-white text-gray-900 placeholder-[#58626C]/50 focus:outline-none focus:ring-2 focus:ring-white border-none ${isMobile ? 'text-sm' : ''}`}
+        maxLength={10}
+      />
+      {errors.mobileNumber && <FormFieldError error={errors.mobileNumber} />}
+    </div>
+    <div className={isMobile ? 'mb-4' : 'mb-9'}>
+      <label className={`flex items-start gap-2 text-white cursor-pointer ${isMobile ? 'text-xs font-medium' : 'text-base font-semibold'}`}>
+        <input type="checkbox" checked={agreedToTerms} onChange={onTermsChange}
+          className="w-4 h-4 rounded border-white mt-0.5 flex-shrink-0" />
+        <span>I agree to <Link to="/privacy-policy" className="underline text-[#B0E6EC]">Privacy Policy</Link> and <Link to="/terms" className="underline text-[#B0E6EC]">Terms and Conditions</Link>.</span>
+      </label>
+      {errors.terms && <FormFieldError error={errors.terms} />}
+    </div>
+    {errors.submit && <div className="mb-4"><FormFieldError error={errors.submit} /></div>}
+    <Button type="submit" disabled={isSubmitting} variant="primary-white" className={isMobile ? 'w-full py-3 px-4 gap-2 text-base font-bold' : 'w-[168px] py-3 px-4 gap-2'}>
+      {isSubmitting ? <><LoadingSpinner size="sm" color="purple" /><span>Please wait...</span></> : formButtonText}
+    </Button>
+  </form>
+);
+
 const GenericHero = ({
   titleLines = [],
   descriptions = [],
@@ -44,8 +55,8 @@ const GenericHero = ({
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showOtpModal, setShowOtpModal] = useState(false);
 
-  // Animation refs
   const sectionRef = useRef(null);
   const titleRef = useRef(null);
   const descriptionsRef = useRef(null);
@@ -62,234 +73,53 @@ const GenericHero = ({
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Desktop Animations
       if (window.innerWidth >= 768) {
-        // Title animation - fade in and slide up
-        gsap.from(titleRef.current, {
-          opacity: 0,
-          y: 50,
-          duration: 1,
-          ease: 'power3.out',
-          delay: 0.2
-        });
-
-        // Descriptions animation - stagger fade in
+        gsap.from(titleRef.current, { opacity: 0, y: 50, duration: 1, ease: 'power3.out', delay: 0.2 });
         if (descriptionsRef.current) {
-          gsap.from(descriptionsRef.current.children, {
-            opacity: 0,
-            y: 30,
-            duration: 0.8,
-            stagger: 0.2,
-            ease: 'power2.out',
-            delay: 0.5
-          });
+          gsap.from(descriptionsRef.current.children, { opacity: 0, y: 30, duration: 0.8, stagger: 0.2, ease: 'power2.out', delay: 0.5 });
         }
-
-        // Form card animation - slide in from right with scale
         if (formCardRef.current) {
-          gsap.from(formCardRef.current, {
-            opacity: 0,
-            x: 100,
-            scale: 0.95,
-            duration: 1,
-            ease: 'power3.out',
-            delay: 0.3
-          });
-
-          // Form card floating animation
-          gsap.to(formCardRef.current, {
-            y: -10,
-            duration: 2,
-            repeat: -1,
-            yoyo: true,
-            ease: 'power1.inOut'
-          });
+          gsap.from(formCardRef.current, { opacity: 0, x: 100, scale: 0.95, duration: 1, ease: 'power3.out', delay: 0.3 });
+          gsap.to(formCardRef.current, { y: -10, duration: 2, repeat: -1, yoyo: true, ease: 'power1.inOut' });
         }
-
-        // Illustration animation - bounce in
         if (illustrationRef.current) {
-          gsap.from(illustrationRef.current, {
-            opacity: 0,
-            scale: 0,
-            rotation: -15,
-            duration: 1,
-            ease: 'elastic.out(1, 0.5)',
-            delay: 1
-          });
-
-          // Illustration floating animation
-          gsap.to(illustrationRef.current, {
-            y: -15,
-            rotation: 5,
-            duration: 3,
-            repeat: -1,
-            yoyo: true,
-            ease: 'sine.inOut'
-          });
+          gsap.from(illustrationRef.current, { opacity: 0, scale: 0, rotation: -15, duration: 1, ease: 'elastic.out(1, 0.5)', delay: 1 });
+          gsap.to(illustrationRef.current, { y: -15, rotation: 5, duration: 3, repeat: -1, yoyo: true, ease: 'sine.inOut' });
         }
       } else {
-        // Mobile Animations
-        // Title animation
-        if (mobileTitleRef.current) {
-          gsap.from(mobileTitleRef.current, {
-            opacity: 0,
-            y: 30,
-            duration: 0.8,
-            ease: 'power3.out',
-            delay: 0.2
-          });
-        }
-
-        // Form card animation
-        if (mobileFormRef.current) {
-          gsap.from(mobileFormRef.current, {
-            opacity: 0,
-            y: 40,
-            scale: 0.95,
-            duration: 0.8,
-            ease: 'power3.out',
-            delay: 0.4
-          });
-        }
-
-        // Descriptions animation
-        if (mobileDescRef.current) {
-          gsap.from(mobileDescRef.current.children, {
-            opacity: 0,
-            y: 20,
-            duration: 0.6,
-            stagger: 0.15,
-            ease: 'power2.out',
-            delay: 0.6
-          });
-        }
-
-        // Tagline animation
-        if (mobileTaglineRef.current) {
-          gsap.from(mobileTaglineRef.current, {
-            opacity: 0,
-            y: 20,
-            duration: 0.6,
-            ease: 'power2.out',
-            delay: 0.8
-          });
-        }
-
-        // Action buttons animation
-        if (mobileButtonsRef.current) {
-          gsap.from(mobileButtonsRef.current.children, {
-            opacity: 0,
-            x: -30,
-            duration: 0.6,
-            stagger: 0.1,
-            ease: 'power2.out',
-            delay: 1
-          });
-        }
+        if (mobileTitleRef.current) gsap.from(mobileTitleRef.current, { opacity: 0, y: 30, duration: 0.8, ease: 'power3.out', delay: 0.2 });
+        if (mobileFormRef.current) gsap.from(mobileFormRef.current, { opacity: 0, y: 40, scale: 0.95, duration: 0.8, ease: 'power3.out', delay: 0.4 });
+        if (mobileDescRef.current) gsap.from(mobileDescRef.current.children, { opacity: 0, y: 20, duration: 0.6, stagger: 0.15, ease: 'power2.out', delay: 0.6 });
+        if (mobileTaglineRef.current) gsap.from(mobileTaglineRef.current, { opacity: 0, y: 20, duration: 0.6, ease: 'power2.out', delay: 0.8 });
+        if (mobileButtonsRef.current) gsap.from(mobileButtonsRef.current.children, { opacity: 0, x: -30, duration: 0.6, stagger: 0.1, ease: 'power2.out', delay: 1 });
       }
-
-      // Benefits section animation - scroll triggered (both mobile and desktop)
       if (benefitsSectionRef.current) {
-        gsap.from(benefitsSectionRef.current, {
-          scrollTrigger: {
-            trigger: benefitsSectionRef.current,
-            start: 'top 80%',
-            toggleActions: 'play none none reverse'
-          },
-          opacity: 0,
-          y: 50,
-          duration: 0.8,
-          ease: 'power3.out'
-        });
-
-        // Benefits items stagger animation
+        gsap.from(benefitsSectionRef.current, { scrollTrigger: { trigger: benefitsSectionRef.current, start: 'top 80%', toggleActions: 'play none none reverse' }, opacity: 0, y: 50, duration: 0.8, ease: 'power3.out' });
         if (benefitsItemsRef.current.length > 0) {
-          gsap.from(benefitsItemsRef.current, {
-            scrollTrigger: {
-              trigger: benefitsSectionRef.current,
-              start: 'top 75%',
-              toggleActions: 'play none none reverse'
-            },
-            opacity: 0,
-            y: 30,
-            scale: 0.9,
-            duration: 0.6,
-            stagger: 0.1,
-            ease: 'back.out(1.7)',
-            delay: 0.3
-          });
+          gsap.from(benefitsItemsRef.current, { scrollTrigger: { trigger: benefitsSectionRef.current, start: 'top 75%', toggleActions: 'play none none reverse' }, opacity: 0, y: 30, scale: 0.9, duration: 0.6, stagger: 0.1, ease: 'back.out(1.7)', delay: 0.3 });
         }
       }
-
-      // How it works section animation - scroll triggered
       if (howItWorksRef.current) {
-        gsap.from(howItWorksRef.current.children, {
-          scrollTrigger: {
-            trigger: howItWorksRef.current,
-            start: 'top 80%',
-            toggleActions: 'play none none reverse'
-          },
-          opacity: 0,
-          y: 40,
-          duration: 0.8,
-          stagger: 0.2,
-          ease: 'power3.out'
-        });
+        gsap.from(howItWorksRef.current.children, { scrollTrigger: { trigger: howItWorksRef.current, start: 'top 80%', toggleActions: 'play none none reverse' }, opacity: 0, y: 40, duration: 0.8, stagger: 0.2, ease: 'power3.out' });
       }
     }, sectionRef);
-
     return () => ctx.revert();
   }, []);
 
-  // Form input focus animations
-  const handleInputFocus = (e) => {
-    gsap.to(e.target, {
-      scale: 1.02,
-      duration: 0.3,
-      ease: 'power2.out'
-    });
-  };
-
-  const handleInputBlur = (e) => {
-    gsap.to(e.target, {
-      scale: 1,
-      duration: 0.3,
-      ease: 'power2.out'
-    });
-  };
+  const handleInputFocus = () => { };
+  const handleInputBlur = () => { };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    // Clear previous errors
+    if (e && e.preventDefault) e.preventDefault();
     setErrors({});
-
-    // Validate mobile number
-    const validationErrors = await validateForm(mobileNumberSchema, {
-      mobileNumber: mobileNumber
-    });
-
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      return;
-    }
-
-    if (!agreedToTerms) {
-      setErrors({ terms: 'Please agree to Privacy Policy and Terms and Conditions' });
-      return;
-    }
-
+    const validationErrors = await validateForm(mobileNumberSchema, { mobileNumber });
+    if (Object.keys(validationErrors).length > 0) { setErrors(validationErrors); return; }
+    if (!agreedToTerms) { setErrors({ terms: 'Please agree to Privacy Policy and Terms and Conditions' }); return; }
     setIsSubmitting(true);
-
     try {
-      // TODO: API integration
-
-      // Store mobile number for next step
       localStorage.setItem('temp_mobile', mobileNumber);
-
-      // Navigate to login page
-      navigate(loginRoute);
-    } catch (error) {
+      setShowOtpModal(true);
+    } catch {
       setErrors({ submit: 'Something went wrong. Please try again.' });
     } finally {
       setIsSubmitting(false);
@@ -297,416 +127,191 @@ const GenericHero = ({
   };
 
   const handleMobileChange = (e) => {
-    const value = e.target.value.replace(/\D/g, '').slice(0, 10); // Only numbers, max 10 digits
+    const value = e.target.value.replace(/\D/g, '').slice(0, 10);
     setMobileNumber(value);
-    // Clear error when user starts typing
-    if (errors.mobileNumber) {
-      setErrors({ ...errors, mobileNumber: '' });
-    }
+    if (errors.mobileNumber) setErrors({ ...errors, mobileNumber: '' });
   };
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative pt-20 md:pt-24 pb-8 md:pb-16 overflow-hidden"
-      style={{
-        marginTop: '-80px',
-        paddingTop: '100px',
-      }}
-    >
-      {/* Background gradient with controlled height - Mobile: 70vh, Desktop: full */}
-      {!disableBackground && (
-        <div
-          className="absolute top-0 left-0 right-0 h-[70vh] md:h-full -z-10"
-          style={{
-            background: 'linear-gradient(135deg, #E8F5F7 0%, #F0E8F7 50%, #E8F7F0 100%)'
-          }}
-        >
-          {/* Fade overlay at bottom - Mobile only */}
-          <div
-            className="md:hidden absolute bottom-0 left-0 right-0 h-20"
-            style={{
-              background: 'linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1))'
-            }}
-          />
-        </div>
-      )}
+    <>
+      <section
+        ref={sectionRef}
+        className="relative pt-20 md:pt-24 pb-8 md:pb-16 overflow-hidden"
+        style={{ marginTop: '-80px', paddingTop: '100px' }}
+      >
+        {/* Background */}
+        {!disableBackground && (
+          <div className="absolute top-0 left-0 right-0 h-[70vh] md:h-full -z-10"
+            style={{ background: 'linear-gradient(135deg, #E8F5F7 0%, #F0E8F7 50%, #E8F7F0 100%)' }}>
+            <div className="md:hidden absolute bottom-0 left-0 right-0 h-20"
+              style={{ background: 'linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1))' }} />
+          </div>
+        )}
+        {!disableBackground && (
+          <div className="hidden md:block absolute inset-0 -right-[1300px] -top-[400px]"
+            style={{ backgroundImage: 'url(/assets/images/bg/HowWorksBg.png)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', transform: 'rotate(41.99deg)' }} />
+        )}
 
-      {/* Background Pattern Overlay - Desktop Only */}
-      {!disableBackground && (
-        <div
-          className="hidden md:block absolute inset-0 -right-[1300px] -top-[400px]"
-          style={{
-            backgroundImage: 'url(/assets/images/bg/HowWorksBg.png)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            transform: 'rotate(41.99deg)',
-          }}
-        />
-      )}
+        <div className="max-w-[1260px] mx-auto w-full relative z-10 px-4 md:px-0 md:mt-11">
 
-      {/* Content */}
-      <div className="max-w-[1260px] mx-auto w-full relative z-10 px-4 md:px-0 md:mt-11">
-        {/* Desktop Layout */}
-        <div className="hidden md:block min-h-[60vh]">
-          <div className="w-full">
+          {/* ── DESKTOP ── */}
+          <div className="hidden md:block min-h-[60vh]">
             <div className="flex flex-row gap-12 items-start justify-between mb-9">
-              {/* Left Content - Desktop */}
-              <div className="">
-                {/* Title */}
-                <h1 ref={titleRef} className="text-[40px] text-custom-dark-text font-semibold leading-[53px] tracing-[2%] mb-6">
-                  {titleLines.map((line, index) => (
-                    <span key={index}>
-                      {line.highlight ? (
-                        <span className="text-custom-purple font-extrabold">{line.text}</span>
-                      ) : (
-                        line.text
-                      )}
-                      {index < titleLines.length - 1 && <br />}
+
+              {/* Left */}
+              <div>
+                <h1 ref={titleRef} className="text-[40px] text-custom-dark-text font-semibold leading-[53px] mb-6">
+                  {titleLines.map((line, i) => (
+                    <span key={i}>
+                      {line.highlight ? <span className="text-custom-purple font-extrabold">{line.text}</span> : line.text}
+                      {i < titleLines.length - 1 && <br />}
                     </span>
                   ))}
                 </h1>
-
-                {/* Descriptions */}
                 <div ref={descriptionsRef}>
-                  {descriptions.map((desc, index) => (
-                    <p
-                      key={index}
-                      className={`text-custom-dark-text text-base leading-relaxed max-w-[500px] ${index < descriptions.length - 1 ? 'mb-6' : ''
-                        }`}
-                    >
-                      {desc}
-                    </p>
+                  {descriptions.map((desc, i) => (
+                    <p key={i} className={`text-custom-dark-text text-base leading-relaxed max-w-[500px] ${i < descriptions.length - 1 ? 'mb-6' : ''}`}>{desc}</p>
                   ))}
                 </div>
-
-                {/* Optional Tagline */}
                 {tagline && (
                   <div className="mb-8 mt-8">
-                    <h2 className="text-[28px] font-bold text-custom-purple leading-[120%] tracing-[2%]">
-                      {tagline.line1}
-                    </h2>
-                    <p className="text-[28px] font-bold text-custom-purple leading-[120%] tracing-[2%]">
-                      {tagline.line2}
-                    </p>
+                    <h2 className="text-[28px] font-bold text-custom-purple leading-[120%]">{tagline.line1}</h2>
+                    <p className="text-[28px] font-bold text-custom-purple leading-[120%]">{tagline.line2}</p>
                   </div>
                 )}
               </div>
 
-              {/* Right Content - Application Form Card - Desktop */}
+              {/* Right - Form Card */}
               <div className="relative">
                 <div ref={formCardRef} className="relative rounded-3xl shadow-[5px_8px_9px_5px_rgba(0,0,0,0.25)]">
-                  {/* Form Card */}
                   <div className="bg-brand-gradient px-8 py-[29px] text-white relative w-[656px] min-h-[315px] flex flex-col justify-between rounded-3xl overflow-visible">
-                    <h2 className="text-[40px] leading-[60px] font-semibold mb-6">
-                      {formTitle}
-                    </h2>
-
-                    <form onSubmit={handleSubmit} className="relative z-20">
-                      <div className="mb-9">
-                        <label className="block text-white font-bold text-lg mb-2 leading-[26px]">
-                          Mobile Number
-                        </label>
-                        <Input
-                          type="tel"
-                          value={mobileNumber}
-                          onChange={handleMobileChange}
-                          onFocus={handleInputFocus}
-                          onBlur={handleInputBlur}
-                          placeholder="Enter your Mobile Number"
-                          className="w-full px-4 py-3 rounded-[20px] bg-white text-gray-900 placeholder-[#58626C]/50 focus:outline-none focus:ring-2 focus:ring-white border-none"
-                          maxLength={10}
-                        />
-                        {errors.mobileNumber && (
-                          <FormFieldError error={errors.mobileNumber} />
-                        )}
-                      </div>
-
-                      <div className="mb-9">
-                        <label className="flex items-center gap-2 text-white text-base font-semibold cursor-pointer leading-[127%] tracing-[-0.2px]">
-                          <input
-                            type="checkbox"
-                            checked={agreedToTerms}
-                            onChange={(e) => {
-                              setAgreedToTerms(e.target.checked);
-                              if (errors.terms) {
-                                setErrors({ ...errors, terms: '' });
-                              }
-                            }}
-                            className="w-4 h-4 rounded border-white"
-                          />
-                          <span>
-                            I agree to <a href="/privacy-policy" className="underline text-[#B0E6EC]">Privacy Policy</a> and <a href="/terms" className="underline text-[#B0E6EC]">Terms and Conditions</a>.
-                          </span>
-                        </label>
-                        {errors.terms && (
-                          <FormFieldError error={errors.terms} />
-                        )}
-                      </div>
-
-                      {errors.submit && (
-                        <div className="mb-4">
-                          <FormFieldError error={errors.submit} />
-                        </div>
-                      )}
-
-                      <Button
-                        type="submit"
-                        disabled={isSubmitting}
-                        variant="primary-white"
-                        className="w-[168px] py-3 px-4 gap-2"
-                      >
-                        {isSubmitting ? (
-                          <>
-                            <LoadingSpinner size="sm" color="purple" />
-                            <span>Please wait...</span>
-                          </>
-                        ) : (
-                          formButtonText
-                        )}
-                      </Button>
-                    </form>
-
-                    {/* Illustration at bottom right - positioned outside card */}
+                    <h2 className="text-[40px] leading-[60px] font-semibold mb-6">{formTitle}</h2>
+                    <PhoneForm isMobile={false}
+                      mobileNumber={mobileNumber} onMobileChange={handleMobileChange}
+                      agreedToTerms={agreedToTerms} onTermsChange={(e) => { setAgreedToTerms(e.target.checked); if (errors.terms) setErrors({ ...errors, terms: '' }); }}
+                      errors={errors} isSubmitting={isSubmitting} formButtonText={formButtonText} onSubmit={handleSubmit} />
                     <div ref={illustrationRef} className="absolute -bottom-[70px] right-7 w-[231px] h-[181px] pointer-events-none z-10">
-                      <img
-                        src={illustrationSrc}
-                        alt="Illustration"
-                        className="w-full h-full object-contain"
-                      />
+                      <img src={illustrationSrc} alt="Illustration" className="w-full h-full object-contain" />
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
 
-        {/* Mobile Layout */}
-        <div className="md:hidden space-y-6">
-          {/* Title - Mobile */}
-          <h1 ref={mobileTitleRef} className="text-[25px] text-center text-custom-dark-text font-semibold leading-[35px] tracing-[2%] px-2">
-            {titleLines.map((line, index) => (
-              <span key={index}>
-                {line.highlight ? (
-                  <span className="text-custom-purple font-bold">{line.text}</span>
-                ) : (
-                  line.text
-                )}
-                {index < titleLines.length - 1 && <br />}
-              </span>
-            ))}
-          </h1>
-
-          {/* Form Card - Mobile */}
-          <div ref={mobileFormRef} className="relative rounded-3xl shadow-[0px_4px_15px_rgba(0,0,0,0.2)] mx-4">
-            <div className="bg-brand-gradient px-6 py-6 text-white relative rounded-3xl overflow-visible">
-              <h2 className="text-[22px] leading-[28px] font-bold mb-4">
-                {formTitle}
-              </h2>
-
-              <form onSubmit={handleSubmit} className="relative z-20">
-                <div className="mb-4">
-                  <label className="block text-white font-semibold text-sm mb-2">
-                    Mobile Number
-                  </label>
-                  <Input
-                    type="tel"
-                    value={mobileNumber}
-                    onChange={handleMobileChange}
-                    onFocus={handleInputFocus}
-                    onBlur={handleInputBlur}
-                    placeholder="Enter your Mobile Number"
-                    className="w-full px-4 py-3 rounded-[20px] bg-white text-gray-900 placeholder-[#58626C]/50 focus:outline-none focus:ring-2 focus:ring-white border-none text-sm"
-                    maxLength={10}
-                  />
-                  {errors.mobileNumber && (
-                    <FormFieldError error={errors.mobileNumber} />
-                  )}
-                </div>
-
-                <div className="mb-4">
-                  <label className="flex items-start gap-2 text-white text-xs font-medium cursor-pointer">
-                    <input
-                      type="checkbox"
-                      checked={agreedToTerms}
-                      onChange={(e) => {
-                        setAgreedToTerms(e.target.checked);
-                        if (errors.terms) {
-                          setErrors({ ...errors, terms: '' });
-                        }
-                      }}
-                      className="w-4 h-4 rounded border-white mt-0.5 flex-shrink-0"
-                    />
-                    <span>
-                      I agree to <a href="/privacy-policy" className="underline">Privacy Policy</a> and <a href="/terms" className="underline">Terms and Conditions</a>.
-                    </span>
-                  </label>
-                  {errors.terms && (
-                    <FormFieldError error={errors.terms} />
-                  )}
-                </div>
-
-                {errors.submit && (
-                  <div className="mb-4">
-                    <FormFieldError error={errors.submit} />
-                  </div>
-                )}
-
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  variant="primary-white"
-                  className="w-full py-3 px-4 gap-2 text-base font-bold"
-                >
-                  {isSubmitting ? (
-                    <>
-                      <LoadingSpinner size="sm" color="purple" />
-                      <span>Please wait...</span>
-                    </>
-                  ) : (
-                    formButtonText
-                  )}
-                </Button>
-              </form>
             </div>
           </div>
 
-          {/* Descriptions - Mobile */}
-          {descriptions.length > 0 && (
-            <div ref={mobileDescRef} className="px-6 text-center">
-              {descriptions.map((desc, index) => (
-                <p
-                  key={index}
-                  className={`text-[#4B5768] text-sm leading-[20px] ${index < descriptions.length - 1 ? 'mb-4' : ''
-                    }`}
-                >
-                  {desc}
-                </p>
+          {/* ── MOBILE ── */}
+          <div className="md:hidden space-y-6">
+            <h1 ref={mobileTitleRef} className="text-[25px] text-center text-custom-dark-text font-semibold leading-[35px] px-2">
+              {titleLines.map((line, i) => (
+                <span key={i}>
+                  {line.highlight ? <span className="text-custom-purple font-bold">{line.text}</span> : line.text}
+                  {i < titleLines.length - 1 && <br />}
+                </span>
               ))}
-            </div>
-          )}
+            </h1>
 
-          {/* Tagline - Mobile */}
-          {tagline && (
-            <div ref={mobileTaglineRef} className="px-6 text-center">
-              <h2 className="text-lg font-bold text-custom-purple leading-[24px]">
-                {tagline.line1}
-              </h2>
-              <p className="text-lg font-bold text-custom-purple leading-[24px]">
-                {tagline.line2}
-              </p>
+            <div ref={mobileFormRef} className="relative rounded-3xl shadow-[0px_4px_15px_rgba(0,0,0,0.2)] mx-4">
+              <div className="bg-brand-gradient px-6 py-6 text-white rounded-3xl overflow-visible">
+                <h2 className="text-[22px] leading-[28px] font-bold mb-4">{formTitle}</h2>
+                <PhoneForm isMobile={true}
+                  mobileNumber={mobileNumber} onMobileChange={handleMobileChange}
+                  agreedToTerms={agreedToTerms} onTermsChange={(e) => { setAgreedToTerms(e.target.checked); if (errors.terms) setErrors({ ...errors, terms: '' }); }}
+                  errors={errors} isSubmitting={isSubmitting} formButtonText={formButtonText} onSubmit={handleSubmit} />
+              </div>
             </div>
-          )}
 
-          {/* Action Buttons - Mobile */}
+            {descriptions.length > 0 && (
+              <div ref={mobileDescRef} className="px-6 text-center">
+                {descriptions.map((desc, i) => (
+                  <p key={i} className={`text-[#4B5768] text-sm leading-[20px] ${i < descriptions.length - 1 ? 'mb-4' : ''}`}>{desc}</p>
+                ))}
+              </div>
+            )}
+
+            {tagline && (
+              <div ref={mobileTaglineRef} className="px-6 text-center">
+                <h2 className="text-lg font-bold text-custom-purple leading-[24px]">{tagline.line1}</h2>
+                <p className="text-lg font-bold text-custom-purple leading-[24px]">{tagline.line2}</p>
+              </div>
+            )}
+
+            {actionButtons.length > 0 && (
+              <div className="flex flex-col gap-3 px-6">
+                {actionButtons.map((btn, i) => (
+                  <Button key={i} onClick={handleSubmit} variant="primary" size="md" className="w-full py-3 px-4 gap-2 text-sm font-bold">
+                    {btn.text}<ChevronUpIcon />
+                  </Button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Action Buttons - Desktop */}
           {actionButtons.length > 0 && (
-            <div ref={mobileButtonsRef} className="flex flex-col gap-3 px-6">
-              {actionButtons.map((button, index) => (
-                <Button
-                  key={index}
-                  onClick={() => navigate(button.route)}
-                  variant="primary"
-                  size="md"
-                  className="w-full py-3 px-4 gap-2 text-sm font-bold"
-                >
-                  {button.text}
-                  <ChevronUpIcon />
+            <div className="hidden md:flex flex-row gap-4">
+              {actionButtons.map((btn, i) => (
+                <Button key={i} onClick={() => navigate(btn.route)} variant="primary" size="md" className="px-6 py-3 gap-2">
+                  {btn.text}<ChevronUpIcon />
                 </Button>
               ))}
             </div>
           )}
-        </div>
 
-        {/* Optional Action Buttons - Desktop Only */}
-        {actionButtons.length > 0 && (
-          <div className="hidden md:flex flex-row gap-4">
-            {actionButtons.map((button, index) => (
-              <Button
-                key={index}
-                onClick={() => navigate(button.route)}
-                variant="primary"
-                size="md"
-                className="px-6 py-3 gap-2"
-              >
-                {button.text}
-                <ChevronUpIcon />
-              </Button>
-            ))}
-          </div>
-        )}
-
-        {/* Bottom Section - Why Choose RupeeQ */}
-        {benefitsTitle && (
-          <div ref={benefitsSectionRef} className="mt-8 md:mt-[60px]">
-            <h2 className="text-3xl  md:text-[40px] font-bold text-center text-[#100701] mb-4 md:mb-8 leading-[35px] md:leading-[120%] px-6 md:px-4">
-              {benefitsTitle}
-            </h2>
-
-            {/* Benefits Bar - Desktop */}
-            <div className="hidden md:block bg-[#B0E6EC] shadow-[5px_5px_5px_0px_rgba(0,0,0,0.15)] rounded-t-24 border border-[#000000]/10 border-b-transparent py-6 px-4">
-              <div className="flex items-center justify-center gap-8 flex-wrap">
-                {benefits.map((benefit, index) => (
-                  <div
-                    key={index}
-                    ref={el => benefitsItemsRef.current[index] = el}
-                    className="flex items-center gap-1 whitespace-nowrap"
-                  >
+          {/* Benefits */}
+          {benefitsTitle && (
+            <div ref={benefitsSectionRef} className="mt-8 md:mt-[60px]">
+              <h2 className="text-3xl md:text-[40px] font-bold text-center text-[#100701] mb-4 md:mb-8 leading-[35px] md:leading-[120%] px-6 md:px-4">
+                {benefitsTitle}
+              </h2>
+              <div className="hidden md:block bg-[#B0E6EC] shadow-[5px_5px_5px_0px_rgba(0,0,0,0.15)] rounded-t-24 border border-[#000000]/10 border-b-transparent py-6 px-4">
+                <div className="flex items-center justify-center gap-8 flex-wrap">
+                  {benefits.map((benefit, i) => (
+                    <div key={i} ref={el => benefitsItemsRef.current[i] = el} className="flex items-center gap-1 whitespace-nowrap">
+                      <BlueUpArrowIcon />
+                      <span className="text-base text-[#5432AF] font-semibold leading-[21px]">{benefit}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="md:hidden space-y-3 px-4">
+                {benefits.map((benefit, i) => (
+                  <div key={i} ref={el => benefitsItemsRef.current[i] = el} className="bg-[#DAF3F6] rounded-[10px] py-4 px-5 flex items-center gap-5 shadow-sm">
                     <BlueUpArrowIcon />
                     <span className="text-base text-[#5432AF] font-semibold leading-[21px]">{benefit}</span>
                   </div>
                 ))}
               </div>
             </div>
+          )}
 
-            {/* Benefits Cards - Mobile */}
-            <div className="md:hidden space-y-3 px-4">
-              {benefits.map((benefit, index) => (
-                <div
-                  key={index}
-                  ref={el => benefitsItemsRef.current[index] = el}
-                  className="bg-[#DAF3F6] rounded-[10px] py-4 px-5 flex items-center gap-5 shadow-sm"
-                >
-                  <div>
-                    <BlueUpArrowIcon />
-                  </div>
-                  <span className="text-base text-[#5432AF] font-semibold leading-[21px]">{benefit}</span>
+          {/* How It Works */}
+          {howItWorks && (
+            <div ref={howItWorksRef} className="mt-8 md:mt-16 text-center px-4">
+              <h2 className="text-lg md:text-[40px] font-bold text-custom-purple mb-3 md:mb-4 leading-[22px] md:leading-[120%]">{howItWorks.title}</h2>
+              {howItWorks.description && <p className="text-sm md:text-base text-custom-dark-text max-w-4xl mx-auto leading-relaxed mb-3">{howItWorks.description}</p>}
+              {howItWorks.subtitle && <p className="text-xs md:text-lg text-[#4B5768] mb-6 md:mb-4">{howItWorks.subtitle}</p>}
+              {howItWorks.points && (
+                <div className="flex flex-col md:flex-row items-start md:items-center md:justify-center gap-3 md:gap-8 max-w-5xl mx-auto">
+                  {howItWorks.points.map((point, i) => (
+                    <span key={i} className="text-[17px] md:text-base text-custom-dark-text font-semibold">• {point}</span>
+                  ))}
                 </div>
-              ))}
+              )}
             </div>
-          </div>
-        )}
+          )}
 
-        {/* How Does It Work Section */}
-        {howItWorks && (
-          <div ref={howItWorksRef} className="mt-8 md:mt-16 text-center px-4">
-            <h2 className="text-lg md:text-[40px] font-bold text-custom-purple mb-3 md:mb-4 leading-[22px] md:leading-[120%]">
-              {howItWorks.title}
-            </h2>
-            {howItWorks.description && (
-              <p className="text-sm md:text-base text-custom-dark-text max-w-4xl mx-auto leading-relaxed mb-3">
-                {howItWorks.description}
-              </p>
-            )}
-            {howItWorks.subtitle && (
-              <p className="text-xs md:text-lg text-[#4B5768] md:text-custom-dark-text mb-6 md:mb-4">
-                {howItWorks.subtitle}
-              </p>
-            )}
-            {howItWorks.points && (
-              <div className="flex flex-col md:flex-row items-start md:items-center md:justify-center gap-3 md:gap-8 max-w-5xl mx-auto">
-                {howItWorks.points.map((point, index) => (
-                  <span key={index} className="text-[17px] md:text-base text-custom-dark-text font-semibold">
-                    • {point}
-                  </span>
-                ))}
-              </div>
-            )}
-          </div>
-        )}
-      </div>
-    </section>
+        </div>
+      </section>
+
+      {showOtpModal && (
+        <OtpModal
+          mobileNumber={mobileNumber}
+          onClose={() => setShowOtpModal(false)}
+          onVerified={() => { setShowOtpModal(false); navigate(loginRoute); }}
+        />
+      )}
+    </>
   );
 };
 

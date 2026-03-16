@@ -28,10 +28,10 @@ export const PERSONAL_LOAN_HERO = {
   ],
   benefitsTitle: 'Why Choose <span class="text-custom-purple">RupeeQ</span> For Your Personal Loan?',
   actionButtons: [
-    { text: "Check Your Loan Eligibility", route: "/login/personal-loan" },
-    { text: "Get your Personal Loan Offers", route: "/login/personal-loan" }
+    { text: "Check Your Loan Eligibility", route: "/personal-loan-info-1" },
+    { text: "Get your Personal Loan Offers", route: "/personal-loan-info-1" }
   ],
-  loginRoute: "/login/personal-loan",
+  loginRoute: "/personal-loan-info-1",
   illustrationSrc: "/assets/images/hero/2.png"
 };
 
@@ -68,9 +68,9 @@ export const DEBT_CONSOLIDATION_HERO = {
     ]
   },
   actionButtons: [
-    { text: "Check If You Can Reduce Your EMI", route: "/login/debt-consolidation" }
+    { text: "Check If You Can Reduce Your EMI", route: "/debt-consolidation-info-1" }
   ],
-  loginRoute: "/login/debt-consolidation",
+  loginRoute: "/debt-consolidation-info-1",
   illustrationSrc: "/assets/images/hero/2.png"
 };
 
@@ -99,7 +99,7 @@ export const OVERDRAFT_FACILITY_HERO = {
     description: "A Flexible Credit Product Lets You Access Money Up To A Set Limit, Pay Interest Only On What You Use, And Re-Use The Credit When You Pay It Back – Similar To A Credit Card Or Overdraft."
   },
   actionButtons: [],
-  loginRoute: "/login/overdraft-facility",
+  loginRoute: "/overdraft-facility-info-1",
   illustrationSrc: "/assets/images/hero/2.png"
 };
 
@@ -128,7 +128,7 @@ export const SHORT_TERM_LOAN_HERO = {
     description: "Short-Term Personal Loan Is Pretty Straightforward — It's A Small To Mid-Size Loan You Borrow For A Short Period, Usually To Cover An Urgent Expense Or Cash Gap."
   },
   actionButtons: [],
-  loginRoute: "/login/short-term-loan",
+  loginRoute: "/short-term-loan-info-1",
   illustrationSrc: "/assets/images/hero/2.png"
 };
 

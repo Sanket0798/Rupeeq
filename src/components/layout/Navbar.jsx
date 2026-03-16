@@ -111,20 +111,30 @@ const Navbar = () => {
     }
   };
 
-  // Handle login button click - route to appropriate login page based on current page
+  // Handle login button click - scroll to hero form on loan pages, navigate elsewhere
   const handleLoginClick = () => {
     const currentPath = location.pathname;
-    
-    // Map each page to its corresponding login page
+
+    const loanPages = ['/personal-loan', '/debt-consolidation', '/overdraft-facility', '/short-term-loan'];
+
+    if (loanPages.includes(currentPath)) {
+      // Scroll to the hero form so user can enter phone + go through OTP flow
+      setIsOpen(false);
+      const hero = document.getElementById('personal-loan-hero')
+        || document.getElementById('debt-consolidation-hero')
+        || document.getElementById('overdraft-hero')
+        || document.getElementById('short-term-hero')
+        || document.querySelector('section');
+      if (hero) {
+        hero.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      return;
+    }
+
     const loginRoutes = {
       '/': '/login/home',
-      '/personal-loan': '/login/personal-loan',
-      '/debt-consolidation': '/login/debt-consolidation',
-      '/overdraft-facility': '/login/overdraft-facility',
-      '/short-term-loan': '/login/short-term-loan',
     };
-    
-    // Navigate to the appropriate login page, default to home login
+
     const loginPath = loginRoutes[currentPath] || '/login/home';
     navigate(loginPath);
   };
