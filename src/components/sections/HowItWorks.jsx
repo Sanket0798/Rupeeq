@@ -32,21 +32,25 @@ const HowItWorks = () => {
       number: '01',
       title: 'Simple Application',
       description: 'Choose your product and submit a short form with basic details.',
+      orderClass: 'order-1',
     },
     {
       number: '02',
       title: 'Quick Verification',
       description: 'Your eligibility is checked securely using partner criteria.',
-    },
-    {
-      number: '04',
-      title: 'Easy Accessibility',
-      description: 'Complete the journey smoothly and get access without hassle.',
+      orderClass: 'order-2',
     },
     {
       number: '03',
       title: 'Transparent Selection',
       description: 'Compare relevant offers clearly and choose what fits you best.',
+      orderClass: 'order-3 md:order-4',
+    },
+    {
+      number: '04',
+      title: 'Easy Accessibility',
+      description: 'Complete the journey smoothly and get access without hassle.',
+      orderClass: 'order-4 md:order-3',
     },
   ];
 
@@ -75,12 +79,12 @@ const HowItWorks = () => {
             {steps.map((step, index) => (
               <div
                 key={index}
-                className={`relative transition-all duration-700 ${isVisible
+                className={`relative transition-all duration-700 ${step.orderClass} ${isVisible
                   ? 'opacity-100 translate-y-0'
                   : 'opacity-0 translate-y-12'
                   }`}
                 style={{
-                  transitionDelay: isVisible ? `${index * 150}ms` : '0ms'
+                  transitionDelay: isVisible ? `${index * 150}ms` : '0ms',
                 }}
               >
                 <div

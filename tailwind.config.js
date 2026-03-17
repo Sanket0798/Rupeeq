@@ -25,6 +25,8 @@ export default {
     'border-opacity-12',
     'w-[393px]',
     'h-[334px]',
+    'md:order-3',
+    'md:order-4',
     'from-brand-gradient-start',
     'to-brand-gradient-end',
     'bg-gradient-to-r',
