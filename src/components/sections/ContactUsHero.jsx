@@ -111,17 +111,17 @@ const ContactUsHero = () => {
             transition={{ duration: 0.8 }}
             style={{
                 marginTop: '-80px',
-                paddingTop: '150px',
+                paddingTop: 'clamp(100px, 15vw, 150px)',
             }}
         >
-            <div className="max-w-[1298px] mx-auto">
+            <div className="max-w-[1298px] mx-auto px-4 md:px-6 lg:px-8">
                 {/* Title Section */}
                 <motion.div
                     ref={titleRef}
                     className="text-center flex flex-col items-center mb-8 md:mb-[30px]"
                 >
                     <motion.h1
-                        className="font-extrabold text-3xl md:text-[40px] leading-[40px] md:leading-[53px] text-custom-purple mb-3 md:mb-4"
+                        className="font-extrabold text-2xl md:text-[40px] leading-[36px] md:leading-[53px] text-custom-purple mb-3 md:mb-4"
                         initial={{ opacity: 0, y: 40, scale: 0.9 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
@@ -144,7 +144,7 @@ const ContactUsHero = () => {
                     {/* Left Section - Address & Map */}
                     <motion.div
                         ref={leftSectionRef}
-                        className="space-y-11"
+                        className="space-y-6 md:space-y-11"
                         initial={{ opacity: 0, x: -50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, delay: 0.6 }}
@@ -153,19 +153,19 @@ const ContactUsHero = () => {
                         <motion.div
                             whileHover={{ x: 5, transition: { duration: 0.3 } }}
                         >
-                            <h3 className="font-semibold text-3xl leading-[38px] text-button-color mb-2">Address:</h3>
-                            <p className="font-normal text-[17px] leading-[17px] text-[#575757]">
+                            <h3 className="font-semibold text-xl md:text-3xl leading-[28px] md:leading-[38px] text-button-color mb-2">Address:</h3>
+                            <p className="font-normal text-sm md:text-[17px] leading-[20px] md:leading-[17px] text-[#575757]">
                                 Intulro Business Consulting India Private Limited
                             </p>
                         </motion.div>
 
-                        <div className='flex gap-14'>
+                        <div className='flex flex-col sm:flex-row gap-6 sm:gap-14'>
                             {/* Call Us */}
                             <motion.div
                                 whileHover={{ x: 5, transition: { duration: 0.3 } }}
                             >
-                                <h3 className="font-semibold text-3xl leading-[38px] text-button-color mb-2">Call Us:</h3>
-                                <p className="font-normal text-[17px] leading-[17px] text-[#575757]">
+                                <h3 className="font-semibold text-xl md:text-3xl leading-[28px] md:leading-[38px] text-button-color mb-2">Call Us:</h3>
+                                <p className="font-normal text-sm md:text-[17px] leading-[20px] md:leading-[17px] text-[#575757] break-all">
                                     Contact@RupeeQ.Com
                                 </p>
                             </motion.div>
@@ -174,8 +174,8 @@ const ContactUsHero = () => {
                             <motion.div
                                 whileHover={{ x: 5, transition: { duration: 0.3 } }}
                             >
-                                <h3 className="font-semibold text-3xl leading-[38px] text-button-color mb-2">Mail Us:</h3>
-                                <p className="font-normal text-[17px] leading-[17px] text-[#575757]">
+                                <h3 className="font-semibold text-xl md:text-3xl leading-[28px] md:leading-[38px] text-button-color mb-2">Mail Us:</h3>
+                                <p className="font-normal text-sm md:text-[17px] leading-[20px] md:leading-[17px] text-[#575757] break-all">
                                     Contact@RupeeQ.Com
                                 </p>
                             </motion.div>
@@ -185,21 +185,21 @@ const ContactUsHero = () => {
                         <motion.div
                             whileHover={{ x: 5, transition: { duration: 0.3 } }}
                         >
-                            <h3 className="font-semibold text-3xl leading-[38px] text-button-color mb-2">For any complaints:</h3>
-                            <p className="font-normal text-[17px] leading-[17px] text-[#575757]">
+                            <h3 className="font-semibold text-xl md:text-3xl leading-[28px] md:leading-[38px] text-button-color mb-2">For any complaints:</h3>
+                            <p className="font-normal text-sm md:text-[17px] leading-[20px] md:leading-[17px] text-[#575757] break-all">
                                 Complaints@RupeeQ.Com
                             </p>
                         </motion.div>
 
                         {/* Map */}
                         <motion.div
-                            className="overflow-hidden"
+                            className="overflow-hidden w-full"
                             whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
                         >
                             <img
                                 src="/assets/images/footer/Map.jpg"
                                 alt="Location Map"
-                                className="object-cover"
+                                className="w-full h-auto object-cover rounded-lg"
                                 onError={(e) => {
                                     e.target.style.display = 'none';
                                 }}
@@ -211,7 +211,7 @@ const ContactUsHero = () => {
                     <motion.form
                         ref={formRef}
                         onSubmit={handleSubmit}
-                        className="bg-white space-y-4 py-8 px-6"
+                        className="bg-white space-y-4 py-6 md:py-8 px-4 md:px-6 rounded-xl"
                         initial={{ opacity: 0, x: 50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, delay: 0.9 }}
