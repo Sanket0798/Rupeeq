@@ -1,7 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import { ChevronUpIcon } from '../common/SvgIcons';
 import { Card, Button } from '../ui';
 
 const LoanTypesSection = () => {
+  const navigate = useNavigate();
   const loanTypes = [
     {
       title: 'Salaried Personal Loan',
@@ -9,7 +11,7 @@ const LoanTypesSection = () => {
       bestFor: 'Medical Needs, Travel, Family Expenses, Planned Purchases',
       buttonText: 'Check Eligibility',
       bgColor: 'bg-loan-card-green',
-      // buttonColor: 'bg-button'
+      route: '/personal-loan'
     },
     {
       title: 'Debt Consolidation Loan',
@@ -17,7 +19,7 @@ const LoanTypesSection = () => {
       bestFor: 'Managing Multiple Loans, Reducing EMI Stress, Improving Credit Health',
       buttonText: 'Reduce Your EMI',
       bgColor: 'bg-loan-card-yellow',
-      // buttonColor: 'bg-purple-600 hover:bg-purple-700'
+      route: '/debt-consolidation'
     },
     {
       title: 'Small-Ticket Personal Loan',
@@ -25,7 +27,7 @@ const LoanTypesSection = () => {
       bestFor: 'Urgent Expenses, First-Time Borrowers, Credit Building',
       buttonText: 'See Available Options',
       bgColor: 'bg-loan-card-blue',
-      // buttonColor: 'bg-purple-600 hover:bg-purple-700'
+      route: '/short-term-loan'
     },
     {
       title: 'Overdraft / Flexi Loan Facility',
@@ -33,7 +35,7 @@ const LoanTypesSection = () => {
       bestFor: 'Irregular Income, Emergencies, Flexible Repayment Needs',
       buttonText: 'Check Your Limit',
       bgColor: 'bg-loan-card-red',
-      // buttonColor: 'bg-buttonColor'
+      route: '/overdraft-facility'
     }
   ];
 
@@ -75,6 +77,7 @@ const LoanTypesSection = () => {
 
               <div>
                 <button
+                  onClick={() => navigate(loan.route)}
                   className="bg-button-color w-full md:w-auto text-white font-bold px-6 py-3 rounded-full text-lg leading-[130%] tracing-[0%] hover:bg-[#6B4FA8] transition-all duration-300 flex items-center justify-center gap-x-3"
                 >
                   {loan.buttonText}

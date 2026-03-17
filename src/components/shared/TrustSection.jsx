@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -14,6 +15,18 @@ const TrustSection = () => {
   const headerRef = useRef(null);
   const cardsRef = useRef([]);
   const buttonsRef = useRef(null);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleOverdraftClick = () => {
+    if (location.pathname === '/overdraft-facility') {
+      // Already on overdraft page — scroll back to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      // From any other page — go to overdraft facility page (top)
+      navigate('/overdraft-facility');
+    }
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -302,7 +315,7 @@ const TrustSection = () => {
             whileHover="hover"
             whileTap="tap"
           >
-            <Button variant="primary-white-scale" size="md" className="gap-[10px] w-[194px] sm:w-auto">
+            <Button variant="primary-white-scale" size="md" className="gap-[10px] w-[194px] sm:w-auto" onClick={handleOverdraftClick}>
               Schedule a Call
               <motion.span
                 animate={{ x: [0, 5, 0] }}
@@ -317,7 +330,7 @@ const TrustSection = () => {
             whileHover="hover"
             whileTap="tap"
           >
-            <Button variant="primary-white-scale" size="md" className="gap-[10px] w-[194px] sm:w-auto">
+            <Button variant="primary-white-scale" size="md" className="gap-[10px] w-[194px] sm:w-auto" onClick={handleOverdraftClick}>
               Chat with Us
               <motion.span
                 animate={{ x: [0, 5, 0] }}

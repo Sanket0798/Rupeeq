@@ -28,8 +28,8 @@ export const PERSONAL_LOAN_HERO = {
   ],
   benefitsTitle: 'Why Choose <span class="text-custom-purple">RupeeQ</span> For Your Personal Loan?',
   actionButtons: [
-    { text: "Check Your Loan Eligibility", route: "/personal-loan-info-1" },
-    { text: "Get your Personal Loan Offers", route: "/personal-loan-info-1" }
+    { text: "Check Your Loan Eligibility", route: "/overdraft-facility" },
+    { text: "Get your Personal Loan Offers", route: "/overdraft-facility" }
   ],
   loginRoute: "/personal-loan-info-1",
   illustrationSrc: "/assets/images/hero/2.png"
