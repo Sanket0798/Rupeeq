@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronUpIcon } from '../common/SvgIcons';
+import DatePicker from '../ui/DatePicker';
 
 const CreditScoreHero = () => {
   const navigate = useNavigate();
@@ -47,9 +48,9 @@ const CreditScoreHero = () => {
       }}
     >
       <div className="max-w-[1400px] mx-auto overflow-visible">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-[104px] items-start md:mt-16 overflow-visible">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-[104px] items-start md:mt-4 overflow-visible">
           {/* Left Content */}
-          <div className="space-y-6 md:space-y-9">
+          <div className="space-y-6 md:space-y-9 order-2 lg:order-1">
             <div>
               <h1 className="text-2xl md:text-[40px] lg:text-[50px] font-medium md:font-medium leading-tight mb-4 md:mb-8 text-custom-dark-text">
                 Know Your <span className="text-custom-purple font-bold">CREDIT SCORE.</span>
@@ -107,7 +108,7 @@ const CreditScoreHero = () => {
           </div>
 
           {/* Right - Form */}
-          <div className="max-w-[528px] relative z-10">
+          <div className="max-w-[528px] relative z-10 order-1 lg:order-2">
             <h3 className="font-semibold text-2xl md:text-[40px] leading-[32px] md:leading-[60px] text-custom-dark-text mb-4 md:mb-6">
               Quick Credit score report
             </h3>
@@ -149,14 +150,12 @@ const CreditScoreHero = () => {
                 <label className="block font-semibold md:font-bold text-base md:text-lg leading-[22px] md:leading-[26px] mb-2 text-custom-dark-text">
                   Date of Birth
                 </label>
-                <input
-                  type="text"
-                  name="dob"
-                  placeholder="Enter your DOB (DD-MM-YY)"
+                <DatePicker
                   value={formData.dob}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 rounded-[20px] border border-[#D0D0D0] focus:outline-none focus:ring-2 focus:ring-button-color text-custom-dark-text placeholder:text-[#58626C]/50 text-sm md:text-base placeholder:text-sm md:placeholder:text-base leading-[22px] md:leading-[26px]"
-                  required
+                  onChange={(val) => setFormData({ ...formData, dob: val })}
+                  placeholder="DD/MM/YYYY"
+                  maxDate={new Date()}
+                  className="w-full py-3"
                 />
               </div>
 

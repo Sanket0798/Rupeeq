@@ -91,7 +91,7 @@ const CheckCreditScoreStepsSection = () => {
   ];
 
   return (
-    <section ref={sectionRef} className="py-8 md:py-16 px-4 sm:px-6 lg:px-8">
+    <section ref={sectionRef} className="py-8 md:py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <div className="max-w-[1168px] mx-auto flex flex-col justify-center items-center">
         {/* Header with Icon - Desktop */}
         <div ref={headerRef} className="hidden md:flex items-center max-w-[740px] gap-x-7 mb-[89px]">

@@ -70,7 +70,7 @@ const WhatIsGoodCreditScoreSection = () => {
   ];
 
   return (
-    <section ref={sectionRef} className="py-8 md:py-16 px-4 sm:px-6 lg:px-8 bg-white">
+    <section ref={sectionRef} className="py-8 md:py-16 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
       <div className="max-w-[1226px] mx-auto text-center">
         {/* Title */}
         <h2 ref={titleRef} className="text-2xl md:text-[40px] font-bold leading-[30px] md:leading-[37px] tracing-[0px] text-custom-purple mb-4 md:mb-8">

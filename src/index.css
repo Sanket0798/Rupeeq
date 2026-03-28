@@ -96,6 +96,15 @@
     @apply font-sans antialiased;
     overflow-x: hidden;
   }
+
+  html {
+    overflow-x: hidden;
+  }
+
+  #root {
+    overflow-x: hidden;
+    position: relative;
+  }
   
   html {
     scroll-behavior: smooth;

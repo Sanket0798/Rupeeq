@@ -84,7 +84,7 @@ const FactorsAffectingCreditScoreSection = () => {
   ];
 
   return (
-    <div ref={sectionRef} className="w-full py-8 md:py-16 lg:py-20 px-4 md:px-6 lg:px-8">
+    <div ref={sectionRef} className="w-full py-8 md:py-16 lg:py-20 px-4 md:px-6 lg:px-8 overflow-hidden">
       <div className="max-w-[1386px] mx-auto rounded-[15px] md:rounded-24 z-10 bg-gradient-to-b from-[#34CA8D]/5 to-white pt-6 md:pt-[55px] px-4 md:px-[57px] pb-8 md:pb-[83px]">
         <div className="flex flex-col lg:flex-row gap-6 md:gap-x-[67px] items-start lg:items-center">
           {/* Left Side - Heading */}
