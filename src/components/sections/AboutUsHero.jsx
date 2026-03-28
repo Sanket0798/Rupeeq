@@ -145,7 +145,7 @@ const AboutUsHero = () => {
   return (
     <motion.section
       ref={heroRef}
-      className="pt-20 md:pt-24 pb-12 md:pb-20 overflow-hidden bg-gradient-to-b from-[#DDEDF9] via-[#DDEDF9] to-[#F7F7F7] [mask-image:linear-gradient(to_bottom,black_80%,transparent)]"
+      className="pt-20 md:pt-24 pb-12 md:pb-20 overflow-hidden bg-gradient-to-b from-[#DDEDF9] via-[#DDEDF9] to-[#F7F7F7] md:[mask-image:linear-gradient(to_bottom,black_80%,transparent)]"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
@@ -223,7 +223,6 @@ const AboutUsHero = () => {
           <motion.div
             ref={buttonRef}
             variants={buttonVariants}
-            whileHover="hover"
             whileTap="tap"
           >
             <Button

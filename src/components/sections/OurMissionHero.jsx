@@ -3,210 +3,118 @@ import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
 
-/**
- * OurMissionHero - Hero section for Our Mission page
- */
+const sections = [
+  {
+    title: 'RupeeQ Vision',
+    content: [
+      'RupeeQ envisions a future where every individual in India has seamless access to financial opportunities that drive personal growth and security. We strive to be the most trusted financial partner, fostering financial independence and wellness through innovative, digital-first solutions. By focusing on transparency, user-centricity, and inclusivity, we aim to redefine how young India engages with credit and financial tools, making informed decisions and building strong financial foundations for a brighter, more secure future.',
+      'Vision Statement: To be the most trusted and innovative financial partner for young India, revolutionizing access to credit and financial wellness through digital empowerment and personalized solutions.',
+      'Vision Snapshot: "India\'s trusted financial partner for a secure future."',
+    ],
+  },
+  {
+    title: 'RupeeQ Mission',
+    content: [
+      'At RupeeQ, our mission is to empower every individual with accessible, transparent, and tailored financial solutions. We aim to simplify finance by offering innovative products and a seamless experience, enabling our customers to achieve their goals with confidence and ease. Through responsible lending, personalized insights, and cutting-edge digital tools, we are committed to building financial health and providing financial freedom for the evolving needs of young India.',
+      'Mission Statement: Empowering individuals with accessible, transparent, and tailored financial solutions for a confident financial future.',
+      'Mission Snapshot: "Empowering individuals with accessible, tailored financial solutions."',
+    ],
+  },
+];
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, delay: i * 0.08, ease: 'easeOut' },
+  }),
+};
+
 const OurMissionHero = () => {
   const heroRef = useRef(null);
-  const titleRef = useRef(null);
-  const visionCardRef = useRef(null);
-  const missionCardRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Animate hero section entrance
-      gsap.fromTo(heroRef.current,
+      gsap.fromTo(
+        heroRef.current,
         { opacity: 0, y: 50 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: "power3.out"
-        }
+        { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }
       );
-
-      // Animate title with bounce
-      if (titleRef.current) {
-        gsap.fromTo(titleRef.current,
-          { opacity: 0, y: 40, scale: 0.9 },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.8,
-            ease: "back.out(1.7)",
-            delay: 0.3
-          }
-        );
-      }
-
-      // Animate vision card with 3D effect
-      if (visionCardRef.current) {
-        gsap.fromTo(visionCardRef.current,
-          {
-            opacity: 0,
-            y: 60,
-            scale: 0.95,
-            rotationX: -10
-          },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            rotationX: 0,
-            duration: 0.8,
-            ease: "power3.out",
-            delay: 0.6
-          }
-        );
-
-        // Animate vision card children
-        const visionChildren = visionCardRef.current.children;
-        gsap.fromTo(visionChildren,
-          { opacity: 0, y: 20 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.6,
-            stagger: 0.15,
-            ease: "power2.out",
-            delay: 0.9
-          }
-        );
-      }
-
-      // Animate mission card with 3D effect
-      if (missionCardRef.current) {
-        gsap.fromTo(missionCardRef.current,
-          {
-            opacity: 0,
-            y: 60,
-            scale: 0.95,
-            rotationX: -10
-          },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            rotationX: 0,
-            duration: 0.8,
-            ease: "power3.out",
-            delay: 0.9
-          }
-        );
-
-        // Animate mission card children
-        const missionChildren = missionCardRef.current.children;
-        gsap.fromTo(missionChildren,
-          { opacity: 0, y: 20 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.6,
-            stagger: 0.15,
-            ease: "power2.out",
-            delay: 1.2
-          }
-        );
-      }
     });
-
     return () => ctx.revert();
   }, []);
 
   return (
-    <motion.section
-      ref={heroRef}
-      className="pt-20 md:pt-24 pb-12 md:pb-20 overflow-hidden bg-gradient-to-b from-[#DDEDF9] via-[#DDEDF9] to-[#F7F7F7] [mask-image:linear-gradient(to_bottom,black_80%,transparent)]"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.8 }}
-      style={{
-        marginTop: '-80px',
-        paddingTop: '150px',
-      }}
-    >
-      <div className="max-w-[1339px] mx-auto text-center px-4">
-        {/* Main Title */}
-        <motion.h1
-          ref={titleRef}
-          className="font-extrabold text-3xl md:text-[40px] leading-[40px] md:leading-[53px] text-custom-purple mb-8 md:mb-12"
-          initial={{ opacity: 0, y: 40, scale: 0.9 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-          whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
-        >
-          OUR MISSION
-        </motion.h1>
-
-        {/* Vision Card */}
-        <motion.div
-          ref={visionCardRef}
-          className='w-full bg-transparent flex items-center flex-col mb-12 md:mb-[66px]'
-          initial={{ opacity: 0, y: 60, scale: 0.95 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-          whileHover={{ 
-            y: -5,
-            transition: { duration: 0.3 }
-          }}
-        >
-          <motion.h2
-            className="font-bold text-lg md:text-xl leading-[22px] md:leading-[25px] text-custom-dark-text mb-3 md:mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.9 }}
-            whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
+    <>
+      {/* Hero */}
+      <motion.section
+        ref={heroRef}
+        className="pt-20 md:pt-24 pb-14 md:pb-16 bg-gradient-to-b from-[#DDEDF9] via-[#DDEDF9] to-[#F7F7F7] [mask-image:linear-gradient(to_bottom,black_80%,transparent)]"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        style={{ marginTop: '-80px', paddingTop: '150px' }}
+      >
+        <div className="max-w-[1339px] mx-auto text-center px-4">
+          <motion.h1
+            className="font-extrabold text-3xl md:text-[40px] leading-[40px] md:leading-[53px] text-custom-purple mb-4"
+            initial={{ opacity: 0, y: 40, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
           >
-            RupeeQ Vision
-          </motion.h2>
-
+            OUR MISSION
+          </motion.h1>
           <motion.p
-            className='font-semibold text-base md:text-xl leading-[20px] md:leading-[26px] text-[#4B5768] font-open-sans max-w-[800px] px-4'
+            className="text-[#4B5768] text-base md:text-lg max-w-[700px] mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
           >
-            RupeeQ envisions a future where every individual in India has seamless access to financial opportunities that drive personal growth.
+            Empowering every individual with accessible, transparent, and tailored financial solutions.
           </motion.p>
-        </motion.div>
+        </div>
+      </motion.section>
 
-        {/* Mission Card */}
-        <motion.div
-          ref={missionCardRef}
-          className='w-full bg-transparent flex items-center flex-col'
-          initial={{ opacity: 0, y: 60, scale: 0.95 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.9, ease: "easeOut" }}
-          whileHover={{ 
-            y: -5,
-            transition: { duration: 0.3 }
-          }}
-        >
-          <motion.h2
-            className="font-bold text-lg md:text-xl leading-[22px] md:leading-[25px] text-custom-dark-text mb-3 md:mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.2 }}
-            whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
-          >
-            RupeeQ Mission
-          </motion.h2>
-
-          <motion.p
-            className='font-semibold text-base md:text-xl leading-[20px] md:leading-[26px] text-[#4B5768] font-open-sans max-w-[800px] px-4'
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.3 }}
-          >
-            RupeeQ envisions a future where every individual in India has seamless access to financial opportunities that drive personal growth.
-          </motion.p>
-        </motion.div>
-      </div>
-    </motion.section>
+      {/* Content */}
+      <section className="py-12 md:py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="max-w-[860px] mx-auto">
+          {sections.map((sec, i) => (
+            <motion.div
+              key={sec.title}
+              className="mb-10 md:mb-14"
+              custom={i}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.15 }}
+              variants={fadeUp}
+            >
+              <h2 className="text-xl md:text-2xl font-bold text-custom-dark-text mb-3 md:mb-4 border-l-4 border-custom-purple pl-3">
+                {sec.title}
+              </h2>
+              <div className="space-y-3">
+                {sec.content.map((para, j) => {
+                  const colonIndex = para.indexOf(':');
+                  const hasLabel = colonIndex > 0 && colonIndex < 60 && !para.startsWith('•');
+                  return (
+                    <p key={j} className="text-[#4B5768] text-sm md:text-base leading-relaxed">
+                      {hasLabel ? (
+                        <>
+                          <span className="font-semibold text-custom-dark-text">{para.slice(0, colonIndex + 1)}</span>
+                          {para.slice(colonIndex + 1)}
+                        </>
+                      ) : para}
+                    </p>
+                  );
+                })}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+    </>
   );
 };
 

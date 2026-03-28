@@ -53,19 +53,18 @@ const DisclaimerPage = () => {
         ref={heroRef}
         className="mx-3 rounded-3xl px-4 sm:px-6 lg:px-8 pb-10 pt-[100px] md:pt-[130px]"
         style={{
-          background: 'linear-gradient(135deg, #DDEDF9 0%, #EDE8F7 50%, #DDEDF9 100%)',
+          background: 'linear-gradient(135deg, #5528A9 0%, #7B5FB8 50%, #34CA8D 100%)',
           marginTop: '-80px',
-        //   paddingTop: '150px',
         }}
       >
         <div className="max-w-[1364px] mx-auto text-center">
           <h1
             ref={titleRef}
-            className="text-3xl md:text-5xl lg:text-[60px] font-bold leading-tight text-custom-dark-text mb-4"
+            className="text-3xl md:text-5xl lg:text-[60px] font-bold leading-tight text-white mb-4"
           >
             Disclaimer
           </h1>
-          <p className="text-[#4B5768] text-base md:text-lg max-w-2xl mx-auto">
+          <p className="text-white/80 text-base md:text-lg max-w-2xl mx-auto">
             Important information about RupeeQ's role as a financial facilitator.
           </p>
         </div>

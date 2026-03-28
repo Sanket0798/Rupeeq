@@ -230,7 +230,7 @@ const GenericInfoPage2 = ({ content }) => {
 
             {/* Title */}
             <div className={`${content.titleMargin} text-center`}>
-              <h2 className="text-[38px] leading-[38px] text-custom-dark-text font-bold tracing-[2%] mb-2">
+              <h2 className="text-[38px] leading-[45px] text-custom-dark-text font-bold tracing-[2%] mb-2">
                 {content.mainTitle}
               </h2>
               <p className="text-2xl leading-[26px] tracing-[6%] text-custom-purple font-semibold">
@@ -313,99 +313,6 @@ const GenericInfoPage2 = ({ content }) => {
           </div>
 
           <form onSubmit={handleSubmit} className="md:space-y-5">
-            {/* Salary Type */}
-            <div ref={(el) => (formFieldsRef.current[0] = el)} className="mb-4">
-              <label className="block text-sm md:text-base leading-[26px] font-bold tracing-[4%] text-[#58626C] mb-3">
-                Select Salary Type
-              </label>
-              <div className="flex flex-col md:flex-row gap-4">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setFormData({ ...formData, salaryType: 'salaried' });
-                    if (errors.salaryType) {
-                      setErrors({ ...errors, salaryType: '' });
-                    }
-                  }}
-                  className={`w-full px-6 py-3 rounded-full border-2 transition-all ${formData.salaryType === 'salaried'
-                    ? 'border-custom-purple bg-custom-purple/10 text-custom-purple'
-                    : 'border-[#D0D0D0] bg-white text-[#58626C]'
-                    }`}
-                >
-                  <div className="flex items-center gap-2">
-                    <div
-                      className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${formData.salaryType === 'salaried'
-                        ? 'border-custom-purple'
-                        : 'border-[#808191]'
-                        }`}
-                    >
-                      {formData.salaryType === 'salaried' && (
-                        <div className="w-2 h-2 rounded-full bg-custom-purple"></div>
-                      )}
-                    </div>
-                    Salaried
-                  </div>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setFormData({ ...formData, salaryType: 'self-employed-business' });
-                    if (errors.salaryType) {
-                      setErrors({ ...errors, salaryType: '' });
-                    }
-                  }}
-                  className={`w-full px-6 py-3 rounded-full border-2 transition-all ${formData.salaryType === 'self-employed-business'
-                    ? 'border-custom-purple bg-custom-purple/10 text-custom-purple'
-                    : 'border-[#D0D0D0] bg-white text-[#58626C]'
-                    }`}
-                >
-                  <div className="flex items-center gap-2">
-                    <div
-                      className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${formData.salaryType === 'self-employed-business'
-                        ? 'border-custom-purple'
-                        : 'border-[#808191]'
-                        }`}
-                    >
-                      {formData.salaryType === 'self-employed-business' && (
-                        <div className="w-2 h-2 rounded-full bg-custom-purple"></div>
-                      )}
-                    </div>
-                    Self Employed Business
-                  </div>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setFormData({ ...formData, salaryType: 'self-employed-professional' });
-                    if (errors.salaryType) {
-                      setErrors({ ...errors, salaryType: '' });
-                    }
-                  }}
-                  className={`w-full px-6 py-3 rounded-full border-2 transition-all ${formData.salaryType === 'self-employed-professional'
-                    ? 'border-custom-purple bg-custom-purple/10 text-custom-purple'
-                    : 'border-[#D0D0D0] bg-white text-[#58626C]'
-                    }`}
-                >
-                  <div className="flex items-center gap-2">
-                    <div
-                      className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${formData.salaryType === 'self-employed-professional'
-                        ? 'border-custom-purple'
-                        : 'border-[#808191]'
-                        }`}
-                    >
-                      {formData.salaryType === 'self-employed-professional' && (
-                        <div className="w-2 h-2 rounded-full bg-custom-purple"></div>
-                      )}
-                    </div>
-                    Self Employed Professional
-                  </div>
-                </button>
-              </div>
-              {errors.salaryType && (
-                <FormFieldError error={errors.salaryType} />
-              )}
-            </div>
-
             {/* Monthly Income */}
             <div ref={(el) => (formFieldsRef.current[1] = el)} className="mb-4">
               <label className="block text-sm md:text-base leading-[26px] font-bold tracing-[4%] text-[#58626C] mb-2">
@@ -416,10 +323,10 @@ const GenericInfoPage2 = ({ content }) => {
                 <Input
                   type="text"
                   name="monthlyIncome"
-                  placeholder="15000"
+                  placeholder="₹"
                   value={formData.monthlyIncome}
                   onChange={handleChange}
-                  className="bg-white border-[#D0D0D0] rounded-[20px] py-3 pl-8"
+                  className="bg-white border-[#D0D0D0] rounded-[20px] py-3 pl-4 placeholder:font-semibold"
                 />
               </div>
               {errors.monthlyIncome && (
@@ -427,7 +334,8 @@ const GenericInfoPage2 = ({ content }) => {
               )}
             </div>
 
-            {/* Company Name */}
+            {/* Company Name - only shown when no additionalFields (additionalFields handles it for debt consolidation) */}
+            {!content.additionalFields && (
             <div ref={(el) => (formFieldsRef.current[2] = el)} className="mb-4">
               <label className="block text-sm md:text-base leading-[26px] font-bold tracing-[4%] text-[#58626C] mb-2">
                 Company Name
@@ -444,6 +352,7 @@ const GenericInfoPage2 = ({ content }) => {
                 <FormFieldError error={errors.companyName} />
               )}
             </div>
+            )}
 
             {/* Additional Fields - Rendered conditionally */}
             {content.additionalFields && content.additionalFields(formData, handleChange, errors)}

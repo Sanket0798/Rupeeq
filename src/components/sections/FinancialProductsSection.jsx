@@ -4,18 +4,23 @@ import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ChevronUpIcon } from '../common/SvgIcons';
+import useIsMobile from '../../hooks/useIsMobile';
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
 
 const FinancialProductsSection = () => {
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
   const sectionRef = useRef(null);
   const headingRef = useRef(null);
   const topRowRef = useRef(null);
   const bottomRowRef = useRef(null);
   const productCardsRef = useRef([]);
   const serviceCardsRef = useRef([]);
+
+  // Returns animation props only on desktop
+  const anim = (props) => isMobile ? {} : props;
   const products = [
     {
       title: 'Debt Consolidation Loan',
@@ -80,6 +85,8 @@ const FinancialProductsSection = () => {
 
   // GSAP Animations
   useEffect(() => {
+    if (window.innerWidth < 768) return; // skip all animations on mobile
+
     const ctx = gsap.context(() => {
       gsap.fromTo(sectionRef.current,
         {
@@ -153,47 +160,22 @@ const FinancialProductsSection = () => {
       productCardsRef.current.forEach((card, index) => {
         if (card) {
           gsap.fromTo(card,
+            { opacity: 0, y: 80, rotationY: -15, scale: 0.9 },
             {
-              opacity: 0,
-              y: 80,
-              rotationY: -15,
-              scale: 0.9
-            },
-            {
-              opacity: 1,
-              y: 0,
-              rotationY: 0,
-              scale: 1,
-              duration: 0.8,
-              delay: index * 0.2,
-              ease: "power3.out",
-              scrollTrigger: {
-                trigger: topRowRef.current,
-                start: "top 85%",
-              }
+              opacity: 1, y: 0, rotationY: 0, scale: 1,
+              duration: 0.8, delay: index * 0.2, ease: "power3.out",
+              scrollTrigger: { trigger: topRowRef.current, start: "top 85%" }
             }
           );
 
-          // Hover animations
-          card.addEventListener('mouseenter', () => {
-            gsap.to(card, {
-              y: -10,
-              scale: 1.02,
-              // boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
-              duration: 0.3,
-              ease: "power2.out"
+          if (window.innerWidth >= 768) {
+            card.addEventListener('mouseenter', () => {
+              gsap.to(card, { y: -10, scale: 1.02, duration: 0.3, ease: "power2.out" });
             });
-          });
-
-          card.addEventListener('mouseleave', () => {
-            gsap.to(card, {
-              y: 0,
-              scale: 1,
-              // boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
-              duration: 0.3,
-              ease: "power2.out"
+            card.addEventListener('mouseleave', () => {
+              gsap.to(card, { y: 0, scale: 1, duration: 0.3, ease: "power2.out" });
             });
-          });
+          }
         }
       });
 
@@ -201,49 +183,22 @@ const FinancialProductsSection = () => {
       serviceCardsRef.current.forEach((card, index) => {
         if (card) {
           gsap.fromTo(card,
+            { opacity: 0, x: index % 2 === 0 ? -50 : 50, rotation: index % 2 === 0 ? -5 : 5, scale: 0.9 },
             {
-              opacity: 0,
-              x: index % 2 === 0 ? -50 : 50,
-              rotation: index % 2 === 0 ? -5 : 5,
-              scale: 0.9
-            },
-            {
-              opacity: 1,
-              x: 0,
-              rotation: 0,
-              scale: 1,
-              duration: 0.8,
-              delay: index * 0.15,
-              ease: "back.out(1.7)",
-              scrollTrigger: {
-                trigger: bottomRowRef.current,
-                start: "top 85%",
-              }
+              opacity: 1, x: 0, rotation: 0, scale: 1,
+              duration: 0.8, delay: index * 0.15, ease: "back.out(1.7)",
+              scrollTrigger: { trigger: bottomRowRef.current, start: "top 85%" }
             }
           );
 
-          // Hover animations
-          card.addEventListener('mouseenter', () => {
-            gsap.to(card, {
-              y: -8,
-              scale: 1.03,
-              rotation: 1,
-              // boxShadow: "0 15px 30px rgba(0,0,0,0.12)",
-              duration: 0.3,
-              ease: "power2.out"
+          if (window.innerWidth >= 768) {
+            card.addEventListener('mouseenter', () => {
+              gsap.to(card, { y: -8, scale: 1.03, rotation: 1, duration: 0.3, ease: "power2.out" });
             });
-          });
-
-          card.addEventListener('mouseleave', () => {
-            gsap.to(card, {
-              y: 0,
-              scale: 1,
-              rotation: 0,
-              // boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
-              duration: 0.3,
-              ease: "power2.out"
+            card.addEventListener('mouseleave', () => {
+              gsap.to(card, { y: 0, scale: 1, rotation: 0, duration: 0.3, ease: "power2.out" });
             });
-          });
+          }
         }
       });
 
@@ -276,32 +231,19 @@ const FinancialProductsSection = () => {
     return () => ctx.revert();
   }, []);
 
-  // Animation variants for Framer Motion
-  const containerVariants = {
+  const containerVariants = isMobile ? {} : {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2
-      }
+      transition: { staggerChildren: 0.1, delayChildren: 0.2 }
     }
   };
 
-  const cardVariants = {
-    hidden: {
-      opacity: 0,
-      y: 50,
-      scale: 0.9
-    },
+  const cardVariants = isMobile ? {} : {
+    hidden: { opacity: 0, y: 50, scale: 0.9 },
     visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
+      opacity: 1, y: 0, scale: 1,
+      transition: { duration: 0.6, ease: "easeOut" }
     }
   };
 
@@ -332,12 +274,9 @@ const FinancialProductsSection = () => {
 
   return (
     <motion.section
-      className="py-8 md:py-16 bg-white px-[40px] md:px-8"
+      className="py-5 md:py-16 bg-white px-[40px] md:px-8"
       ref={sectionRef}
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      transition={{ duration: 0.8 }}
-      viewport={{ once: true, margin: "-100px" }}
+      {...anim({ initial: { opacity: 0 }, whileInView: { opacity: 1 }, transition: { duration: 0.8 }, viewport: { once: true, margin: "-100px" } })}
     >
       <motion.div
         className="max-w-[1248px] mx-auto"
@@ -354,22 +293,19 @@ const FinancialProductsSection = () => {
         >
           <motion.h2
             className="text-3xl md:text-4xl lg:text-[64px] md:leading-[100%] font-bold md:font-medium text-custom-dark-text leading-[35px] md:text-[#212121]"
-            whileHover={{ scale: 1.02 }}
-            transition={{ type: "spring", stiffness: 300 }}
+            {...anim({ whileHover: { scale: 1.02 }, transition: { type: "spring", stiffness: 300 } })}
           >
             Find the Right
           </motion.h2>
           <motion.h2
             className="text-3xl md:text-4xl lg:text-[64px] text-custom-purple md:leading-[100%] leading-[35px] font-bold md:bg-brand-gradient md:bg-clip-text md:text-transparent"
-            whileHover={{ scale: 1.02 }}
-            transition={{ type: "spring", stiffness: 300 }}
+            {...anim({ whileHover: { scale: 1.02 }, transition: { type: "spring", stiffness: 300 } })}
           >
             Financial Product
           </motion.h2>
           <motion.h2
-            className="font-normal text-xs leading-[16px] mt-1 text-custom-dark-text md:hidden"
-            whileHover={{ scale: 1.02 }}
-            transition={{ type: "spring", stiffness: 300 }}
+            className="font-normal text-[13px] leading-[16px] mt-1 text-custom-dark-text md:hidden"
+            {...anim({ whileHover: { scale: 1.02 }, transition: { type: "spring", stiffness: 300 } })}
           >
             Trusted By 23k+ Clients Over 980+ Locations Nationwide.
           </motion.h2>
@@ -391,31 +327,23 @@ const FinancialProductsSection = () => {
               ref={el => productCardsRef.current[index] = el}
               className={`${product.bgColor} ${product.borderColor} ${product.borderWidth || 'border-2'} ${product.borderOpacity || ''} ${product.radius || 'rounded-t-2xl md:rounded-t-3xl'} ${product.width || ''} ${product.height || ''} ${product.padding || 'p-6 md:p-[44px]'}  text-center`}
               variants={cardVariants}
-              whileHover={{
-                y: -5,
-                scale: 1.02,
-                transition: { type: "spring", stiffness: 300 }
-              }}
-              whileTap={{ scale: 0.98 }}
+              {...anim({ whileHover: { y: -5, scale: 1.02, transition: { type: "spring", stiffness: 300 } }, whileTap: { scale: 0.98 } })}
             >
               <motion.h3
                 className="text-[20px] md:text-[30px] font-bold text-[#132644] mb-2"
-                whileHover={{ x: 5 }}
-                transition={{ type: "spring", stiffness: 400 }}
+                {...anim({ whileHover: { x: 5 }, transition: { type: "spring", stiffness: 400 } })}
               >
                 {product.title}
               </motion.h3>
               <motion.p
                 className="text-custom-purple font-bold text-base md:text-lg tracking-0"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                {...anim({ whileHover: { scale: 1.05 }, transition: { type: "spring", stiffness: 300 } })}
               >
                 {product.subtitle}
               </motion.p>
               <motion.p
                 className="text-custom-dark-text font-normal text-[15px] md:text-[17px] leading-[22px] md:leading-[25px] tracking-0 mb-6 md:mb-[38px]"
-                initial={{ opacity: 0.8 }}
-                whileHover={{ opacity: 1 }}
+                {...anim({ initial: { opacity: 0.8 }, whileHover: { opacity: 1 } })}
               >
                 {product.description}
               </motion.p>
@@ -513,34 +441,25 @@ const FinancialProductsSection = () => {
               ref={el => serviceCardsRef.current[index] = el}
               className={`${service.bgColor} ${service.borderColor} ${service.borderWidth || 'border-2'} ${service.borderOpacity || ''} ${service.radius || 'rounded-t-2xl md:rounded-t-3xl'} ${service.width || ''} ${service.height || ''} ${service.padding || 'p-6 md:p-[44px]'} text-center`}
               variants={cardVariants}
-              whileHover={{
-                y: -5,
-                scale: 1.02,
-                rotate: 1,
-                transition: { type: "spring", stiffness: 300 }
-              }}
-              whileTap={{ scale: 0.98 }}
+              {...anim({ whileHover: { y: -5, scale: 1.02, rotate: 1, transition: { type: "spring", stiffness: 300 } }, whileTap: { scale: 0.98 } })}
             >
               <motion.h3
                 className="text-[20px] md:text-[30px] font-bold text-[#132644] mb-2"
-                whileHover={{ x: 5 }}
-                transition={{ type: "spring", stiffness: 400 }}
+                {...anim({ whileHover: { x: 5 }, transition: { type: "spring", stiffness: 400 } })}
               >
                 {service.title}
               </motion.h3>
               {service.subtitle && (
                 <motion.p
                   className="text-custom-purple font-bold text-base md:text-lg tracking-0"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ type: "spring", stiffness: 300 }}
+                  {...anim({ whileHover: { scale: 1.05 }, transition: { type: "spring", stiffness: 300 } })}
                 >
                   {service.subtitle}
                 </motion.p>
               )}
               <motion.p
                 className="text-custom-dark-text font-normal text-[15px] md:text-[17px] leading-[22px] md:leading-[25px] tracking-0 mb-6 md:mb-[38px]"
-                initial={{ opacity: 0.8 }}
-                whileHover={{ opacity: 1 }}
+                {...anim({ initial: { opacity: 0.8 }, whileHover: { opacity: 1 } })}
               >
                 {service.description}
               </motion.p>
@@ -573,7 +492,7 @@ const FinancialProductsSection = () => {
 
         {/* Mobile only text - at the bottom */}
         <motion.div
-          className="md:hidden mt-8 text-center bg-white"
+          className="md:hidden mt-12 mb-4 text-center bg-white"
           variants={cardVariants}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

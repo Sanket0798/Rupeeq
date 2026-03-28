@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Input, FormFieldError, LoadingSpinner, Button } from '../ui';
+import { Input, FormFieldError, LoadingSpinner, Button, DatePicker } from '../ui';
 import { personalInfoPage1Schema, validateForm } from '../../utils/validationSchemas';
 import { gsap } from 'gsap';
 
@@ -311,10 +311,10 @@ const GenericInfoPage1 = ({ content }) => {
                 <Input
                   type="text"
                   name="loanAmount"
-                  placeholder="50000"
+                  placeholder="₹"
                   value={formData.loanAmount}
                   onChange={handleChange}
-                  className="bg-white border-[#D0D0D0] rounded-[20px] py-3 pl-8"
+                  className="bg-white border-[#D0D0D0] font-semibold rounded-[20px] py-3 pl-4"
                 />
               </div>
               {errors.loanAmount && (
@@ -323,8 +323,8 @@ const GenericInfoPage1 = ({ content }) => {
             </div>
 
             {/* Salutation and Full Name */}
-            <div ref={(el) => (formFieldsRef.current[1] = el)} className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-              <div>
+            <div ref={(el) => (formFieldsRef.current[1] = el)} className="flex gap-4 mb-4">
+              <div className="w-[140px] flex-shrink-0">
                 <label className="block text-sm md:text-base leading-[26px] font-bold tracing-[4%] text-[#58626C] mb-2">
                   Salutation
                 </label>
@@ -343,14 +343,14 @@ const GenericInfoPage1 = ({ content }) => {
                   <FormFieldError error={errors.salutation} />
                 )}
               </div>
-              <div>
+              <div className="flex-1">
                 <label className="block text-sm md:text-base leading-[26px] font-bold tracing-[4%] text-[#58626C] mb-2">
                   Full Name
                 </label>
                 <Input
                   type="text"
                   name="fullName"
-                  placeholder="Enter your name"
+                  placeholder="Enter your Name as per PAN Card"
                   value={formData.fullName}
                   onChange={handleChange}
                   className="bg-white border-[#D0D0D0] rounded-[20px] py-3"
@@ -380,7 +380,7 @@ const GenericInfoPage1 = ({ content }) => {
             </div>
 
             {/* Pancard and Date of Birth */}
-            <div ref={(el) => (formFieldsRef.current[3] = el)} className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div ref={(el) => (formFieldsRef.current[3] = el)} className="grid grid-cols-2 gap-4 mb-4">
               <div>
                 <label className="block text-sm md:text-base leading-[26px] font-bold tracing-[4%] text-[#58626C] mb-2">
                   Pancard
@@ -402,14 +402,14 @@ const GenericInfoPage1 = ({ content }) => {
                 <label className="block text-sm md:text-base leading-[26px] font-bold tracing-[4%] text-[#58626C] mb-2">
                   Date of Birth
                 </label>
-                <Input
-                  type="text"
-                  name="dateOfBirth"
-                  placeholder="DD/MM/YYYY"
+                <DatePicker
                   value={formData.dateOfBirth}
-                  onChange={handleChange}
-                  className="bg-white border-[#D0D0D0] rounded-[20px] py-3"
-                  maxLength={10}
+                  onChange={(val) => {
+                    setFormData({ ...formData, dateOfBirth: val });
+                    if (errors.dateOfBirth) setErrors({ ...errors, dateOfBirth: '' });
+                  }}
+                  placeholder="DD/MM/YYYY"
+                  maxDate={new Date()}
                 />
                 {errors.dateOfBirth && (
                   <FormFieldError error={errors.dateOfBirth} />

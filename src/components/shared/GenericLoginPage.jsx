@@ -14,7 +14,7 @@ import { gsap } from 'gsap';
 const GenericLoginPage = ({ overlayText, nextRoute }) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    mobileNumber: localStorage.getItem('temp_mobile') || '',
+    mobileNumber: '',
     otp: '',
   });
   const [agreedToTerms, setAgreedToTerms] = useState(false);
@@ -33,11 +33,7 @@ const GenericLoginPage = ({ overlayText, nextRoute }) => {
   const helpLinkRef = useRef(null);
 
   useEffect(() => {
-    // Load mobile number from localStorage if available
-    const tempMobile = localStorage.getItem('temp_mobile');
-    if (tempMobile) {
-      setFormData(prev => ({ ...prev, mobileNumber: tempMobile }));
-    }
+    localStorage.removeItem('temp_mobile');
   }, []);
 
   useEffect(() => {
@@ -184,35 +180,24 @@ const GenericLoginPage = ({ overlayText, nextRoute }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Clear previous errors
     setErrors({});
-    
-    // Validate form data
-    const validationErrors = await validateForm(otpSchema, formData);
-    
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      return;
-    }
-    
+
     if (!agreedToTerms) {
       setErrors({ terms: 'Please agree to Privacy Policy and Terms and Conditions' });
       return;
     }
-    
+
+    if (!formData.mobileNumber || !/^[6-9]\d{9}$/.test(formData.mobileNumber)) {
+      setErrors({ mobileNumber: 'Please enter a valid 10-digit mobile number starting with 6-9' });
+      return;
+    }
+
     setIsSubmitting(true);
-    
     try {
-      // TODO: API integration - verify OTP
-      
-      // Clear temp mobile from localStorage
       localStorage.removeItem('temp_mobile');
-      
-      // Navigate to next page
       navigate(nextRoute);
     } catch (error) {
-      setErrors({ submit: 'Invalid OTP. Please try again.' });
+      setErrors({ submit: 'Something went wrong. Please try again.' });
     } finally {
       setIsSubmitting(false);
     }
@@ -240,7 +225,7 @@ const GenericLoginPage = ({ overlayText, nextRoute }) => {
       />
 
       {/* Content */}
-      <div className="relative z-10 min-h-screen flex items-center justify-center mb-[516px] md:mb-[516px] md:mt-[100px] px-4 md:px-0">
+      <div className="relative z-10 flex items-center justify-center px-4 md:px-0 py-12 md:pb-16 md:pt-0">
         <div className="w-full max-w-[1215px] flex flex-col md:flex-row gap-y-6 md:gap-x-[70px] items-center md:items-end">
 
           {/* Left Side - Image Card - Desktop Only */}
@@ -254,7 +239,7 @@ const GenericLoginPage = ({ overlayText, nextRoute }) => {
               <div className="relative w-[617px] h-[687px]">
                 {/* User Image */}
                 <img
-                  src="/assets/images/auth/User.jpg"
+                  src="/assets/images/auth/Img5.png"
                   alt="Professional Woman"
                   className="w-full h-full object-cover object-center"
                 />
@@ -289,7 +274,7 @@ const GenericLoginPage = ({ overlayText, nextRoute }) => {
               <div className="relative w-full h-[350px]">
                 {/* User Image */}
                 <img
-                  src="/assets/images/auth/User.jpg"
+                  src="/assets/images/auth/Img5.png"
                   alt="Professional Woman"
                   className="w-full h-full object-cover object-top"
                 />
@@ -347,17 +332,25 @@ const GenericLoginPage = ({ overlayText, nextRoute }) => {
               {/* OTP */}
               <div ref={otpRef}>
                 <label className="block font-bold text-sm md:text-lg leading-[26px] tracing-[4%] text-[#58626C] mb-[6px]">
-                  OTP
+                  OTP*
                 </label>
-                <Input
-                  type="text"
-                  name="otp"
-                  placeholder="Enter OTP"
-                  value={formData.otp}
-                  onChange={handleChange}
-                  className="bg-white border-[#D0D0D0] font-normal rounded-[20px] py-[15px] md:py-4 text-sm md:text-base placeholder:text-[#58626C]/64"
-                  maxLength={6}
-                />
+                <div className="relative">
+                  <Input
+                    type="text"
+                    name="otp"
+                    placeholder="Enter OTP"
+                    value={formData.otp}
+                    onChange={handleChange}
+                    className="bg-white border-[#D0D0D0] font-normal rounded-[20px] py-[15px] md:py-4 text-sm md:text-base placeholder:text-[#58626C]/64 pr-28"
+                    maxLength={6}
+                  />
+                  <button
+                    type="button"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 border border-custom-purple text-custom-purple font-bold text-xs md:text-sm px-3 py-1.5 rounded-lg hover:bg-custom-purple hover:text-white transition-all duration-200"
+                  >
+                    GET OTP
+                  </button>
+                </div>
                 {errors.otp && (
                   <FormFieldError error={errors.otp} />
                 )}

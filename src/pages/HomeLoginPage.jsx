@@ -168,7 +168,7 @@ const HomeLoginPage = () => {
       />
 
       {/* Content */}
-      <div className="relative z-10 min-h-screen flex items-center justify-center mb-[516px] md:mb-[516px] md:mt-[100px] px-4 md:px-0">
+      <div className="relative z-10 flex items-center justify-center px-4 md:px-0 py-12 md:py-16">
         <div className="w-full max-w-[1215px] flex flex-col md:flex-row gap-y-6 md:gap-x-[70px] items-center md:items-end">
 
           {/* Left Side - Image Card - Desktop Only */}
@@ -182,7 +182,7 @@ const HomeLoginPage = () => {
               <div className="relative w-[617px] h-[687px]">
                 {/* User Image */}
                 <img
-                  src="/assets/images/auth/User.jpg"
+                  src="/assets/images/auth/Img5.png"
                   alt="Professional Woman"
                   className="w-full h-full object-cover object-center"
                 />
@@ -217,7 +217,7 @@ const HomeLoginPage = () => {
               <div className="relative w-full h-[350px]">
                 {/* User Image */}
                 <img
-                  src="/assets/images/auth/User.jpg"
+                  src="/assets/images/auth/Img5.png"
                   alt="Professional Woman"
                   className="w-full h-full object-cover object-top"
                 />
@@ -271,16 +271,24 @@ const HomeLoginPage = () => {
               {/* OTP */}
               <div ref={otpRef}>
                 <label className="block font-bold text-sm md:text-lg leading-[26px] tracing-[4%] text-[#58626C] mb-[6px]">
-                  OTP
+                  OTP*
                 </label>
-                <Input
-                  type="text"
-                  name="otp"
-                  placeholder="Enter OTP"
-                  value={formData.otp}
-                  onChange={handleChange}
-                  className="bg-white border-[#D0D0D0] font-normal rounded-[20px] py-[15px] md:py-4 text-sm md:text-base placeholder:text-[#58626C]/64"
-                />
+                <div className="relative">
+                  <Input
+                    type="text"
+                    name="otp"
+                    placeholder="Enter OTP"
+                    value={formData.otp}
+                    onChange={handleChange}
+                    className="bg-white border-[#D0D0D0] font-normal rounded-[20px] py-[15px] md:py-4 text-sm md:text-base placeholder:text-[#58626C]/64 pr-28"
+                  />
+                  <button
+                    type="button"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 border border-custom-purple text-custom-purple font-bold text-xs md:text-sm px-3 py-1.5 rounded-lg hover:bg-custom-purple hover:text-white transition-all duration-200"
+                  >
+                    GET OTP
+                  </button>
+                </div>
                 <button
                   type="button"
                   className="text-[#0072F2] font-semibold text-sm md:text-lg leading-[110%] tracing-[-0.2%] mt-3"

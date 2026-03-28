@@ -8,10 +8,16 @@ gsap.registerPlugin(ScrollTrigger);
 const CreditCardApprovalGuide = () => {
   const [formData, setFormData] = useState({
     name: '',
+    mobile: '',
+    occupation: '',
+    monthlyIncome: '',
     email: '',
     datetime: '',
-    project: ''
+    project: '',
+    agreedToTerms: false,
   });
+  const [errors, setErrors] = useState({});
+  const [submitted, setSubmitted] = useState(false);
 
   const sectionRef = useRef(null);
   const headingRef = useRef(null);
@@ -119,16 +125,50 @@ const CreditCardApprovalGuide = () => {
     return () => ctx.revert();
   }, []);
 
+  const validate = () => {
+    const e = {};
+    if (!formData.name.trim()) e.name = 'Full name is required';
+    if (!formData.mobile.trim()) e.mobile = 'Mobile number is required';
+    else if (!/^[6-9]\d{9}$/.test(formData.mobile)) e.mobile = 'Enter a valid 10-digit mobile number';
+    if (!formData.occupation.trim()) e.occupation = 'Occupation is required';
+    if (!formData.monthlyIncome.trim()) e.monthlyIncome = 'Monthly income is required';
+    else if (isNaN(formData.monthlyIncome) || Number(formData.monthlyIncome) <= 0) e.monthlyIncome = 'Enter a valid income amount';
+    if (!formData.email.trim()) e.email = 'Email is required';
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) e.email = 'Enter a valid email address';
+    if (!formData.agreedToTerms) e.agreedToTerms = 'Please agree to the Terms & Conditions';
+    return e;
+  };
+
   const handleInputChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    const { name, value, type, checked } = e.target;
+    let sanitized = value;
+
+    if (name === 'name') {
+      // Only letters and spaces
+      sanitized = value.replace(/[^a-zA-Z\s]/g, '');
+    } else if (name === 'mobile') {
+      // Only digits, max 10
+      sanitized = value.replace(/\D/g, '').slice(0, 10);
+    } else if (name === 'occupation') {
+      // Only letters, spaces and common punctuation
+      sanitized = value.replace(/[^a-zA-Z\s\-\/]/g, '');
+    } else if (name === 'monthlyIncome') {
+      // Only digits
+      sanitized = value.replace(/\D/g, '');
+    }
+
+    setFormData({ ...formData, [name]: type === 'checkbox' ? checked : sanitized });
+    if (errors[name]) setErrors({ ...errors, [name]: '' });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO: Handle form submission
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+    setSubmitted(true);
   };
 
   return (
@@ -174,6 +214,56 @@ const CreditCardApprovalGuide = () => {
                   onChange={handleInputChange}
                   className="bg-white md:bg-[#F5F5F5] border border-[#D0D0D0] md:border-[#EBEBEB] w-full p-4 md:p-[14px] rounded-full md:rounded-none font-inter-tight font-normal md:font-medium text-sm md:text-base leading-[20px] md:leading-[24px] tracing-[0%] placeholder:text-[#58626C] md:placeholder:text-[#575757]/50 focus:outline-none focus:ring-1 focus:ring-button-color focus:border-transparent transition-all"
                 />
+                {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
+              </div>
+
+              {/* Mobile Field */}
+              <div>
+                <label className="block text-custom-dark-text md:text-black text-sm md:text-base leading-[26px] md:leading-[24px] tracing-[0%] font-inter-tight font-bold md:font-medium mb-1 md:mb-3">
+                  Mobile
+                </label>
+                <input
+                  type="tel"
+                  name="mobile"
+                  placeholder="Enter your Mobile Number"
+                  value={formData.mobile}
+                  onChange={handleInputChange}
+                  maxLength={10}
+                  className="bg-white md:bg-[#F5F5F5] border border-[#D0D0D0] md:border-[#EBEBEB] w-full p-4 md:p-[14px] rounded-full md:rounded-none font-inter-tight font-normal md:font-medium text-sm md:text-base leading-[20px] md:leading-[24px] tracing-[0%] placeholder:text-[#58626C] md:placeholder:text-[#575757]/50 focus:outline-none focus:ring-1 focus:ring-button-color focus:border-transparent transition-all"
+                />
+                {errors.mobile && <p className="text-red-500 text-xs mt-1">{errors.mobile}</p>}
+              </div>
+
+              {/* Occupation Field */}
+              <div>
+                <label className="block text-custom-dark-text md:text-black text-sm md:text-base leading-[26px] md:leading-[24px] tracing-[0%] font-inter-tight font-bold md:font-medium mb-1 md:mb-3">
+                  Occupation
+                </label>
+                <input
+                  type="text"
+                  name="occupation"
+                  placeholder="Enter your Occupation"
+                  value={formData.occupation}
+                  onChange={handleInputChange}
+                  className="bg-white md:bg-[#F5F5F5] border border-[#D0D0D0] md:border-[#EBEBEB] w-full p-4 md:p-[14px] rounded-full md:rounded-none font-inter-tight font-normal md:font-medium text-sm md:text-base leading-[20px] md:leading-[24px] tracing-[0%] placeholder:text-[#58626C] md:placeholder:text-[#575757]/50 focus:outline-none focus:ring-1 focus:ring-button-color focus:border-transparent transition-all"
+                />
+                {errors.occupation && <p className="text-red-500 text-xs mt-1">{errors.occupation}</p>}
+              </div>
+
+              {/* Monthly Income Field */}
+              <div>
+                <label className="block text-custom-dark-text md:text-black text-sm md:text-base leading-[26px] md:leading-[24px] tracing-[0%] font-inter-tight font-bold md:font-medium mb-1 md:mb-3">
+                  Monthly Income
+                </label>
+                <input
+                  type="text"
+                  name="monthlyIncome"
+                  placeholder="₹"
+                  value={formData.monthlyIncome}
+                  onChange={handleInputChange}
+                  className="bg-white md:bg-[#F5F5F5] border border-[#D0D0D0] md:border-[#EBEBEB] w-full p-4 md:p-[14px] rounded-full md:rounded-none font-inter-tight font-normal md:font-medium text-sm md:text-base leading-[20px] md:leading-[24px] tracing-[0%] placeholder:text-[#58626C] md:placeholder:text-[#575757]/50 focus:outline-none focus:ring-1 focus:ring-button-color focus:border-transparent transition-all"
+                />
+                {errors.monthlyIncome && <p className="text-red-500 text-xs mt-1">{errors.monthlyIncome}</p>}
               </div>
 
               {/* Email Field */}
@@ -189,6 +279,7 @@ const CreditCardApprovalGuide = () => {
                   onChange={handleInputChange}
                   className="bg-white md:bg-[#F5F5F5] border border-[#D0D0D0] md:border-[#EBEBEB] w-full p-4 md:p-[14px] rounded-full md:rounded-none font-inter-tight font-normal md:font-medium text-sm md:text-base leading-[20px] md:leading-[24px] tracing-[0%] placeholder:text-[#58626C] md:placeholder:text-[#575757]/50 focus:outline-none focus:ring-1 focus:ring-button-color focus:border-transparent transition-all"
                 />
+                {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
               </div>
 
               {/* Preferred Date & Time Field */}
@@ -197,12 +288,12 @@ const CreditCardApprovalGuide = () => {
                   Preferred Date & Time
                 </label>
                 <input
-                  type="text"
+                  type="datetime-local"
                   name="datetime"
-                  placeholder="Input a convenient date and time"
                   value={formData.datetime}
                   onChange={handleInputChange}
-                  className="bg-white md:bg-[#F5F5F5] border border-[#D0D0D0] md:border-[#EBEBEB] w-full p-4 md:p-[14px] rounded-full md:rounded-none font-inter-tight font-normal md:font-medium text-sm md:text-base leading-[20px] md:leading-[24px] tracing-[0%] placeholder:text-[#58626C] md:placeholder:text-[#575757]/50 focus:outline-none focus:ring-1 focus:ring-button-color focus:border-transparent transition-all"
+                  min={new Date().toISOString().slice(0, 16)}
+                  className="bg-white md:bg-[#F5F5F5] border border-[#D0D0D0] md:border-[#EBEBEB] w-full p-4 md:p-[14px] rounded-full md:rounded-none font-inter-tight font-normal md:font-medium text-sm md:text-base leading-[20px] md:leading-[24px] tracing-[0%] text-[#58626C] focus:outline-none focus:ring-1 focus:ring-button-color focus:border-transparent transition-all"
                 />
               </div>
 
@@ -230,10 +321,26 @@ const CreditCardApprovalGuide = () => {
                 <ChevronUpIcon />
               </button>
 
-              {/* Terms Text */}
-              <p className="text-sm md:text-base font-inter-tight font-normal md:font-medium leading-[19px] md:leading-[24px] tracing-[0%] text-[#4B5768] md:text-black text-center md:text-left">
-                Clicking <span className='font-normal md:font-bold'>"Submit"</span> means your agree to our Terms of Service.
-              </p>
+              {/* Terms Checkbox */}
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  name="agreedToTerms"
+                  checked={formData.agreedToTerms}
+                  onChange={(e) => setFormData({ ...formData, agreedToTerms: e.target.checked })}
+                  className="w-4 h-4 mt-0.5 flex-shrink-0 accent-button-color"
+                />
+                <span className="text-sm md:text-base font-inter-tight font-normal leading-[19px] md:leading-[24px] text-[#4B5768] md:text-black">
+                  I agree to the <span className="font-semibold text-button-color">Terms &amp; Conditions</span> and <span className="font-semibold text-button-color">Privacy Policy</span>
+                </span>
+              </label>
+              {errors.agreedToTerms && <p className="text-red-500 text-xs -mt-2">{errors.agreedToTerms}</p>}
+
+              {submitted && (
+                <p className="text-green-600 font-semibold text-sm text-center">
+                  Thank you! We'll get in touch with you shortly.
+                </p>
+              )}
             </form>
           </div>
 

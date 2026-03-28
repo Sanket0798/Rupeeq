@@ -310,34 +310,16 @@ const CreditScoreSection = () => {
             viewport={{ once: true }}
           >
 
-            <motion.h2
+            <h2
               className="text-[24px] md:text-[40px] font-semibold mx-auto md:mx-0 md:font-bold w-[279px] md:w-full leading-[32px] md:leading-[47px] tracing-[0px] text-custom-purple md:bg-brand-gradient md:bg-clip-text md:text-transparent mb-3 md:mb-4 mt-11 md:mt-0 text-center md:text-left"
-              variants={itemVariants}
-              whileHover={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300 }}
             >
-              <motion.span
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.6 }}
-              >
-                Know Your Credit Score.
-              </motion.span>
+              Know Your Credit Score.
               <br />
-              <motion.span
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.6 }}
-              >
-                Understand What It Means.
-              </motion.span>
-            </motion.h2>
+              Understand What It Means.
+            </h2>
 
-            <motion.p
+            <p
               className="text-[#747986] text-sm md:text-base leading-[150%] tracing-0 font-medium max-w-full md:max-w-[520px] w-full text-left md:text-left"
-              variants={itemVariants}
-              initial={{ opacity: 0.8 }}
-              whileHover={{ opacity: 1 }}
             >
               Check your <span className="font-bold text-custom-dark-text">free credit score</span> and get{' '}
               <span className="font-bold text-custom-dark-text">RupeeQ ACE - Advanced Credit Evaluation</span>{' '}
@@ -348,7 +330,7 @@ const CreditScoreSection = () => {
               </span>
               <span className="font-bold text-custom-dark-text">RupeeQ goes deeper</span> - analysing
               your credit behaviour, risk signals, and loan readiness in one smart view.
-            </motion.p>
+            </p>
 
             {/* Features List */}
             <motion.div
@@ -359,36 +341,16 @@ const CreditScoreSection = () => {
               viewport={{ once: true }}
             >
               {features.map((feature, index) => (
-                <motion.div
+                <div
                   key={index}
                   ref={el => featuresRef.current[index] = el}
                   className="flex items-start gap-2 md:gap-3"
-                  variants={itemVariants}
-                  whileHover={{
-                    x: 5,
-                    transition: { type: "spring", stiffness: 400 }
-                  }}
                 >
-                  <motion.div
-                    className="w-1 h-1 bg-[#747986] rounded-full mt-2 flex-shrink-0"
-                    animate={{
-                      scale: [1, 1.3, 1],
-                      opacity: [0.7, 1, 0.7]
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      delay: index * 0.2
-                    }}
-                  />
-                  <motion.p
-                    className="text-[#747986] text-sm md:text-base font-medium"
-                    initial={{ opacity: 0.8 }}
-                    whileHover={{ opacity: 1, x: 3 }}
-                  >
+                  <div className="w-1 h-1 bg-[#747986] rounded-full mt-2 flex-shrink-0" />
+                  <p className="text-[#747986] text-sm md:text-base font-medium">
                     {feature}
-                  </motion.p>
-                </motion.div>
+                  </p>
+                </div>
               ))}
             </motion.div>
 
@@ -430,10 +392,10 @@ const CreditScoreSection = () => {
               alt="Credit Score Gauge"
               className="absolute object-contain"
               style={{
-                width: '592.46px',
-                height: '535.81px',
+                width: '480px',
+                height: '434px',
                 right: '20px',
-                bottom: '-75px'
+                bottom: '-30px'
               }}
               animate={{
                 y: [-10, 10, -10],

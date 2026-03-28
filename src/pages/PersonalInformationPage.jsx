@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
-import { Input, Button } from '../components/ui';
+import { Input, Button, DatePicker } from '../components/ui';
 import { gsap } from 'gsap';
 
 const PersonalInformationPage = () => {
@@ -42,7 +42,7 @@ const PersonalInformationPage = () => {
         helpLinkRef.current,
         ...formFieldsRef.current.filter(Boolean)
       ].filter(Boolean);
-      
+
       if (elementsToSet.length > 0) {
         gsap.set(elementsToSet, { opacity: 1 });
       }
@@ -281,7 +281,7 @@ const PersonalInformationPage = () => {
                   Select Loan Type
                 </label>
                 <div className="relative">
-                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[#58626C] z-20 font-normal text-base leading-[26px]">₹</span>
+                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[#58626C] z-20 font-normal md:font-semibold text-base leading-[26px]">₹</span>
                   <Input
                     type="text"
                     name="loanAmount"
@@ -297,7 +297,7 @@ const PersonalInformationPage = () => {
                   Monthly Income
                 </label>
                 <div className="relative">
-                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[#58626C] z-20 font-normal text-base leading-[26px]">₹</span>
+                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[#58626C] z-20 font-normal md:font-semibold text-base leading-[26px]">₹</span>
                   <Input
                     type="text"
                     name="monthlyIncome"
@@ -340,19 +340,32 @@ const PersonalInformationPage = () => {
               />
             </div>
 
-            {/* Pancard */}
-            <div ref={(el) => (formFieldsRef.current[3] = el)} className='mb-4'>
-              <label className="block font-bold text-sm md:text-lg leading-[26px] tracing-[4%] text-[#58626C] mb-[6px]">
-                Pancard
-              </label>
-              <Input
-                type="text"
-                name="pancard"
-                placeholder="Enter your Pancard Number"
-                value={formData.pancard}
-                onChange={handleChange}
-                className="bg-white border-[#D0D0D0] rounded-[20px] py-3 md:py-4 text-sm md:text-base placeholder:text-[#58626C]/50"
-              />
+            {/* Pancard and Date of Birth - 2 col row */}
+            <div ref={(el) => (formFieldsRef.current[3] = el)} className='grid grid-cols-2 gap-4 mb-4'>
+              <div>
+                <label className="block font-bold text-sm md:text-lg leading-[26px] tracing-[4%] text-[#58626C] mb-[6px]">
+                  Pancard
+                </label>
+                <Input
+                  type="text"
+                  name="pancard"
+                  placeholder="Enter your Pancard Number"
+                  value={formData.pancard}
+                  onChange={handleChange}
+                  className="bg-white border-[#D0D0D0] rounded-[20px] py-3 md:py-4 text-sm md:text-base placeholder:text-[#58626C]/50"
+                />
+              </div>
+              <div>
+                <label className="block font-bold text-sm md:text-lg leading-[26px] tracing-[4%] text-[#58626C] mb-[6px]">
+                  Date of Birth
+                </label>
+                <DatePicker
+                  value={formData.dateOfBirth}
+                  onChange={(val) => setFormData({ ...formData, dateOfBirth: val })}
+                  placeholder="DD/MM/YYYY"
+                  maxDate={new Date()}
+                />
+              </div>
             </div>
 
             {/* Company Name */}
@@ -370,70 +383,53 @@ const PersonalInformationPage = () => {
               />
             </div>
 
-            {/* Date of Birth */}
-            <div ref={(el) => (formFieldsRef.current[5] = el)} className='mb-4'>
-              <label className="block font-bold text-sm md:text-lg leading-[26px] tracing-[4%] text-[#58626C] mb-[6px]">
-                Date of Birth
-              </label>
-              <Input
-                type="text"
-                name="dateOfBirth"
-                placeholder="DD/MM/YY"
-                value={formData.dateOfBirth}
-                onChange={handleChange}
-                className="bg-white border-[#D0D0D0] rounded-[20px] py-3 md:py-4 text-sm md:text-base placeholder:text-[#58626C]/50"
-              />
-            </div>
-
-            {/* City */}
-            <div ref={(el) => (formFieldsRef.current[6] = el)} className='mb-4'>
-              <label className="block font-bold text-sm md:text-lg leading-[26px] tracing-[4%] text-[#58626C] mb-[6px]">
-                City
-              </label>
-              <select
-                name="city"
-                value={formData.city}
-                onChange={handleChange}
-                className="w-full text-sm md:text-base text-[#58626C] px-4 py-3 md:py-3 rounded-[20px] border border-[#D0D0D0] bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
-              >
-                <option value="">Enter your City</option>
-                <option value="mumbai">Mumbai</option>
-                <option value="delhi">Delhi</option>
-                <option value="bangalore">Bangalore</option>
-              </select>
-            </div>
-
-            {/* State */}
-            <div ref={(el) => (formFieldsRef.current[7] = el)} className='mb-4'>
-              <label className="block font-bold text-sm md:text-lg leading-[26px] tracing-[4%] text-[#58626C] mb-[6px]">
-                State
-              </label>
-              <select
-                name="state"
-                value={formData.state}
-                onChange={handleChange}
-                className="w-full text-sm md:text-base text-[#58626C] px-4 py-3 md:py-3 rounded-[20px] border border-[#D0D0D0] bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
-              >
-                <option value="">Enter your State</option>
-                <option value="maharashtra">Maharashtra</option>
-                <option value="delhi">Delhi</option>
-                <option value="karnataka">Karnataka</option>
-              </select>
-            </div>
-
-            {/* Pincode */}
-            <div ref={(el) => (formFieldsRef.current[8] = el)} className='mb-4'>
-              <label className="block font-bold text-sm md:text-lg leading-[26px] tracing-[4%] text-[#58626C] mb-[6px]">
-                Pincode
-              </label>
-              <Input
-                type="text"
-                name="pincode"
-                placeholder="Enter Pincode"
-                value={formData.pincode}
-                onChange={handleChange}
-                className="bg-white border-[#D0D0D0] rounded-[20px] py-3 md:py-4 text-sm md:text-base placeholder:text-[#58626C]/50"
-              />
+            {/* City, State, Pincode - 3 col row */}
+            <div ref={(el) => (formFieldsRef.current[6] = el)} className='grid grid-cols-3 gap-4 mb-4'>
+              <div>
+                <label className="block font-bold text-sm md:text-lg leading-[26px] tracing-[4%] text-[#58626C] mb-[6px]">
+                  City
+                </label>
+                <select
+                  name="city"
+                  value={formData.city}
+                  onChange={handleChange}
+                  className="w-full text-sm md:text-base text-[#58626C] px-4 py-3 rounded-[20px] border border-[#D0D0D0] bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+                >
+                  <option value="">Enter your City</option>
+                  <option value="mumbai">Mumbai</option>
+                  <option value="delhi">Delhi</option>
+                  <option value="bangalore">Bangalore</option>
+                </select>
+              </div>
+              <div>
+                <label className="block font-bold text-sm md:text-lg leading-[26px] tracing-[4%] text-[#58626C] mb-[6px]">
+                  State
+                </label>
+                <select
+                  name="state"
+                  value={formData.state}
+                  onChange={handleChange}
+                  className="w-full text-sm md:text-base text-[#58626C] px-4 py-3 rounded-[20px] border border-[#D0D0D0] bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+                >
+                  <option value="">Enter your State</option>
+                  <option value="maharashtra">Maharashtra</option>
+                  <option value="delhi">Delhi</option>
+                  <option value="karnataka">Karnataka</option>
+                </select>
+              </div>
+              <div>
+                <label className="block font-bold text-sm md:text-lg leading-[26px] tracing-[4%] text-[#58626C] mb-[6px]">
+                  Pincode
+                </label>
+                <Input
+                  type="text"
+                  name="pincode"
+                  placeholder="Enter Pincode"
+                  value={formData.pincode}
+                  onChange={handleChange}
+                  className="bg-white border-[#D0D0D0] rounded-[20px] py-3 md:py-4 text-sm md:text-base placeholder:text-[#58626C]/50"
+                />
+              </div>
             </div>
 
             {/* Buttons - Side by side on mobile, Proceed full width on desktop */}

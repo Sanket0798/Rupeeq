@@ -4,7 +4,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../ui';
-import { ChevronUpIcon } from '../common/SvgIcons';
+import { ChevronUpIcon, RightArrowIcon } from '../common/SvgIcons';
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
@@ -143,9 +143,8 @@ const BlogCTASection = () => {
             viewport={{ once: true }}
           >
             <motion.div
-              variants={buttonVariants}
-              whileHover="hover"
-              whileTap="tap"
+              whileHover={{ scale: 1.05, y: -3 }}
+              whileTap={{ scale: 0.95 }}
             >
               <Button
                 variant="primary"
@@ -155,18 +154,15 @@ const BlogCTASection = () => {
               >
                 Begin Now
                 <motion.span
-                  animate={{ rotate: [0, 90, 0] }}
-                  transition={{ repeat: Infinity, duration: 2 }}
                 >
-                  <ChevronUpIcon />
+                  <RightArrowIcon color='white' />
                 </motion.span>
               </Button>
             </motion.div>
 
             <motion.div
-              variants={buttonVariants}
-              whileHover="hover"
-              whileTap="tap"
+              whileHover={{ scale: 1.05, y: -3 }}
+              whileTap={{ scale: 0.95 }}
             >
               <Button
                 variant="secondary"
@@ -176,10 +172,8 @@ const BlogCTASection = () => {
               >
                 Contact Us
                 <motion.span
-                  animate={{ rotate: [0, 90, 0] }}
-                  transition={{ repeat: Infinity, duration: 2, delay: 0.5 }}
                 >
-                  <ChevronUpIcon className="ml-2" />
+                  <RightArrowIcon color='white' />
                 </motion.span>
               </Button>
             </motion.div>

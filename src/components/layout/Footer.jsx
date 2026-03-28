@@ -236,7 +236,7 @@ const Footer = () => {
         {/* Copyright Section */}
         <div className="text-center py-4 md:py-6 max-w-[90%] mx-auto border-t border-[#CCCCCC]">
           <p className="text-[#4B5768] text-xs md:text-base">
-            © 2026 All Rights Reserved. Intulro Business Consulting India Private Limited
+            © 2026 All Rights Reserved. Intuino Business Consulting India Private Limited
           </p>
         </div>
       </div>

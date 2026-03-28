@@ -1,6 +1,15 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronUpIcon, RightUpArrowIcon } from '../common/SvgIcons';
+import RotatingText from '../ui/RotatingText';
+
+const ROTATING_PRODUCTS = [
+  'Personal Loan',
+  'Business Loan',
+  'Home Loan',
+  'Credit Score',
+  'Overdraft',
+];
 
 const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -137,9 +146,18 @@ const HeroSection = () => {
                 <br />
                 BEGIN WITH THE RIGHT
                 <br />
-                <span className="text-custom-purple font-extrabold">
-                  PRODUCT
-                </span>
+                <RotatingText
+                  texts={ROTATING_PRODUCTS}
+                  mainClassName="text-custom-purple font-extrabold justify-center overflow-hidden"
+                  splitLevelClassName="overflow-hidden"
+                  staggerFrom="last"
+                  initial={{ y: '100%' }}
+                  animate={{ y: 0 }}
+                  exit={{ y: '-120%' }}
+                  staggerDuration={0.05}
+                  transition={{ type: 'spring', damping: 40, stiffness: 180 }}
+                  rotationInterval={4000}
+                />
               </h1>
             </div>
 
@@ -152,13 +170,22 @@ const HeroSection = () => {
                   <br />
                   BEGIN WITH THE RIGHT
                   <br />
-                  <span className="text-custom-purple font-extrabold">
-                    PRODUCT
-                  </span>
+                  <RotatingText
+                    texts={ROTATING_PRODUCTS}
+                    mainClassName="text-custom-purple font-extrabold overflow-hidden"
+                    splitLevelClassName="overflow-hidden pb-0.5"
+                    staggerFrom="last"
+                    initial={{ y: '100%' }}
+                    animate={{ y: 0 }}
+                    exit={{ y: '-120%' }}
+                    staggerDuration={0.05}
+                    transition={{ type: 'spring', damping: 40, stiffness: 180 }}
+                    rotationInterval={4000}
+                  />
                 </h1>
 
                 <button
-                  onClick={() => navigate('/personal-loan')}
+                  onClick={() => navigate('/credit-score')}
                   className="bg-button-color text-lg leading-[26px] text-white font-bold px-9 py-4 rounded-full hover:bg-[#6B4FA8] transition-all duration-300 hover:scale-105 mb-5"
                 >
                   Get Started Free
@@ -250,7 +277,7 @@ const HeroSection = () => {
               {/* Mobile Content - Below Hero Card */}
               <div className="md:hidden w-full order-2 flex flex-col items-center text-center">
                 <button
-                  onClick={() => navigate('/personal-loan')}
+                  onClick={() => navigate('/credit-score')}
                   className="bg-button-color text-base leading-[24px] text-white font-bold px-6 py-3 rounded-full hover:bg-[#6B4FA8] transition-all duration-300 hover:scale-105 mb-4"
                 >
                   Get Started Free

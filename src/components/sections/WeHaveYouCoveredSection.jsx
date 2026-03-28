@@ -140,14 +140,14 @@ const WeHaveYouCoveredSection = () => {
         {
             title: 'Client-Centric Approach',
             description: 'Filling counterless forms',
-            bgColor: 'bg-[#E0FAFD]',
-            iconBg: <GlobeStandIcon />
+            bgColor: 'bg-[#E1F7EE]',
+            iconBg: <ChartDonutIcon />
         },
         {
             title: 'Proven Track Record',
             description: 'Rotating between counters.',
-            bgColor: 'bg-[#E1F7EE]',
-            iconBg: <ChartDonutIcon />
+            bgColor: 'bg-[#E0FAFD]',
+            iconBg: <GlobeStandIcon />
         },
         {
             title: 'Full-Spectrum Traditional Services',
@@ -244,7 +244,7 @@ const WeHaveYouCoveredSection = () => {
                         We Have You Covered.
                     </motion.h2>
                     <motion.p 
-                        className="font-normal text-base md:text-lg leading-[20px] md:leading-[22px] max-w-[694px] mx-auto"
+                        className="font-normal text-sm md:text-lg leading-[20px] md:leading-[22px] max-w-[694px] mx-auto"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.3 }}
@@ -264,7 +264,7 @@ const WeHaveYouCoveredSection = () => {
                     viewport={{ once: true }}
                 >
                     <motion.p
-                        className="font-normal text-lg md:text-xl leading-[22px] md:leading-[26px]"
+                        className="font-normal text-base md:text-xl leading-[22px] md:leading-[26px]"
                         variants={itemVariants}
                     >
                         Make Intelligence Choices With RupeeQ
@@ -279,7 +279,7 @@ const WeHaveYouCoveredSection = () => {
                     </motion.h2>
 
                     <motion.p
-                        className="font-normal text-base md:text-xl leading-[20px] md:leading-[26px] text-custom-dark-text max-w-[789px] mx-auto px-4"
+                        className="font-normal text-sm md:text-xl leading-[20px] md:leading-[26px] text-custom-dark-text max-w-[789px] mx-auto px-4"
                         variants={itemVariants}
                     >
                         We Believe Financial Aid At The Right Time Can Refurbish Your Hopes And Reignite Drive
@@ -349,15 +349,15 @@ const WeHaveYouCoveredSection = () => {
                 >
                     <motion.div
                         variants={buttonVariants}
-                        whileHover="hover"
+                        // whileHover="hover"
                         whileTap="tap"
                     >
                         <Button
                             variant="custom"
                             className="text-base md:text-lg !font-normal leading-[20px] text-white gap-3 md:gap-5 rounded-full bg-custom-purple px-6 py-3"
-                            onClick={() => navigate('/credit-score')}
+                            onClick={() => navigate('/personal-loan')}
                         >
-                            Start your loan journey
+                            Start your journey
                             <motion.span
                                 animate={{ x: [0, 5, 0] }}
                                 transition={{ repeat: Infinity, duration: 1.5 }}

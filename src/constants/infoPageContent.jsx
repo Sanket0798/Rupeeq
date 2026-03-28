@@ -51,9 +51,10 @@ export const personalLoanInfo2Content = {
     companyName: '',
     city: '',
     state: '',
+    pincode: '',
   },
-  locationGridCols: 'grid-cols-2',
-  showPincode: false,
+  locationGridCols: 'grid-cols-3',
+  showPincode: true,
 };
 
 // Debt Consolidation Info Pages
@@ -117,8 +118,24 @@ export const debtConsolidationInfo2Content = {
   showPincode: true,
   additionalFields: (formData, handleChange, errors = {}) => (
     <>
-      {/* Current EMI - placed after Company Name */}
+      {/* Company Name and Current EMI - side by side */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <div>
+          <label className="block text-sm md:text-base leading-[26px] font-bold tracing-[4%] text-[#58626C] mb-2">
+            Company Name
+          </label>
+          <Input
+            type="text"
+            name="companyName"
+            placeholder="Enter Your Company Name"
+            value={formData.companyName}
+            onChange={handleChange}
+            className="bg-white border-[#D0D0D0] rounded-[20px] py-3"
+          />
+          {errors.companyName && (
+            <FormFieldError error={errors.companyName} />
+          )}
+        </div>
         <div>
           <label className="block text-sm md:text-base leading-[26px] font-bold tracing-[4%] text-[#58626C] mb-2">
             Current EMI
@@ -128,10 +145,10 @@ export const debtConsolidationInfo2Content = {
             <Input
               type="text"
               name="currentEMI"
-              placeholder=""
+              placeholder="₹"
               value={formData.currentEMI}
               onChange={handleChange}
-              className="bg-white border-[#D0D0D0] rounded-[20px] py-3 pl-8"
+              className="bg-white border-[#D0D0D0] rounded-[20px] py-3 pl-4 placeholder:font-semibold"
             />
           </div>
           {errors.currentEMI && (
@@ -151,10 +168,10 @@ export const debtConsolidationInfo2Content = {
             <Input
               type="text"
               name="ccOutstanding"
-              placeholder=""
+              placeholder="₹"
               value={formData.ccOutstanding}
               onChange={handleChange}
-              className="bg-white border-[#D0D0D0] rounded-[20px] py-3 pl-8"
+              className="bg-white border-[#D0D0D0] rounded-[20px] py-3 pl-4 placeholder:font-semibold"
             />
           </div>
           {errors.ccOutstanding && (
@@ -251,9 +268,10 @@ export const overdraftFacilityInfo2Content = {
     companyName: '',
     city: '',
     state: '',
+    pincode: '',
   },
-  locationGridCols: 'grid-cols-2',
-  showPincode: false,
+  locationGridCols: 'grid-cols-3',
+  showPincode: true,
 };
 
 // Short Term Loan Info Pages
@@ -307,7 +325,8 @@ export const shortTermLoanInfo2Content = {
     companyName: '',
     city: '',
     state: '',
+    pincode: '',
   },
-  locationGridCols: 'grid-cols-2',
-  showPincode: false,
+  locationGridCols: 'grid-cols-3',
+  showPincode: true,
 };

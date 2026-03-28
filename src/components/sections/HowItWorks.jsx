@@ -55,7 +55,7 @@ const HowItWorks = () => {
   ];
 
   return (
-    <section ref={sectionRef} className="py-8 md:py-16 px-4 sm:px-6 lg:px-8">
+    <section ref={sectionRef} className="pb-8 md:pb-16 px-4 sm:px-6 lg:px-8">
       <div
         className="max-w-[1364px] mx-auto bg-[#F9F9F9]/70 rounded-3xl md:rounded-24 bg-cover bg-center bg-no-repeat"
         style={{

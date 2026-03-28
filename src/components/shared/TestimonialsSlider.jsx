@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { LeftBlackArrowIcon, RightBlackArrowIcon, TestimonialsBgIcon } from '../common/SvgIcons';
 
 const TestimonialsSlider = () => {
@@ -31,45 +31,70 @@ const TestimonialsSlider = () => {
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isFading, setIsFading] = useState(false);
+  const isTransitioning = useRef(false);
+  const autoPlayResumeTimer = useRef(null);
+  const touchStartX = useRef(null);
 
   // Auto-play functionality
   useEffect(() => {
     if (!isAutoPlaying) return;
-
     const interval = setInterval(() => {
-      handleSlideChange((currentSlide + 1) % testimonials.length);
-    }, 5000); // Change slide every 5 seconds
-
+      goToNext();
+    }, 5000);
     return () => clearInterval(interval);
-  }, [isAutoPlaying, currentSlide, testimonials.length]);
+  }, [isAutoPlaying, currentSlide]);
 
   const handleSlideChange = (index) => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    setCurrentSlide(index);
-    setTimeout(() => setIsTransitioning(false), 500);
+    if (isTransitioning.current) return;
+    isTransitioning.current = true;
+    setIsFading(true);
+    setTimeout(() => {
+      setCurrentSlide(index);
+      setIsFading(false);
+      isTransitioning.current = false;
+    }, 250);
+  };
+
+  const pauseAndResumeAutoPlay = () => {
+    setIsAutoPlaying(false);
+    if (autoPlayResumeTimer.current) clearTimeout(autoPlayResumeTimer.current);
+    autoPlayResumeTimer.current = setTimeout(() => setIsAutoPlaying(true), 10000);
   };
 
   const goToSlide = (index) => {
     handleSlideChange(index);
-    setIsAutoPlaying(false);
-    // Resume autoplay after 10 seconds of manual interaction
-    setTimeout(() => setIsAutoPlaying(true), 10000);
+    pauseAndResumeAutoPlay();
   };
 
   const goToPrevious = () => {
     const newIndex = (currentSlide - 1 + testimonials.length) % testimonials.length;
     handleSlideChange(newIndex);
-    setIsAutoPlaying(false);
-    setTimeout(() => setIsAutoPlaying(true), 10000);
+    pauseAndResumeAutoPlay();
   };
 
   const goToNext = () => {
     const newIndex = (currentSlide + 1) % testimonials.length;
     handleSlideChange(newIndex);
-    setIsAutoPlaying(false);
-    setTimeout(() => setIsAutoPlaying(true), 10000);
+  };
+
+  // Touch swipe handlers
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e) => {
+    if (touchStartX.current === null) return;
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) {
+        goToNext();
+      } else {
+        goToPrevious();
+      }
+      pauseAndResumeAutoPlay();
+    }
+    touchStartX.current = null;
   };
 
   const renderStars = (rating) => {
@@ -99,11 +124,11 @@ const TestimonialsSlider = () => {
       <div className="max-w-[1386px] mx-auto relative z-10">
         {/* Header */}
         <div className="text-center md:mb-12 mb-8">
-          <h2 className="md:text-[40px] text-[28px] font-bold md:leading-[47px] leading-[36px] md:mb-4 mb-3">
-            <span className="text-custom-dark-text">What Our Customers Say About </span>
-            <span className="bg-brand-gradient bg-clip-text text-transparent">RupeeQ</span>
+          <h2 className="md:text-[40px] text-[28px] font-bold md:leading-[47px] leading-[36px] md:mb-4 mb-3 mx-5">
+            <span className="text-2xl md:text-[50px] leading-[30px] md:leading-[62px] font-semibold md:font-medium text-custom-dark-text">What Our Customers Say About  <span className="bg-brand-gradient bg-clip-text text-transparent">RupeeQ</span> </span>
+
           </h2>
-          <p className="text-[#747986] md:text-base text-sm leading-[150%] font-medium max-w-3xl mx-auto px-4 md:block hidden">
+          <p className="md:font-light md:text-xl md:leading-[29px] text-[#070129] max-w-4xl mx-auto px-8 md:block hidden">
             Hear directly from customers who have used RupeeQ to make informed financial decisions.
             Their experiences reflect our commitment to transparency, simplicity, and reliable support.
           </p>
@@ -111,7 +136,7 @@ const TestimonialsSlider = () => {
 
         {/* Slider Container */}
         <div className="relative">
-          <div className="relative md:min-h-[400px] min-h-[500px] flex items-center">
+          <div className="relative flex items-center">
             {/* Background Icon Overlay - Desktop Only */}
             <div
               className="absolute inset-0 z-0 pointer-events-none md:flex hidden items-center justify-center opacity-10"
@@ -128,8 +153,7 @@ const TestimonialsSlider = () => {
             {/* Navigation Arrows - Desktop Only */}
             <button
               onClick={goToPrevious}
-              disabled={isTransitioning}
-              className="absolute left-8 z-20 transition-all duration-300 hover:scale-110 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed md:block hidden"
+              className="absolute left-8 z-20 transition-all duration-300 hover:scale-110 active:scale-95 md:block hidden"
               aria-label="Previous testimonial"
             >
               <LeftBlackArrowIcon />
@@ -137,17 +161,20 @@ const TestimonialsSlider = () => {
 
             <button
               onClick={goToNext}
-              disabled={isTransitioning}
-              className="absolute right-8 z-20 transition-all duration-300 hover:scale-110 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed md:block hidden"
+              className="absolute right-8 z-20 transition-all duration-300 hover:scale-110 active:scale-95 md:block hidden"
               aria-label="Next testimonial"
             >
               <RightBlackArrowIcon />
             </button>
 
             {/* Testimonial Content */}
-            <div className="w-full md:px-24 px-6 md:py-12 py-8 relative z-10">
+            <div
+              className="w-full md:px-24 px-6 md:py-14 pb-8 md:pb-5 relative z-10"
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+            >
               <div
-                className={`text-center max-w-4xl mx-auto transition-all duration-500 ${isTransitioning ? 'opacity-0 transform scale-95' : 'opacity-100 transform scale-100'
+                className={`text-center max-w-4xl mx-auto transition-all duration-500 ${isFading ? 'opacity-0 transform scale-95' : 'opacity-100 transform scale-100'
                   }`}
               >
                 {/* Stars */}
@@ -174,8 +201,7 @@ const TestimonialsSlider = () => {
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                disabled={isTransitioning}
-                className={`md:w-3 md:h-3 w-2.5 h-2.5 rounded-full transition-all duration-300 disabled:cursor-not-allowed ${index === currentSlide
+                className={`md:w-3 md:h-3 w-2.5 h-2.5 rounded-full transition-all duration-300 ${index === currentSlide
                   ? 'bg-button-color scale-125'
                   : 'bg-gray-300 hover:bg-gray-400'
                   }`}

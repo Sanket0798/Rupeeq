@@ -111,28 +111,16 @@ const Navbar = () => {
     }
   };
 
-  // Handle login button click - scroll to hero form on loan pages, navigate elsewhere
   const handleLoginClick = () => {
     const currentPath = location.pathname;
-
-    const loanPages = ['/personal-loan', '/debt-consolidation', '/overdraft-facility', '/short-term-loan'];
-
-    if (loanPages.includes(currentPath)) {
-      // Scroll to the hero form so user can enter phone + go through OTP flow
-      setIsOpen(false);
-      const hero = document.getElementById('personal-loan-hero')
-        || document.getElementById('debt-consolidation-hero')
-        || document.getElementById('overdraft-hero')
-        || document.getElementById('short-term-hero')
-        || document.querySelector('section');
-      if (hero) {
-        hero.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-      return;
-    }
+    setIsOpen(false);
 
     const loginRoutes = {
       '/': '/login/home',
+      '/personal-loan': '/login/personal-loan',
+      '/debt-consolidation': '/login/debt-consolidation',
+      '/overdraft-facility': '/login/overdraft-facility',
+      '/short-term-loan': '/login/short-term-loan',
     };
 
     const loginPath = loginRoutes[currentPath] || '/login/home';
@@ -201,9 +189,18 @@ const Navbar = () => {
                     <a
                       href={link.path || `#${link.id}`}
                       onClick={(e) => handleNavClick(e, link)}
-                      className="text-neutral-700 hover:text-primary transition-colors duration-200 font-medium"
+                      className={
+                        link.name === 'Free Credit Score'
+                          ? 'relative bg-[#34CA8D] text-white font-semibold pl-5 pr-4 py-2 rounded-full hover:bg-[#2ab87d] transition-colors duration-200 inline-flex items-center'
+                          : 'text-neutral-700 hover:text-primary transition-colors duration-200 font-medium'
+                      }
                     >
-                      {link.name}
+                      {link.name === 'Free Credit Score' ? (
+                        <>
+                          <span className="absolute -top-2 -left-1 bg-custom-purple text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full leading-none">FREE</span>
+                          Credit Score
+                        </>
+                      ) : link.name}
                     </a>
                   )}
                 </div>
@@ -269,9 +266,18 @@ const Navbar = () => {
                   <a
                     href={link.path || `#${link.id}`}
                     onClick={(e) => handleNavClick(e, link)}
-                    className="block px-3 py-2 text-neutral-700 hover:text-primary hover:bg-neutral-50 rounded-md transition-colors font-medium"
+                    className={
+                      link.name === 'Free Credit Score'
+                        ? 'relative inline-flex items-center px-4 py-2 text-white bg-[#34CA8D] font-semibold rounded-full transition-colors'
+                        : 'block px-3 py-2 text-neutral-700 hover:text-primary hover:bg-neutral-50 rounded-md transition-colors font-medium'
+                    }
                   >
-                    {link.name}
+                    {link.name === 'Free Credit Score' ? (
+                      <>
+                        <span className="absolute -top-2 -left-1 bg-custom-purple text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full leading-none">FREE</span>
+                        Credit Score
+                      </>
+                    ) : link.name}
                   </a>
                 )}
               </div>
