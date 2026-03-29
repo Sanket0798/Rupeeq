@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import { ChevronUpIcon } from "../common/SvgIcons";
+import { ROUTES } from "../../constants/routes";
 
 const HowACEHelpsYouSection = () => {
+  const navigate = useNavigate();
   const benefits = [
     {
       title: 'Clarity over confusion',
@@ -34,11 +37,11 @@ const HowACEHelpsYouSection = () => {
           </h2>
 
           {/* Benefits Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 max-w-[852px] w-full gap-4 md:gap-x-6 md:gap-y-6 mb-6 md:mb-[38px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 max-w-[852px] w-full gap-4 md:gap-x-0 md:gap-y- mb-6 md:mb-[38px]">
             {benefits.map((benefit, index) => (
               <div
                 key={index}
-                className={`${benefit.bgColor} p-4 md:p-6 text-start hover:shadow-[0px_4px_4px_rgba(0,0,0,0.25)] transition-all duration-300 space-y-2 md:space-y-3 text-black rounded-xl md:rounded-2xl`}
+                className={`${benefit.bgColor} p-4 md:p-6 text-start hover:shadow-[0px_4px_4px_rgba(0,0,0,0.25)] transition-all duration-300 space-y-2 md:space-y-3 text-black rounded-xl md:rounded-none`}
               >
                 <h3 className="text-xl md:text-[30px] font-semibold leading-[26px] md:leading-[38px] tracing-[0px]">
                   {benefit.title}
@@ -51,7 +54,7 @@ const HowACEHelpsYouSection = () => {
           </div>
 
           {/* Bottom Text */}
-          <p className="text-center text-[#7D7D7D] text-base md:text-2xl leading-[22px] md:leading-[35px] tracing-[0%] font-normal max-w-4xl mx-auto mb-6 md:mb-[38px] px-4">
+          <p className="text-center text-[#7D7D7D] text-base md:text-2xl leading-[22px] md:leading-[29px] tracing-[0%] font-normal max-w-4xl mx-auto mb-6 md:mb-[38px] px-4 md:px-0">
             Two People Can Have The Same Credit Score - But Very Different Loan Outcomes.
             <br className="hidden md:block" />
             RupeeQ ACE Explains The Difference.
@@ -60,6 +63,7 @@ const HowACEHelpsYouSection = () => {
           {/* CTA Button */}
           <div className="flex justify-center">
             <button
+              onClick={() => navigate(ROUTES.OVERDRAFT_FACILITY)}
               className="bg-button-color text-white font-semibold leading-[130%] px-6 py-3 rounded-full text-base md:text-lg hover:bg-[#6B4FA8] transition-all duration-300 flex items-center gap-2 group"
             >
               Unlock Your ACE Insights

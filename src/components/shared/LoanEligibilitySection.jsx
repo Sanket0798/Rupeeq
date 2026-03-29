@@ -1,9 +1,5 @@
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useRef } from 'react';
 import { Card } from '../ui';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const LoanEligibilitySection = ({
   mainTitle = "Personal Loans & Eligibility",
@@ -15,6 +11,7 @@ const LoanEligibilitySection = ({
   leftColumnNote = "Even If Your Score Isn't Perfect, RupeeQ Helps Identify Realistic Pathways, Not Instant Rejections.",
   rightColumnNote = "RupeeQ Helps You See Where You Stand Before You Apply, So You Borrow With Confidence.",
   leftColumnImage = "/assets/images/loanEligibility/2.jpg",
+  leftColumnImageClass = "w-[457px] h-[269px] object-cover object-top",
   rightColumnImage = "/assets/images/loanEligibility/1.png",
   useIconsForLeft = true,
   useDotsForRight = true,
@@ -25,69 +22,6 @@ const LoanEligibilitySection = ({
   const headingRef = useRef(null);
   const desktopCardsRef = useRef([]);
   const mobileCardsRef = useRef([]);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Longer delay to ensure DOM is fully ready
-      setTimeout(() => {
-        // Refresh ScrollTrigger to recalculate positions
-        ScrollTrigger.refresh();
-
-        // Heading animation - removed opacity
-        if (headingRef.current && headingRef.current.children.length > 0) {
-          gsap.from(headingRef.current.children, {
-            scrollTrigger: {
-              trigger: headingRef.current,
-              start: 'top 85%',
-              toggleActions: 'play none none reverse'
-            },
-            y: 30,
-            duration: 0.8,
-            stagger: 0.15,
-            ease: 'power3.out'
-          });
-        }
-
-        // Desktop cards animation - removed opacity
-        if (window.innerWidth >= 1024 && desktopCardsRef.current.length > 0) {
-          const validCards = desktopCardsRef.current.filter(card => card !== null);
-          if (validCards.length > 0) {
-            gsap.from(validCards, {
-              scrollTrigger: {
-                trigger: validCards[0],
-                start: 'top 75%',
-                toggleActions: 'play none none reverse'
-              },
-              y: 50,
-              duration: 0.8,
-              stagger: 0.2,
-              ease: 'power3.out'
-            });
-          }
-        }
-
-        // Mobile cards animation - removed opacity
-        if (window.innerWidth < 1024 && mobileCardsRef.current.length > 0) {
-          const validMobileCards = mobileCardsRef.current.filter(card => card !== null);
-          if (validMobileCards.length > 0) {
-            gsap.from(validMobileCards, {
-              scrollTrigger: {
-                trigger: validMobileCards[0],
-                start: 'top 85%',
-                toggleActions: 'play none none reverse'
-              },
-              y: 30,
-              duration: 0.6,
-              stagger: 0.15,
-              ease: 'power2.out'
-            });
-          }
-        }
-      }, 200);
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
 
   return (
     <div ref={sectionRef} className="w-full bg-white py-8 md:py-16 lg:py-20">
@@ -154,7 +88,7 @@ const LoanEligibilitySection = ({
                 <img
                   src={leftColumnImage}
                   alt="Eligibility"
-                  className="w-[457px] h-[269px] object-cover object-top"
+                  className={leftColumnImageClass}
                 />
               </div>
             )}

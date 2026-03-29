@@ -157,7 +157,7 @@ const DebtConsolidationPage = () => {
           rightColumnItems={whoShouldConsider}
           leftColumnNote=""
           rightColumnNote="Debt Consolidation Through RupeeQ Is An Ideal Solution."
-          leftColumnImage="/assets/images/loanEligibility/2.jpg"
+          leftColumnImage="/assets/images/debt/Img1.svg"
           rightColumnImage="/assets/images/loanEligibility/1.png"
           useIconsForLeft={true}
           useDotsForRight={true}

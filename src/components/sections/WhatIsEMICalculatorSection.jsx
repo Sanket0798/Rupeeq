@@ -21,7 +21,7 @@ const WhatIsEMICalculatorSection = () => {
     const ctx = gsap.context(() => {
       if (window.innerWidth >= 768) {
         // Desktop Animations
-        
+
         // Header animation
         if (headerRef.current) {
           gsap.set(headerRef.current.children, { opacity: 1 }); // Ensure visible by default
@@ -91,7 +91,7 @@ const WhatIsEMICalculatorSection = () => {
         }
       } else {
         // Mobile Animations
-        
+
         // Header animation
         if (headerRef.current) {
           gsap.set(headerRef.current.children, { opacity: 1 }); // Ensure visible by default
@@ -196,14 +196,14 @@ const WhatIsEMICalculatorSection = () => {
 
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-9 md:mb-[182px]">
           {/* Left Content */}
-          <div ref={leftContentRef} className="px-4 md:px-0">
+          <div className="px-4 md:px-0">
             <h3 className="text-custom-dark-text font-normal md:font-medium text-sm md:text-2xl text-center md:text-start leading-[19px] md:leading-[34px] px-4 md:px-0 mb-6 md:mb-3">
               A Personal Loan EMI Calculator Helps You Calculate Your Monthly Instalment Based On The Loan Amount, Interest Rate, And Repayment Period.
             </h3>
             <p className="hidden md:block text-[#4B5768] font-normal text-sm md:text-[17px] leading-[19px] md:leading-[23px] mb-8 md:mb-[60px]">
               It Also Helps With Personal Loan Interest Rate Calculation By Showing How Interest And Tenure Affect The EMI. It Helps You:
             </p>
-            <Button variant="custom" className="px-6 py-3 font-bold md:font-medium text-[15px] md:text-base leading-[130%] md:leading-[24px] text-white bg-button-color gap-2 w-full md:w-[161px]">
+            <Button variant="custom" className="px-6 py-3 font-bold md:font-medium text-[15px] md:text-base leading-[130%] md:leading-[24px] text-white bg-button-color gap-2 inline-flex md:w-auto">
               Learn More
               <RightArrowIcon color='white' />
             </Button>

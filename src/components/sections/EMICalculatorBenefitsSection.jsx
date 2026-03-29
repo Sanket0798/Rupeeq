@@ -138,13 +138,13 @@ const EMICalculatorBenefitsSection = () => {
       mobileBg: 'bg-[#00AA4E]/10'
     },
     {
-      number: '02',
+      number: '03',
       title: 'Cashback',
       desc: 'Enjoy special events, birthdays, lorem ipsum',
       mobileBg: 'bg-[#0072F2]/10'
     },
     {
-      number: '03',
+      number: '05',
       title: 'Balance',
       desc: 'Enjoy special events, birthdays, lorem ipsum',
       mobileBg: 'bg-[#0072F2]/10'
@@ -153,19 +153,19 @@ const EMICalculatorBenefitsSection = () => {
 
   const rightBenefits = [
     {
-      number: '01',
+      number: '02',
       title: 'Balance Transfer',
       desc: 'Enjoy special events, birthdays, lorem ipsum',
       mobileBg: 'bg-[#FFD919]/10'
     },
     {
-      number: '02',
+      number: '04',
       title: 'Travel',
       desc: 'Enjoy special events, birthdays, lorem ipsum',
       mobileBg: 'bg-[#00AA4E]/10'
     },
     {
-      number: '03',
+      number: '06',
       title: 'Zero Percent',
       desc: 'Enjoy special events, birthdays, lorem ipsum',
       mobileBg: 'bg-[#5528A9]/10'
@@ -179,7 +179,7 @@ const EMICalculatorBenefitsSection = () => {
     'Cashback',
     'Balance Transfer',
     'Travel',
-    'Zero Percect'
+    'Zero Percent'
   ];
 
   return (

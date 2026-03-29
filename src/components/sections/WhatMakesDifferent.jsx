@@ -29,7 +29,7 @@ const WhatMakesDifferent = () => {
       // Desktop grid animation
       if (window.innerWidth >= 768 && desktopGridRef.current) {
         const features = desktopGridRef.current.querySelectorAll('.feature-item');
-        
+
         gsap.from(features, {
           scrollTrigger: {
             trigger: desktopGridRef.current,
@@ -109,23 +109,23 @@ const WhatMakesDifferent = () => {
       icon: '/assets/logos/MakesDifferent/CreditCounter.png',
     },
     {
-      title: 'Profile-matched loan offers',
-      description: 'Your credit score, income, and repayment history decide what you see — not marketing push.',
+      title: 'Transparent interest rates',
+      description: 'See realistic rates based on your profile, not "too-good-to-be-true" numbers.',
       icon: '/assets/logos/MakesDifferent/Interest.png',
     },
     {
-      title: 'Multiple banks. One application',
-      description: 'Access loan options from leading banks and NBFCs without applying everywhere.',
+      title: 'Profile-matched loan offers',
+      description: 'Your credit score, income, and repayment history decide what you see — not marketing push.',
       icon: '/assets/logos/MakesDifferent/ProfileMatch.png',
-    },
-    {
-      title: 'Transparent interest rates',
-      description: 'See realistic rates based on your profile, not "too-good-to-be-true" numbers.',
-      icon: '/assets/logos/MakesDifferent/ZeroSpam.png',
     },
     {
       title: 'Zero spam promise',
       description: 'No endless calls. No selling your data. Only relevant communication.',
+      icon: '/assets/logos/MakesDifferent/ZeroSpam.png',
+    },
+    {
+      title: 'Multiple banks. One application',
+      description: 'Access loan options from leading banks and NBFCs without applying everywhere.',
       icon: '/assets/logos/MakesDifferent/MultipleBank.png',
     },
     {
@@ -167,7 +167,7 @@ const WhatMakesDifferent = () => {
                     <img src={feature.icon} alt="" className="w-16 h-16 object-contain" />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-custom-dark-text mb-3 leading-tight">
+                    <h3 className="text-2xl font-bold md:font-semibold md:leading-[38px] text-custom-dark-text mb-3 leading-tight">
                       {feature.title}
                     </h3>
                     <p className="text-[#4B5768] text-base leading-relaxed">

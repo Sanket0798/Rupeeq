@@ -9,16 +9,41 @@ import OtpModal from '../common/OtpModal';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const PhoneForm = ({ isMobile, mobileNumber, onMobileChange, agreedToTerms, onTermsChange, errors, isSubmitting, formButtonText, onSubmit }) => (
+const COUNTRY_CODES = [
+  { code: '+91', flag: '🇮🇳', label: 'IN' },
+  { code: '+1',  flag: '🇺🇸', label: 'US' },
+  { code: '+44', flag: '🇬🇧', label: 'GB' },
+  { code: '+971', flag: '🇦🇪', label: 'AE' },
+  { code: '+65', flag: '🇸🇬', label: 'SG' },
+  { code: '+61', flag: '🇦🇺', label: 'AU' },
+  { code: '+49', flag: '🇩🇪', label: 'DE' },
+  { code: '+33', flag: '🇫🇷', label: 'FR' },
+];
+
+const PhoneForm = ({ isMobile, mobileNumber, onMobileChange, agreedToTerms, onTermsChange, errors, isSubmitting, formButtonText, onSubmit }) => {
+  const [countryCode, setCountryCode] = useState('+91');
+
+  return (
   <form onSubmit={onSubmit} className="relative z-20">
     <div className={isMobile ? 'mb-4' : 'mb-9'}>
       <label className={`block text-white font-bold mb-2 leading-[26px] ${isMobile ? 'text-sm' : 'text-lg'}`}>Mobile Number</label>
-      <Input
-        type="tel" value={mobileNumber} onChange={onMobileChange}
-        placeholder="Enter your Mobile Number"
-        className={`w-full px-4 py-3 rounded-[20px] bg-white text-gray-900 placeholder-[#58626C]/50 focus:outline-none focus:ring-2 focus:ring-white border-none ${isMobile ? 'text-sm' : ''}`}
-        maxLength={10}
-      />
+      <div className={`flex items-center bg-white rounded-[20px] overflow-hidden focus-within:ring-2 focus-within:ring-white ${isMobile ? 'text-sm' : ''}`}>
+        <select
+          value={countryCode}
+          onChange={(e) => setCountryCode(e.target.value)}
+          className="pl-3 pr-1 py-3 bg-transparent text-gray-700 font-medium border-r border-gray-200 focus:outline-none cursor-pointer text-sm"
+        >
+          {COUNTRY_CODES.map(({ code, flag, label }) => (
+            <option key={code} value={code}>{flag} {code}</option>
+          ))}
+        </select>
+        <Input
+          type="tel" value={mobileNumber} onChange={onMobileChange}
+          placeholder="Enter your Mobile Number"
+          className="flex-1 px-3 py-3 bg-transparent text-gray-900 placeholder-[#58626C]/50 focus:outline-none border-none rounded-none"
+          maxLength={10}
+        />
+      </div>
       {errors.mobileNumber && <FormFieldError error={errors.mobileNumber} />}
     </div>
     <div className={isMobile ? 'mb-4' : 'mb-9'}>
@@ -34,12 +59,15 @@ const PhoneForm = ({ isMobile, mobileNumber, onMobileChange, agreedToTerms, onTe
       {isSubmitting ? <><LoadingSpinner size="sm" color="purple" /><span>Please wait...</span></> : formButtonText}
     </Button>
   </form>
-);
+  );
+};
 
 const GenericHero = ({
   titleLines = [],
+  subtitle = null,
   descriptions = [],
   tagline = null,
+  taglinePosition = 'below',
   formTitle = "Quick Apply",
   formButtonText = "Submit",
   benefits = [],
@@ -156,29 +184,56 @@ const GenericHero = ({
 
           {/* ── DESKTOP ── */}
           <div className="hidden md:block min-h-[60vh]">
-            <div className="flex flex-row gap-12 items-start justify-between mb-9">
+            <div className="flex flex-row gap-12 items-stretch justify-between mb-9">
 
               {/* Left */}
-              <div>
-                <h1 ref={titleRef} className="text-[40px] text-custom-dark-text font-semibold leading-[53px] mb-6">
-                  {titleLines.map((line, i) => (
-                    <span key={i}>
-                      {line.highlight ? <span className="text-custom-purple font-extrabold">{line.text}</span> : line.text}
-                      {i < titleLines.length - 1 && <br />}
-                    </span>
-                  ))}
-                </h1>
-                <div ref={descriptionsRef}>
-                  {descriptions.map((desc, i) => (
-                    <p key={i} className={`text-custom-dark-text text-base leading-relaxed max-w-[500px] ${i < descriptions.length - 1 ? 'mb-6' : ''}`}>{desc}</p>
-                  ))}
-                </div>
-                {tagline && (
-                  <div className="mb-8 mt-8">
-                    <h2 className="text-[28px] font-bold text-custom-purple leading-[120%]">{tagline.line1}</h2>
-                    <p className="text-[28px] font-bold text-custom-purple leading-[120%]">{tagline.line2}</p>
+              <div className="flex flex-col justify-between">
+                <div>
+                  <h1 ref={titleRef} className="text-[40px] text-custom-dark-text font-medium leading-[53px] mb-4">
+                    {titleLines.map((line, i) => (
+                      <span key={i}>
+                        {line.highlight ? (
+                          <span className="text-custom-purple font-extrabold">{line.text}</span>
+                        ) : line.partialHighlight ? (
+                          <>
+                            {line.text.split(line.partialHighlight)[0]}
+                            <span className="text-custom-purple font-extrabold">{line.partialHighlight}</span>
+                            {line.text.split(line.partialHighlight)[1]}
+                          </>
+                        ) : line.text}
+                        {i < titleLines.length - 1 && <br />}
+                      </span>
+                    ))}
+                  </h1>
+                  {subtitle && (
+                    <p className="text-custom-purple font-semibold text-lg leading-[26px] mb-4">{subtitle}</p>
+                  )}
+                  <div ref={descriptionsRef}>
+                    {descriptions.map((desc, i) => (
+                      <p key={i} className={`text-custom-dark-text text-base leading-relaxed max-w-[500px] ${i < descriptions.length - 1 ? 'mb-6' : ''}`}>{desc}</p>
+                    ))}
                   </div>
-                )}
+                </div>
+                <div>
+                  {taglinePosition === 'above' && tagline && (
+                    <div className="mb-4 mt-6">
+                      <p className="text-xl font-bold text-custom-purple leading-[28px]">{tagline.line1}</p>
+                      {tagline.line2 && <p className="text-xl font-bold text-custom-purple leading-[28px]">{tagline.line2}</p>}
+                    </div>
+                  )}
+                  {actionButtons.length > 0 && (
+                    <div className="flex flex-row gap-4 mb-3">
+                      {actionButtons.map((btn, i) => (
+                        <Button key={i} onClick={() => navigate(btn.route)} variant="primary" size="md" className="px-6 py-3 gap-2">
+                          {btn.text}<ChevronUpIcon />
+                        </Button>
+                      ))}
+                    </div>
+                  )}
+                  {taglinePosition !== 'above' && tagline && (
+                    <p className="text-base font-semibold text-custom-purple leading-[22px]">{tagline.line1}</p>
+                  )}
+                </div>
               </div>
 
               {/* Right - Form Card */}
@@ -205,11 +260,22 @@ const GenericHero = ({
             <h1 ref={mobileTitleRef} className="text-[25px] text-center text-custom-dark-text font-semibold leading-[35px] px-2">
               {titleLines.map((line, i) => (
                 <span key={i}>
-                  {line.highlight ? <span className="text-custom-purple font-bold">{line.text}</span> : line.text}
+                  {line.highlight ? (
+                    <span className="text-custom-purple font-bold">{line.text}</span>
+                  ) : line.partialHighlight ? (
+                    <>
+                      {line.text.split(line.partialHighlight)[0]}
+                      <span className="text-custom-purple font-bold">{line.partialHighlight}</span>
+                      {line.text.split(line.partialHighlight)[1]}
+                    </>
+                  ) : line.text}
                   {i < titleLines.length - 1 && <br />}
                 </span>
               ))}
             </h1>
+            {subtitle && (
+              <p className="text-custom-purple font-semibold text-sm text-center leading-[20px] px-6">{subtitle}</p>
+            )}
 
             <div ref={mobileFormRef} className="relative rounded-3xl shadow-[0px_4px_15px_rgba(0,0,0,0.2)] mx-4">
               <div className="bg-brand-gradient px-6 py-6 text-white rounded-3xl overflow-visible">
@@ -229,10 +295,10 @@ const GenericHero = ({
               </div>
             )}
 
-            {tagline && (
+            {taglinePosition === 'above' && tagline && (
               <div ref={mobileTaglineRef} className="px-6 text-center">
-                <h2 className="text-lg font-bold text-custom-purple leading-[24px]">{tagline.line1}</h2>
-                <p className="text-lg font-bold text-custom-purple leading-[24px]">{tagline.line2}</p>
+                <p className="text-sm font-semibold text-custom-purple leading-[20px]">{tagline.line1}</p>
+                {tagline.line2 && <p className="text-sm font-semibold text-custom-purple leading-[20px]">{tagline.line2}</p>}
               </div>
             )}
 
@@ -245,18 +311,14 @@ const GenericHero = ({
                 ))}
               </div>
             )}
-          </div>
 
-          {/* Action Buttons - Desktop */}
-          {actionButtons.length > 0 && (
-            <div className="hidden md:flex flex-row gap-4">
-              {actionButtons.map((btn, i) => (
-                <Button key={i} onClick={() => navigate(btn.route)} variant="primary" size="md" className="px-6 py-3 gap-2">
-                  {btn.text}<ChevronUpIcon />
-                </Button>
-              ))}
-            </div>
-          )}
+            {taglinePosition !== 'above' && tagline && (
+              <div ref={mobileTaglineRef} className="px-6 text-center">
+                <p className="text-sm font-semibold text-custom-purple leading-[20px]">{tagline.line1}</p>
+                {tagline.line2 && <p className="text-sm font-semibold text-custom-purple leading-[20px]">{tagline.line2}</p>}
+              </div>
+            )}
+          </div>
 
           {/* Benefits */}
           {benefitsTitle && (

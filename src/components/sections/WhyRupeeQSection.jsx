@@ -44,7 +44,7 @@ const WhyRupeeQSection = () => {
   ];
 
   return (
-    <section className="w-full py-8 md:py-16 lg:py-20 bg-white md:bg-gradient-to-br md:from-[#E5F9E5]/30 md:via-white md:to-white overflow-hidden">
+    <section className="w-full py-8 md:py-16 lg:py-0 bg-white md:bg-gradient-to-br md:from-[#E5F9E5]/30 md:via-white md:to-white overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-4 md:px-6 lg:px-8">
         {/* Mobile Heading */}
         <div className="lg:hidden text-center mb-8 text-custom-dark-text">
@@ -105,9 +105,9 @@ const WhyRupeeQSection = () => {
           {/* Right Side - Feature Cards Grid - Masonry Layout */}
           <div className="lg:col-span-8">
             <div className="grid grid-cols-2 gap-6">
-              {/* Left Column */}
-              <div className="space-y-6">
-                {[features[0], features[1], features[2]].map((feature, index) => (
+              {/* Left Column - 2 cards */}
+              <div className="space-y-6 pt-[60px]">
+                {[features[3], features[4]].map((feature, index) => (
                   <div
                     key={index}
                     className={`${feature.bgColor} ${feature.borderColor} ${feature.height} border rounded-t-3xl py-9 px-8 text-center transition-all duration-300 hover:scale-105 hover:shadow-lg flex flex-col justify-center`}
@@ -122,9 +122,9 @@ const WhyRupeeQSection = () => {
                 ))}
               </div>
 
-              {/* Right Column */}
-              <div className="space-y-6 pt-[60px]">
-                {[features[3], features[4]].map((feature, index) => (
+              {/* Right Column - 3 cards */}
+              <div className="space-y-6">
+                {[features[0], features[1], features[2]].map((feature, index) => (
                   <div
                     key={index}
                     className={`${feature.bgColor} ${feature.borderColor} ${feature.height} border rounded-t-3xl py-9 px-8 text-center transition-all duration-300 hover:scale-105 hover:shadow-lg flex flex-col justify-center`}

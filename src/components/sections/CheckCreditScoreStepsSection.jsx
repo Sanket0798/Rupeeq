@@ -122,9 +122,9 @@ const CheckCreditScoreStepsSection = () => {
         </div>
 
         {/* Desktop Steps */}
-        <div className="hidden md:flex flex-row items-center justify-between w-full mt-[47px] mb-[89px]">
+        <div className="hidden md:flex flex-row items-start justify-between w-full mt-[47px] mb-[89px]">
           {steps.map((step, index) => (
-            <div key={index} ref={el => desktopStepsRef.current[index] = el} className="flex flex-col items-center">
+            <div key={index} ref={el => desktopStepsRef.current[index] = el} className={`flex flex-col items-center ${index === 0 ? '-ml-10' : index === 2 ? '-mr-10' : ''}`}>
               <h3 className="text-2xl leading-[34px] tracing-[0%] text-custom-dark-text font-medium">{step.title}</h3>
               <p className="text-xl leading-[26px] tracing-[0%] text-[#7D7D7D] font-normal text-center w-[300px]">{step.description}</p>
             </div>

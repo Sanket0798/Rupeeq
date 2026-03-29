@@ -6,8 +6,7 @@
 export const PERSONAL_LOAN_HERO = {
   titleLines: [
     { text: "STOP GUESSING. SEE", highlight: false },
-    { text: "PERSONAL LOAN ", highlight: false },
-    { text: "OFFERS", highlight: true },
+    { text: "PERSONAL LOAN OFFERS", highlight: false, partialHighlight: "OFFERS" },
     { text: "THAT FIT YOUR NEEDS", highlight: true }
   ],
   descriptions: [
@@ -17,6 +16,7 @@ export const PERSONAL_LOAN_HERO = {
     line1: "Compare. Choose. Apply.",
     line2: "All Online. No Guesswork. No Spam."
   },
+  taglinePosition: 'above',
   formTitle: "Check Personal Loan Offers",
   formButtonText: "Sign In",
   benefits: [
@@ -40,9 +40,10 @@ export const DEBT_CONSOLIDATION_HERO = {
     { text: "DEBT CONSOLIDATION", highlight: true },
     { text: "LOAN IN INDIA", highlight: false }
   ],
+  subtitle: "One EMI Instead of Many. Lower Your Monthly Burden.",
   descriptions: [
-    "Struggling with multiple EMIs every month?",
-    "Debt consolidation helps you combine all your loans into one affordable EMI – so your finances feel lighter and more manageable."
+    // "Struggling with multiple EMIs every month?",
+    "Struggling with multiple EMIs every month? Debt consolidation helps you combine all your loans into one affordable EMI – so your finances feel lighter and more manageable."
   ],
   tagline: {
     line1: "Quick Check • No Spam • No Impact On Your Credit Score",
@@ -71,7 +72,7 @@ export const DEBT_CONSOLIDATION_HERO = {
     { text: "Check If You Can Reduce Your EMI", route: "/debt-consolidation-info-1" }
   ],
   loginRoute: "/debt-consolidation-info-1",
-  illustrationSrc: "/assets/images/hero/2.png"
+  illustrationSrc: "/assets/images/hero/5.svg"
 };
 
 export const OVERDRAFT_FACILITY_HERO = {
@@ -100,7 +101,7 @@ export const OVERDRAFT_FACILITY_HERO = {
   },
   actionButtons: [],
   loginRoute: "/overdraft-facility-info-1",
-  illustrationSrc: "/assets/images/hero/2.png"
+  illustrationSrc: "/assets/images/hero/3.svg"
 };
 
 export const SHORT_TERM_LOAN_HERO = {
@@ -129,7 +130,7 @@ export const SHORT_TERM_LOAN_HERO = {
   },
   actionButtons: [],
   loginRoute: "/short-term-loan-info-1",
-  illustrationSrc: "/assets/images/hero/2.png"
+  illustrationSrc: "/assets/images/hero/7.svg"
 };
 
 export const IFSC_MICR_HERO = {

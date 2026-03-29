@@ -135,7 +135,8 @@ const ShortTermLoanPage = () => {
           rightColumnItems={whoShouldConsider}
           leftColumnNote=""
           rightColumnNote=""
-          leftColumnImage="/assets/images/loanEligibility/2.jpg"
+          leftColumnImage="/assets/images/shortTerm/Img1.svg"
+          leftColumnImageClass="w-[350px] h-auto object-contain"
           rightColumnImage="/assets/images/loanEligibility/1.png"
           useIconsForLeft={true}
           useDotsForRight={true}

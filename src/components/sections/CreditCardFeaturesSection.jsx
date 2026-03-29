@@ -121,7 +121,7 @@ const CreditCardFeaturesSection = () => {
     {
       number: '01',
       title: 'Rewards',
-      description: 'Reach Targeted Readers With Compelling Print Layouts In Trusted Publications, Perfect For Brand Credibility And Storytelling.',
+      description: 'Earn Points On Every Purchase And Redeem Them For Vouchers, Flights, Hotels, Or Exclusive Merchandise.',
       bgColor: 'bg-white',
       mobileBgColor: 'bg-gradient-to-b from-[#00AA4E]/10 to-white',
       hasArrow: true
@@ -129,7 +129,7 @@ const CreditCardFeaturesSection = () => {
     {
       number: '03',
       title: 'Cashback',
-      description: 'Reach Targeted Readers With Compelling Print Layouts In Trusted Publications, Perfect For Brand Credibility And Storytelling.',
+      description: 'Get A Percentage Of Your Spending Back As Cash — Directly Credited To Your Account Every Month.',
       bgColor: 'bg-white',
       mobileBgColor: 'bg-gradient-to-b from-[#FF3333]/10 to-white',
       hasArrow: true
@@ -140,7 +140,7 @@ const CreditCardFeaturesSection = () => {
     {
       number: '02',
       title: 'Zero Percent',
-      description: 'Reach Targeted Readers With Compelling Print Layouts In Trusted Publications, Perfect For Brand Credibility And Storytelling.',
+      description: 'Enjoy 0% Interest On Purchases Or Balance Transfers For An Introductory Period — Ideal For Big Buys.',
       bgColor: 'bg-white',
       mobileBgColor: 'bg-gradient-to-b from-[#0072F2]/10 to-white',
       textColor: 'text-white',
@@ -149,7 +149,7 @@ const CreditCardFeaturesSection = () => {
     {
       number: '04',
       title: 'Balance Transfer',
-      description: 'Reach Targeted Readers With Compelling Print Layouts In Trusted Publications, Perfect For Brand Credibility And Storytelling.',
+      description: 'Move High-Interest Debt From Other Cards To A Lower-Rate Card And Save On Interest While You Repay.',
       bgColor: 'bg-white',
       mobileBgColor: 'bg-gradient-to-b from-[#5432AF]/10 to-white',
       hasArrow: true

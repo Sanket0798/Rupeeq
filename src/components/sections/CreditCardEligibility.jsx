@@ -57,7 +57,8 @@ const CreditCardEligibility = () => {
       rightColumnItems={chooseBestCreditCard}
       leftColumnNote=""
       rightColumnNote=""
-      leftColumnImage="/assets/images/loanEligibility/2.jpg"
+      leftColumnImage="/assets/images/creditCards/CardEligibility.svg"
+      leftColumnImageClass="w-[450px] h-auto object-contain"
       rightColumnImage="/assets/images/loanEligibility/1.png"
       useIconsForLeft={true}
       useDotsForRight={true}
