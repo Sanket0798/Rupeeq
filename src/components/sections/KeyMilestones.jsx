@@ -13,13 +13,17 @@ const KeyMilestones = () => {
   const sectionRef = useRef(null);
 
   useEffect(() => {
+    const isMobile = window.innerWidth < 768;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
         }
       },
-      { threshold: 0.1 }
+      { 
+        threshold: isMobile ? 0.4 : 0.1,
+        rootMargin: isMobile ? '0px 0px -100px 0px' : '0px'
+      }
     );
 
     if (sectionRef.current) {
@@ -172,9 +176,9 @@ const KeyMilestones = () => {
         <div className="flex flex-col lg:flex-row gap-4 md:gap-[25px] items-start">
           {/* Left side - Main highlight */}
           <div
-            className={`bg-[#E9E9E9] md:bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 lg:p-7 shadow-[5px_5px_5px_0px_rgba(0,0,0,0.25)] transition-all duration-700 w-full lg:w-auto ${isVisible
-              ? 'opacity-100 translate-x-0'
-              : 'opacity-0 -translate-x-12'
+            className={`bg-[#E9E9E9] md:bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 lg:p-7 shadow-[5px_5px_5px_0px_rgba(0,0,0,0.25)] w-full lg:w-auto md:transition-all md:duration-700 ${isVisible
+              ? 'md:opacity-100 md:translate-x-0'
+              : 'md:opacity-0 md:-translate-x-12'
               }`}
           >
             <div className="mb-6 md:mb-9">
@@ -222,9 +226,9 @@ const KeyMilestones = () => {
             {milestones.map((milestone, index) => (
               <div
                 key={index}
-                className={`rounded-2xl md:rounded-3xl py-3 md:py-4 px-4 md:px-8 ${milestone.color} shadow-[5px_5px_5px_0px_rgba(0,0,0,0.25)] w-full md:w-[413px] transition-all duration-700 ${isVisible
-                  ? 'opacity-100 translate-x-0'
-                  : 'opacity-0 translate-x-12'
+                className={`rounded-2xl md:rounded-3xl py-3 md:py-4 px-4 md:px-8 ${milestone.color} shadow-[5px_5px_5px_0px_rgba(0,0,0,0.25)] w-full md:w-[413px] md:transition-all md:duration-700 ${isVisible
+                  ? 'md:opacity-100 md:translate-x-0'
+                  : 'md:opacity-0 md:translate-x-12'
                   }`}
                 style={{
                   transitionDelay: isVisible ? `${index * 150}ms` : '0ms'

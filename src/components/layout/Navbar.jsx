@@ -191,13 +191,13 @@ const Navbar = () => {
                       onClick={(e) => handleNavClick(e, link)}
                       className={
                         link.name === 'Free Credit Score'
-                          ? 'relative bg-[#34CA8D] text-white font-semibold pl-5 pr-4 py-2 rounded-full hover:bg-[#2ab87d] transition-colors duration-200 inline-flex items-center'
+                          ? 'relative bg-custom-purple text-white font-semibold pl-5 pr-4 py-2 rounded-full hover:bg-[#6B4FA8] transition-colors duration-200 inline-flex items-center'
                           : 'text-neutral-700 hover:text-primary transition-colors duration-200 font-medium'
                       }
                     >
                       {link.name === 'Free Credit Score' ? (
                         <>
-                          <span className="absolute -top-2 -left-1 bg-custom-purple text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full leading-none">FREE</span>
+                          <span className="absolute -top-2 -left-1 bg-[#34CA8D] text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full leading-none">FREE</span>
                           Credit Score
                         </>
                       ) : link.name}
@@ -268,13 +268,13 @@ const Navbar = () => {
                     onClick={(e) => handleNavClick(e, link)}
                     className={
                       link.name === 'Free Credit Score'
-                        ? 'relative inline-flex items-center px-4 py-2 text-white bg-[#34CA8D] font-semibold rounded-full transition-colors'
+                        ? 'relative inline-flex items-center px-4 py-2 text-white bg-custom-purple font-semibold rounded-full transition-colors'
                         : 'block px-3 py-2 text-neutral-700 hover:text-primary hover:bg-neutral-50 rounded-md transition-colors font-medium'
                     }
                   >
                     {link.name === 'Free Credit Score' ? (
                       <>
-                        <span className="absolute -top-2 -left-1 bg-custom-purple text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full leading-none">FREE</span>
+                        <span className="absolute -top-2 -left-1 bg-[#34CA8D] text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full leading-none">FREE</span>
                         Credit Score
                       </>
                     ) : link.name}
