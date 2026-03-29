@@ -40,7 +40,7 @@ export const personalInfoPage1Schema = yup.object({
     .required('Full name is required'),
   occupation: yup
     .string()
-    .min(2, 'Occupation must be at least 2 characters')
+    .oneOf(['Salaried', 'Self Employed Business', 'Self Employed Professional'], 'Please select an occupation type')
     .required('Occupation is required'),
   pancard: yup
     .string()

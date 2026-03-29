@@ -366,14 +366,34 @@ const GenericInfoPage1 = ({ content }) => {
               <label className="block text-sm md:text-base leading-[26px] font-bold tracing-[4%] text-[#58626C] mb-2">
                 Occupation
               </label>
-              <Input
-                type="text"
-                name="occupation"
-                placeholder="Enter Your Occupation"
-                value={formData.occupation}
-                onChange={handleChange}
-                className="bg-white border-[#D0D0D0] rounded-[20px] py-3"
-              />
+              <div className="flex flex-wrap gap-3">
+                {['Salaried', 'Self Employed Business', 'Self Employed Professional'].map((option) => {
+                  const isSelected = formData.occupation === option;
+                  return (
+                    <label
+                      key={option}
+                      className={`flex items-center gap-2 px-4 py-2.5 rounded-[20px] border cursor-pointer transition-all text-sm font-medium select-none
+                        ${isSelected
+                          ? 'border-custom-purple bg-[#EEE9FF] text-custom-purple'
+                          : 'border-[#D0D0D0] bg-white text-[#58626C] hover:border-custom-purple'
+                        }`}
+                    >
+                      <input
+                        type="radio"
+                        name="occupation"
+                        value={option}
+                        checked={isSelected}
+                        onChange={() => {
+                          setFormData({ ...formData, occupation: option });
+                          if (errors.occupation) setErrors({ ...errors, occupation: '' });
+                        }}
+                        className="accent-custom-purple w-4 h-4"
+                      />
+                      {option}
+                    </label>
+                  );
+                })}
+              </div>
               {errors.occupation && (
                 <FormFieldError error={errors.occupation} />
               )}

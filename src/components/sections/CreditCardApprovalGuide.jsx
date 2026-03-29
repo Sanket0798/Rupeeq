@@ -130,7 +130,7 @@ const CreditCardApprovalGuide = () => {
     if (!formData.name.trim()) e.name = 'Full name is required';
     if (!formData.mobile.trim()) e.mobile = 'Mobile number is required';
     else if (!/^[6-9]\d{9}$/.test(formData.mobile)) e.mobile = 'Enter a valid 10-digit mobile number';
-    if (!formData.occupation.trim()) e.occupation = 'Occupation is required';
+    if (!formData.occupation) e.occupation = 'Occupation is required';
     if (!formData.monthlyIncome.trim()) e.monthlyIncome = 'Monthly income is required';
     else if (isNaN(formData.monthlyIncome) || Number(formData.monthlyIncome) <= 0) e.monthlyIncome = 'Enter a valid income amount';
     if (!formData.email.trim()) e.email = 'Email is required';
@@ -149,9 +149,6 @@ const CreditCardApprovalGuide = () => {
     } else if (name === 'mobile') {
       // Only digits, max 10
       sanitized = value.replace(/\D/g, '').slice(0, 10);
-    } else if (name === 'occupation') {
-      // Only letters, spaces and common punctuation
-      sanitized = value.replace(/[^a-zA-Z\s\-\/]/g, '');
     } else if (name === 'monthlyIncome') {
       // Only digits
       sanitized = value.replace(/\D/g, '');
@@ -239,14 +236,34 @@ const CreditCardApprovalGuide = () => {
                 <label className="block text-custom-dark-text md:text-black text-sm md:text-base leading-[26px] md:leading-[24px] tracing-[0%] font-inter-tight font-bold md:font-medium mb-1 md:mb-3">
                   Occupation
                 </label>
-                <input
-                  type="text"
-                  name="occupation"
-                  placeholder="Enter your Occupation"
-                  value={formData.occupation}
-                  onChange={handleInputChange}
-                  className="bg-white md:bg-[#F5F5F5] border border-[#D0D0D0] md:border-[#EBEBEB] w-full p-4 md:p-[14px] rounded-full md:rounded-none font-inter-tight font-normal md:font-medium text-sm md:text-base leading-[20px] md:leading-[24px] tracing-[0%] placeholder:text-[#58626C] md:placeholder:text-[#575757]/50 focus:outline-none focus:ring-1 focus:ring-button-color focus:border-transparent transition-all"
-                />
+                <div className="flex flex-wrap gap-3">
+                  {['Salaried', 'Self Employed Business', 'Self Employed Professional'].map((option) => {
+                    const isSelected = formData.occupation === option;
+                    return (
+                      <label
+                        key={option}
+                        className={`flex items-center gap-2 px-4 py-2.5 rounded-full border cursor-pointer transition-all text-sm font-medium select-none
+                          ${isSelected
+                            ? 'border-custom-purple bg-[#EEE9FF] text-custom-purple'
+                            : 'border-[#D0D0D0] bg-white text-[#58626C] hover:border-custom-purple'
+                          }`}
+                      >
+                        <input
+                          type="radio"
+                          name="occupation"
+                          value={option}
+                          checked={isSelected}
+                          onChange={() => {
+                            setFormData({ ...formData, occupation: option });
+                            if (errors.occupation) setErrors({ ...errors, occupation: '' });
+                          }}
+                          className="accent-custom-purple w-4 h-4"
+                        />
+                        {option}
+                      </label>
+                    );
+                  })}
+                </div>
                 {errors.occupation && <p className="text-red-500 text-xs mt-1">{errors.occupation}</p>}
               </div>
 

@@ -10,9 +10,15 @@ const LOAN_OFFERS = [
   { id: 1, bank: 'Axis Bank',     type: 'Personal Loan', loanAmount: '₹10,00,000', emi: '₹50,000',    tenure: '5 Years', interestRate: '12.5%', logo: '/assets/svg/banks/AxisBank.svg' },
   { id: 2, bank: 'Tata Capital',  type: 'Personal Loan', loanAmount: '₹10,00,000', emi: '₹21,675',    tenure: '5 Years', interestRate: '10.5%', logo: '/assets/svg/banks/TataCapital.svg' },
   { id: 3, bank: 'IDFC Bank',     type: 'Personal Loan', loanAmount: '₹10,00,000', emi: '₹50,000',    tenure: '5 Years', interestRate: '12.5%', logo: '/assets/svg/banks/IDFC.svg' },
-  { id: 4, bank: 'Bajaj Finserv', type: 'Personal Loan', loanAmount: '₹21,88,545', emi: '₹53,221',    tenure: '5 Years', interestRate: '14%',   logo: '/assets/svg/banks/BajajFinance.svg' },
-  { id: 5, bank: 'HDFC Bank',     type: 'Personal Loan', loanAmount: '₹15,00,000', emi: '₹34,000',    tenure: '5 Years', interestRate: '12.5%', logo: '/assets/svg/banks/HDFC.svg' },
-  { id: 6, bank: 'Yes Bank',      type: 'Personal Loan', loanAmount: '₹10,00,000', emi: '₹60,430.09', tenure: '5 Years', interestRate: '13.5%', logo: '/assets/svg/banks/YesBank.svg' },
+  { id: 4, bank: 'Bajaj Finserv',  type: 'Personal Loan', loanAmount: '₹21,88,545', emi: '₹53,221',    tenure: '5 Years', interestRate: '14%',   logo: '/assets/svg/banks/BajajFinance.svg' },
+  { id: 5, bank: 'HDFC Bank',      type: 'Personal Loan', loanAmount: '₹15,00,000', emi: '₹34,000',    tenure: '5 Years', interestRate: '12.5%', logo: '/assets/svg/banks/HDFC.svg' },
+  { id: 6, bank: 'Yes Bank',       type: 'Personal Loan', loanAmount: '₹10,00,000', emi: '₹60,430.09', tenure: '5 Years', interestRate: '13.5%', logo: '/assets/svg/banks/YesBank.svg' },
+  { id: 7, bank: 'SBI',            type: 'Personal Loan', loanAmount: '₹20,00,000', emi: '₹43,500',    tenure: '5 Years', interestRate: '11.0%', logo: '/assets/svg/banks/SBI.svg' },
+  { id: 8, bank: 'ICICI Bank',     type: 'Personal Loan', loanAmount: '₹25,00,000', emi: '₹55,750',    tenure: '5 Years', interestRate: '12.0%', logo: '/assets/svg/banks/ICICI.svg' },
+  { id: 9, bank: 'Kotak Mahindra', type: 'Personal Loan', loanAmount: '₹12,00,000', emi: '₹27,300',    tenure: '5 Years', interestRate: '11.5%', logo: '/assets/svg/banks/KotakMahindra.svg' },
+  { id: 10, bank: 'IndusInd Bank', type: 'Personal Loan', loanAmount: '₹8,00,000',  emi: '₹18,900',    tenure: '5 Years', interestRate: '13.0%', logo: '/assets/svg/banks/IndusInd.svg' },
+  { id: 11, bank: 'Poonawalla',    type: 'Personal Loan', loanAmount: '₹30,00,000', emi: '₹65,200',    tenure: '5 Years', interestRate: '10.99%',logo: '/assets/svg/banks/Poonawalla.svg' },
+  { id: 12, bank: 'L&T Finance',   type: 'Personal Loan', loanAmount: '₹18,00,000', emi: '₹40,100',    tenure: '5 Years', interestRate: '12.75%',logo: '/assets/svg/banks/LTFinance.svg' },
 ];
 
 const TENURE_OPTIONS = ['1 year', '5 years', '10 years', '20 years', '30 years'];
@@ -108,7 +114,7 @@ const LoanOffersGrid = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-10 px-4 md:px-8">
+    <section ref={sectionRef} className="py-10 md:py-0 px-4 md:px-8">
       <div className="max-w-[1351px] mx-auto flex flex-col md:flex-row gap-6 items-start">
 
         {/* Filters Sidebar */}
