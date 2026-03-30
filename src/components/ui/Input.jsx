@@ -11,9 +11,10 @@ const Input = ({
 }) => {
   // Check if className contains rounded- class to avoid conflict
   const hasCustomRounded = className.includes('rounded-');
-  const baseStyles = `w-full px-4 py-3 ${hasCustomRounded ? '' : 'rounded-lg'} border transition-all duration-200 focus:outline-none focus:ring-2`;
-  const normalStyles = 'border-neutral-200 focus:ring-primary focus:border-primary';
-  const errorStyles = 'border-red-500 focus:ring-red-500 focus:border-red-500';
+  const hasCustomFocus = className.includes('focus:');
+  const baseStyles = `w-full px-4 py-3 ${hasCustomRounded ? '' : 'rounded-lg'} border transition-all duration-200 focus:outline-none ${hasCustomFocus ? '' : 'focus:ring-2'}`;
+  const normalStyles = hasCustomFocus ? 'border-neutral-200' : 'border-neutral-200 focus:ring-primary focus:border-primary';
+  const errorStyles = hasCustomFocus ? 'border-red-500' : 'border-red-500 focus:ring-red-500 focus:border-red-500';
   const disabledStyles = 'bg-neutral-100 cursor-not-allowed';
   
   return (

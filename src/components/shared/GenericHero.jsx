@@ -27,7 +27,7 @@ const PhoneForm = ({ isMobile, mobileNumber, onMobileChange, agreedToTerms, onTe
   <form onSubmit={onSubmit} className="relative z-20">
     <div className={isMobile ? 'mb-4' : 'mb-9'}>
       <label className={`block text-white font-bold mb-2 leading-[26px] ${isMobile ? 'text-sm' : 'text-lg'}`}>Mobile Number</label>
-      <div className={`flex items-center bg-white rounded-[20px] overflow-hidden focus-within:ring-2 focus-within:ring-white ${isMobile ? 'text-sm' : ''}`}>
+      <div className={`flex items-center bg-white rounded-[20px] overflow-hidden focus-within:ring-2 focus-within:ring-white/30 ${isMobile ? 'text-sm' : ''}`}>
         <select
           value={countryCode}
           onChange={(e) => setCountryCode(e.target.value)}
