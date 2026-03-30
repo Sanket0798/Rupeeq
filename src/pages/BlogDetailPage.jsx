@@ -131,6 +131,15 @@ const RELATED_ARTICLES = [
 
 const CARDS_PER_SLIDE = 3;
 
+// Convert a heading string to a URL-safe id
+const slugify = (text) =>
+  text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
+const scrollToSection = (heading) => {
+  const el = document.getElementById(slugify(heading));
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+};
+
 const BlogDetailPage = () => {
   const navigate = useNavigate();
   const heroRef = useRef(null);
@@ -150,25 +159,20 @@ const BlogDetailPage = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero */}
+      {/* Hero — date + title only */}
       <section
         ref={heroRef}
-        className="relative pb-12 md:pb-16 overflow-hidden bg-gradient-to-b from-[#DDEDF9] via-[#DDEDF9] to-[#F7F7F7] [mask-image:linear-gradient(to_bottom,black_80%,transparent)]"
-        style={{ marginTop: '-80px', paddingTop: '150px' }}
+        className="relative pb-10 overflow-hidden bg-gradient-to-b from-[#DDEDF9] via-[#DDEDF9]/60 to-transparent"
+        style={{ marginTop: '-80px', paddingTop: '120px' }}
       >
-        <div className="max-w-[1293px] mx-auto px-4 md:px-0 relative z-10">
+        <div className="max-w-[1293px] mx-auto px-4 md:px-6 lg:px-0 relative z-10">
           <p className="text-[#949494] font-bold text-sm md:text-base mb-3">{BLOG_POST.date}</p>
           <h1
             ref={titleRef}
-            className="text-2xl md:text-[40px] font-semibold leading-tight md:leading-[52px] text-custom-dark-text mb-8 max-w-3xl"
+            className="text-2xl md:text-[40px] font-semibold leading-tight md:leading-[52px] text-custom-dark-text max-w-3xl"
           >
             {BLOG_POST.title}
           </h1>
-          <img
-            src={BLOG_POST.heroImage}
-            alt={BLOG_POST.title}
-            className="w-full max-h-[260px] md:max-h-[480px] object-cover md:object-contain rounded-2xl"
-          />
         </div>
       </section>
 
@@ -179,12 +183,22 @@ const BlogDetailPage = () => {
 
             {/* Left — Article */}
             <div className="lg:col-span-2 space-y-8">
+              {/* Hero image now lives here, top of left column */}
+              <img
+                src={BLOG_POST.heroImage}
+                alt={BLOG_POST.title}
+                className="w-full max-h-[300px] md:max-h-[420px] object-cover rounded-2xl"
+              />
               {/* Table of Contents */}
               <div className="bg-[#F5F5F5] rounded-2xl p-6 md:p-8">
                 <h2 className="font-bold text-lg md:text-xl text-custom-dark-text mb-4">Table of Contents</h2>
                 <ol className="space-y-2 list-decimal list-inside">
                   {BLOG_POST.tableOfContents.map((item, i) => (
-                    <li key={i} className="text-black font-light md:font-normal text-sm md:text-[22px] leading-[25px] md:leading-[40px] hover:underline cursor-pointer">
+                    <li
+                      key={i}
+                      onClick={() => scrollToSection(item)}
+                      className="text-black font-light md:font-normal text-sm md:text-[22px] leading-[25px] md:leading-[40px] hover:underline hover:text-custom-purple cursor-pointer transition-colors"
+                    >
                       {item}
                     </li>
                   ))}
@@ -193,7 +207,7 @@ const BlogDetailPage = () => {
 
               {/* Article Sections */}
               {BLOG_POST.sections.map((section, i) => (
-                <div key={i}>
+                <div key={i} id={slugify(section.heading)} className="scroll-mt-24">
                   <h2 className="font-bold text-xl md:text-2xl text-custom-dark-text mb-3 border-l-4 border-custom-purple pl-4">
                     {section.heading}
                   </h2>

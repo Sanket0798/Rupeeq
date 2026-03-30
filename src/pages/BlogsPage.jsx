@@ -13,26 +13,20 @@ const BlogsPage = () => {
 
   const [activeCategory, setActiveCategory] = useState(activeTab);
 
-  // Sync tab when URL query param changes (e.g. footer links while already on /blogs)
   useEffect(() => {
     setActiveCategory(activeTab);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [activeTab]);
 
-  // When user clicks a tab in the hero, update the URL too
   const handleTabChange = (tabId) => {
     setActiveCategory(tabId);
-    if (tabId === 'all') {
-      setSearchParams({});
-    } else {
-      setSearchParams({ tab: tabId });
-    }
+    setSearchParams(tabId === 'all' ? {} : { tab: tabId });
   };
 
   return (
     <div className="min-h-screen bg-white">
       <BlogsHero onTabChange={handleTabChange} initialTab={activeCategory} />
-      <BlogListingSection category={activeCategory} />
+      <BlogListingSection category={activeCategory} onTabChange={handleTabChange} />
       <BlogCTASection />
     </div>
   );
