@@ -2,15 +2,11 @@ import { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { Button } from '../ui';
 
-const EMICalculatorHero = () => {
-  const [loanAmount, setLoanAmount] = useState(2500000);
-  const [interestRate, setInterestRate] = useState(6.5);
-  const [loanTenure, setLoanTenure] = useState(5);
-
+const EMICalculatorHero = ({ loanAmount, setLoanAmount, interestRate, setInterestRate, loanTenure, setLoanTenure }) => {
   // String states for controlled inputs (allows empty/partial typing)
-  const [loanAmountInput, setLoanAmountInput] = useState('2500000');
-  const [interestRateInput, setInterestRateInput] = useState('6.5');
-  const [loanTenureInput, setLoanTenureInput] = useState('5');
+  const [loanAmountInput, setLoanAmountInput] = useState(String(loanAmount));
+  const [interestRateInput, setInterestRateInput] = useState(String(interestRate));
+  const [loanTenureInput, setLoanTenureInput] = useState(String(loanTenure));
 
   // Animation refs
   const sectionRef = useRef(null);

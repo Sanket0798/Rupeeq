@@ -1,29 +1,46 @@
+import { useState } from 'react';
 import {
   EMICalculatorHero,
   WhatIsEMICalculatorSection,
   EMICalculatorBenefitsSection,
+  EMIBreakdownSection,
 } from '../components/sections';
 import { FAQSection } from '../components/shared';
 
 const EMICalculatorPage = () => {
+  const [loanAmount, setLoanAmount] = useState(2500000);
+  const [interestRate, setInterestRate] = useState(6.5);
+  const [loanTenure, setLoanTenure] = useState(5);
+
   return (
     <>
-      {/* Hero Section with EMI Calculator */}
       <section id="emi-calculator-hero">
-        <EMICalculatorHero />
+        <EMICalculatorHero
+          loanAmount={loanAmount}
+          setLoanAmount={setLoanAmount}
+          interestRate={interestRate}
+          setInterestRate={setInterestRate}
+          loanTenure={loanTenure}
+          setLoanTenure={setLoanTenure}
+        />
       </section>
 
-      {/* What is EMI Calculator Section */}
+      <section id="emi-breakdown">
+        <EMIBreakdownSection
+          loanAmount={loanAmount}
+          interestRate={interestRate}
+          loanTenure={loanTenure}
+        />
+      </section>
+
       <section id="what-is-emi-calculator">
         <WhatIsEMICalculatorSection />
       </section>
 
-      {/* Benefits Section */}
       <section id="emi-calculator-benefits">
         <EMICalculatorBenefitsSection />
       </section>
 
-      {/* FAQ Section */}
       <section id="faq">
         <FAQSection />
       </section>
