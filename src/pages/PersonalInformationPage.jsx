@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
-import { Input, Button, DatePicker } from '../components/ui';
+import { Input, Button, DatePicker, CompanySearchSelect } from '../components/ui';
 import { gsap } from 'gsap';
 
 const PersonalInformationPage = () => {
@@ -373,13 +373,11 @@ const PersonalInformationPage = () => {
               <label className="block font-bold text-sm md:text-lg leading-[26px] tracing-[4%] text-[#58626C] mb-[6px]">
                 Company Name
               </label>
-              <Input
-                type="text"
-                name="companyName"
-                placeholder="Enter your Company Name"
+              <CompanySearchSelect
                 value={formData.companyName}
                 onChange={handleChange}
-                className="bg-white border-[#D0D0D0] rounded-[20px] py-3 md:py-4 text-sm md:text-base placeholder:text-[#58626C]/50"
+                placeholder="Enter your Company Name"
+                className="rounded-[20px] py-3 md:py-4 text-sm md:text-base"
               />
             </div>
 

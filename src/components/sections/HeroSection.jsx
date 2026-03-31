@@ -76,7 +76,7 @@ const HeroSection = () => {
       description: 'Merge multiple EMIs into one smarter payment.',
       buttonText: 'Explore Now',
       route: '/debt-consolidation',
-      icon: '/assets/images/hero/3.png',
+      icon: '/assets/images/hero/8.svg',
       borderGradient: 'linear-gradient(90deg, #5528A9 11%, #34CA8D 100%)',
       conicGradient: 'conic-gradient(from 0deg, #5528A9, #34CA8D, #5528A9)',
       bgGradient: 'from-[#E8F5F7] to-[#F0E8F7]'
@@ -100,7 +100,7 @@ const HeroSection = () => {
       description: 'Use funds anytime. Pay interest only on usage.',
       buttonText: 'Apply Now',
       route: '/overdraft-facility',
-      icon: '/assets/images/hero/5.png',
+      icon: '/assets/images/hero/9.svg',
       borderGradient: 'linear-gradient(90deg, #5528A9 11%, #34CA8D 100%)',
       conicGradient: 'conic-gradient(from 0deg, #5528A9, #34CA8D, #5528A9)',
       bgGradient: 'from-[#E8F5F7] to-[#E8F7F0]'
@@ -108,7 +108,7 @@ const HeroSection = () => {
     {
       id: 4,
       title: 'Credit Score Check',
-      subtitle: '100% Free',
+      subtitle: '100% Free, No Any Charges',
       description: 'Know your credit score and borrowing strength instantly.',
       buttonText: 'Check Score',
       route: '/credit-score',
@@ -320,7 +320,7 @@ const HeroSection = () => {
                   <img
                     src={card.icon}
                     alt={card.title}
-                    className="object-contain max-w-[80px] md:max-w-full"
+                    className="object-contain max-w-[100px] md:max-w-full"
                   />
                 </div>
 

@@ -1,4 +1,4 @@
-import { Input, FormFieldError } from '../components/ui';
+import { Input, FormFieldError, CompanySearchSelect } from '../components/ui';
 
 // Personal Loan Info Pages
 export const personalLoanInfo1Content = {
@@ -124,13 +124,12 @@ export const debtConsolidationInfo2Content = {
           <label className="block text-sm md:text-base leading-[26px] font-bold tracing-[4%] text-[#58626C] mb-2">
             Company Name
           </label>
-          <Input
-            type="text"
-            name="companyName"
-            placeholder="Enter Your Company Name"
+          <CompanySearchSelect
             value={formData.companyName}
             onChange={handleChange}
-            className="bg-white border-[#D0D0D0] rounded-[20px] py-3"
+            placeholder="Enter Your Company Name"
+            className="rounded-[20px] py-3"
+            error={!!errors.companyName}
           />
           {errors.companyName && (
             <FormFieldError error={errors.companyName} />

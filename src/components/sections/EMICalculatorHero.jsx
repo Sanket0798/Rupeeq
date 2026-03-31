@@ -15,7 +15,6 @@ const EMICalculatorHero = ({ loanAmount, setLoanAmount, interestRate, setInteres
   const slidersRef = useRef([]);
   const pieChartRef = useRef(null);
   const breakdownRef = useRef(null);
-  const buttonRef = useRef(null);
 
   // Calculate EMI — use safe values so chart never breaks
   const safeLoan = loanAmount > 0 ? loanAmount : 100000;
@@ -106,17 +105,6 @@ const EMICalculatorHero = ({ loanAmount, setLoanAmount, interestRate, setInteres
             delay: 1.2
           });
         }
-
-        // Button - bounce in
-        if (buttonRef.current) {
-          gsap.from(buttonRef.current, {
-            opacity: 0,
-            scale: 0.8,
-            duration: 0.6,
-            ease: 'back.out(1.7)',
-            delay: 1.4
-          });
-        }
       } else {
         // Mobile Animations - Simpler and faster
         
@@ -151,17 +139,6 @@ const EMICalculatorHero = ({ loanAmount, setLoanAmount, interestRate, setInteres
             stagger: 0.1,
             ease: 'power2.out',
             delay: 0.6
-          });
-        }
-
-        // Button
-        if (buttonRef.current) {
-          gsap.from(buttonRef.current, {
-            opacity: 0,
-            y: 20,
-            duration: 0.5,
-            ease: 'power2.out',
-            delay: 0.9
           });
         }
       }
@@ -367,12 +344,7 @@ const EMICalculatorHero = ({ loanAmount, setLoanAmount, interestRate, setInteres
           </div>
         </div>
 
-        {/* View More Button */}
-        <div ref={buttonRef} className="flex justify-center">
-          <Button variant='custom' className="w-full md:w-[218px] bg-custom-purple hover:bg-custom-purple/90 text-white px-8 py-[15px] rounded-full font-bold text-lg leading-[26px]">
-            View More...
-          </Button>
-        </div>
+
       </div>
     </section>
   );

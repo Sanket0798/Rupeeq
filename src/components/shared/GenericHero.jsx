@@ -9,34 +9,15 @@ import OtpModal from '../common/OtpModal';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const COUNTRY_CODES = [
-  { code: '+91', flag: '🇮🇳', label: 'IN' },
-  { code: '+1',  flag: '🇺🇸', label: 'US' },
-  { code: '+44', flag: '🇬🇧', label: 'GB' },
-  { code: '+971', flag: '🇦🇪', label: 'AE' },
-  { code: '+65', flag: '🇸🇬', label: 'SG' },
-  { code: '+61', flag: '🇦🇺', label: 'AU' },
-  { code: '+49', flag: '🇩🇪', label: 'DE' },
-  { code: '+33', flag: '🇫🇷', label: 'FR' },
-];
-
 const PhoneForm = ({ isMobile, mobileNumber, onMobileChange, agreedToTerms, onTermsChange, errors, isSubmitting, formButtonText, onSubmit }) => {
-  const [countryCode, setCountryCode] = useState('+91');
-
   return (
   <form onSubmit={onSubmit} className="relative z-20">
     <div className={isMobile ? 'mb-4' : 'mb-9'}>
       <label className={`block text-white font-bold mb-2 leading-[26px] ${isMobile ? 'text-sm' : 'text-lg'}`}>Mobile Number</label>
       <div className={`flex items-center bg-white rounded-[20px] overflow-hidden focus-within:ring-2 focus-within:ring-white/30 ${isMobile ? 'text-sm' : ''}`}>
-        <select
-          value={countryCode}
-          onChange={(e) => setCountryCode(e.target.value)}
-          className="pl-3 pr-1 py-3 bg-transparent text-gray-700 font-medium border-r border-gray-200 focus:outline-none cursor-pointer text-sm"
-        >
-          {COUNTRY_CODES.map(({ code, flag, label }) => (
-            <option key={code} value={code}>{flag} {code}</option>
-          ))}
-        </select>
+        <span className="pl-3 pr-2 py-3 bg-transparent text-gray-700 font-medium border-r border-gray-200 text-sm select-none">
+          🇮🇳 +91
+        </span>
         <Input
           type="tel" value={mobileNumber} onChange={onMobileChange}
           placeholder="Enter your Mobile Number"

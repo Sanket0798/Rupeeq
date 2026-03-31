@@ -253,7 +253,7 @@ const WhatIsEMICalculatorSection = () => {
             return (
               <div
                 key={index}
-                ref={el => mobileCardsRef.current[index] = el}
+                // ref={el => mobileCardsRef.current[index] = el}
                 onClick={() => toggleCard(index)}
                 className={`${isExpanded ? 'bg-[#5085FF]/10' : 'border border-[#DDE5FB]'} rounded-24 transition-all duration-300 cursor-pointer`}
               >

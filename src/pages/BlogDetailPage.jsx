@@ -291,14 +291,37 @@ const BlogDetailPage = () => {
 
             {/* Right — Sidebar */}
             <div className="lg:col-span-1">
-              <div className="lg:sticky lg:top-24 space-y-6 md:space-y-8 lg:space-y-16">
+              <div className="lg:sticky lg:top-24">
+                {/* Personal Loan Offers Widget */}
+                <div className="bg-brand-gradient px-6 md:px-8 py-4 text-white relative w-full flex flex-col justify-between rounded-2xl md:rounded-3xl overflow-visible shadow-[5px_8px_9px_rgba(0,0,0,0.25)]">
+                  <h3 className="font-semibold text-lg md:text-xl leading-tight md:leading-[35px] mb-4 md:mb-5">Check Personal Loan Offers</h3>
+                  <div className="mb-4 md:mb-6">
+                    <label className="block font-normal text-sm md:text-[15px] leading-tight md:leading-[26px] mb-2">Mobile Number</label>
+                    <input
+                      type="tel"
+                      placeholder="Enter your mobile number"
+                      className="w-full px-4 py-2 md:py-3 rounded-full text-sm md:text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
+                      maxLength={10}
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label className="flex items-start gap-2 text-xs cursor-pointer">
+                      <input type="checkbox" className="w-4 h-4 rounded flex-shrink-0 mt-0.5" />
+                      <span>I agree to <span className="underline">Privacy Policy</span> and <span className="underline">Terms and Conditions</span>.</span>
+                    </label>
+                  </div>
+                  <Button variant="primary-white" className="w-full py-2 md:py-3 text-sm md:text-[15px] leading-[130%] font-bold rounded-full">
+                    Sign In
+                  </Button>
+                </div>
+
                 {/* Credit Score Widget */}
-                <div className="bg-[#E5FBF5] text-center rounded-[10px] shadow-[4px_4px_4px_rgba(0,0,0,0.25)] px-6 md:px-[45px] pb-8 md:pb-[53px]">
+                <div className="bg-[#E5FBF5] text-center mt-14 md:mt-28 rounded-[10px] shadow-[4px_4px_4px_rgba(0,0,0,0.25)] px-6 md:px-[45px] pb-8 md:pb-[53px]">
                   <div className="flex justify-center mb-4 relative">
                     <img
                       src="/assets/images/creditScore/CreditCounter.png"
                       alt="Credit Score"
-                      className="object-contain absolute -top-12 md:-top-20 w-48 md:w-auto"
+                      className="object-contain absolute -top-8 md:-top-20 w-48 md:w-auto"
                       onError={(e) => { e.target.style.display = 'none'; }}
                     />
                   </div>
@@ -322,32 +345,7 @@ const BlogDetailPage = () => {
                     <ChevronUpIcon />
                   </Button>
                 </div>
-
-                {/* Personal Loan Offers Widget */}
-                <div className="bg-brand-gradient px-6 md:px-8 py-4 text-white relative w-full flex flex-col justify-between rounded-2xl md:rounded-3xl overflow-visible mt-6 md:mt-8 lg:mt-[69px] shadow-[5px_8px_9px_rgba(0,0,0,0.25)]">
-                  <h3 className="font-semibold text-lg md:text-xl leading-tight md:leading-[35px] mb-4 md:mb-5">Check Personal Loan Offers</h3>
-                  <div className="mb-4 md:mb-6">
-                    <label className="block font-normal text-sm md:text-[15px] leading-tight md:leading-[26px] mb-2">Mobile Number</label>
-                    <input
-                      type="tel"
-                      placeholder="Enter your mobile number"
-                      className="w-full px-4 py-2 md:py-3 rounded-full text-sm md:text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
-                      maxLength={10}
-                    />
-                  </div>
-                  <div className="mb-4">
-                    <label className="flex items-start gap-2 text-xs cursor-pointer">
-                      <input type="checkbox" className="w-4 h-4 rounded flex-shrink-0 mt-0.5" />
-                      <span>I agree to <span className="underline">Privacy Policy</span> and <span className="underline">Terms and Conditions</span>.</span>
-                    </label>
-                  </div>
-                  <Button variant="primary-white" className="w-full py-2 md:py-3 text-sm md:text-[15px] leading-[130%] font-bold rounded-full">
-                    Sign In
-                  </Button>
-                </div>
-
-                {/* Interest Rates Table */}
-                <div className="bg-white rounded-b-[20px] mt-6 md:mt-8 lg:mt-[66px]">
+                <div className="bg-white rounded-b-[20px] mt-10">
                   <h3 className="font-semibold text-base md:text-xl leading-tight md:leading-[35px] rounded-t-[20px] text-center py-4 md:py-5 bg-[#D9D9D9]">
                     Personal Loan Interest Rates Feb, 2026
                   </h3>

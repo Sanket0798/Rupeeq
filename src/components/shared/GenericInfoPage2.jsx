@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
-import { Input, FormFieldError, LoadingSpinner, Button } from '../ui';
+import { Input, FormFieldError, LoadingSpinner, Button, CompanySearchSelect } from '../ui';
 import { personalInfoPage2Schema, debtConsolidationPage2Schema, validateForm } from '../../utils/validationSchemas';
 import { gsap } from 'gsap';
 
@@ -340,13 +340,12 @@ const GenericInfoPage2 = ({ content }) => {
               <label className="block text-sm md:text-base leading-[26px] font-bold tracing-[4%] text-[#58626C] mb-2">
                 Company Name
               </label>
-              <Input
-                type="text"
-                name="companyName"
-                placeholder="Enter your Company Name"
+              <CompanySearchSelect
                 value={formData.companyName}
                 onChange={handleChange}
-                className="bg-white border-[#D0D0D0] rounded-[20px] py-3"
+                placeholder="Enter your Company Name"
+                className="rounded-[20px] py-3"
+                error={!!errors.companyName}
               />
               {errors.companyName && (
                 <FormFieldError error={errors.companyName} />

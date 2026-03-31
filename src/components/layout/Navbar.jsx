@@ -46,6 +46,39 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    const preventTouch = (e) => e.preventDefault();
+    if (isOpen) {
+      const scrollY = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.left = '0';
+      document.body.style.right = '0';
+      document.body.style.overflow = 'hidden';
+      document.addEventListener('touchmove', preventTouch, { passive: false });
+    } else {
+      const scrollY = document.body.style.top;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.overflow = '';
+      document.removeEventListener('touchmove', preventTouch);
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      }
+    }
+    return () => {
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.overflow = '';
+      document.removeEventListener('touchmove', preventTouch);
+    };
+  }, [isOpen]);
+
   // Close mobile menu on escape key
   useEffect(() => {
     const handleEscape = (e) => {
@@ -226,9 +259,10 @@ const Navbar = () => {
           </div>
         </div>
 
-      {/* Mobile Navigation */}
+      {/* Mobile Navigation - fixed overlay so page content doesn't shift */}
       {isOpen && (
-        <div className="md:hidden bg-white border-t border-gray-100 rounded-b-3xl overflow-hidden animate-slide-up">
+        <div className="md:hidden fixed  top-[84px] left-0 right-0 z-40 mx-3">
+          <div className="bg-white border border-gray-100 rounded-3xl shadow-lg overflow-hidden animate-slide-up">
           <div className="px-2 pt-2 pb-3 space-y-1">
             {navLinks.map((link) => (
               <div key={link.name}>
@@ -283,6 +317,7 @@ const Navbar = () => {
               </div>
             ))}
             <Button variant="header" className="w-full mt-2" onClick={handleLoginClick}>Login</Button>
+          </div>
           </div>
         </div>
       )}

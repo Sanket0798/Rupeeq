@@ -58,7 +58,7 @@ const QuickDetailsForm2 = ({ formTitle, onSubmit }) => {
       </div>
 
       <div className="mb-3">
-        <input type="text" placeholder="Company Name" value={data.companyName} onChange={(e) => set('companyName', e.target.value)} className={inputCls} />
+        <input type="text" autoComplete="organization" placeholder="Company Name" value={data.companyName} onChange={(e) => set('companyName', e.target.value)} className={inputCls} />
         {errors.companyName && <p className={errCls}>{errors.companyName}</p>}
       </div>
 
